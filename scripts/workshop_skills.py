@@ -185,13 +185,14 @@ MANIFEST_PATH = ROOT / "skills" / "manifest.sha256"
 
 
 def generate_manifest() -> Path:
-    """Generate cryptographic SHA-256 manifest of all discovered skill files."""
+    """Generate cryptographic SHA-256 manifest of all discovered skill files (LF normalized)."""
     skills = discover()
     entries: list[str] = []
     for s in sorted(skills, key=lambda x: str(x.path)):
         try:
             rel = s.path.relative_to(ROOT).as_posix()
-            digest = hashlib.sha256(s.path.read_bytes()).hexdigest()
+            content = s.path.read_bytes().replace(b"\r\n", b"\n")
+            digest = hashlib.sha256(content).hexdigest()
             entries.append(f"{digest}  {rel}")
         except (OSError, IOError):  # @court-exempt: unreadable file skipped
             pass
@@ -201,7 +202,7 @@ def generate_manifest() -> Path:
 
 
 def verify_manifest() -> tuple[bool, int, list[str]]:
-    """Verify all skills against cryptographic SHA-256 manifest."""
+    """Verify all skills against cryptographic SHA-256 manifest (LF normalized)."""
     if not MANIFEST_PATH.exists():
         return False, 0, [f"Manifest file not found: {MANIFEST_PATH}"]
     lines = MANIFEST_PATH.read_text(encoding="utf-8").strip().splitlines()
@@ -216,7 +217,8 @@ def verify_manifest() -> tuple[bool, int, list[str]]:
         if not fpath.exists():
             mismatches.append(f"Missing file: {rel_path}")
             continue
-        current_hash = hashlib.sha256(fpath.read_bytes()).hexdigest()
+        content = fpath.read_bytes().replace(b"\r\n", b"\n")
+        current_hash = hashlib.sha256(content).hexdigest()
         if current_hash != expected_hash:
             mismatches.append(f"Hash mismatch: {rel_path}")
         else:

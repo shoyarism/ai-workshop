@@ -100,6 +100,8 @@ def is_path_outside_boundary(path_str: str) -> bool:
     # Detect Windows drive letter paths or POSIX absolute paths
     m = re.match(r"^[A-Za-z]:[\\/]", clean)
     if m or clean.startswith(("/", "\\")):
+        if os.name != "nt" and m:
+            return True
         try:
             target = Path(clean).resolve()
             root_resolved = ROOT.resolve()
