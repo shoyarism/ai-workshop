@@ -210,7 +210,7 @@ def cmd_index(args):
 def cmd_doctor(args):
     """Run health diagnostic check."""
     from workshop_doctor import main as doctor_main
-    doctor_main()
+    doctor_main(strict=getattr(args, "strict", False))
 
 def cmd_hub(args):
     """Start live browser hub web dashboard."""
@@ -687,7 +687,8 @@ def main():
     p_vision.add_argument("subcommand", nargs=argparse.REMAINDER)
 
     # Doctor
-    subparsers.add_parser("doctor", help="Run health diagnostics on Workshop")
+    p_doc = subparsers.add_parser("doctor", help="Run health diagnostics on Workshop")
+    p_doc.add_argument("--strict", action="store_true", help="Exit with code 1 on any critical failure")
 
     # Live Browser Hub
     p_hub = subparsers.add_parser("hub", help="Start Live Browser Hub (http://localhost:7860)")
