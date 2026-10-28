@@ -5086,7 +5086,7 @@ wheels = [
 [[package]]
 name = "workshop-os"
 version = "3.5.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
     { name = "pyyaml" },
