@@ -1,16 +1,44 @@
 [project]
 name = "workshop-os"
-version = "2.2.0"
-description = "Centralized Workshop Operating System & Agentic Arsenal"
+version = "3.5.0"
+description = "Universal AI Workshop OS — Master Engineering Arsenal & Multi-Agent Supreme Tribunal"
 requires-python = ">=3.11"
 dependencies = [
-    "pyyaml",
-    "requests",
-    "pydantic",
+    "pyyaml>=6.0.1",
+    "requests>=2.31.0",
+    "pydantic>=2.7.0",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "fastmcp",
     "fastapi",
     "uvicorn",
     "websockets",
+]
+browser = [
+    "playwright",
+    "crawl4ai",
+]
+vision = [
+    "pillow",
+    "gradio-client",
+]
+agents = [
+    "mem0ai",
+    "pydantic-ai",
+    "agno",
+    "smolagents",
+]
+dev = [
+    "ruff",
+    "pytest",
+]
+all = [
     "fastmcp",
+    "fastapi",
+    "uvicorn",
+    "websockets",
     "pillow",
     "playwright",
     "gradio-client",
@@ -19,4 +47,6 @@ dependencies = [
     "pydantic-ai",
     "agno",
     "smolagents",
+    "ruff",
+    "pytest",
 ]
