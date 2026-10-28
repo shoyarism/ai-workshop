@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Propose a battle-tested domain skill to add to Workshop OS's 960+ skill library.
+        Propose a battle-tested domain skill to add to Workshop OS's 2,140+ skill library.
   - type: input
     id: skill_name
     attributes:

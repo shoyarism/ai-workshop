@@ -43,7 +43,7 @@ Workshop OS works across all major AI harnesses without vendor lock-in. Copy the
 ## 3. Daily Command Palette
 
 ```bash
-# 1. Search 960+ domain skills in milliseconds
+# 1. Search 2,140+ domain skills in milliseconds
 python scripts/workshop.py search "<keyword>"
 
 # 2. Convene Slop Court quality review on staged code

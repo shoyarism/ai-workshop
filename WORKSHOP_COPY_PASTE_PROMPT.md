@@ -18,7 +18,7 @@ Principles: First-Principles | Multi-Source Evidence | Zero Sycophancy | Never T
 
 ### Mode A: Local Workshop (If local clone or $WORKSHOP_ROOT exists)
 - Master CLI: `uv run python scripts/workshop.py <search|doctor|court|council|see|index>`
-- Skills Library: `skills/` (990+ specialized engineering runbooks)
+- Skills Library: `skills/` (2,140+ specialized engineering runbooks)
 - Memory / Vault: `vault/` (ADRs & Post-Mortems)
 
 ### Mode B: Cloud Zero-Clone (If remote / no local clone)

@@ -1195,12 +1195,12 @@
     "doctor": {
       "description": "Run Workshop OS health and diagnostic checks",
       "agent": "build",
-      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python ./scripts/workshop.py doctor`\nAnalyze the diagnostic output."
+      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python scripts/workshop.py doctor`\nAnalyze the diagnostic output."
     },
     "search": {
       "description": "Search Workshop OS skills, subsystems, and APIs",
       "agent": "build",
-      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python ./scripts/workshop.py search \"$ARGUMENTS\"`"
+      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python scripts/workshop.py search \"$ARGUMENTS\"`"
     },
     "review": {
       "description": "Review recent git diff or code changes for quality and anti-slop compliance",
@@ -1217,7 +1217,7 @@
     "audit": {
       "description": "Run anti-slop audit and security check on files",
       "agent": "build",
-      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python ./scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
+      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
     },
     "plan": {
       "description": "Formulate a first-principles architectural plan",
@@ -1227,7 +1227,7 @@
     "verify": {
       "description": "Run deterministic test and verification suite",
       "agent": "build",
-      "template": "Run full system verification suite:\n!`uv run python ./scripts/workshop_eval.py`"
+      "template": "Run full system verification suite:\n!`uv run python scripts/workshop_eval.py`"
     }
   }
 }
