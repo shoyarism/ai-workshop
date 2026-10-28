@@ -5,6 +5,7 @@
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python 3.11 | 3.12](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](pyproject.toml)
 [![Quality Gate](https://img.shields.io/badge/Slop_Court-v3.5_Armed-eb5e28.svg)](scripts/workshop_court.py)
+[![Code Style: Ruff](https://img.shields.io/badge/linter-ruff-black.svg)](pyproject.toml)
 
 <br>
 
@@ -86,12 +87,27 @@ To prevent **context window rot** and cognitive clutter, Workshop OS categorizes
 
 *Auxiliary Infrastructure:* `skills/cloud-and-apis/` houses **320 specialized connectors** (AWS, Azure, GCP, BigQuery, Taobao, Stripe, Resend) kept neatly isolated from core Houses.
 
+<details>
+<summary><b>🔍 Expand Directory Mapping & House Inspection Commands</b></summary>
+<br>
+
+Each Sovereign House is versioned as a modular directory tree under `skills/`:
+* `skills/security-house/` — Defensive monitors, Slop Court tribunal rules, forensic collectors.
+* `skills/dev-house/` — TDD frameworks, strict typing runbooks, AST refactoring guides.
+* `skills/media-house/` — Programmatic motion graphics, video pipelines, photoreal studio.
+* `skills/ops-tokens-house/` — Token diet protocols, SDD execution templates, context compressors.
+* `skills/design-house/` — Design tokens, visual anti-slop rules, typography scales.
+* `skills/intel-house/` — AST knowledge graph parsers, OSINT scrapers, recency intelligence.
+* `skills/growth-house/` — Authentic human voice guides, product launch checklists, technical SEO.
+* `skills/cloud-and-apis/` — Isolated cloud service and external API runbooks.
+
 ```bash
 # Explore and inspect any house from the terminal
-python scripts/workshop.py house list
-python scripts/workshop.py house inspect design-house
-python scripts/workshop.py house inspect dev-house
+workshop house list
+workshop house inspect design-house
+workshop house inspect dev-house
 ```
+</details>
 
 ---
 
@@ -126,7 +142,7 @@ $ git commit -m "feat: user pipeline"
  Case Docket : CR-20261028-FADA
  Target      : Staged Git Diffs (1 files | 237 lines)
  Slop Index  : 0.0% | Penalties: 0 pts | Felonies: 0 | Misdemeanors: 0
- SHA-256 Hash: 46342aca9f37c404...a76d509f
+ SHA-256 Sig : 46342aca9f37c404...a76d509f
 ----------------------------------------------------------------------
  [3-JUROR BENCH DELIBERATION]
   ✓ [ACQUIT] Juror Craft & Tone           : 0 aesthetic violations. Tone clean.
@@ -155,13 +171,13 @@ Single-agent reasoning is prone to confirmation bias. The **Supreme Council** fo
 
 ```bash
 # Deliberate an architectural choice
-python scripts/workshop.py court council "Should we rewrite the ingestion pipeline in Rust?" --domain architecture
+workshop court council "Should we rewrite the ingestion pipeline in Rust?" --domain architecture
 
 # Deliberate a product strategy
-python scripts/workshop.py court council "Launching an API with a $99/mo minimum and zero free tier" --domain business
+workshop court council "Launching an API with a $99/mo minimum and zero free tier" --domain business
 
 # Deliberate any technical question
-python scripts/workshop.py court council "Mandating 100% test coverage before release" --domain general
+workshop court council "Mandating 100% test coverage before release" --domain general
 ```
 
 ---
@@ -199,7 +215,7 @@ workshop court bailiff install
 
 # 4. Run automated diagnostics and tests
 workshop doctor --strict
-python ci/run_local_ci.py
+pytest
 ```
 
 ### Option B: Sandboxed Docker Container
@@ -230,37 +246,28 @@ curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/d
 Workshop OS provides a centralized console entrypoint (`workshop` or `python scripts/workshop.py`):
 
 ```bash
-# Enumerate and inspect the 7 Sovereign Houses
-workshop house list
-workshop house inspect design-house
-workshop house inspect dev-house
+# === 1. System Health & Diagnostics ===
+workshop doctor --strict               # Comprehensive diagnostic across 41+ subsystems
+workshop status                        # Live operational state and background services
 
-# Search 2,150+ skills, tools, and subsystems
-workshop search "<keyword>"
+# === 2. Sovereign Houses & Skill Arsenal ===
+workshop house list                    # Enumerate all 7 Sovereign Houses and capacities
+workshop house inspect <house-name>    # Deep-dive into lead tools and runbook inventory
+workshop search "<keyword>"            # Fuzzy search across 2,150+ skills and tools
 
-# Run strict health diagnostics across all subsystems
-workshop doctor --strict
+# === 3. Slop Court Judicial Tribunal ===
+workshop court trial --staged          # Prosecute staged Git diffs before 3-juror bench
+workshop court jury --staged           # View detailed juror-by-juror voting breakdown
+workshop court reform <file>           # Auto-purge tautological comments and slop markers
+workshop court bailiff install         # Install Git pre-commit and pre-push hooks
 
-# Convene Slop Court quality tribunal on staged code
-workshop court trial --staged
-
-# View 3-juror voting breakdown
-workshop court jury --staged
-
-# Install the Bailiff pre-commit and pre-push hooks
-workshop court bailiff install
-
-# Summon the 4-persona Supreme Council to debate a decision
+# === 4. Supreme Council Dialectics ===
 workshop court council "<topic>" --domain <general|architecture|business|creative>
 
-# Inspect visual assets using multi-modal vision
-workshop see path/to/asset.png
-
-# Enumerate active FastMCP tools
-workshop mcp list
-
-# Run the complete 6-gate local CI suite
-python ci/run_local_ci.py
+# === 5. Multimodal & MCP Extensions ===
+workshop see path/to/asset.png         # Inspect visual assets using multimodal vision
+workshop mcp list                      # Enumerate active FastMCP tools and servers
+workshop hub                           # Launch real-time live browser automation hub
 ```
 
 ---
