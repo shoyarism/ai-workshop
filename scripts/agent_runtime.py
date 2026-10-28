@@ -77,7 +77,7 @@ class AgentRuntime:
     def start_health_server(self):
         """Start a simple HTTP health endpoint."""
         class HealthHandler(BaseHTTPRequestHandler):
-            def log_message(self, format, *args):
+            def log_message(self, format, *args):  # @court-exempt: suppress noisy HTTP server logging
                 pass
             
             def do_GET(self):

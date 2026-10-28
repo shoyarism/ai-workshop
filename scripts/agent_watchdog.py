@@ -101,7 +101,7 @@ def save_state(state: dict):
 def start_health_server():
     """Start a simple HTTP health endpoint for the watchdog itself."""
     class HealthHandler(BaseHTTPRequestHandler):
-        def log_message(self, format, *args):
+        def log_message(self, format, *args):  # @court-exempt: suppress noisy HTTP server logging
             pass
         
         def do_GET(self):

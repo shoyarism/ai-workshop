@@ -402,16 +402,47 @@ class Prosecutor:
                             if alias.name == "*":
                                 stat = STATUTES["MIS-05"]
                                 charges.append(Charge(file_path, node.lineno, "MIS-05", stat.gravity, stat.juror_domain, f"Wildcard import 'from {node.module or ''} import *'", f"from {node.module} import *"))
-                    # Flag god-functions (> 150 statements)
+                    # Flag god-functions (> 150 statements) and stubs (FEL-02)
                     if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                         body_len = len(node.body)
                         if body_len > 150:
                             stat = STATUTES["INF-03"]
                             charges.append(Charge(file_path, node.lineno, "INF-03", stat.gravity, stat.juror_domain, f"God-function anomaly: '{node.name}' has {body_len} statements", f"def {node.name}(...)"))
+                        
+                        # Flag FEL-02: Pure function stub (body is only pass or Ellipsis without abstract decorator)
+                        is_abstract = any(
+                            (isinstance(d, ast.Name) and d.id in {"abstractmethod", "abstractproperty", "override"}) or
+                            (isinstance(d, ast.Attribute) and d.attr in {"abstractmethod", "abstractproperty"})
+                            for d in node.decorator_list
+                        )
+                        if not is_abstract and len(node.body) == 1:
+                            first_stmt = node.body[0]
+                            is_stub = isinstance(first_stmt, ast.Pass) or (
+                                isinstance(first_stmt, ast.Expr) and isinstance(first_stmt.value, ast.Constant) and first_stmt.value.value is Ellipsis
+                            )
+                            if is_stub:
+                                surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                is_exempt = any("@court-exempt" in l for l in surrounding)
+                                if not is_exempt:
+                                    stat = STATUTES["FEL-02"]
+                                    charges.append(Charge(file_path, node.lineno, "FEL-02", stat.gravity, stat.juror_domain, f"AST Verified: Truncated code stub in '{node.name}' (unimplemented pass/...)", f"def {node.name}(...): pass", exempted=is_exempt))
+
                         nest_depth = _get_control_flow_depth(node)
                         if nest_depth > 5:
                             stat = STATUTES["MIS-06"]
                             charges.append(Charge(file_path, node.lineno, "MIS-06", stat.gravity, stat.juror_domain, f"Excessive control flow nesting depth in '{node.name}' ({nest_depth} levels > 5 max)", f"def {node.name}(...)"))
+
+                    # Flag FEL-03 via AST: ExceptHandler with pass
+                    if isinstance(node, ast.ExceptHandler):
+                        is_naked = node.type is None or (
+                            isinstance(node.type, ast.Name) and node.type.id in {"Exception", "BaseException"}
+                        )
+                        if is_naked and len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
+                            surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                            is_exempt = any("@court-exempt" in l for l in surrounding)
+                            if not is_exempt:
+                                stat = STATUTES["FEL-03"]
+                                charges.append(Charge(file_path, node.lineno, "FEL-03", stat.gravity, stat.juror_domain, "AST Verified: Naked 'except Exception: pass' error blackhole", "except Exception: pass", exempted=is_exempt))
             except SyntaxError as e:
                 # Syntax errors are flagged deterministically under MIS-02
                 charges.append(Charge(file_path, getattr(e, "lineno", 1) or 1, "MIS-02", "MISDEMEANOR", "CRAFT", f"SyntaxError in source AST parse: {e}", "ast.parse"))

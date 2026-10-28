@@ -88,6 +88,21 @@ def deeply_nested():
         mis05_charges = [c for c in charges if c.statute_code == "MIS-05"]
         self.assertTrue(len(mis05_charges) > 0, "Expected MIS-05 for wildcard import")
 
+    def test_fel02_ast_stub_detection(self):
+        """Verify AST flags truncated function stubs with pass or Ellipsis."""
+        code_stub1 = "def do_calculation():\n    pass\n"
+        code_stub2 = "def fetch_records():\n    ...\n"
+        code_valid = "def calculate():\n    return 42\n"
+
+        charges1 = self.prosecutor.scan_file(Path("test_stub1.py"), code_stub1)
+        self.assertTrue(any(c.statute_code == "FEL-02" and not c.exempted for c in charges1))
+
+        charges2 = self.prosecutor.scan_file(Path("test_stub2.py"), code_stub2)
+        self.assertTrue(any(c.statute_code == "FEL-02" and not c.exempted for c in charges2))
+
+        charges_valid = self.prosecutor.scan_file(Path("test_valid.py"), code_valid)
+        self.assertFalse(any(c.statute_code == "FEL-02" for c in charges_valid))
+
     def test_clean_code_acquittal(self):
         """Verify clean, idiomatic code is acquitted with 0 charges."""
         clean_code = """
