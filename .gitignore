@@ -147,3 +147,4 @@ strix/
 
 # Local skill discovery cache
 .skills_cache.json
+**/.skills_cache.json

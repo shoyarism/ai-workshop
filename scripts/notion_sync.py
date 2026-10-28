@@ -27,10 +27,8 @@ if hasattr(sys.stdout, "reconfigure"):
 
 try:
     from notion_client import Client
-except ImportError:
-    print("[!] notion-client not installed. Installing via uv...")
-    os.system("uv tool install notion-client")
-    from notion_client import Client
+except ImportError:  # @court-exempt: optional notion-client fallback
+    Client = None
 
 WORKSHOP_DIR = Path(__file__).resolve().parent.parent
 
@@ -472,6 +470,9 @@ def sync_page(notion: Client, page_id: str, title: str, icon_emoji: str, blocks:
     print(f"\n  [SUCCESS] Page '{title}' synchronized successfully!", flush=True)
 
 def main():
+    if Client is None:
+        print("[!] Error: notion-client is required. Install via 'uv pip install notion-client'.", file=sys.stderr)
+        sys.exit(1)
     notion = Client(auth=NOTION_TOKEN)
 
     # Sync AI AGENT WORKSHOP
