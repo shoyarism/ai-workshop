@@ -13,7 +13,6 @@ Usage:
     python scripts/workshop_local_router.py stats
 """
 
-import os
 import sys
 import re
 import json
@@ -21,7 +20,7 @@ import urllib.request
 import urllib.error
 import argparse
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):
@@ -98,7 +97,7 @@ def route_task(task_type: str, task_complexity: str = "medium") -> Dict[str, Any
             "endpoint": active_ep["url"],
             "model": "qwen2.5-coder:latest",
             "cost": "$0.00",
-            "reason": f"Routed to local edge coprocessor."
+            "reason": "Routed to local edge coprocessor."
         }
 
 def coprocess_lint(target_path: str) -> Dict[str, Any]:
@@ -134,7 +133,7 @@ def coprocess_lint(target_path: str) -> Dict[str, Any]:
                 for pat in placeholder_patterns:
                     if re.search(pat, line):
                         findings.append({"file": str(f.relative_to(WORKSHOP_DIR)), "line": idx, "rule": "R-05", "issue": "Lazy placeholder / incomplete snippet", "context": line.strip()})
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     return {

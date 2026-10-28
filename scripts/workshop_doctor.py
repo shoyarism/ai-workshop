@@ -149,7 +149,7 @@ def check_local_gateways():
     for name, url in gateways:
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "WorkshopDoctor/1.0"})
-            with urllib.request.urlopen(req, timeout=1.0) as resp:
+            with urllib.request.urlopen(req, timeout=1.0):
                 print(f"  {check_mark(True)} {name:<22} is ONLINE ({url})")
         except Exception:
             print(f"  [STANDBY] {name:<22} is OFFLINE / Standby ({url})")

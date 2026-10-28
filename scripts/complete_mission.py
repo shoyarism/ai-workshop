@@ -5,10 +5,8 @@ evidence directly from the decrypted backup manifest into 02_Output.
 """
 
 import os
-import sys
 import sqlite3
 import csv
-import json
 import pathlib
 from datetime import datetime, timezone
 
@@ -238,7 +236,7 @@ for entry in b.iter_entries():
                 media_manifest.append([clean_name, ext.upper()[1:], entry.file_id, entry.size])
                 if extracted_media_count % 50 == 0:
                     print(f"  Extracted {extracted_media_count} media files...")
-            except Exception as e:
+            except Exception:  # @court-exempt: extraction fallback
                 pass
 
 print(f"Extracted {extracted_media_count} verified media files into {MEDIA_DIR}")

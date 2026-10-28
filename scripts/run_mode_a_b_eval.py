@@ -21,7 +21,7 @@ if not key:
     try:
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as k:
             key, _ = winreg.QueryValueEx(k, "FREELLMAPI_API_KEY")
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
 if not key:
@@ -97,9 +97,9 @@ def grade_response(task_type: str, response: str) -> dict:
     return {"passed": False, "reason": "Unknown task type"}
 
 def run_mode(mode_name: str, system_prompt: str) -> dict:
-    print(f"\n======================================================================")
+    print("\n======================================================================")
     print(f" 🚀 EXECUTING {mode_name} ({RUNS} RUNS PER TASK) — MODEL: {MODEL}")
-    print(f"======================================================================")
+    print("======================================================================")
 
     results = {}
     for task_id, prompt, task_type in TASKS:
@@ -139,7 +139,7 @@ def run_mode(mode_name: str, system_prompt: str) -> dict:
 
 def main():
     print("=" * 70)
-    print(f" 🔬 BENCHMARK COMPARISON: MODE A (BARE) vs MODE B (SYSTEM_PROMPT_LITE)")
+    print(" 🔬 BENCHMARK COMPARISON: MODE A (BARE) vs MODE B (SYSTEM_PROMPT_LITE)")
     print(f" Pinned Model: {MODEL} | Runs per Task: {RUNS}")
     print("=" * 70)
 

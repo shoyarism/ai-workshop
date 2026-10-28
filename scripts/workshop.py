@@ -301,7 +301,6 @@ def cmd_osint(args):
 
 def cmd_event_bus(args):
     """Execute Agent Nervous System event bus commands."""
-    import workshop_event_bus
     sys.argv = ["workshop_event_bus.py"] + sys.argv[2:]
     # Execute script directly
     subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_event_bus.py")] + sys.argv[1:])
@@ -313,7 +312,6 @@ def cmd_guard(args):
 
 def cmd_forge(args):
     """Execute Dynamic Tool Forge."""
-    import workshop_tool_forge
     # Remove the 'forge' command from sys.argv before passing to sub-script
     sub_argv = ["workshop_tool_forge.py"] + sys.argv[2:]
     sys.argv = sub_argv
@@ -321,19 +319,16 @@ def cmd_forge(args):
 
 def cmd_route(args):
     """Execute Local Inference Router."""
-    import workshop_local_router
     sys.argv = ["workshop_local_router.py"] + sys.argv[2:]
     subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_local_router.py")] + sys.argv[1:])
 
 def cmd_evolve(args):
     """Execute Self-Evolution Engine."""
-    import workshop_evolution
     sys.argv = ["workshop_evolution.py"] + sys.argv[2:]
     subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_evolution.py")] + sys.argv[1:])
 
 def cmd_semantic(args):
     """Execute Semantic Skill Indexer and Search."""
-    import workshop_semantic_indexer
     # Pass the semantic subcommand args to the sub-script
     sub_argv = ["workshop_semantic_indexer.py"]
     if hasattr(args, 'action') and args.action:
@@ -454,7 +449,6 @@ def cmd_backup(args):
 
 def cmd_photoreal(args):
     """Execute Ultra-Realistic FLUX Photoreal Studio commands."""
-    import shutil
     photoreal_dir = WORKSHOP_DIR / "photoreal-studio"
     if not photoreal_dir.exists():
         print("[!] Photoreal Studio directory not found.")

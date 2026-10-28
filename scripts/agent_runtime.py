@@ -9,7 +9,6 @@ A self-contained 24/7 agent daemon that:
 4. Executes workshop tools and skills.
 """
 
-import os
 import sys
 import time
 import json
@@ -129,7 +128,7 @@ class AgentRuntime:
             conn.execute("INSERT INTO logs (timestamp, level, message) VALUES (?, ?, ?)", (time.time(), level, message))
             conn.commit()
             conn.close()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     def add_task(self, goal: str) -> int:

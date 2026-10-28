@@ -12,7 +12,6 @@ Usage:
     python scripts/workshop_semantic_indexer.py search "<query>" [--limit 10] [--mode hybrid|dense|sparse]
 """
 
-import os
 import sys
 import re
 import json
@@ -20,7 +19,7 @@ import sqlite3
 import hashlib
 import yaml
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):
@@ -59,7 +58,7 @@ def get_embedding_model():
             from fastembed import TextEmbedding
 
             _embedding_model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
-        except Exception as e:
+        except Exception:
             return None
     return _embedding_model
 
@@ -315,7 +314,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
             cur = conn.execute(sql, (fts_match_expr,))
             for row in cur.fetchall():
                 sparse_ranks[row["id"]] = float(row["rank"])
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 2. Dense Semantic Vector search
@@ -347,7 +346,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
 
                 for item_id, sim in zip(ids, similarities):
                     dense_scores[item_id] = float(sim)
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 3. Reciprocal Rank Fusion (RRF) / Hybrid scoring
@@ -457,12 +456,12 @@ def main():
         if getattr(args, "json", False):
             print(json.dumps(results, indent=2))
         else:
-            print(f"\n=======================================================")
+            print("\n=======================================================")
             print(
                 f" 🔍 WORKSHOP HYBRID SEARCH: '{args.query}' (Mode: {args.mode.upper()})"
             )
             print(f" Returned {len(results)} top results")
-            print(f"=======================================================\n")
+            print("=======================================================\n")
             for r in results:
                 kind = f"[{r['item_type'].upper()}]"
                 sim_str = (

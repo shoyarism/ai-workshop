@@ -18,12 +18,10 @@ from __future__ import annotations
 import argparse
 import datetime
 import json
-import os
-import re
 import shutil
 import sys
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, Optional
 
 import yaml
 
@@ -31,9 +29,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from workshop_paths import (
     ROOT,
     SCRIPTS,
-    VAULT,
-    SKILLS,
-    STATE,
     BACKUPS,
     python_executable,
     posix,
@@ -779,7 +774,7 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
 
             if not dry_run:
                 target_file.write_text(json.dumps(data, indent=2), encoding="utf-8")
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
 # ==============================================================================

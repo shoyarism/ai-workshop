@@ -49,7 +49,7 @@ if not NOTION_TOKEN:
             with open(kilo_path, "r", encoding="utf-8") as f:
                 kilo_data = json.load(f)
             NOTION_TOKEN = kilo_data.get("mcp", {}).get("notion", {}).get("environment", {}).get("NOTION_TOKEN")
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
 if not NOTION_TOKEN:
@@ -406,9 +406,9 @@ def build_second_brain_blocks() -> List[Dict[str, Any]]:
 # ==============================================================================
 
 def sync_page(notion: Client, page_id: str, title: str, icon_emoji: str, blocks: List[Dict[str, Any]]):
-    print(f"\n=======================================================", flush=True)
+    print("\n=======================================================", flush=True)
     print(f" [*] Syncing Notion Page: '{title}' ({page_id})", flush=True)
-    print(f"=======================================================\n", flush=True)
+    print("=======================================================\n", flush=True)
 
     # 1. Update page icon and title
     try:
@@ -442,12 +442,12 @@ def sync_page(notion: Client, page_id: str, title: str, icon_emoji: str, blocks:
         for i, b in enumerate(blocks_to_delete, 1):
             try:
                 notion.blocks.delete(block_id=b["id"])
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
             if i % 10 == 0 or i == len(blocks_to_delete):
                 print(f"    - Cleaned {i}/{len(blocks_to_delete)} blocks...", flush=True)
             time.sleep(0.12)
-        print(f"  [OK] Old blocks cleaned up.", flush=True)
+        print("  [OK] Old blocks cleaned up.", flush=True)
     except Exception as e:
         print(f"  [!] Error during block cleanup: {e}", flush=True)
 

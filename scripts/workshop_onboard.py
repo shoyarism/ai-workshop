@@ -11,14 +11,10 @@ Usage:
     uv run python scripts/workshop_onboard.py --verify    # Check current state
 """
 import argparse
-import json
-import os
 import subprocess
 import sys
-import time
-from pathlib import Path
 
-from workshop_paths import ROOT, SCRIPTS, uv_executable, posix
+from workshop_paths import ROOT, SCRIPTS, uv_executable
 
 DRY_RUN = False
 QUIET = False
@@ -114,7 +110,7 @@ def verify_setup():
         log(f"[OK] Core skills: {skills_count} mounted")
     else:
         results["core_skills"] = "MISSING"
-        log(f"[MISSING] Core skills directory not found")
+        log("[MISSING] Core skills directory not found")
 
     log("=== SUMMARY ===", force=True)
     all_ok = all(v == "OK" for v in results.values())

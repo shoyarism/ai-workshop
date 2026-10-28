@@ -42,7 +42,7 @@ def get_freellmapi_key() -> str:
             val, _ = winreg.QueryValueEx(k, "FREELLMAPI_API_KEY")
             if val:
                 os.environ["FREELLMAPI_API_KEY"] = val
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
     return val or ""
 
@@ -95,7 +95,7 @@ def call_freellmapi_chat(
             try:
                 err_body = e.read().decode("utf-8")
                 err_msg += f" - {err_body[:100]}"
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
             return None, (time.perf_counter() - t0) * 1000, err_msg
         except Exception as e:
@@ -329,11 +329,11 @@ def main():
             models_to_drop.append((r["model"], ", ".join(reasons)))
 
     print("\n-------------------------------------------------------")
-    print(f" Recommended Fallback Chain (Top Fit Models):")
+    print(" Recommended Fallback Chain (Top Fit Models):")
     for pos, m in enumerate(recommended_chain, 1):
         print(f"   {pos}. {m}")
 
-    print(f"\n Models to Drop from Agentic Chain:")
+    print("\n Models to Drop from Agentic Chain:")
     for m, reason in models_to_drop:
         print(f"   • {m}: {reason}")
     print("=======================================================")

@@ -14,15 +14,13 @@ Usage:
     python scripts/obsidian_vault.py postmortem new "<title>"
 """
 
-import os
 import sys
 import re
-import json
 import argparse
 import subprocess
 from pathlib import Path
 from datetime import datetime
-from typing import List, Dict, Tuple, Optional
+from typing import List, Dict
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):
@@ -85,13 +83,13 @@ def cmd_status(args):
             total_words += len(text.split())
             if not text.startswith("---"):
                 missing_frontmatter.append(note.name)
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     print(f" • Total Knowledge Notes : {len(notes)}")
     print(f" • Total Words Indexed   : {total_words:,}")
-    print(f" • Storage Model         : Local Plaintext AST (.md) + YAML Frontmatter")
-    print(f" • Latency Model         : Sub-millisecond SSD Direct I/O (Offline Sovereignty)\n")
+    print(" • Storage Model         : Local Plaintext AST (.md) + YAML Frontmatter")
+    print(" • Latency Model         : Sub-millisecond SSD Direct I/O (Offline Sovereignty)\n")
 
     print(" 📂 Spaces & Spaces Breakdown:")
     for space, note_list in sorted(spaces.items()):
@@ -129,7 +127,7 @@ def cmd_search(args):
                 if pattern.search(line):
                     rel = note.relative_to(VAULT_DIR)
                     matches.append((rel, idx, line.strip()))
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     print("\n=======================================================")
@@ -202,7 +200,7 @@ tags: [adr, architecture, workshop]
 * <!-- Costs, trade-offs, and negative consequences -->
 """
         filepath.write_text(content, encoding="utf-8")
-        print(f"\n[+] Created new Architecture Decision Record:")
+        print("\n[+] Created new Architecture Decision Record:")
         print(f"    File: {filepath}")
         print(f"    Wiki-Link: [[{filename[:-3]}]]\n")
 
@@ -264,7 +262,7 @@ tags: [post-mortem, bugs, troubleshooting, fixes]
 ```
 """
         filepath.write_text(content, encoding="utf-8")
-        print(f"\n[+] Created new Post-Mortem Record:")
+        print("\n[+] Created new Post-Mortem Record:")
         print(f"    File: {filepath}")
         print(f"    Wiki-Link: [[{filename[:-3]}]]\n")
 
@@ -329,7 +327,7 @@ tags: [journal, session, handoff, tasks]
             queue_text += "\n\n## 📜 Session History\n"
         queue_text += entry
         queue_file.write_text(queue_text, encoding="utf-8")
-        print(f"[+] Appended to Autonomous Task Queue: [[Autonomous Task Queue & Session Handoffs]]\n")
+        print("[+] Appended to Autonomous Task Queue: [[Autonomous Task Queue & Session Handoffs]]\n")
 
 def cmd_compact(args):
     """
@@ -374,7 +372,7 @@ def cmd_compact(args):
         if "date" in meta:
             try:
                 note_date = datetime.strptime(meta["date"][:10], "%Y-%m-%d").date()
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
         
         if not note_date:
@@ -382,7 +380,7 @@ def cmd_compact(args):
             if m:
                 try:
                     note_date = datetime.strptime(m.group(1), "%Y-%m-%d").date()
-                except Exception as err:  # @court-exempt: handled fallback
+                except Exception:  # @court-exempt: handled fallback
                     pass
 
         if not note_date:
@@ -491,7 +489,7 @@ def cmd_compact(args):
                 if "status:" in raw_fm:
                     raw_fm = re.sub(r'status:\s*\S+', 'status: archived', raw_fm)
                 else:
-                    raw_fm += f"\nstatus: archived"
+                    raw_fm += "\nstatus: archived"
                 raw_fm += f"\narchived_date: {date_str}\nsuperseded_by: [[{rolling_file.stem}]]"
                 note_content = f"---{raw_fm}---{parts[2]}"
         
@@ -507,7 +505,7 @@ def cmd_compact(args):
             queue_text += "\n\n## 📜 Session History\n"
         queue_text += entry
         queue_file.write_text(queue_text, encoding="utf-8")
-        print(f"[+] Updated Autonomous Task Queue with rolling compaction pointer.")
+        print("[+] Updated Autonomous Task Queue with rolling compaction pointer.")
 
     if git_dir.exists():
         try:
@@ -519,7 +517,7 @@ def cmd_compact(args):
                 check=False
             )
             print("[+] Automated Git snapshot created for post-compaction state.")
-        except Exception as e:
+        except Exception:  # @court-exempt: vault git snapshot fallback
             pass
 
     print(f"\n✅ Vault compaction completed successfully! {len(candidates)} notes archived.\n")

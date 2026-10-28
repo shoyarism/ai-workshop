@@ -6,15 +6,14 @@ Monitors skill health, detects staleness, suggests updates from upstream sources
 and manages deprecation lifecycle for the 900+ skill registry.
 """
 
-import os
 import sys
 import json
 import re
 import subprocess
 import hashlib
 from pathlib import Path
-from datetime import datetime, timezone, timedelta
-from typing import Dict, List, Optional, Any
+from datetime import datetime, timezone
+from typing import Dict, List, Optional
 
 WORKSHOP_DIR = Path(__file__).resolve().parent.parent
 SKILLS_DIR = WORKSHOP_DIR / "skills"
@@ -90,7 +89,7 @@ def extract_frontmatter(skill_md_path: Path) -> Dict:
                     key, val = line.split(":", 1)
                     fm[key.strip()] = val.strip().strip('"\'')
             return fm
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     return {}
 
@@ -103,7 +102,7 @@ def get_git_last_modified(file_path: Path) -> Optional[datetime]:
         )
         if result.returncode == 0 and result.stdout.strip():
             return datetime.fromisoformat(result.stdout.strip().replace(" ", "T"))
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     return None
 
@@ -118,7 +117,7 @@ def get_upstream_remote(skill_dir: Path) -> Optional[str]:
             for line in result.stdout.splitlines():
                 if "upstream" in line and "(fetch)" in line:
                     return line.split()[1]
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     return None
 
@@ -142,7 +141,7 @@ def check_upstream_updates(skill_dir: Path) -> Dict:
             if len(parts) == 2:
                 behind = int(parts[1])
                 return {"has_upstream": True, "behind_commits": behind, "remote": upstream}
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     return {"has_upstream": True, "behind_commits": 0, "remote": upstream}
 

@@ -8,10 +8,8 @@ Option 1 Deep Dive Script:
 """
 
 import os
-import sys
 import sqlite3
 import csv
-import json
 import pathlib
 import plistlib
 from datetime import datetime, timezone
@@ -190,7 +188,7 @@ for entry in b.iter_entries():
                     added_media += 1
                     if added_media % 100 == 0:
                         print(f"  Extracted {added_media} more files...")
-                except Exception as err:  # @court-exempt: handled fallback
+                except Exception:  # @court-exempt: handled fallback
                     pass
 
 total_media = existing_media + added_media

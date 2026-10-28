@@ -19,7 +19,6 @@ import binascii
 import json
 import hashlib
 import sqlite3
-import datetime
 import shutil
 from pathlib import Path
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
@@ -226,7 +225,7 @@ def main():
 
     # 7. Summary
     print("\n" + "=" * 60)
-    print(f"  Migration Complete!")
+    print("  Migration Complete!")
     print(f"  Imported: {len(imported)} keys")
     print(f"  Skipped:  {len(skipped)} connections")
     print("=" * 60)

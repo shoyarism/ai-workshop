@@ -16,7 +16,7 @@ import sys
 import platform
 import subprocess
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 
 # Ensure UTF-8 output on Windows
 if hasattr(sys.stdout, "reconfigure"):
@@ -27,7 +27,7 @@ if hasattr(sys.stdout, "reconfigure"):
         pass
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from workshop_paths import ROOT, python_executable
+from workshop_paths import ROOT
 
 
 class CoucouIntegration:
@@ -106,7 +106,7 @@ class CoucouIntegration:
 
     def install_antigravity_hooks(self, dry_run: bool = False) -> bool:
         """Install coucou hooks for Antigravity desktop."""
-        print(f"\n[Coucou] Installing hooks for Antigravity (agent: antigravity)...")
+        print("\n[Coucou] Installing hooks for Antigravity (agent: antigravity)...")
 
         hooks_path = self.get_antigravity_hooks_path()
         hooks_path.parent.mkdir(parents=True, exist_ok=True)
@@ -133,7 +133,7 @@ class CoucouIntegration:
 
     def install_opencode_hooks(self, dry_run: bool = False) -> bool:
         """Install coucou hooks for OpenCode desktop."""
-        print(f"\n[Coucou] Installing hooks for OpenCode (agent: opencode)...")
+        print("\n[Coucou] Installing hooks for OpenCode (agent: opencode)...")
 
         hooks_path = self.get_opencode_hooks_path()
         hooks_path.parent.mkdir(parents=True, exist_ok=True)
@@ -160,7 +160,7 @@ class CoucouIntegration:
     def install_all(self, dry_run: bool = False) -> bool:
         """Install coucou hooks for supported desktop apps."""
         print(f"\n{'=' * 60}")
-        print(f"  COUCOU INTEGRATION SETUP")
+        print("  COUCOU INTEGRATION SETUP")
         print(f"  OS: {self.system} ({platform.platform()})")
         print(f"  Workshop: {self.workshop_root}")
         print(f"{'=' * 60}")
@@ -171,16 +171,16 @@ class CoucouIntegration:
 
         print(f"\n{'=' * 60}")
         if all(results):
-            print(f"  ✓ All coucou hooks installed successfully!")
+            print("  ✓ All coucou hooks installed successfully!")
         else:
-            print(f"  ✗ Some installations failed")
+            print("  ✗ Some installations failed")
         print(f"{'=' * 60}\n")
 
         return all(results)
 
     def verify_installation(self) -> bool:
         """Verify coucou hooks are installed correctly."""
-        print(f"\n[Coucou] Verifying installation...")
+        print("\n[Coucou] Verifying installation...")
 
         coucou_paths = self.get_coucou_paths()
         hook_cmd = coucou_paths["hook_cmd"]
@@ -222,10 +222,10 @@ class CoucouIntegration:
                 print(f"  ✓ coucou hook executable found: {hook_cmd}")
             else:
                 print(f"  ⚠ coucou hook executable NOT found: {hook_cmd}")
-                print(f"     Install coucou first: https://github.com/Louis-CFM/coucou")
+                print("     Install coucou first: https://github.com/Louis-CFM/coucou")
                 all_ok = False
         except Exception:
-            print(f"  ⚠ Could not verify coucou hook executable")
+            print("  ⚠ Could not verify coucou hook executable")
             all_ok = False
 
         return all_ok

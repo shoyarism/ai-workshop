@@ -17,8 +17,7 @@ import json
 import argparse
 import urllib.request
 import urllib.parse
-from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):
@@ -97,7 +96,7 @@ def cmd_trending(args):
     # 3. Daily Papers
     papers = _api_get("daily_papers", {"limit": limit})
     if isinstance(papers, list):
-        print(f" 📑 LATEST DAILY RESEARCH PAPERS:")
+        print(" 📑 LATEST DAILY RESEARCH PAPERS:")
         for entry in papers[:limit]:
             p = entry.get("paper", entry)
             title = p.get("title", "Untitled")

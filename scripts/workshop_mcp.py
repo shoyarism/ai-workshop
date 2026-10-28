@@ -40,7 +40,7 @@ import sys
 
 from pathlib import Path
 
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 
 
@@ -62,7 +62,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from workshop_paths import ROOT, SCRIPTS, VAULT, SKILLS, python_executable
+from workshop_paths import ROOT, SCRIPTS, VAULT, python_executable
 
 import workshop_skills
 

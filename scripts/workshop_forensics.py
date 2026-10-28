@@ -21,7 +21,6 @@ Usage:
     python scripts/workshop_forensics.py dissect <image_path> [--query <info|files|volumes>]
 """
 
-import os
 import sys
 import json
 import hashlib

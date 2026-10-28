@@ -17,12 +17,11 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import re
 import sys
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 # Ensure UTF-8 output
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -218,7 +217,7 @@ class UniversalCouncil:
             if p.bias_posture == "OPTIMIST":
                 stance = "AYE"
                 conviction = 8
-                thesis = f"Seize the upside of this proposal. The competitive edge lies in aggressive execution and momentum."
+                thesis = "Seize the upside of this proposal. The competitive edge lies in aggressive execution and momentum."
                 points = [
                     f"Unlocks high-leverage opportunities: '{topic[:60]}...'",
                     "Hesitation and incrementalism carry higher opportunity cost than active deployment.",
@@ -227,7 +226,7 @@ class UniversalCouncil:
             elif p.bias_posture == "PESSIMIST":
                 stance = "NAY" if is_high_risk else "AMEND"
                 conviction = 9 if is_high_risk else 7
-                thesis = f"High structural vulnerability detected. We are ignoring downstream failure cascades."
+                thesis = "High structural vulnerability detected. We are ignoring downstream failure cascades."
                 points = [
                     "Unstated assumptions around edge cases and failure modes.",
                     "If external variables turn adverse, recovery costs exceed initial benefits.",
@@ -236,7 +235,7 @@ class UniversalCouncil:
             elif p.bias_posture == "PRAGMATIST":
                 stance = "AMEND"
                 conviction = 7
-                thesis = f"Operationally viable only if simplified. Cut 40% of the scope and establish telemetry."
+                thesis = "Operationally viable only if simplified. Cut 40% of the scope and establish telemetry."
                 points = [
                     "Evaluate Day-2 operational maintenance burden.",
                     "Deliver as a staged, reversible canary rather than a big-bang commitment.",
@@ -245,7 +244,7 @@ class UniversalCouncil:
             else:  # SKEPTIC / SPECIALIST
                 stance = "AMEND" if not is_high_risk else "NAY"
                 conviction = 8
-                thesis = f"Invert the core hypothesis. Are we solving the real bottleneck or optimizing a vanity metric?"
+                thesis = "Invert the core hypothesis. Are we solving the real bottleneck or optimizing a vanity metric?"
                 points = [
                     "Second-order consequence: solving this creates a new bottleneck downstream.",
                     "Validate whether simpler existing primitives already satisfy 80% of the objective.",
@@ -284,7 +283,7 @@ class UniversalCouncil:
                     "I demand a hard containment boundary before any green light."
                 ],
                 rebuttal_target=p_opt.name,
-                rebuttal_critique=f"Overly optimistic leverage that discounts second-order debt."
+                rebuttal_critique="Overly optimistic leverage that discounts second-order debt."
             ))
 
             # Visionary counters Inquisitor
@@ -378,7 +377,7 @@ def render_council_transcript(session: CouncilSession) -> str:
     out = [
         "",
         banner,
-        f" 🏛️  UNIVERSAL SUPREME COUNCIL: ADVERSARIAL DELIBERATION TRANSCRIPT",
+        " 🏛️  UNIVERSAL SUPREME COUNCIL: ADVERSARIAL DELIBERATION TRANSCRIPT",
         banner,
         f" Case Docket : {session.case_number}",
         f" Domain      : {session.domain.upper()}",

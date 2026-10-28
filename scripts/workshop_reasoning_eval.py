@@ -329,7 +329,7 @@ def run_negative_controls() -> List[Dict[str, Any]]:
             "name": "Negative Control: Gross Tax Bug & Float Return Type Rejection",
             "rejected_by_oracle": nc01_rejected,
             "latency_ms": round((time.perf_counter() - t0) * 1000, 2),
-            "details": f"Oracle rejected gross tax (8.25 != Decimal('7.43')), rejected float return type (float 7.43 != Decimal('7.43')), and rejected float banker's round (0.62 != Decimal('0.63'))" if nc01_rejected else "Oracle erroneously accepted bug"
+            "details": "Oracle rejected gross tax (8.25 != Decimal('7.43')), rejected float return type (float 7.43 != Decimal('7.43')), and rejected float banker's round (0.62 != Decimal('0.63'))" if nc01_rejected else "Oracle erroneously accepted bug"
         })
     except Exception as e:
         controls.append({"id": "NC-01-SEEDED-BUG", "name": "NC-01", "rejected_by_oracle": False, "latency_ms": 0, "details": str(e)})
@@ -509,9 +509,9 @@ def run_model_benchmark(model_name: str, runs: int = 3, base_url: str = "", api_
         )
         with urllib.request.urlopen(probe_req, timeout=2.0) as resp:
             pass
-        endpoint_online = True
+        _endpoint_online = True
     except Exception as e:
-        endpoint_online = False
+        _endpoint_online = False
         print(f"\n[!] Notice: Endpoint {target_url} is currently standby/offline: {e}")
         print("    To launch local gateways: `uv run python scripts/workshop.py up`")
         print("    Or set OPENAI_BASE_URL and OPENAI_API_KEY to a live cloud provider.\n")
@@ -575,7 +575,7 @@ def run_model_benchmark(model_name: str, runs: int = 3, base_url: str = "", api_
 
                     if score:
                         task_passes += 1
-            except Exception as e:
+            except Exception:  # @court-exempt: benchmark evaluation fallback
                 pass
             latencies.append(round((time.perf_counter() - t0) * 1000, 1))
 
@@ -636,13 +636,13 @@ def save_vault_scorecard(results: List[Dict[str, Any]]) -> Path:
         "tags: [evals, reasoning, behavioral, claude-parity, benchmarks]",
         "---",
         "",
-        f"# 🧪 Agent Reasoning & Behavioral Benchmark Report",
+        "# 🧪 Agent Reasoning & Behavioral Benchmark Report",
         f"*Executed: {ts}*",
         "",
-        f"## Executive Scorecard",
+        "## Executive Scorecard",
         f"- **Total Benchmark Tasks:** {total}",
         f"- **Passed:** {passed_count} / {total} (**{rate:.1f}%**)",
-        f"- **Standard:** Claude-Grade Operational & Behavioral Discipline",
+        "- **Standard:** Claude-Grade Operational & Behavioral Discipline",
         "",
         "## Detailed Task Results",
         "| ID | Benchmark Task | Status | Latency | Evaluation Details |",
@@ -771,7 +771,7 @@ def main():
 
     if args.save_scorecard:
         scorecard = save_vault_scorecard(results)
-        print(f"\n[+] Benchmark scorecard saved to Obsidian Vault:")
+        print("\n[+] Benchmark scorecard saved to Obsidian Vault:")
         print(f"    [[{scorecard.stem}]] -> {posix(scorecard)}\n")
 
 if __name__ == "__main__":

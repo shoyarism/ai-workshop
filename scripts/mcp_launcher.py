@@ -12,7 +12,6 @@ Usage:
 
 import os
 import sys
-import json
 import argparse
 import subprocess
 from pathlib import Path
@@ -21,7 +20,7 @@ from pathlib import Path
 if hasattr(sys.stdout, "reconfigure"):
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
 WORKSHOP_DIR = Path(__file__).resolve().parent.parent
@@ -186,7 +185,7 @@ def test_server(name: str):
     print(f"[*] Testing launch for MCP server: '{name}'...")
     try:
         # Check command executable availability
-        cmd_exe = info["command"][0]
+        _cmd_exe = info["command"][0]
         p = subprocess.Popen(
             info["command"],
             stdin=subprocess.PIPE,

@@ -30,7 +30,7 @@ if hasattr(sys.stdout, "reconfigure"):
         pass
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from workshop_paths import ROOT, VAULT
+from workshop_paths import ROOT
 
 # High-confidence accidental destructive commands (Defense-in-depth interactive guardrail, not OS sandbox)
 BLOCKED_PATTERNS = [
@@ -153,7 +153,7 @@ def hook_pre_tool(args: list[str]) -> int:
                 tool_call = payload.get("toolCall", {})
                 tool_args = tool_call.get("args", {})
                 cmd_string = tool_args.get("CommandLine", "") or tool_args.get("command", "")
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 3. If no command string detected, default to allow

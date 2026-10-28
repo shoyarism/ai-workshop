@@ -6,7 +6,6 @@ import csv
 import json
 import os
 from datetime import datetime, timezone
-from collections import Counter, defaultdict
 
 DB_PATH = r'D:/temp/Panfone WhatsApp Transfer/Gitartna ❤️/WhatsApp/backupInfo.db'
 OUTPUT_DIR = r'./Backup'

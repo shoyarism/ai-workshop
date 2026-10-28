@@ -78,7 +78,7 @@ def audit_git_subsystems(do_sync: bool = False, do_fetch: bool = True) -> dict:
         if do_fetch:
             try:
                 subprocess.run(["git", "fetch", "origin", "--quiet"], cwd=p, capture_output=True, text=True, env=env, timeout=6)
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
         
         # Upstream tracking
@@ -93,10 +93,10 @@ def audit_git_subsystems(do_sync: bool = False, do_fetch: bool = True) -> dict:
         
         # Rev count
         rev = subprocess.run(["git", "rev-list", "--left-right", "--count", f"HEAD...{upstream}"], cwd=p, capture_output=True, text=True, env=env, timeout=3)
-        ahead, behind = 0, 0
+        _ahead, behind = 0, 0
         if rev.returncode == 0 and rev.stdout.strip():
             parts = rev.stdout.strip().split()
-            ahead, behind = int(parts[0]), int(parts[1])
+            _ahead, _behind = int(parts[0]), int(parts[1])
             
         if is_dirty:
             return ("dirty_skipped", name, behind, "Local worktree modified (preserving user changes)")
@@ -182,7 +182,7 @@ def query_community_radar() -> list:
                     "description": item.get("description"),
                     "url": item.get("html_url")
                 })
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     return trending
 
@@ -213,7 +213,7 @@ def generate_obsidian_audit_note(audit_data: dict) -> Path:
         "",
         f"- **Timestamp**: `{now.isoformat()}`",
         f"- **Execution Mode**: `{mode}`",
-        f"- **Cadence**: Every 2 Days (Bi-Daily Maintenance Standard)",
+        "- **Cadence**: Every 2 Days (Bi-Daily Maintenance Standard)",
         "- **Status**: `OPERATIONAL`",
         "",
         "---",

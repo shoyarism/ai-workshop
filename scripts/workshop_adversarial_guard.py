@@ -6,7 +6,6 @@ Performs rigorous pre-flight security auditing, vulnerability scanning, static a
 and test verification before declaring any agent task or code change complete.
 """
 
-import os
 import sys
 import subprocess
 from pathlib import Path

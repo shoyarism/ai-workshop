@@ -20,7 +20,7 @@ import subprocess
 import json
 import time
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Optional
 
 # UTF-8 console output
 if hasattr(sys.stdout, "reconfigure"):
@@ -100,7 +100,7 @@ def cmd_validate_storyboard(storyboard_path: Path) -> bool:
     
     passed_qc = True
     print(f"\n📋 Inspecting {len(beats)} Narrative Beats:")
-    prev_timecode = 0.0
+    _prev_timecode = 0.0
 
     for idx, b in enumerate(beats, start=1):
         bid = b.get("beat_id", f"beat_{idx:02d}")
@@ -109,7 +109,7 @@ def cmd_validate_storyboard(storyboard_path: Path) -> bool:
         stage = b.get("narrative_stage")
         mode = b.get("visual_mode")
         job = b.get("visual_job", "")
-        focal = b.get("focal_subject", "")
+        _focal = b.get("focal_subject", "")
         prov = b.get("source_provenance", "")
         on_screen = b.get("on_screen_text", {})
         headline = on_screen.get("headline", "") if isinstance(on_screen, dict) else str(on_screen)
@@ -144,10 +144,9 @@ def cmd_validate_storyboard(storyboard_path: Path) -> bool:
             print(f"  ⚠️ Beat {idx} ({bid}): Headline has {word_count} words (>16 word limit). Consider shortening.")
 
         print(f"  ✓ [{bid}] {tin:5.1f}s - {tout:5.1f}s | {mode:12s} | Job: {job[:40]}... | Prov: {prov[:25]}")
-        prev_timecode = tout
-
+        
     if passed_qc:
-        print(f"\n🏆 [QC PASSED] Storyboard satisfies all Vox Editorial Explainer criteria!\n")
+        print("\n🏆 [QC PASSED] Storyboard satisfies all Vox Editorial Explainer criteria!\n")
     return passed_qc
 
 def cmd_audio_synthesis(script_path: Path, out_dir: Path, voice: str = "id-ID-ArdiNeural", bgm_path: Optional[Path] = None):

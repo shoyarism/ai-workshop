@@ -6,7 +6,6 @@ Automatically syncs subsystems from upstream git remotes, refreshes skill indexe
 and manages the complete update lifecycle for the Workshop ecosystem.
 """
 
-import os
 import sys
 import json
 import subprocess
@@ -38,7 +37,7 @@ def check_subsystem_drift(subsystem_name: str, subsystem_info: dict) -> dict:
             return {"subsystem": subsystem_name, "has_remote": False, "is_git": False}
         
         # Fetch latest
-        fetch_result = subprocess.run(
+        _fetch_result = subprocess.run(
             ["git", "fetch", "origin"],
             cwd=path, capture_output=True, text=True, timeout=60
         )

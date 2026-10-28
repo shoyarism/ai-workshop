@@ -28,7 +28,7 @@ import sys
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Tuple
 
 # Ensure UTF-8 output across all consoles
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -579,7 +579,7 @@ class SlopCourtMagistrate:
 
         active_felonies = indictment.felony_count
         active_misdemeanors = indictment.misdemeanor_count
-        slop_score = indictment.slop_index
+        _slop_score = indictment.slop_index
 
         notes: List[str] = []
         injunctions: List[str] = []
@@ -597,7 +597,7 @@ class SlopCourtMagistrate:
             injunctions.append("Remediate sustained code violations before requesting a new trial.")
         elif guilty_jurors == 1 and self.strict_mode:
             ruling = "CONTEMPT_OF_COURT"
-            notes.append(f"CONVICTED (STRICT MODE): 1/3 jurors voted GUILTY. Strict mode requires unanimous acquittal.")
+            notes.append("CONVICTED (STRICT MODE): 1/3 jurors voted GUILTY. Strict mode requires unanimous acquittal.")
             injunctions.append("Remediate domain violations flagged by the dissenting juror.")
         elif active_misdemeanors > 5:
             ruling = "CONTEMPT_OF_COURT"
@@ -769,7 +769,7 @@ def render_trial_report(verdict: Verdict, show_jury: bool = True) -> str:
     out = [
         "",
         banner,
-        f" ⚖️  SLOP COURT v2.0: SUPREME JUDICIAL TRIBUNAL TRIAL REPORT",
+        " ⚖️  SLOP COURT v2.0: SUPREME JUDICIAL TRIBUNAL TRIAL REPORT",
         banner,
         f" Case Docket : {ind.case_number}",
         f" Target      : {ind.target_path}",
@@ -903,7 +903,7 @@ def main():
         if p_t.exists() and p_t.is_file():
             try:
                 topic = p_t.read_text(encoding="utf-8", errors="ignore")[:2000]
-            except Exception as err:  # @court-exempt: read fallback
+            except Exception:  # @court-exempt: read fallback
                 pass
         council = UniversalCouncil(domain=args.domain, seats=args.seats)
         session = council.convene(topic, rounds=args.rounds)

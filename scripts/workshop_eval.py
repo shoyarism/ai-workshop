@@ -12,12 +12,11 @@ Usage:
 from __future__ import annotations
 
 import json
-import os
 import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 # UTF-8 stdout on Windows
 if hasattr(sys.stdout, "reconfigure"):
@@ -31,7 +30,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from workshop_paths import (
     ROOT,
     SCRIPTS,
-    VAULT,
     python_executable,
 )
 import workshop_mcp

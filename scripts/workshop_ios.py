@@ -9,7 +9,6 @@ Integrates pymobiledevice3 to perform:
 - In-depth Photos.sqlite forensic parsing (Active vs. Trashed/Deleted media)
 """
 
-import os
 import sys
 import argparse
 import subprocess

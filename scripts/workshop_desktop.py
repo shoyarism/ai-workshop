@@ -79,7 +79,7 @@ def take_screenshot(output_path: str = None, monitor_idx: int = 1) -> dict:
             }
             print(f"[OK] Screenshot captured: {out} ({img.width}x{img.height}) [Engine: pillow]")
             return res
-        except Exception as e_pil:
+        except Exception:
             print(f"[!] Desktop display surface not accessible in current execution context ({e_mss}).")
             print("    [NOTE] Desktop screenshots require an interactive desktop session (WinSta0\\Default).")
             return {

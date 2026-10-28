@@ -9,7 +9,6 @@ Usage:
     python scripts/workshop_indexer.py
 """
 
-import os
 import sys
 import json
 import subprocess
@@ -725,7 +724,7 @@ def generate_catalog():
                     text=True,
                     timeout=2,
                 ).strip()
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
 
         catalog["subsystems"][folder_name] = {

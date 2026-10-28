@@ -17,7 +17,6 @@ import sys
 import json
 import argparse
 import re
-import time
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows consoles
@@ -111,7 +110,7 @@ def scan_all_skills(force_refresh: bool = False):
     try:
         with open(CACHE_FILE, "w", encoding="utf-8") as f:
             json.dump(skills, f)
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
     return skills
@@ -136,7 +135,7 @@ def scan_subsystems():
                     "path": str(item.get("path", k)).replace("\\", "/"),
                     "status": item.get("status", "READY")
                 })
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
     return subsystems
 
@@ -147,7 +146,7 @@ def _parse_mcp_readme_desc(readme_path: Path, fallback: str) -> str:
     try:
         paras = [l.strip() for l in readme_path.read_text(encoding="utf-8", errors="ignore").splitlines() if l.strip() and not l.startswith("#")]
         return paras[0] if paras else fallback
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         return fallback
 
 def scan_mcp_servers():
@@ -166,7 +165,7 @@ def scan_mcp_servers():
                     "description": desc,
                     "path": str(d.relative_to(WORKSHOP_DIR)).replace("\\", "/")
                 })
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
     
     mcps.extend([
@@ -214,7 +213,7 @@ def scan_public_apis():
                             "url": api_url,
                             "auth": parts[2] if len(parts) > 2 else "unknown"
                         })
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
     return apis
 
@@ -301,9 +300,9 @@ def main():
         print(json.dumps(results, indent=2))
         return
         
-    print(f"\n=======================================================")
+    print("\n=======================================================")
     print(f" [*] Workshop Arsenal Search: '{args.query}' (Found: {len(results)})")
-    print(f"=======================================================")
+    print("=======================================================")
     
     if not results:
         print("  No matching arsenal items found. Try a broader search term.\n")

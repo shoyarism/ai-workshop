@@ -16,14 +16,10 @@ Usage:
     python scripts/live_browser_hub.py [--port 7860] [--headless]
 """
 
-import os
 import sys
 import time
 import json
-import base64
-import asyncio
 import argparse
-import threading
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows consoles
@@ -34,7 +30,7 @@ if hasattr(sys.stdout, "reconfigure"):
     except (AttributeError, ValueError, OSError):  # @court-exempt: console encoding fallback
         pass
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse
 
 # Global State
 BROWSER_STATE = {
@@ -58,13 +54,13 @@ def load_live_state():
                 BROWSER_STATE["page_title"] = data.get("page_title", BROWSER_STATE["page_title"])
                 if "actions" in data:
                     BROWSER_STATE["actions"] = data["actions"]
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
     if shot_file.exists():
         try:
             with open(shot_file, "rb") as f:
                 BROWSER_STATE["last_screenshot"] = f.read()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
 HTML_DASHBOARD = """<!DOCTYPE html>
@@ -215,7 +211,7 @@ class LiveBrowserHandler(BaseHTTPRequestHandler):
         try:
             sys.stderr.write("%s - - [%s] %s\n" % (self.address_string(), self.log_date_time_string(), format % args))
             sys.stderr.flush()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     def do_GET(self):
@@ -276,7 +272,7 @@ class LiveBrowserHandler(BaseHTTPRequestHandler):
                         self.wfile.write(BROWSER_STATE["last_screenshot"])
                         self.wfile.write(b"\r\n")
                     time.sleep(0.5)
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
             return
             
@@ -313,9 +309,9 @@ class LiveBrowserHandler(BaseHTTPRequestHandler):
 def run_server(port: int = 7860):
     server_address = ('127.0.0.1', port)
     httpd = HTTPServer(server_address, LiveBrowserHandler)
-    print(f"\n=======================================================")
+    print("\n=======================================================")
     print(f" 🚀 Workshop Live Browser Hub Active: http://127.0.0.1:{port}")
-    print(f"=======================================================\n")
+    print("=======================================================\n")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
