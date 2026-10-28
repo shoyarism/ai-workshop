@@ -68,6 +68,23 @@ class TestMCPVerifyTool(unittest.TestCase):
         result = workshop_mcp.verify("git status")
         self.assertIn("default-deny active", result)
 
+    def test_fallback_decorator_when_mcp_none(self):
+        """Fallback decorator should provide no-op decorators if MCPServer is None."""
+        decorator = workshop_mcp._FallbackDecorator()
+        @decorator.tool(name="test_tool")
+        def dummy_tool():
+            return 42
+        @decorator.resource(uri="workshop://test")
+        def dummy_resource():
+            return "resource"
+        @decorator.prompt(name="test_prompt")
+        def dummy_prompt():
+            return "prompt"
+        self.assertEqual(dummy_tool(), 42)
+        self.assertEqual(dummy_resource(), "resource")
+        self.assertEqual(dummy_prompt(), "prompt")
+
+
 
 if __name__ == "__main__":
     unittest.main()

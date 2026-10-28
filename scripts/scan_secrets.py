@@ -43,7 +43,7 @@ SECRET_PATTERNS = {
 # Directories/files to strictly skip per security rules
 SKIP_DIRS = {
     ".git", ".venv", "venv", "node_modules", ".pnpm-store", "__pycache__",
-    ".idea", ".vscode", "dist", "build"
+    ".idea", ".vscode", "dist", "build", "scratch"
 }
 
 SKIP_EXTENSIONS = {

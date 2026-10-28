@@ -70,31 +70,45 @@ import workshop_semantic_indexer
 
 
 
-from mcp.server.mcpserver import MCPServer
-
-
+try:
+    from mcp.server.mcpserver import MCPServer
+except ImportError:  # @court-exempt: graceful fallback when running tools standalone
+    MCPServer = None
 
 IS_READ_ONLY = ("--read-only" in sys.argv) or (
-
     os.environ.get("WORKSHOP_READ_ONLY") == "1"
-
 )
 
 server_name = "workshop_ro" if IS_READ_ONLY else "workshop"
 
-
-
 server = MCPServer(
-
     name=server_name,
-
     title=f"Workshop OS Master Server ({'Read-Only' if IS_READ_ONLY else 'Full'})",
-
     description="Universal agent interface for skills, memory, tools, and code verification",
+    version="3.5.0",
+) if MCPServer is not None else None
 
-    version="2.1.0",
 
-)
+class _FallbackDecorator:
+    @staticmethod
+    def tool(name=None, description=None):
+        def decorator(f):
+            return f
+        return decorator
+
+    @staticmethod
+    def resource(uri=None):
+        def decorator(f):
+            return f
+        return decorator
+
+    @staticmethod
+    def prompt(name=None, description=None):
+        def decorator(f):
+            return f
+        return decorator
+
+server_decorator = server if server is not None else _FallbackDecorator()
 
 
 
@@ -532,7 +546,7 @@ def check_role_permission(tool_name: str) -> tuple[bool, str]:
 
 
 
-@server.tool(
+@server_decorator.tool(
 
     name="skill_search",
 
@@ -594,7 +608,7 @@ def skill_search(query: str, limit: int = 8) -> str:
 
 
 
-@server.tool(
+@server_decorator.tool(
 
     name="skill_load",
 
@@ -694,7 +708,7 @@ def skill_load(name: str) -> str:
 
 
 
-@server.tool(
+@server_decorator.tool(
 
     name="memory_recall",
 
@@ -1247,7 +1261,7 @@ Provide a structured, high-density critique with actionable recommendations.
 
 if not IS_READ_ONLY:
 
-    server.tool(
+    server_decorator.tool(
 
         name="memory_write",
 
@@ -1257,7 +1271,7 @@ if not IS_READ_ONLY:
 
 
 
-    server.tool(
+    server_decorator.tool(
 
         name="verify",
 
@@ -1267,7 +1281,7 @@ if not IS_READ_ONLY:
 
 
 
-    server.tool(
+    server_decorator.tool(
 
         name="critique",
 
@@ -1279,7 +1293,7 @@ if not IS_READ_ONLY:
 
 
 
-@server.tool(
+@server_decorator.tool(
 
     name="antislop_audit",
 
@@ -1327,7 +1341,7 @@ def antislop_audit(path: str = ".") -> str:
 
     return proc.stdout or proc.stderr
 
-@server.tool(
+@server_decorator.tool(
     name="court_trial",
     description="Convene the Adversarial Anti-Slop Court System to adjudicate code, copy, or UI changes. Enforces zero tolerance on AI slop, truncated stubs, and tautological comments.",
 )
@@ -1356,7 +1370,7 @@ def court_trial(path: str = ".", staged: bool = False, strict: bool = True) -> s
     )
     return proc.stdout or proc.stderr
 
-@server.tool(
+@server_decorator.tool(
     name="court_council",
     description="Summon the Universal Supreme Council for adversarial multi-persona debate over any strategic proposal, software architecture, pitch, business model, or complex decision.",
 )
@@ -1386,7 +1400,7 @@ def court_council(topic: str, domain: str = "general", seats: int = 4, rounds: i
 
 
 
-@server.tool(
+@server_decorator.tool(
 
     name="graphify_query",
 
@@ -1446,7 +1460,7 @@ def graphify_query(question: str) -> str:
 
 
 
-@server.resource("workshop://protocol")
+@server_decorator.resource("workshop://protocol")
 
 def get_protocol() -> str:
 
@@ -1460,7 +1474,7 @@ def get_protocol() -> str:
 
 
 
-@server.resource("workshop://vault/tasks")
+@server_decorator.resource("workshop://vault/tasks")
 
 def get_tasks() -> str:
 
@@ -1492,7 +1506,7 @@ def get_tasks() -> str:
 
 
 
-@server.prompt(
+@server_decorator.prompt(
 
     name="recon",
 
@@ -1518,7 +1532,7 @@ def prompt_recon(target: str = "project") -> str:
 
 
 
-@server.prompt(
+@server_decorator.prompt(
 
     name="plan",
 
@@ -1544,7 +1558,7 @@ def prompt_plan(feature: str) -> str:
 
 
 
-@server.prompt(
+@server_decorator.prompt(
 
     name="verify",
 
@@ -1568,7 +1582,7 @@ def prompt_verify(scope: str = "current-changes") -> str:
 
 
 
-@server.prompt(
+@server_decorator.prompt(
 
     name="handoff",
 
@@ -1601,5 +1615,7 @@ def prompt_handoff(summary: str) -> str:
 
 
 if __name__ == "__main__":
-
+    if server is None:
+        print("[!] Error: MCP SDK not installed. Run 'uv pip install mcp' or 'pip install mcp'.", file=sys.stderr)
+        sys.exit(1)
     server.run("stdio")
