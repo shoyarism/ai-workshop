@@ -219,16 +219,22 @@ def cmd_hub(args):
 
 def cmd_browser(args):
     """Run browser agent task with optional live watching, CDP attachment, or profile mounting."""
-    from run_browser_agent import run_agent_session
-    run_agent_session(
-        args.url,
-        task=args.task,
-        headed=args.headed,
-        live=args.live,
-        browser_type=getattr(args, "browser", "chromium") or "chromium",
-        cdp=getattr(args, "cdp", None),
-        profile=getattr(args, "profile", None)
-    )
+    url = getattr(args, "url", None)
+    cdp = getattr(args, "cdp", None)
+    if url or cdp:
+        from run_browser_agent import run_agent_session
+        run_agent_session(
+            url,
+            task=getattr(args, "task", ""),
+            headed=getattr(args, "headed", False),
+            live=getattr(args, "live", False),
+            browser_type=getattr(args, "browser", "chromium") or "chromium",
+            cdp=cdp,
+            profile=getattr(args, "profile", None)
+        )
+    else:
+        sub_argv = sys.argv[2:]
+        subprocess.run([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
 
 def cmd_mcp(args):
     """Inspect and launch MCP servers."""
@@ -281,11 +287,6 @@ def cmd_desktop(args):
     import workshop_desktop
     sys.argv = ["workshop_desktop.py"] + sys.argv[2:]
     workshop_desktop.main()
-
-def cmd_browser(args):
-    """Launch/manage Virtual AI Computer & Browser Runner."""
-    sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
 
 def cmd_forensic(args):
     """Execute Digital Forensics & Data Recovery commands."""
