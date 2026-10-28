@@ -1,0 +1,17 @@
+{
+  "workshop-safety-gate": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python scripts/workshop_hooks.py pre-tool $COMMAND",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

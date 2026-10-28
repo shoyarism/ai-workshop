@@ -1,0 +1,43 @@
+# ==============================================================================
+# Workshop Knowledge Graph Exclusion Rules (.graphifyignore)
+# ==============================================================================
+
+# Virtual environments, libraries & dependencies
+.venv/
+*/.venv/
+*/*/.venv/
+node_modules/
+*/node_modules/
+*/*/node_modules/
+.ruff_cache/
+__pycache__/
+*.egg-info/
+dist/
+build/
+.pnpm-store/
+
+# Version control & IDE internals
+.git/
+*/.git/
+.idea/
+.vscode/
+
+# Heavy caches, unpacks & binaries
+Hermes_extracted/
+temp_stagehand/
+.tmp_*
+*_frames/
+*.tmp
+*.temp
+data/
+*.db
+*.sqlite*
+*.whl
+whl_files/
+iLEAPP/whl_files/
+.workshop_state/
+.hermes_browser_profile/
+
+# Graphify output
+graphify-out/
+*/graphify-out/

@@ -1,0 +1,464 @@
+/* =========================================================
+   Chapter 13 · 收尾 · 85 → 95 分
+   light 主题 · 公允声明 → 大字数字 → 三组词 → 琐碎规则 → 质变
+   ========================================================= */
+
+.cl {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+/* ===================== Scene FAIR (step 0) ===================== */
+
+.cl__fair {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+  padding: 140px;
+}
+
+.cl__fair-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.cl__fair-line {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--fg);
+  max-width: 1500px;
+}
+.cl__fair-line em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.cl__fair-line em::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 8px;
+  height: 8px;
+  background: var(--accent);
+  opacity: 0.2;
+  transform-origin: left;
+  animation: clFairUnderline 1100ms 800ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes clFairUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.2; }
+}
+
+.cl__fair-cap {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  line-height: 1.5;
+  color: var(--fg-mute);
+  max-width: 1300px;
+  margin: 0;
+}
+.cl__fair-cap em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ===================== Scene JUMP (step 1) ===================== */
+
+.cl__jump {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 32px;
+  padding: 100px;
+}
+
+.cl__jump-eyebrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+
+.cl__jump-row {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+
+.cl__jump-num {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cl__jump-num-figure {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 280px;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--fg-mute);
+  font-style: italic;
+  font-variant-numeric: tabular-nums;
+}
+.cl__jump-num-figure--big {
+  color: var(--accent);
+  font-size: 360px;
+  position: relative;
+}
+.cl__jump-num-figure--big::after {
+  content: '';
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 30px;
+  height: 14px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: clJumpUnder 1100ms 2400ms cubic-bezier(.2,.8,.2,1) backwards;
+  z-index: -1;
+}
+@keyframes clJumpUnder {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+
+.cl__jump-num-tag {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.cl__jump-num-tag--alt {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cl__jump-arrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 96px;
+  color: var(--fg-faint);
+  line-height: 1;
+  align-self: center;
+  animation: clJumpArrow 800ms 1500ms cubic-bezier(.6,-0.05,.2,1.2) backwards;
+}
+@keyframes clJumpArrow {
+  from { transform: translateX(-12px); opacity: 0; }
+  to   { transform: none;             opacity: 1; }
+}
+
+.cl__jump-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--f-mono);
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.cl__jump-meta-plus {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+.cl__jump-meta-text {
+  letter-spacing: 0.04em;
+}
+.cl__jump-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+}
+
+/* ===================== Scene TRIO (step 2) ===================== */
+
+.cl__trio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 56px;
+  padding: 120px;
+}
+
+.cl__trio-eyebrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+.cl__trio-eyebrow em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.cl__trio-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.cl__trio-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  font-family: var(--f-serif);
+  font-size: 88px;
+  line-height: 1.05;
+  opacity: 0;
+  animation: clTrioIn 900ms cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes clTrioIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.cl__trio-from {
+  text-align: right;
+  color: var(--fg-mute);
+  font-style: italic;
+  font-weight: 400;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--fg-faint);
+}
+
+.cl__trio-arrow {
+  text-align: center;
+  font-family: var(--f-mono);
+  font-style: normal;
+  font-size: 56px;
+  color: var(--fg-faint);
+  align-self: center;
+}
+
+.cl__trio-to {
+  text-align: left;
+  color: var(--fg);
+  font-style: italic;
+  font-weight: 500;
+  position: relative;
+}
+.cl__trio-to::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 6%;
+  bottom: 8px;
+  height: 10px;
+  background: var(--accent);
+  opacity: 0.2;
+  transform-origin: left;
+  animation: clTrioUnderline 900ms cubic-bezier(.2,.8,.2,1) backwards;
+  animation-delay: calc(var(--d, 0ms) + 600ms);
+  z-index: -1;
+}
+@keyframes clTrioUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.2; }
+}
+
+/* ===================== Scene RULES (step 3) ===================== */
+
+.cl__rules {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 26px;
+  padding: 110px 100px 90px;
+}
+
+.cl__rules-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.cl__rules-eyebrow em {
+  color: var(--accent);
+  font-style: italic;
+  font-family: var(--f-serif);
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 18px;
+}
+
+.cl__rules-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--fg);
+}
+.cl__rules-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.cl__rules-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 16px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1400px;
+  padding: 24px 0;
+}
+
+.cl__rules-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-radius: 999px;
+  font-family: var(--f-serif);
+  font-size: 28px;
+  font-style: italic;
+  color: var(--fg);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(28px) translateX(var(--shift, 0)) rotate(var(--rot, 0));
+  animation: clRulesChipIn 720ms cubic-bezier(.6,-0.05,.2,1.2) forwards;
+  box-shadow: 0 12px 24px -16px oklch(0 0 0 / 0.18);
+}
+@keyframes clRulesChipIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(var(--rot, 0));
+  }
+}
+.cl__rules-chip--0 { border-left: 3px solid var(--accent); }
+.cl__rules-chip--1 { border-left: 3px solid var(--accent); }
+.cl__rules-chip--2 { border-left: 3px solid var(--accent); opacity: 0.92; }
+.cl__rules-chip--3 { border-left: 3px solid var(--accent); }
+.cl__rules-chip-mark {
+  font-family: var(--f-mono);
+  font-style: normal;
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cl__rules-foot {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-mute);
+}
+
+/* ===================== Scene CLOSE (step 4) ===================== */
+
+.cl__close {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+  padding: 140px;
+}
+
+.cl__close-l1 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--fg-soft);
+  font-style: italic;
+}
+
+.cl__close-l2 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 1;
+  margin: 0;
+  color: var(--fg);
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+.cl__close-l2 em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.cl__close-l2 em:nth-of-type(1)::after,
+.cl__close-l2 em:nth-of-type(2)::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 16px;
+  height: 14px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: clCloseUnderline 1100ms cubic-bezier(.2,.8,.2,1) backwards;
+  z-index: -1;
+}
+.cl__close-l2 em:nth-of-type(1)::after { animation-delay: 1500ms; }
+.cl__close-l2 em:nth-of-type(2)::after { animation-delay: 1900ms; }
+@keyframes clCloseUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+
+.cl__close-cap {
+  margin-top: 32px;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+.cl__close-cap em {
+  color: var(--accent);
+  font-style: italic;
+}

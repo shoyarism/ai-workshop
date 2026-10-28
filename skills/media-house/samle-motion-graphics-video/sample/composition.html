@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>NovaFlow AI — Product Launch</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0A0E17;
+    --bg-gradient: linear-gradient(135deg, #0A0E17 0%, #111827 50%, #0F172A 100%);
+    --accent: #00D4FF;
+    --accent2: #FF6B35;
+    --text: #F1F5F9;
+    --text-muted: #94A3B8;
+    --card: rgba(30, 41, 59, 0.6);
+    --border: rgba(148, 163, 184, 0.15);
+  }
+
+  body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+  }
+
+  #stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: var(--bg-gradient);
+    overflow: hidden;
+  }
+
+  /* Animated background grid */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  /* Particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  /* Scene container */
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .scene.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Title scene */
+  .title-main {
+    font-size: 120px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .title-sub {
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 16px;
+    letter-spacing: 4px;
+  }
+
+  /* Problem scene */
+  .problem-text {
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+    max-width: 1200px;
+    line-height: 1.3;
+  }
+
+  .problem-stat {
+    font-size: 120px;
+    font-weight: 900;
+    color: var(--accent2);
+    margin-top: 40px;
+  }
+
+  /* Solution scene */
+  .solution-text {
+    font-size: 56px;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(90deg, var(--accent), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .solution-desc {
+    font-size: 32px;
+    color: var(--text-muted);
+    margin-top: 24px;
+    letter-spacing: 2px;
+  }
+
+  /* Features grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    max-width: 1400px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+  }
+
+  .feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .feature-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .feature-desc {
+    font-size: 20px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Stats scene */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+    margin-top: 60px;
+  }
+
+  .stat-number {
+    font-size: 100px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 24px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    letter-spacing: 2px;
+  }
+
+  /* CTA scene */
+  .cta-text {
+    font-size: 64px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .cta-url {
+    font-size: 36px;
+    color: var(--accent);
+    margin-top: 32px;
+    letter-spacing: 3px;
+  }
+
+  .cta-sub {
+    font-size: 28px;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  /* Lower third */
+  .lower-third {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lt-bar {
+    width: 6px;
+    height: 50px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+
+  .lt-text {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  /* Timecode overlay */
+  .timecode {
+    position: absolute;
+    top: 30px;
+    right: 60px;
+    font-size: 18px;
+    color: var(--text-muted);
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+
+  /* Reveal animation helpers */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .reveal-fade {
+    opacity: 0;
+  }
+
+  /* Shape decorations */
+  .shape-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0.2;
+  }
+
+  .shape-rect {
+    position: absolute;
+    border: 1px solid var(--accent2);
+    opacity: 0.15;
+    transform: rotate(45deg);
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="grid-bg"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Scene 1: Title (0-4s) -->
+  <div class="scene" data-scene="0" data-time="0">
+    <div class="shape-circle" style="width:400px;height:400px;top:-100px;right:-100px;"></div>
+    <div class="shape-circle" style="width:200px;height:200px;bottom:100px;left:50px;"></div>
+    <div class="title-main reveal-up">NOVA flows.</div>
+    <div class="title-sub reveal-up" style="transition-delay:0.2s">AI made invisible.</div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">NOVA FLOW AI</div>
+    </div>
+  </div>
+
+  <!-- Scene 2: Problem (4-8s) -->
+  <div class="scene" data-scene="1" data-time="4">
+    <div class="problem-text reveal-up">
+      Teams waste <span style="color:var(--accent2)">40%</span> of their sprint<br>on boilerplate.
+    </div>
+    <div class="problem-stat reveal-scale">40%</div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">THE PROBLEM</div>
+    </div>
+  </div>
+
+  <!-- Scene 3: Solution (8-13s) -->
+  <div class="scene" data-scene="2" data-time="8">
+    <div class="solution-text reveal-up">Describe it. Deploy it. Done.</div>
+    <div class="solution-desc reveal-up" style="transition-delay:0.3s">
+      NovaFlow AI generates production-ready backend APIs<br>from natural language.
+    </div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">THE SOLUTION</div>
+    </div>
+  </div>
+
+  <!-- Scene 4: Features (13-18s) -->
+  <div class="scene" data-scene="3" data-time="13">
+    <div class="features-grid">
+      <div class="feature-card reveal-up" style="transition-delay:0s">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Auto-Schema</div>
+        <div class="feature-desc">Generates types from your description</div>
+      </div>
+      <div class="feature-card reveal-up" style="transition-delay:0.15s">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">Real-Time Validation</div>
+        <div class="feature-desc">Catches errors before they ship</div>
+      </div>
+      <div class="feature-card reveal-up" style="transition-delay:0.3s">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Zero-Config Deploy</div>
+        <div class="feature-desc">One command to production</div>
+      </div>
+    </div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">FEATURES</div>
+    </div>
+  </div>
+
+  <!-- Scene 5: Stats (18-22s) -->
+  <div class="scene" data-scene="4" data-time="18">
+    <div class="stats-grid">
+      <div class="reveal-scale">
+        <div class="stat-number" data-target="10000">0</div>
+        <div class="stat-label">DEPLOYMENTS</div>
+      </div>
+      <div class="reveal-scale" style="transition-delay:0.2s">
+        <div class="stat-number" data-target="99">0</div><span class="stat-number" style="font-size:60px">.97</span>
+        <div class="stat-label">UPTIME</div>
+      </div>
+      <div class="reveal-scale" style="transition-delay:0.4s">
+        <div class="stat-number" data-target="0">0</div>
+        <div class="stat-label">BOILERPLATE TICKETS</div>
+      </div>
+    </div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">BY THE NUMBERS</div>
+    </div>
+  </div>
+
+  <!-- Scene 6: CTA (22-26s) -->
+  <div class="scene" data-scene="5" data-time="22">
+    <div class="cta-text reveal-up">Try NovaFlow free.</div>
+    <div class="cta-url reveal-up" style="transition-delay:0.2s">novaflow.ai</div>
+    <div class="cta-sub reveal-up" style="transition-delay:0.4s">
+      Your first API is ready in 30 seconds.
+    </div>
+    <div class="lower-third">
+      <div class="lt-bar"></div>
+      <div class="lt-text">GET STARTED</div>
+    </div>
+  </div>
+
+  <div class="timecode" id="timecode">00:00</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+// Timeline configuration — scene durations
+const SCENES = [
+  { id: 0, start: 0,  duration: 4 },
+  { id: 1, start: 4,  duration: 4 },
+  { id: 2, start: 8,  duration: 5 },
+  { id: 3, start: 13, duration: 5 },
+  { id: 4, start: 18, duration: 4 },
+  { id: 5, start: 22, duration: 4 }
+];
+
+const TOTAL_DURATION = 26;
+let masterTimeline = null;
+let currentScene = -1;
+
+// Initialize GSAP timeline
+function initTimeline() {
+  masterTimeline = gsap.timeline({ paused: true });
+
+  // Scene 0: Title reveal
+  masterTimeline.to('.scene[data-scene="0"] .title-main', {
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+  }, 0.2);
+  masterTimeline.to('.scene[data-scene="0"] .title-sub', {
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+  }, 0.5);
+
+  // Scene 1: Problem
+  masterTimeline.to('.scene[data-scene="1"] .problem-text', {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+  }, 0.2);
+  masterTimeline.to('.scene[data-scene="1"] .problem-stat', {
+    opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.7)'
+  }, 0.6);
+
+  // Scene 2: Solution
+  masterTimeline.to('.scene[data-scene="2"] .solution-text', {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+  }, 0.2);
+  masterTimeline.to('.scene[data-scene="2"] .solution-desc', {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+  }, 0.5);
+
+  // Scene 3: Features
+  masterTimeline.to('.scene[data-scene="3"] .feature-card', {
+    opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power2.out'
+  }, 0.2);
+
+  // Scene 4: Stats counter animation
+  masterTimeline.to('.scene[data-scene="4"] .reveal-scale', {
+    opacity: 1, scale: 1, duration: 0.5, stagger: 0.15, ease: 'back.out(1.7)'
+  }, 0.2);
+  // Counter animation
+  masterTimeline.call(() => {
+    animateCounter('.stat-number[data-target="10000"]', 0, 10000, 2);
+    animateCounter('.stat-number[data-target="99"]', 0, 99, 1.5);
+    animateCounter('.stat-number[data-target="0"]', 0, 0, 0.5);
+  }, [], 0.5);
+
+  // Scene 5: CTA
+  masterTimeline.to('.scene[data-scene="5"] .cta-text', {
+    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out'
+  }, 0.2);
+  masterTimeline.to('.scene[data-scene="5"] .cta-url', {
+    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out'
+  }, 0.5);
+  masterTimeline.to('.scene[data-scene="5"] .cta-sub', {
+    opacity: 1, y: 0, duration: 0.5, ease: 'power3.out'
+  }, 0.8);
+}
+
+// Counter animation
+function animateCounter(selector, start, end, duration) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  const obj = { val: start };
+  gsap.to(obj, {
+    val: end,
+    duration: duration,
+    ease: 'power2.out',
+    onUpdate: () => {
+      el.textContent = Math.floor(obj.val).toLocaleString();
+    }
+  });
+}
+
+// Deterministic seek function — called by renderer
+window.seekToTime = function(t) {
+  if (!masterTimeline) initTimeline();
+
+  // Clamp time
+  t = Math.max(0, Math.min(t, TOTAL_DURATION));
+
+  // Update scene visibility
+  const sceneEl = document.querySelector(`.scene[data-time="${Math.floor(t)}"]`);
+  if (sceneEl && sceneEl !== currentScene) {
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    sceneEl.classList.add('active');
+    currentScene = sceneEl;
+  }
+
+  // Seek timeline
+  masterTimeline.seek(t);
+
+  // Update timecode
+  const tc = document.getElementById('timecode');
+  if (tc) {
+    const min = Math.floor(t / 60);
+    const sec = Math.floor(t % 60);
+    tc.textContent = `${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  }
+};
+
+// Initialize first scene
+document.addEventListener('DOMContentLoaded', () => {
+  initTimeline();
+  document.querySelector('.scene[data-scene="0"]').classList.add('active');
+
+  // Create floating particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 50; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 1920 + 'px';
+    p.style.top = Math.random() * 1080 + 'px';
+    p.style.width = (Math.random() * 3 + 1) + 'px';
+    p.style.height = p.style.width;
+    p.style.animationDelay = Math.random() * 5 + 's';
+    p.style.animation = `particleFloat ${Math.random() * 10 + 10}s linear infinite`;
+    container.appendChild(p);
+  }
+
+  // Auto-seek for testing (remove in production)
+  let t = 0;
+  setInterval(() => {
+    t += 1/24;
+    if (t > TOTAL_DURATION) t = 0;
+    window.seekToTime(t);
+  }, 1000/24);
+});
+</script>
+</body>
+</html>

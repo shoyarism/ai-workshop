@@ -1,0 +1,26 @@
+name: CI / Plugin
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/**'
+      - 'skills/pinchtab/**'
+      - 'skills/pinchtab-mcp/**'
+      - '.grok-plugin/**'
+      - '.github/workflows/*plugin*'
+  pull_request:
+    paths:
+      - 'plugins/**'
+      - 'skills/pinchtab/**'
+      - 'skills/pinchtab-mcp/**'
+      - '.grok-plugin/**'
+      - '.github/workflows/*plugin*'
+
+permissions:
+  contents: read
+
+jobs:
+  plugin:
+    uses: ./.github/workflows/reusable-plugin.yml

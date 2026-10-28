@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: Inter, sans-serif; background: #FBFAF7; color: #23201C; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: Fraunces, serif; }
+  .wrap { width: 1240px; height: 860px; padding: 54px 84px; display: flex; flex-direction: column; }
+  .ox { color: #7B2D26; }
+  .card { background:#fff; border:1px solid #E9E3DA; border-radius:16px; box-shadow:0 2px 10px rgba(50,35,20,0.05); }
+  .row { border-top:1px solid #EEE9E1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <span class="serif" style="font-weight:600;font-size:25px;letter-spacing:-0.01em;">Relay</span>
+    <div style="display:flex;align-items:center;gap:32px;font-size:14px;color:#6B655C;">
+      <span>Product</span><span>Pricing</span>
+      <span style="color:#fff;background:#7B2D26;border-radius:9999px;padding:9px 20px;font-weight:600;">Start free</span>
+    </div>
+  </div>
+
+  <div style="flex:1;display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;align-items:center;">
+    <div>
+      <div class="ox" style="font-size:13px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;">Revenue, handled with care</div>
+      <h1 class="serif" style="font-size:60px;line-height:1.04;font-weight:500;letter-spacing:-0.02em;margin-top:20px;">Payments that quietly close <span class="ox" style="font-style:italic;">themselves.</span></h1>
+      <p style="font-size:18px;line-height:1.6;color:#57514A;max-width:46ch;margin-top:26px;">Relay turns every invoice into a paid one — gentle reminders, clean reconciliation, and a forecast you can actually trust.</p>
+      <div style="display:flex;align-items:center;gap:24px;margin-top:34px;">
+        <span style="background:#7B2D26;color:#fff;border-radius:9999px;font-weight:600;font-size:16px;padding:14px 30px;">Start free</span>
+        <span class="ox" style="font-weight:600;font-size:16px;border-bottom:1.5px solid #7B2D26;padding-bottom:2px;">Book a demo →</span>
+      </div>
+    </div>
+
+    <div class="card" style="padding:36px 34px;">
+      <div class="serif" style="font-size:22px;font-weight:600;">This quarter</div>
+      <div style="padding:22px 0 4px;">
+        <div style="font-size:13px;color:#8A8378;">Monthly revenue</div>
+        <div style="margin-top:6px;"><span class="serif" style="font-size:48px;font-weight:600;letter-spacing:-0.01em;">$48.2</span><span class="serif" style="font-size:24px;color:#8A8378;">K</span> <span class="ox" style="font-size:15px;font-weight:600;">+8.2%</span></div>
+      </div>
+      <div class="row" style="padding:20px 0 4px;">
+        <div style="font-size:13px;color:#8A8378;">Active accounts</div>
+        <div style="margin-top:6px;"><span class="serif" style="font-size:40px;font-weight:600;">1,284</span></div>
+      </div>
+      <div class="row" style="padding:20px 0 4px;">
+        <div style="font-size:13px;color:#8A8378;">Collected on-time</div>
+        <div style="margin-top:6px;"><span class="serif" style="font-size:40px;font-weight:600;">99.4</span><span class="serif" style="font-size:22px;color:#8A8378;">%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,469 @@
+{
+  "StyleSeed": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#3182F6",
+          "$type": "color",
+          "$description": "Main brand accent color (purple)"
+        },
+        "dark": {
+          "$value": "#030213",
+          "$type": "color",
+          "$description": "Dark brand color, used as primary UI color"
+        }
+      },
+      "neutral": {
+        "50": {
+          "$value": "#FAFAF9",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#F4F1EC",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "#E8E6E1",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#CBCED4",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#9B9B9B",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#7A7A7A",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "#6A6A6A",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#3C3C3C",
+          "$type": "color"
+        },
+        "800": {
+          "$value": "#2A2A2A",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#030213",
+          "$type": "color"
+        }
+      },
+      "semantic": {
+        "background": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Page background"
+        },
+        "surface": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Card/surface background"
+        },
+        "foreground": {
+          "$value": "#030213",
+          "$type": "color",
+          "$description": "Primary text color"
+        },
+        "muted-bg": {
+          "$value": "#ECECF0",
+          "$type": "color",
+          "$description": "Muted background"
+        },
+        "muted-fg": {
+          "$value": "#717182",
+          "$type": "color",
+          "$description": "Muted foreground / secondary text"
+        },
+        "border": {
+          "$value": "rgba(0,0,0,0.1)",
+          "$type": "color",
+          "$description": "Default border color"
+        },
+        "input-background": {
+          "$value": "#F3F3F5",
+          "$type": "color",
+          "$description": "Input field background"
+        },
+        "switch-background": {
+          "$value": "#CBCED4",
+          "$type": "color",
+          "$description": "Switch/toggle background"
+        }
+      },
+      "status": {
+        "success": {
+          "$value": "#6B9B7A",
+          "$type": "color",
+          "$description": "Success state"
+        },
+        "destructive": {
+          "$value": "#D4183D",
+          "$type": "color",
+          "$description": "Error / destructive action"
+        },
+        "warning": {
+          "$value": "#D97706",
+          "$type": "color",
+          "$description": "Warning state"
+        },
+        "info": {
+          "$value": "#3B82F6",
+          "$type": "color",
+          "$description": "Informational state"
+        }
+      },
+      "chart": {
+        "1": {
+          "$value": "#E8613C",
+          "$type": "color",
+          "$description": "Chart color 1 — oklch(0.646 0.222 41.116)"
+        },
+        "2": {
+          "$value": "#2B9E8B",
+          "$type": "color",
+          "$description": "Chart color 2 — oklch(0.6 0.118 184.704)"
+        },
+        "3": {
+          "$value": "#2E4A5E",
+          "$type": "color",
+          "$description": "Chart color 3 — oklch(0.398 0.07 227.392)"
+        },
+        "4": {
+          "$value": "#E5B832",
+          "$type": "color",
+          "$description": "Chart color 4 — oklch(0.828 0.189 84.429)"
+        },
+        "5": {
+          "$value": "#D9A021",
+          "$type": "color",
+          "$description": "Chart color 5 — oklch(0.769 0.188 70.08)"
+        }
+      }
+    },
+    "fontFamily": {
+      "sans": {
+        "$value": "'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        "$type": "fontFamilies",
+        "$description": "Default sans-serif font stack"
+      },
+      "mono": {
+        "$value": "'JetBrains Mono', 'Fira Code', monospace",
+        "$type": "fontFamilies",
+        "$description": "Monospace font stack"
+      }
+    },
+    "fontSize": {
+      "2xs": {
+        "$value": "10",
+        "$type": "fontSizes",
+        "$description": "Micro text, units"
+      },
+      "xs": {
+        "$value": "11",
+        "$type": "fontSizes",
+        "$description": "Small labels, status text"
+      },
+      "sm": {
+        "$value": "12",
+        "$type": "fontSizes",
+        "$description": "Captions, badges, secondary labels"
+      },
+      "caption": {
+        "$value": "13",
+        "$type": "fontSizes",
+        "$description": "Subtitles, dates, trend values"
+      },
+      "base": {
+        "$value": "14",
+        "$type": "fontSizes",
+        "$description": "Body default, list titles"
+      },
+      "body": {
+        "$value": "15",
+        "$type": "fontSizes",
+        "$description": "Card body text"
+      },
+      "md": {
+        "$value": "16",
+        "$type": "fontSizes",
+        "$description": "Inputs, buttons"
+      },
+      "subhead": {
+        "$value": "17",
+        "$type": "fontSizes",
+        "$description": "Amounts, emphasized text"
+      },
+      "lg": {
+        "$value": "18",
+        "$type": "fontSizes",
+        "$description": "Section titles, card headers"
+      },
+      "xl": {
+        "$value": "20",
+        "$type": "fontSizes",
+        "$description": "h2"
+      },
+      "2xl": {
+        "$value": "24",
+        "$type": "fontSizes",
+        "$description": "h1"
+      },
+      "3xl": {
+        "$value": "30",
+        "$type": "fontSizes",
+        "$description": "Large titles"
+      },
+      "4xl": {
+        "$value": "36",
+        "$type": "fontSizes",
+        "$description": "KPI metrics"
+      },
+      "5xl": {
+        "$value": "48",
+        "$type": "fontSizes",
+        "$description": "Hero numbers"
+      }
+    },
+    "fontWeight": {
+      "normal": {
+        "$value": "400",
+        "$type": "fontWeights",
+        "$description": "Body text, descriptions"
+      },
+      "medium": {
+        "$value": "500",
+        "$type": "fontWeights",
+        "$description": "Labels, buttons, default headings"
+      },
+      "semibold": {
+        "$value": "600",
+        "$type": "fontWeights",
+        "$description": "Nav labels, emphasized captions"
+      },
+      "bold": {
+        "$value": "700",
+        "$type": "fontWeights",
+        "$description": "Metric values, list titles, section headers"
+      }
+    },
+    "lineHeight": {
+      "none": {
+        "$value": "100%",
+        "$type": "lineHeights",
+        "$description": "Display text (36-48px) — large metrics, hero numbers"
+      },
+      "tight": {
+        "$value": "120%",
+        "$type": "lineHeights",
+        "$description": "Display text alternate"
+      },
+      "snug": {
+        "$value": "135%",
+        "$type": "lineHeights",
+        "$description": "Headings (18-24px) — section titles"
+      },
+      "normal": {
+        "$value": "150%",
+        "$type": "lineHeights",
+        "$description": "Body text (14-17px) — readable paragraphs"
+      },
+      "relaxed": {
+        "$value": "165%",
+        "$type": "lineHeights",
+        "$description": "Captions (10-13px) — small text needs more leading"
+      }
+    },
+    "letterSpacing": {
+      "tighter": {
+        "$value": "-2%",
+        "$type": "letterSpacing",
+        "$description": "Display text (36-48px)"
+      },
+      "tight": {
+        "$value": "-1%",
+        "$type": "letterSpacing",
+        "$description": "Headings (18-24px)"
+      },
+      "normal": {
+        "$value": "0%",
+        "$type": "letterSpacing",
+        "$description": "Body text (14-17px)"
+      },
+      "wide": {
+        "$value": "5%",
+        "$type": "letterSpacing",
+        "$description": "Uppercase captions (10-13px)"
+      },
+      "wider": {
+        "$value": "10%",
+        "$type": "letterSpacing",
+        "$description": "Wide uppercase labels"
+      }
+    },
+    "spacing": {
+      "0": {
+        "$value": "0",
+        "$type": "spacing"
+      },
+      "1": {
+        "$value": "6",
+        "$type": "spacing",
+        "$description": "1 base unit (6px)"
+      },
+      "2": {
+        "$value": "12",
+        "$type": "spacing",
+        "$description": "2 base units"
+      },
+      "3": {
+        "$value": "18",
+        "$type": "spacing",
+        "$description": "3 base units"
+      },
+      "4": {
+        "$value": "24",
+        "$type": "spacing",
+        "$description": "4 base units — page padding, section gap, card padding"
+      },
+      "5": {
+        "$value": "30",
+        "$type": "spacing",
+        "$description": "5 base units"
+      },
+      "6": {
+        "$value": "36",
+        "$type": "spacing",
+        "$description": "6 base units"
+      },
+      "8": {
+        "$value": "48",
+        "$type": "spacing",
+        "$description": "8 base units"
+      },
+      "10": {
+        "$value": "60",
+        "$type": "spacing",
+        "$description": "10 base units"
+      },
+      "12": {
+        "$value": "72",
+        "$type": "spacing",
+        "$description": "12 base units"
+      }
+    },
+    "borderRadius": {
+      "sm": {
+        "$value": "6px",
+        "$type": "borderRadius",
+        "$description": "calc(0.625rem - 4px)"
+      },
+      "md": {
+        "$value": "8px",
+        "$type": "borderRadius",
+        "$description": "calc(0.625rem - 2px) — buttons, inputs"
+      },
+      "lg": {
+        "$value": "10px",
+        "$type": "borderRadius",
+        "$description": "Base radius (0.625rem) — badges, icon containers"
+      },
+      "xl": {
+        "$value": "14px",
+        "$type": "borderRadius",
+        "$description": "calc(0.625rem + 4px)"
+      },
+      "2xl": {
+        "$value": "16px",
+        "$type": "borderRadius",
+        "$description": "Cards"
+      },
+      "full": {
+        "$value": "9999px",
+        "$type": "borderRadius",
+        "$description": "Fully rounded — avatars, pills"
+      }
+    },
+    "boxShadow": {
+      "card": {
+        "$value": [
+          {
+            "x": "0",
+            "y": "1",
+            "blur": "3",
+            "spread": "0",
+            "color": "rgba(0,0,0,0.04)",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "boxShadow",
+        "$description": "Default card shadow"
+      },
+      "cardHover": {
+        "$value": [
+          {
+            "x": "0",
+            "y": "2",
+            "blur": "4",
+            "spread": "0",
+            "color": "rgba(0,0,0,0.08)",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "boxShadow",
+        "$description": "Card hover state shadow"
+      },
+      "elevated": {
+        "$value": [
+          {
+            "x": "0",
+            "y": "4",
+            "blur": "12",
+            "spread": "0",
+            "color": "rgba(0,0,0,0.08)",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "boxShadow",
+        "$description": "Floating/elevated elements"
+      },
+      "modal": {
+        "$value": [
+          {
+            "x": "0",
+            "y": "8",
+            "blur": "24",
+            "spread": "0",
+            "color": "rgba(0,0,0,0.12)",
+            "type": "dropShadow"
+          }
+        ],
+        "$type": "boxShadow",
+        "$description": "Modal/dialog overlay shadow"
+      }
+    },
+    "duration": {
+      "fast": {
+        "$value": "100ms",
+        "$type": "duration",
+        "$description": "Hover, color changes"
+      },
+      "normal": {
+        "$value": "200ms",
+        "$type": "duration",
+        "$description": "Enter animations, expand"
+      },
+      "slow": {
+        "$value": "350ms",
+        "$type": "duration",
+        "$description": "Page transitions, spring effects"
+      }
+    }
+  }
+}

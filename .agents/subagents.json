@@ -1,0 +1,102 @@
+{
+  "subagents": {
+    "researcher": {
+      "name": "researcher",
+      "description": "Lease for broad codebase reconnaissance, multi-directory surveys, reading documentation, dependency analysis, or external web research without bloating primary agent context.",
+      "model_tier": "fast",
+      "model": "haiku",
+      "tools": [
+        "skill_search",
+        "skill_load",
+        "memory_recall",
+        "see",
+        "graphify_query",
+        "view_file",
+        "search_web",
+        "read_url_content"
+      ],
+      "max_words": 200,
+      "definition_file": ".agents/subagents/researcher.md"
+    },
+    "reviewer": {
+      "name": "reviewer",
+      "description": "Use after any code edit, diff creation, or prior to declaring a task complete. Audits code health, security boundaries, and strict anti-slop compliance.",
+      "model_tier": "fast",
+      "model": "haiku",
+      "tools": [
+        "verify",
+        "antislop_audit",
+        "critique",
+        "view_file"
+      ],
+      "max_words": 200,
+      "definition_file": ".agents/subagents/reviewer.md"
+    },
+    "debugger": {
+      "name": "debugger",
+      "description": "Use when encountering any unexpected error, stack trace, failing test, or runtime crash. Isolates root cause before proposing minimal targeted fixes.",
+      "model_tier": "balanced",
+      "model": "sonnet",
+      "tools": [
+        "skill_search",
+        "skill_load",
+        "memory_recall",
+        "verify",
+        "view_file",
+        "replace_file_content",
+        "run_command"
+      ],
+      "max_words": 250,
+      "definition_file": ".agents/subagents/debugger.md"
+    },
+    "architect": {
+      "name": "architect",
+      "description": "Use for complex multi-module system designs, high-impact refactoring, schema migrations, and Architecture Decision Record (ADR) authoring.",
+      "model_tier": "frontier",
+      "model": "opus",
+      "tools": [
+        "skill_search",
+        "skill_load",
+        "memory_recall",
+        "memory_write",
+        "verify",
+        "critique",
+        "view_file",
+        "replace_file_content",
+        "write_to_file",
+        "run_command"
+      ],
+      "max_words": 350,
+      "definition_file": ".agents/subagents/architect.md"
+    },
+    "security-auditor": {
+      "name": "security-auditor",
+      "description": "Performs security audits, identifies vulnerabilities, and verifies security boundaries without write access.",
+      "model_tier": "fast",
+      "model": "haiku",
+      "tools": [
+        "verify",
+        "view_file",
+        "skill_search",
+        "skill_load"
+      ],
+      "max_words": 250,
+      "definition_file": ".agents/subagents/security-auditor.md"
+    },
+    "docs-writer": {
+      "name": "docs-writer",
+      "description": "Writes and maintains project documentation, guides, and Architecture Decision Records.",
+      "model_tier": "balanced",
+      "model": "sonnet",
+      "tools": [
+        "view_file",
+        "replace_file_content",
+        "write_to_file",
+        "skill_search",
+        "skill_load"
+      ],
+      "max_words": 350,
+      "definition_file": ".agents/subagents/docs-writer.md"
+    }
+  }
+}

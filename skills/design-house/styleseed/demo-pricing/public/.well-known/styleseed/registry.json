@@ -1,0 +1,1289 @@
+{
+  "$schema": "https://styleseed-demo.vercel.app/.well-known/styleseed/registry.schema.json",
+  "version": "5",
+  "generated": "2026-08-06T04:08:32.717Z",
+  "repository": "https://github.com/bitjaru/styleseed",
+  "counts": {
+    "skills": 22,
+    "grammars": 8,
+    "adapters": 5,
+    "domains": 12,
+    "pages": 7,
+    "recipes": 9,
+    "palettes": 8,
+    "profiles": 6,
+    "components": 48,
+    "byType": {
+      "ui": 32,
+      "pattern": 16
+    },
+    "skins": 7
+  },
+  "context": {
+    "resolverSkill": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/.claude/skills/ss-resolve/SKILL.md",
+    "catalogUrl": "https://styleseed-demo.vercel.app/.well-known/styleseed/context-catalog.json",
+    "grammarIds": [
+      "consumer-service",
+      "operations-console",
+      "technical-instrument",
+      "editorial-reading",
+      "commerce-conversion",
+      "institutional-service",
+      "expressive-marketing",
+      "sequential-story"
+    ],
+    "adapterIds": [
+      "product-ui",
+      "social-carousel",
+      "slide-deck",
+      "document-report",
+      "single-frame"
+    ],
+    "domainIds": [
+      "fintech",
+      "saas",
+      "ecommerce",
+      "social",
+      "content",
+      "productivity",
+      "health",
+      "education",
+      "developer-tools",
+      "marketplace",
+      "booking",
+      "ai-assistant"
+    ],
+    "pageIds": [
+      "dashboard",
+      "form",
+      "landing",
+      "detail",
+      "list",
+      "settings",
+      "onboarding"
+    ],
+    "recipeIds": [
+      "calm-consumer",
+      "native-mobile",
+      "enterprise-workbench",
+      "developer-platform",
+      "commerce-operator",
+      "public-service",
+      "creative-professional",
+      "editorial-authority",
+      "expressive-brand"
+    ],
+    "paletteIds": [
+      "quiet-mineral",
+      "deep-lime-studio",
+      "cobalt-instrument",
+      "warm-clay-commerce",
+      "civic-blue",
+      "editorial-ink",
+      "signal-coral",
+      "nocturne-violet"
+    ],
+    "profileIds": [
+      "swiss",
+      "editorial",
+      "technical",
+      "warm-dtc",
+      "minimal-mono",
+      "brutalist-lite"
+    ]
+  },
+  "components": [
+    {
+      "id": "accordion",
+      "type": "ui",
+      "name": "Accordion",
+      "exports": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent"
+      ],
+      "description": "",
+      "source": "engine/components/ui/accordion.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/accordion.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-accordion",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 2060,
+      "digest": "sha256:0ff6fadd3560c21aa67911d817f89d206188fd07bd57244ba59a117bd4ff9cb4",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as AccordionPrimitive from \"@radix-ui/react-accordion\";\nimport { ChevronDownIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction Accordion({\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Root>) {\n  return <AccordionPrimitive.Root data-slot=\"accordion\" {...props} />;\n}\n\nfunction AccordionItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Item>) {\n  return (\n    <AccordionPrimitive.Item\n      data-slot=\"accordion-item\"\n      className={cn(\"border-b last:border-b-0\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {\n  return (\n    <AccordionPrimitive.Header className=\"flex\">\n      <AccordionPrimitive.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDownIcon className=\"text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200\" />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  );\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Content>) {\n  return (\n    <AccordionPrimitive.Content\n      data-slot=\"accordion-content\"\n      className=\"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm\"\n      {...props}\n    >\n      <div className={cn(\"pt-0 pb-4\", className)}>{children}</div>\n    </AccordionPrimitive.Content>\n  );\n}\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent };\n"
+    },
+    {
+      "id": "alert",
+      "type": "ui",
+      "name": "Alert",
+      "exports": [
+        "Alert",
+        "AlertTitle",
+        "AlertDescription"
+      ],
+      "description": "",
+      "source": "engine/components/ui/alert.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/alert.tsx",
+      "imports": [
+        "react",
+        "class-variance-authority",
+        "./utils"
+      ],
+      "bytes": 1621,
+      "digest": "sha256:19835c5f03b78e8915b5e8900a0681ddfb83e3bcc0c9930e62f31c01e4dfb129",
+      "code": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"./utils\";\n\nconst alertVariants = cva(\n  \"relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-card text-card-foreground\",\n        destructive:\n          \"text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n);\n\nfunction Alert({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof alertVariants>) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\n        \"col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Alert, AlertTitle, AlertDescription };\n"
+    },
+    {
+      "id": "avatar",
+      "type": "ui",
+      "name": "Avatar",
+      "exports": [
+        "Avatar",
+        "AvatarImage",
+        "AvatarFallback"
+      ],
+      "description": "",
+      "source": "engine/components/ui/avatar.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/avatar.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-avatar",
+        "./utils"
+      ],
+      "bytes": 1104,
+      "digest": "sha256:d40b1cbabe71c094c6bcf089ac5702ec77623dbc75c770ca9f86530e03d6fea1",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\";\n\nimport { cn } from \"./utils\";\n\nfunction Avatar({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Root>) {\n  return (\n    <AvatarPrimitive.Root\n      data-slot=\"avatar\"\n      className={cn(\n        \"relative flex size-10 shrink-0 overflow-hidden rounded-full\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction AvatarImage({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Image>) {\n  return (\n    <AvatarPrimitive.Image\n      data-slot=\"avatar-image\"\n      className={cn(\"aspect-square size-full\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AvatarFallback({\n  className,\n  ...props\n}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {\n  return (\n    <AvatarPrimitive.Fallback\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"bg-muted flex size-full items-center justify-center rounded-full\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Avatar, AvatarImage, AvatarFallback };\n"
+    },
+    {
+      "id": "badge",
+      "type": "ui",
+      "name": "Badge",
+      "exports": [
+        "Badge"
+      ],
+      "description": "",
+      "source": "engine/components/ui/badge.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/badge.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "./utils"
+      ],
+      "bytes": 1636,
+      "digest": "sha256:8329a0b50f818665f1aca05ab93c16b103178b463f2949234ee4416bbc7d3fe2",
+      "code": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"./utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90\",\n        secondary:\n          \"border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90\",\n        destructive:\n          \"border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60\",\n        outline:\n          \"text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  },\n);\n\nfunction Badge({\n  className,\n  variant,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> &\n  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot : \"span\";\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Badge, badgeVariants };\n"
+    },
+    {
+      "id": "button",
+      "type": "ui",
+      "name": "Button",
+      "exports": [
+        "Button"
+      ],
+      "description": "",
+      "source": "engine/components/ui/button.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/button.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "./utils"
+      ],
+      "bytes": 2916,
+      "digest": "sha256:7fbcb23e5352b25ebc01b5a595dc6dc551d28d4693c4b23d0205852c72fb2603",
+      "code": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"./utils\";\n\nconst buttonVariants = cva(\n  \"ss-pattern-control inline-flex items-center justify-center whitespace-nowrap font-bold transition-colors duration-150 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-brand/20\",\n  {\n    variants: {\n      variant: {\n        // brandSolid — key color background, white text\n        default:\n          \"bg-brand text-white active:bg-brand/85 disabled:bg-surface-muted disabled:text-text-disabled\",\n        // neutralSolid — 어두운 배경, 흰 텍스트\n        neutral:\n          \"bg-[#2A2A2A] text-white active:bg-[#3C3C3C] disabled:bg-surface-muted disabled:text-text-disabled dark:bg-[#E0E0E0] dark:text-[#121212] dark:active:bg-[#C0C0C0]\",\n        // neutralWeak — 연한 회색 배경, 어두운 텍스트\n        secondary:\n          \"bg-[#F3F4F5] text-text-primary active:bg-[#EAEBEC] disabled:bg-surface-muted disabled:text-text-disabled dark:bg-[#2B2E35] dark:text-[#E0E0E0] dark:active:bg-[#393D46]\",\n        // criticalSolid — 위험 액션\n        destructive:\n          \"bg-destructive text-white active:bg-destructive/85 focus-visible:ring-destructive/20 disabled:bg-surface-muted disabled:text-text-disabled\",\n        // outline — 테두리만\n        outline:\n          \"border border-border bg-transparent text-text-primary active:bg-surface-muted/50 disabled:border-surface-muted disabled:text-text-disabled dark:border-white/8\",\n        // ghost — 배경/테두리 없음\n        ghost:\n          \"bg-transparent text-text-primary active:bg-surface-muted/50 disabled:text-text-disabled\",\n        // brandGhost — 키컬러 텍스트, 배경 없음\n        brandGhost:\n          \"bg-transparent text-brand active:bg-brand/8 disabled:text-text-disabled\",\n      },\n      size: {\n        xs: \"h-8 px-3.5 gap-1 text-[13px] [&_svg:not([class*='size-'])]:size-3.5\",\n        sm: \"h-9 px-3.5 gap-1 text-[14px] [&_svg:not([class*='size-'])]:size-3.5\",\n        md: \"h-10 px-4 gap-1.5 text-[14px] [&_svg:not([class*='size-'])]:size-4\",\n        lg: \"h-[52px] px-5 gap-2 text-[18px] [&_svg:not([class*='size-'])]:size-[22px]\",\n        icon: \"size-10 [&_svg:not([class*='size-'])]:size-[18px]\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"md\",\n    },\n  },\n);\n\nfunction Button({\n  className,\n  variant,\n  size,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"button\"> &\n  VariantProps<typeof buttonVariants> & {\n    asChild?: boolean;\n  }) {\n  const Comp = asChild ? Slot : \"button\";\n\n  return (\n    <Comp\n      data-slot=\"button\"\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants };\n"
+    },
+    {
+      "id": "card",
+      "type": "ui",
+      "name": "Card",
+      "exports": [
+        "Card",
+        "CardHeader",
+        "CardFooter",
+        "CardTitle",
+        "CardAction",
+        "CardDescription",
+        "CardContent"
+      ],
+      "description": "",
+      "source": "engine/components/ui/card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/card.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 1983,
+      "digest": "sha256:151216ede0afb0c1404e400498b3198686e1fc0e5e08425edc24dc79fb5855d8",
+      "code": "import * as React from \"react\";\n\nimport { cn } from \"./utils\";\n\nfunction Card({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card\"\n      className={cn(\n        \"ss-component-surface text-card-foreground flex flex-col gap-6\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction CardHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-header\"\n      className={cn(\n        \"@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction CardTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <h4\n      data-slot=\"card-title\"\n      className={cn(\"leading-none\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction CardDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <p\n      data-slot=\"card-description\"\n      className={cn(\"text-muted-foreground\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction CardAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-action\"\n      className={cn(\n        \"col-start-2 row-span-2 row-start-1 self-start justify-self-end\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction CardContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-content\"\n      className={cn(\"px-6 [&:last-child]:pb-6\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction CardFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"card-footer\"\n      className={cn(\"flex items-center px-6 pb-6 [.border-t]:pt-6\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Card,\n  CardHeader,\n  CardFooter,\n  CardTitle,\n  CardAction,\n  CardDescription,\n  CardContent,\n};\n"
+    },
+    {
+      "id": "checkbox",
+      "type": "ui",
+      "name": "Checkbox",
+      "exports": [
+        "Checkbox"
+      ],
+      "description": "",
+      "source": "engine/components/ui/checkbox.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/checkbox.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-checkbox",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 1244,
+      "digest": "sha256:894eb30992723a15e3ae75c46a3bf8808a526f5b3bff2c61c78f4d3e8d521cb8",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { CheckIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer border bg-input-background dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"flex items-center justify-center text-current transition-none\"\n      >\n        <CheckIcon className=\"size-3.5\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n\nexport { Checkbox };\n"
+    },
+    {
+      "id": "confirm-modal",
+      "type": "ui",
+      "name": "ConfirmModal",
+      "exports": [
+        "ConfirmModal"
+      ],
+      "description": "",
+      "source": "engine/components/ui/confirm-modal.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/confirm-modal.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 2422,
+      "digest": "sha256:941051ed7c2d1f4f3811dbb13f70b4130876a765174b2632d309e4a84d8fcf45",
+      "code": "import * as React from \"react\"\nimport { cn } from \"./utils\"\n\ninterface ConfirmModalProps extends React.ComponentProps<\"div\"> {\n  isOpen: boolean\n  onConfirm: () => void\n  onCancel: () => void\n  title: string\n  message: string | string[]\n  confirmText?: string\n  cancelText?: string\n  variant?: \"default\" | \"destructive\"\n}\n\nfunction ConfirmModal({\n  isOpen,\n  onConfirm,\n  onCancel,\n  title,\n  message,\n  confirmText = \"확인\",\n  cancelText = \"닫기\",\n  variant = \"default\",\n  className,\n  ...props\n}: ConfirmModalProps) {\n  const messages = Array.isArray(message) ? message : [message]\n\n  if (!isOpen) return null\n\n  return (\n    <div\n      data-slot=\"confirm-modal\"\n      className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50\"\n      onClick={onCancel}\n    >\n      <div\n        className={cn(\n          \"ss-component-surface p-5 mx-4 max-w-sm w-full\",\n          className,\n        )}\n        onClick={(e) => e.stopPropagation()}\n        {...props}\n      >\n        <div className=\"flex flex-col gap-5 items-center text-center\">\n          {/* Content */}\n          <div className=\"flex flex-col gap-2 items-center w-full\">\n            <h3 className=\"text-text-primary text-[16px] font-semibold leading-tight tracking-[-0.01em]\">\n              {title}\n            </h3>\n            <div className=\"text-text-secondary text-[14px] leading-normal\">\n              {messages.map((line, i) => (\n                <p key={i}>{line}</p>\n              ))}\n            </div>\n          </div>\n\n          {/* Actions follow the selected recipe's control geometry. */}\n          <div className=\"flex gap-2 w-full\">\n            <button\n              onClick={onCancel}\n              className=\"ss-pattern-control flex-1 h-11 text-[16px] font-semibold border border-brand text-brand bg-card active:bg-brand/8 transition-colors duration-150\"\n            >\n              {cancelText}\n            </button>\n            <button\n              onClick={onConfirm}\n              className={cn(\n                \"ss-pattern-control flex-1 h-11 text-[16px] font-semibold text-white active:opacity-85 transition-colors duration-150\",\n                variant === \"destructive\" ? \"bg-destructive\" : \"bg-brand\",\n              )}\n            >\n              {confirmText}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  )\n}\n\nexport { ConfirmModal }\nexport type { ConfirmModalProps }\n"
+    },
+    {
+      "id": "data-display",
+      "type": "ui",
+      "name": "DataDisplay",
+      "exports": [
+        "DataDisplay"
+      ],
+      "description": "",
+      "source": "engine/components/ui/data-display.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/data-display.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 1085,
+      "digest": "sha256:a2f0cc6b3af704367ed1f951bda17fba8e02c3507c575fa91a4eb46952547a6e",
+      "code": "import * as React from \"react\"\nimport { cn } from \"./utils\"\n\ninterface DataDisplayProps extends React.ComponentProps<\"div\"> {\n  label: string\n  value: string | number\n  icon?: React.ReactNode\n  highlighted?: boolean\n}\n\nfunction DataDisplay({\n  label,\n  value,\n  icon,\n  highlighted = false,\n  className,\n  ...props\n}: DataDisplayProps) {\n  return (\n    <div\n      data-slot=\"data-display\"\n      className={cn(\n        \"flex items-center gap-2 px-4 py-3 bg-card rounded-lg border border-surface-muted min-h-12\",\n        className,\n      )}\n      {...props}\n    >\n      {icon && (\n        <div className=\"size-6 text-brand shrink-0\">{icon}</div>\n      )}\n      <span className=\"text-[12px] font-medium text-text-secondary min-w-20\">\n        {label}\n      </span>\n      <span\n        className={cn(\n          \"text-[14px] font-semibold flex-1\",\n          highlighted ? \"text-brand\" : \"text-text-primary\",\n        )}\n      >\n        {typeof value === \"number\" ? value.toLocaleString(\"ko-KR\") : value}\n      </span>\n    </div>\n  )\n}\n\nexport { DataDisplay }\nexport type { DataDisplayProps }\n"
+    },
+    {
+      "id": "dialog",
+      "type": "ui",
+      "name": "Dialog",
+      "exports": [
+        "Dialog",
+        "DialogClose",
+        "DialogContent",
+        "DialogDescription",
+        "DialogFooter",
+        "DialogHeader",
+        "DialogOverlay",
+        "DialogPortal",
+        "DialogTitle",
+        "DialogTrigger"
+      ],
+      "description": "",
+      "source": "engine/components/ui/dialog.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/dialog.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-dialog",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 3828,
+      "digest": "sha256:f4adc0065a7f795b5d99b8afe095a443d2d03b523cf5f958bc36ee7fbe0d3e45",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as DialogPrimitive from \"@radix-ui/react-dialog\";\nimport { XIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction Dialog({\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Root>) {\n  return <DialogPrimitive.Root data-slot=\"dialog\" {...props} />;\n}\n\nfunction DialogTrigger({\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Trigger>) {\n  return <DialogPrimitive.Trigger data-slot=\"dialog-trigger\" {...props} />;\n}\n\nfunction DialogPortal({\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Portal>) {\n  return <DialogPrimitive.Portal data-slot=\"dialog-portal\" {...props} />;\n}\n\nfunction DialogClose({\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Close>) {\n  return <DialogPrimitive.Close data-slot=\"dialog-close\" {...props} />;\n}\n\nfunction DialogOverlay({\n  className,\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {\n  return (\n    <DialogPrimitive.Overlay\n      data-slot=\"dialog-overlay\"\n      className={cn(\n        \"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DialogContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Content>) {\n  return (\n    <DialogPortal data-slot=\"dialog-portal\">\n      <DialogOverlay />\n      <DialogPrimitive.Content\n        data-slot=\"dialog-content\"\n        className={cn(\n          \"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <DialogPrimitive.Close className=\"ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\">\n          <XIcon />\n          <span className=\"sr-only\">Close</span>\n        </DialogPrimitive.Close>\n      </DialogPrimitive.Content>\n    </DialogPortal>\n  );\n}\n\nfunction DialogHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"dialog-header\"\n      className={cn(\"flex flex-col gap-2 text-center sm:text-left\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction DialogFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"dialog-footer\"\n      className={cn(\n        \"flex flex-col-reverse gap-2 sm:flex-row sm:justify-end\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DialogTitle({\n  className,\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Title>) {\n  return (\n    <DialogPrimitive.Title\n      data-slot=\"dialog-title\"\n      className={cn(\"text-lg leading-none font-semibold\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction DialogDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof DialogPrimitive.Description>) {\n  return (\n    <DialogPrimitive.Description\n      data-slot=\"dialog-description\"\n      className={cn(\"text-muted-foreground text-sm\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogOverlay,\n  DialogPortal,\n  DialogTitle,\n  DialogTrigger,\n};\n"
+    },
+    {
+      "id": "drawer",
+      "type": "ui",
+      "name": "Drawer",
+      "exports": [
+        "Drawer"
+      ],
+      "description": "",
+      "source": "engine/components/ui/drawer.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/drawer.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 2460,
+      "digest": "sha256:34dc1bcccf652603c54bfc9dcfce52d7cc5adfdfdee127652a2813476db91db2",
+      "code": "import * as React from \"react\"\nimport { cn } from \"./utils\"\n\ninterface DrawerProps extends React.ComponentProps<\"div\"> {\n  isOpen: boolean\n  onClose: () => void\n  title: string\n  position?: \"left\" | \"right\"\n  width?: string\n  footer?: React.ReactNode\n}\n\nfunction Drawer({\n  isOpen,\n  onClose,\n  title,\n  position = \"right\",\n  width = \"w-80\",\n  footer,\n  className,\n  children,\n  ...props\n}: DrawerProps) {\n  return (\n    <>\n      {/* Backdrop */}\n      <div\n        className={cn(\n          \"fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-[var(--duration-normal)]\",\n          isOpen ? \"opacity-100\" : \"opacity-0 pointer-events-none\",\n        )}\n        onClick={onClose}\n      />\n\n      {/* Panel */}\n      <div\n        data-slot=\"drawer\"\n        className={cn(\n          \"fixed top-0 h-full bg-card shadow-[var(--shadow-modal)] z-50\",\n          \"transform transition-transform duration-[var(--duration-moderate)]\",\n          width,\n          position === \"right\" && \"right-0\",\n          position === \"left\" && \"left-0\",\n          position === \"right\" && (isOpen ? \"translate-x-0\" : \"translate-x-full\"),\n          position === \"left\" && (isOpen ? \"translate-x-0\" : \"-translate-x-full\"),\n          className,\n        )}\n        {...props}\n      >\n        <div className=\"flex flex-col h-full\">\n          {/* Header */}\n          <div className=\"flex items-center justify-between px-6 py-4 border-b border-surface-muted shrink-0\">\n            <h2 className=\"text-text-primary font-bold text-[18px] leading-snug\">\n              {title}\n            </h2>\n            <button\n              onClick={onClose}\n              className=\"size-8 flex items-center justify-center rounded-lg active:bg-surface-muted/50 transition-colors\"\n            >\n              <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" className=\"text-text-primary\">\n                <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M6 18L18 6M6 6l12 12\" />\n              </svg>\n            </button>\n          </div>\n\n          {/* Content */}\n          <div className=\"flex-1 p-6 overflow-y-auto\">\n            {children}\n          </div>\n\n          {/* Footer */}\n          {footer && (\n            <div className=\"px-6 py-4 border-t border-surface-muted shrink-0\">\n              {footer}\n            </div>\n          )}\n        </div>\n      </div>\n    </>\n  )\n}\n\nexport { Drawer }\nexport type { DrawerProps }\n"
+    },
+    {
+      "id": "dropdown-menu",
+      "type": "ui",
+      "name": "DropdownMenu",
+      "exports": [
+        "DropdownMenu",
+        "DropdownMenuPortal",
+        "DropdownMenuTrigger",
+        "DropdownMenuContent",
+        "DropdownMenuGroup",
+        "DropdownMenuLabel",
+        "DropdownMenuItem",
+        "DropdownMenuCheckboxItem",
+        "DropdownMenuRadioGroup",
+        "DropdownMenuRadioItem",
+        "DropdownMenuSeparator",
+        "DropdownMenuShortcut",
+        "DropdownMenuSub",
+        "DropdownMenuSubTrigger",
+        "DropdownMenuSubContent"
+      ],
+      "description": "",
+      "source": "engine/components/ui/dropdown-menu.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/dropdown-menu.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 8313,
+      "digest": "sha256:798b5337dc147d88c65de01f7221e0bfa04272968a1fce6acc1ec0bef7d9ddb9",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as DropdownMenuPrimitive from \"@radix-ui/react-dropdown-menu\";\nimport { CheckIcon, ChevronRightIcon, CircleIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction DropdownMenu({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {\n  return <DropdownMenuPrimitive.Root data-slot=\"dropdown-menu\" {...props} />;\n}\n\nfunction DropdownMenuPortal({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {\n  return (\n    <DropdownMenuPrimitive.Portal data-slot=\"dropdown-menu-portal\" {...props} />\n  );\n}\n\nfunction DropdownMenuTrigger({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {\n  return (\n    <DropdownMenuPrimitive.Trigger\n      data-slot=\"dropdown-menu-trigger\"\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuContent({\n  className,\n  sideOffset = 4,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Content>) {\n  return (\n    <DropdownMenuPrimitive.Portal>\n      <DropdownMenuPrimitive.Content\n        data-slot=\"dropdown-menu-content\"\n        sideOffset={sideOffset}\n        className={cn(\n          \"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md\",\n          className,\n        )}\n        {...props}\n      />\n    </DropdownMenuPrimitive.Portal>\n  );\n}\n\nfunction DropdownMenuGroup({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {\n  return (\n    <DropdownMenuPrimitive.Group data-slot=\"dropdown-menu-group\" {...props} />\n  );\n}\n\nfunction DropdownMenuItem({\n  className,\n  inset,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {\n  inset?: boolean;\n  variant?: \"default\" | \"destructive\";\n}) {\n  return (\n    <DropdownMenuPrimitive.Item\n      data-slot=\"dropdown-menu-item\"\n      data-inset={inset}\n      data-variant={variant}\n      className={cn(\n        \"focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuCheckboxItem({\n  className,\n  children,\n  checked,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {\n  return (\n    <DropdownMenuPrimitive.CheckboxItem\n      data-slot=\"dropdown-menu-checkbox-item\"\n      className={cn(\n        \"focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n        className,\n      )}\n      checked={checked}\n      {...props}\n    >\n      <span className=\"pointer-events-none absolute left-2 flex size-3.5 items-center justify-center\">\n        <DropdownMenuPrimitive.ItemIndicator>\n          <CheckIcon className=\"size-4\" />\n        </DropdownMenuPrimitive.ItemIndicator>\n      </span>\n      {children}\n    </DropdownMenuPrimitive.CheckboxItem>\n  );\n}\n\nfunction DropdownMenuRadioGroup({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {\n  return (\n    <DropdownMenuPrimitive.RadioGroup\n      data-slot=\"dropdown-menu-radio-group\"\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuRadioItem({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {\n  return (\n    <DropdownMenuPrimitive.RadioItem\n      data-slot=\"dropdown-menu-radio-item\"\n      className={cn(\n        \"focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n        className,\n      )}\n      {...props}\n    >\n      <span className=\"pointer-events-none absolute left-2 flex size-3.5 items-center justify-center\">\n        <DropdownMenuPrimitive.ItemIndicator>\n          <CircleIcon className=\"size-2 fill-current\" />\n        </DropdownMenuPrimitive.ItemIndicator>\n      </span>\n      {children}\n    </DropdownMenuPrimitive.RadioItem>\n  );\n}\n\nfunction DropdownMenuLabel({\n  className,\n  inset,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Label> & {\n  inset?: boolean;\n}) {\n  return (\n    <DropdownMenuPrimitive.Label\n      data-slot=\"dropdown-menu-label\"\n      data-inset={inset}\n      className={cn(\n        \"px-2 py-1.5 text-sm font-medium data-[inset]:pl-8\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuSeparator({\n  className,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Separator>) {\n  return (\n    <DropdownMenuPrimitive.Separator\n      data-slot=\"dropdown-menu-separator\"\n      className={cn(\"bg-border -mx-1 my-1 h-px\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuShortcut({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"dropdown-menu-shortcut\"\n      className={cn(\n        \"text-muted-foreground ml-auto text-xs tracking-widest\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction DropdownMenuSub({\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {\n  return <DropdownMenuPrimitive.Sub data-slot=\"dropdown-menu-sub\" {...props} />;\n}\n\nfunction DropdownMenuSubTrigger({\n  className,\n  inset,\n  children,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {\n  inset?: boolean;\n}) {\n  return (\n    <DropdownMenuPrimitive.SubTrigger\n      data-slot=\"dropdown-menu-sub-trigger\"\n      data-inset={inset}\n      className={cn(\n        \"focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      <ChevronRightIcon className=\"ml-auto size-4\" />\n    </DropdownMenuPrimitive.SubTrigger>\n  );\n}\n\nfunction DropdownMenuSubContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {\n  return (\n    <DropdownMenuPrimitive.SubContent\n      data-slot=\"dropdown-menu-sub-content\"\n      className={cn(\n        \"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-md border p-1 shadow-lg\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport {\n  DropdownMenu,\n  DropdownMenuPortal,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuLabel,\n  DropdownMenuItem,\n  DropdownMenuCheckboxItem,\n  DropdownMenuRadioGroup,\n  DropdownMenuRadioItem,\n  DropdownMenuSeparator,\n  DropdownMenuShortcut,\n  DropdownMenuSub,\n  DropdownMenuSubTrigger,\n  DropdownMenuSubContent,\n};\n"
+    },
+    {
+      "id": "form",
+      "type": "ui",
+      "name": "Form",
+      "exports": [
+        "Form",
+        "FormItem",
+        "FormLabel",
+        "FormControl",
+        "FormDescription",
+        "FormMessage",
+        "FormField"
+      ],
+      "description": "",
+      "source": "engine/components/ui/form.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/form.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-label",
+        "@radix-ui/react-slot",
+        "react-hook-form",
+        "./utils",
+        "./label"
+      ],
+      "bytes": 3785,
+      "digest": "sha256:b181a640358bd91b827f7e3ba610036f24a976994d4d88b480471a167770a508",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as LabelPrimitive from \"@radix-ui/react-label\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport {\n  Controller,\n  FormProvider,\n  useFormContext,\n  useFormState,\n  type ControllerProps,\n  type FieldPath,\n  type FieldValues,\n} from \"react-hook-form\";\n\nimport { cn } from \"./utils\";\nimport { Label } from \"./label\";\n\nconst Form = FormProvider;\n\ntype FormFieldContextValue<\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n> = {\n  name: TName;\n};\n\nconst FormFieldContext = React.createContext<FormFieldContextValue>(\n  {} as FormFieldContextValue,\n);\n\nconst FormField = <\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n>({\n  ...props\n}: ControllerProps<TFieldValues, TName>) => {\n  return (\n    <FormFieldContext.Provider value={{ name: props.name }}>\n      <Controller {...props} />\n    </FormFieldContext.Provider>\n  );\n};\n\nconst useFormField = () => {\n  const fieldContext = React.useContext(FormFieldContext);\n  const itemContext = React.useContext(FormItemContext);\n  const { getFieldState } = useFormContext();\n  const formState = useFormState({ name: fieldContext.name });\n  const fieldState = getFieldState(fieldContext.name, formState);\n\n  if (!fieldContext) {\n    throw new Error(\"useFormField should be used within <FormField>\");\n  }\n\n  const { id } = itemContext;\n\n  return {\n    id,\n    name: fieldContext.name,\n    formItemId: `${id}-form-item`,\n    formDescriptionId: `${id}-form-item-description`,\n    formMessageId: `${id}-form-item-message`,\n    ...fieldState,\n  };\n};\n\ntype FormItemContextValue = {\n  id: string;\n};\n\nconst FormItemContext = React.createContext<FormItemContextValue>(\n  {} as FormItemContextValue,\n);\n\nfunction FormItem({ className, ...props }: React.ComponentProps<\"div\">) {\n  const id = React.useId();\n\n  return (\n    <FormItemContext.Provider value={{ id }}>\n      <div\n        data-slot=\"form-item\"\n        className={cn(\"grid gap-2\", className)}\n        {...props}\n      />\n    </FormItemContext.Provider>\n  );\n}\n\nfunction FormLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof LabelPrimitive.Root>) {\n  const { error, formItemId } = useFormField();\n\n  return (\n    <Label\n      data-slot=\"form-label\"\n      data-error={!!error}\n      className={cn(\"data-[error=true]:text-destructive\", className)}\n      htmlFor={formItemId}\n      {...props}\n    />\n  );\n}\n\nfunction FormControl({ ...props }: React.ComponentProps<typeof Slot>) {\n  const { error, formItemId, formDescriptionId, formMessageId } =\n    useFormField();\n\n  return (\n    <Slot\n      data-slot=\"form-control\"\n      id={formItemId}\n      aria-describedby={\n        !error\n          ? `${formDescriptionId}`\n          : `${formDescriptionId} ${formMessageId}`\n      }\n      aria-invalid={!!error}\n      {...props}\n    />\n  );\n}\n\nfunction FormDescription({ className, ...props }: React.ComponentProps<\"p\">) {\n  const { formDescriptionId } = useFormField();\n\n  return (\n    <p\n      data-slot=\"form-description\"\n      id={formDescriptionId}\n      className={cn(\"text-muted-foreground text-sm\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction FormMessage({ className, ...props }: React.ComponentProps<\"p\">) {\n  const { error, formMessageId } = useFormField();\n  const body = error ? String(error?.message ?? \"\") : props.children;\n\n  if (!body) {\n    return null;\n  }\n\n  return (\n    <p\n      data-slot=\"form-message\"\n      id={formMessageId}\n      className={cn(\"text-destructive text-sm\", className)}\n      {...props}\n    >\n      {body}\n    </p>\n  );\n}\n\nexport {\n  useFormField,\n  Form,\n  FormItem,\n  FormLabel,\n  FormControl,\n  FormDescription,\n  FormMessage,\n  FormField,\n};\n"
+    },
+    {
+      "id": "input",
+      "type": "ui",
+      "name": "Input",
+      "exports": [
+        "Input"
+      ],
+      "description": "",
+      "source": "engine/components/ui/input.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/input.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 963,
+      "digest": "sha256:cb82ffcd1a9accdf9b07edc8e976f43ad1c9cf91968ffd7639df5df14b7ad407",
+      "code": "import * as React from \"react\";\n\nimport { cn } from \"./utils\";\n\nfunction Input({ className, type, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <input\n      type={type}\n      data-slot=\"input\"\n      className={cn(\n        \"file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n        \"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]\",\n        \"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\n"
+    },
+    {
+      "id": "label",
+      "type": "ui",
+      "name": "Label",
+      "exports": [
+        "Label"
+      ],
+      "description": "",
+      "source": "engine/components/ui/label.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/label.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-label",
+        "./utils"
+      ],
+      "bytes": 614,
+      "digest": "sha256:5ed157f039340cedaa59a888931db608667827170ae9538513a50ccf2ca65a9f",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as LabelPrimitive from \"@radix-ui/react-label\";\n\nimport { cn } from \"./utils\";\n\nfunction Label({\n  className,\n  ...props\n}: React.ComponentProps<typeof LabelPrimitive.Root>) {\n  return (\n    <LabelPrimitive.Root\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n"
+    },
+    {
+      "id": "motion",
+      "type": "ui",
+      "name": "FadeIn",
+      "exports": [
+        "FadeIn",
+        "FadeUp",
+        "Stagger",
+        "StaggerItem",
+        "PresenceModal",
+        "Backdrop",
+        "PageTransition",
+        "PageSection",
+        "NumberCounter"
+      ],
+      "description": "StyleSeed — Motion Primitives (Framer Motion)",
+      "source": "engine/components/ui/motion.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/motion.tsx",
+      "imports": [
+        "react",
+        "framer-motion",
+        "./utils"
+      ],
+      "bytes": 7272,
+      "digest": "sha256:ec0a3ea6ed9f2ec21c84957bd971e7aca4301858edc059396b381e6dee2b5eea",
+      "code": "/**\n * StyleSeed — Motion Primitives (Framer Motion)\n *\n * Pre-configured animation wrappers that follow the design language.\n * Install: npm install framer-motion\n */\nimport * as React from \"react\"\nimport { motion, AnimatePresence, type Variants } from \"framer-motion\"\nimport { cn } from \"./utils\"\n\n// ── Duration & Easing Tokens ────────────────────────\n\nexport const duration = {\n  fast: 0.1,\n  normal: 0.2,\n  moderate: 0.3,\n  slow: 0.35,\n} as const\n\nexport const ease = {\n  default: [0.25, 0.1, 0.25, 1.0],\n  in: [0.4, 0, 1, 1],\n  out: [0, 0, 0.2, 1],\n  spring: { type: \"spring\" as const, damping: 25, stiffness: 300 },\n} as const\n\n// ── Preset Variants ─────────────────────────────────\n\nexport const fadeIn: Variants = {\n  hidden: { opacity: 0 },\n  visible: { opacity: 1 },\n  exit: { opacity: 0 },\n}\n\nexport const fadeUp: Variants = {\n  hidden: { opacity: 0, y: 12 },\n  visible: { opacity: 1, y: 0 },\n  exit: { opacity: 0, y: 12 },\n}\n\nexport const slideUp: Variants = {\n  hidden: { opacity: 0, y: \"100%\" },\n  visible: { opacity: 1, y: 0 },\n  exit: { opacity: 0, y: \"100%\" },\n}\n\nexport const slideRight: Variants = {\n  hidden: { x: \"100%\" },\n  visible: { x: 0 },\n  exit: { x: \"100%\" },\n}\n\nexport const scaleIn: Variants = {\n  hidden: { opacity: 0, scale: 0.95 },\n  visible: { opacity: 1, scale: 1 },\n  exit: { opacity: 0, scale: 0.95 },\n}\n\n// ── FadeIn ──────────────────────────────────────────\n\ninterface FadeInProps extends React.ComponentProps<typeof motion.div> {\n  delay?: number\n}\n\nfunction FadeIn({ delay = 0, className, children, ...props }: FadeInProps) {\n  return (\n    <motion.div\n      data-slot=\"fade-in\"\n      initial=\"hidden\"\n      animate=\"visible\"\n      variants={fadeIn}\n      transition={{ duration: duration.normal, delay }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\n// ── FadeUp (Card entry animation) ───────────────────\n\ninterface FadeUpProps extends React.ComponentProps<typeof motion.div> {\n  delay?: number\n}\n\nfunction FadeUp({ delay = 0, className, children, ...props }: FadeUpProps) {\n  return (\n    <motion.div\n      data-slot=\"fade-up\"\n      initial=\"hidden\"\n      animate=\"visible\"\n      variants={fadeUp}\n      transition={{ duration: duration.normal, delay, ease: ease.out }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\n// ── Stagger (Card grid entry) ───────────────────────\n\ninterface StaggerProps extends React.ComponentProps<typeof motion.div> {\n  staggerDelay?: number\n}\n\nfunction Stagger({ staggerDelay = 0.05, className, children, ...props }: StaggerProps) {\n  return (\n    <motion.div\n      data-slot=\"stagger\"\n      initial=\"hidden\"\n      animate=\"visible\"\n      variants={{\n        hidden: {},\n        visible: { transition: { staggerChildren: staggerDelay } },\n      }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\nfunction StaggerItem({ className, children, ...props }: React.ComponentProps<typeof motion.div>) {\n  return (\n    <motion.div\n      data-slot=\"stagger-item\"\n      variants={fadeUp}\n      transition={{ duration: duration.normal, ease: ease.out }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\n// ── PresenceModal (Modal/Sheet enter + exit) ────────\n\ninterface PresenceModalProps {\n  isOpen: boolean\n  children: React.ReactNode\n  variant?: \"fade\" | \"slideUp\" | \"scale\"\n  className?: string\n}\n\nfunction PresenceModal({ isOpen, children, variant = \"fade\", className }: PresenceModalProps) {\n  const variants = {\n    fade: fadeIn,\n    slideUp: slideUp,\n    scale: scaleIn,\n  }\n\n  return (\n    <AnimatePresence>\n      {isOpen && (\n        <motion.div\n          data-slot=\"presence-modal\"\n          initial=\"hidden\"\n          animate=\"visible\"\n          exit=\"exit\"\n          variants={variants[variant]}\n          transition={{\n            duration: variant === \"slideUp\" ? duration.moderate : duration.normal,\n            ease: ease.out,\n          }}\n          className={cn(className)}\n        >\n          {children}\n        </motion.div>\n      )}\n    </AnimatePresence>\n  )\n}\n\n// ── Backdrop ────────────────────────────────────────\n\ninterface BackdropProps {\n  isOpen: boolean\n  onClick?: () => void\n  className?: string\n}\n\nfunction Backdrop({ isOpen, onClick, className }: BackdropProps) {\n  return (\n    <AnimatePresence>\n      {isOpen && (\n        <motion.div\n          data-slot=\"backdrop\"\n          initial={{ opacity: 0 }}\n          animate={{ opacity: 1 }}\n          exit={{ opacity: 0 }}\n          transition={{ duration: duration.normal }}\n          onClick={onClick}\n          className={cn(\"fixed inset-0 bg-black/40 backdrop-blur-sm z-40\", className)}\n        />\n      )}\n    </AnimatePresence>\n  )\n}\n\n// ── PageTransition (Page entry stagger) ─────────────\n\nfunction PageTransition({ className, children, ...props }: React.ComponentProps<typeof motion.div>) {\n  return (\n    <motion.div\n      data-slot=\"page-transition\"\n      initial=\"hidden\"\n      animate=\"visible\"\n      variants={{\n        hidden: {},\n        visible: { transition: { staggerChildren: 0.05 } },\n      }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\nfunction PageSection({ className, children, ...props }: React.ComponentProps<typeof motion.div>) {\n  return (\n    <motion.div\n      data-slot=\"page-section\"\n      variants={fadeUp}\n      transition={{ duration: duration.normal, ease: ease.out }}\n      className={cn(className)}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  )\n}\n\n// ── NumberCounter (Hero metric counting) ────────────\n\ninterface NumberCounterProps {\n  value: number\n  duration?: number\n  className?: string\n}\n\nfunction NumberCounter({ value, duration: d = 0.6, className }: NumberCounterProps) {\n  const [display, setDisplay] = React.useState(0)\n  const prefersReducedMotion = React.useRef(\n    typeof window !== \"undefined\" && window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches\n  )\n\n  React.useEffect(() => {\n    if (prefersReducedMotion.current) {\n      setDisplay(value)\n      return\n    }\n\n    let start = 0\n    const startTime = performance.now()\n\n    function step(currentTime: number) {\n      const elapsed = (currentTime - startTime) / 1000\n      const progress = Math.min(elapsed / d, 1)\n      const eased = 1 - Math.pow(1 - progress, 3) // ease-out cubic\n      setDisplay(Math.round(eased * value))\n      if (progress < 1) requestAnimationFrame(step)\n    }\n\n    requestAnimationFrame(step)\n  }, [value, d])\n\n  return <span data-slot=\"number-counter\" className={className}>{display.toLocaleString()}</span>\n}\n\nexport {\n  FadeIn,\n  FadeUp,\n  Stagger,\n  StaggerItem,\n  PresenceModal,\n  Backdrop,\n  PageTransition,\n  PageSection,\n  NumberCounter,\n}\n"
+    },
+    {
+      "id": "popover",
+      "type": "ui",
+      "name": "Popover",
+      "exports": [
+        "Popover",
+        "PopoverTrigger",
+        "PopoverContent",
+        "PopoverAnchor"
+      ],
+      "description": "",
+      "source": "engine/components/ui/popover.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/popover.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-popover",
+        "./utils"
+      ],
+      "bytes": 1641,
+      "digest": "sha256:f14e16bebcfb1b605f6336d52153e43b76456c419930faea216d0ce2e3b1d3b7",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as PopoverPrimitive from \"@radix-ui/react-popover\";\n\nimport { cn } from \"./utils\";\n\nfunction Popover({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Root>) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />;\n}\n\nfunction PopoverTrigger({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\nfunction PopoverContent({\n  className,\n  align = \"center\",\n  sideOffset = 4,\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Content>) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Content\n        data-slot=\"popover-content\"\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(\n          \"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border p-4 shadow-md outline-hidden\",\n          className,\n        )}\n        {...props}\n      />\n    </PopoverPrimitive.Portal>\n  );\n}\n\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {\n  return <PopoverPrimitive.Anchor data-slot=\"popover-anchor\" {...props} />;\n}\n\nexport { Popover, PopoverTrigger, PopoverContent, PopoverAnchor };\n"
+    },
+    {
+      "id": "progress",
+      "type": "ui",
+      "name": "Progress",
+      "exports": [
+        "Progress"
+      ],
+      "description": "",
+      "source": "engine/components/ui/progress.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/progress.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-progress",
+        "./utils"
+      ],
+      "bytes": 743,
+      "digest": "sha256:956cf4b485bcf57684caac10df2aa2a72387d0736d8f4cd1315c49ebd2da4615",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\";\n\nimport { cn } from \"./utils\";\n\nfunction Progress({\n  className,\n  value,\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root>) {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      className={cn(\n        \"bg-primary/20 relative h-2 w-full overflow-hidden rounded-full\",\n        className,\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className=\"bg-primary h-full w-full flex-1 transition-all\"\n        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n      />\n    </ProgressPrimitive.Root>\n  );\n}\n\nexport { Progress };\n"
+    },
+    {
+      "id": "radio-group",
+      "type": "ui",
+      "name": "RadioGroup",
+      "exports": [
+        "RadioGroup",
+        "RadioGroupItem"
+      ],
+      "description": "",
+      "source": "engine/components/ui/radio-group.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/radio-group.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-radio-group",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 1471,
+      "digest": "sha256:ecaeebb62d064893c23e7242b796ff5834e2b430676b3eecb1b3d4bc413283c8",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\nimport { CircleIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction RadioGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return (\n    <RadioGroupPrimitive.Root\n      data-slot=\"radio-group\"\n      className={cn(\"grid gap-3\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction RadioGroupItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"relative flex items-center justify-center\"\n      >\n        <CircleIcon className=\"fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2\" />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  );\n}\n\nexport { RadioGroup, RadioGroupItem };\n"
+    },
+    {
+      "id": "scroll-area",
+      "type": "ui",
+      "name": "ScrollArea",
+      "exports": [
+        "ScrollArea",
+        "ScrollBar"
+      ],
+      "description": "",
+      "source": "engine/components/ui/scroll-area.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/scroll-area.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-scroll-area",
+        "./utils"
+      ],
+      "bytes": 1649,
+      "digest": "sha256:5bd9bb1d6909467b431283e96d2a9c83003bca1aa043d149dcfed8e81de51986",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as ScrollAreaPrimitive from \"@radix-ui/react-scroll-area\";\n\nimport { cn } from \"./utils\";\n\nfunction ScrollArea({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {\n  return (\n    <ScrollAreaPrimitive.Root\n      data-slot=\"scroll-area\"\n      className={cn(\"relative\", className)}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Viewport\n        data-slot=\"scroll-area-viewport\"\n        className=\"focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1\"\n      >\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollAreaPrimitive.Corner />\n    </ScrollAreaPrimitive.Root>\n  );\n}\n\nfunction ScrollBar({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {\n  return (\n    <ScrollAreaPrimitive.ScrollAreaScrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      orientation={orientation}\n      className={cn(\n        \"flex touch-none p-px transition-colors select-none\",\n        orientation === \"vertical\" &&\n          \"h-full w-2.5 border-l border-l-transparent\",\n        orientation === \"horizontal\" &&\n          \"h-2.5 flex-col border-t border-t-transparent\",\n        className,\n      )}\n      {...props}\n    >\n      <ScrollAreaPrimitive.ScrollAreaThumb\n        data-slot=\"scroll-area-thumb\"\n        className=\"bg-border relative flex-1 rounded-full\"\n      />\n    </ScrollAreaPrimitive.ScrollAreaScrollbar>\n  );\n}\n\nexport { ScrollArea, ScrollBar };\n"
+    },
+    {
+      "id": "segmented-control",
+      "type": "ui",
+      "name": "SegmentedControl",
+      "exports": [
+        "SegmentedControl"
+      ],
+      "description": "",
+      "source": "engine/components/ui/segmented-control.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/segmented-control.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 1387,
+      "digest": "sha256:c7aba24837afd74dd81f0b005b9fa3553552dcb7e927739e7ffd66f1430bda44",
+      "code": "import * as React from \"react\"\nimport { cn } from \"./utils\"\n\ninterface SegmentedControlProps extends React.ComponentProps<\"div\"> {\n  segments: string[]\n  activeIndex: number\n  onChange?: (index: number) => void\n  size?: \"sm\" | \"md\"\n}\n\nfunction SegmentedControl({\n  segments,\n  activeIndex,\n  onChange,\n  size = \"md\",\n  className,\n  ...props\n}: SegmentedControlProps) {\n  return (\n    <div\n      data-slot=\"segmented-control\"\n      className={cn(\n        \"ss-pattern-control flex items-center bg-surface-muted w-full\",\n        size === \"sm\" ? \"p-0.5 gap-0.5\" : \"p-1 gap-1\",\n        className,\n      )}\n      {...props}\n    >\n      {segments.map((segment, index) => {\n        const isActive = index === activeIndex\n        return (\n          <button\n            key={index}\n            onClick={() => onChange?.(index)}\n            className={cn(\n              \"ss-pattern-control flex-1 flex items-center justify-center font-medium transition-all duration-150\",\n              size === \"sm\"\n                ? \"h-7 text-[12px]\"\n                : \"h-9 text-[14px]\",\n              isActive\n                ? \"bg-card text-text-primary shadow-[var(--shadow-card)]\"\n                : \"bg-transparent text-text-disabled\",\n            )}\n          >\n            {segment}\n          </button>\n        )\n      })}\n    </div>\n  )\n}\n\nexport { SegmentedControl }\nexport type { SegmentedControlProps }\n"
+    },
+    {
+      "id": "select",
+      "type": "ui",
+      "name": "Select",
+      "exports": [
+        "Select",
+        "SelectContent",
+        "SelectGroup",
+        "SelectItem",
+        "SelectLabel",
+        "SelectScrollDownButton",
+        "SelectScrollUpButton",
+        "SelectSeparator",
+        "SelectTrigger",
+        "SelectValue"
+      ],
+      "description": "",
+      "source": "engine/components/ui/select.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/select.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-select",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 6275,
+      "digest": "sha256:6aaf2111952394fbb8c64a505af02d08da28cc25726d61a991daebe400772480",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as SelectPrimitive from \"@radix-ui/react-select\";\nimport {\n  CheckIcon,\n  ChevronDownIcon,\n  ChevronUpIcon,\n} from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction Select({\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Root>) {\n  return <SelectPrimitive.Root data-slot=\"select\" {...props} />;\n}\n\nfunction SelectGroup({\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Group>) {\n  return <SelectPrimitive.Group data-slot=\"select-group\" {...props} />;\n}\n\nfunction SelectValue({\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Value>) {\n  return <SelectPrimitive.Value data-slot=\"select-value\" {...props} />;\n}\n\nfunction SelectTrigger({\n  className,\n  size = \"default\",\n  children,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Trigger> & {\n  size?: \"sm\" | \"default\";\n}) {\n  return (\n    <SelectPrimitive.Trigger\n      data-slot=\"select-trigger\"\n      data-size={size}\n      className={cn(\n        \"border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-full items-center justify-between gap-2 rounded-md border bg-input-background px-3 py-2 text-sm whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      <SelectPrimitive.Icon asChild>\n        <ChevronDownIcon className=\"size-4 opacity-50\" />\n      </SelectPrimitive.Icon>\n    </SelectPrimitive.Trigger>\n  );\n}\n\nfunction SelectContent({\n  className,\n  children,\n  position = \"popper\",\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Content>) {\n  return (\n    <SelectPrimitive.Portal>\n      <SelectPrimitive.Content\n        data-slot=\"select-content\"\n        className={cn(\n          \"bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border shadow-md\",\n          position === \"popper\" &&\n            \"data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1\",\n          className,\n        )}\n        position={position}\n        {...props}\n      >\n        <SelectScrollUpButton />\n        <SelectPrimitive.Viewport\n          className={cn(\n            \"p-1\",\n            position === \"popper\" &&\n              \"h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1\",\n          )}\n        >\n          {children}\n        </SelectPrimitive.Viewport>\n        <SelectScrollDownButton />\n      </SelectPrimitive.Content>\n    </SelectPrimitive.Portal>\n  );\n}\n\nfunction SelectLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Label>) {\n  return (\n    <SelectPrimitive.Label\n      data-slot=\"select-label\"\n      className={cn(\"text-muted-foreground px-2 py-1.5 text-xs\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SelectItem({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Item>) {\n  return (\n    <SelectPrimitive.Item\n      data-slot=\"select-item\"\n      className={cn(\n        \"focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2\",\n        className,\n      )}\n      {...props}\n    >\n      <span className=\"absolute right-2 flex size-3.5 items-center justify-center\">\n        <SelectPrimitive.ItemIndicator>\n          <CheckIcon className=\"size-4\" />\n        </SelectPrimitive.ItemIndicator>\n      </span>\n      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>\n    </SelectPrimitive.Item>\n  );\n}\n\nfunction SelectSeparator({\n  className,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.Separator>) {\n  return (\n    <SelectPrimitive.Separator\n      data-slot=\"select-separator\"\n      className={cn(\"bg-border pointer-events-none -mx-1 my-1 h-px\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SelectScrollUpButton({\n  className,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {\n  return (\n    <SelectPrimitive.ScrollUpButton\n      data-slot=\"select-scroll-up-button\"\n      className={cn(\n        \"flex cursor-default items-center justify-center py-1\",\n        className,\n      )}\n      {...props}\n    >\n      <ChevronUpIcon className=\"size-4\" />\n    </SelectPrimitive.ScrollUpButton>\n  );\n}\n\nfunction SelectScrollDownButton({\n  className,\n  ...props\n}: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {\n  return (\n    <SelectPrimitive.ScrollDownButton\n      data-slot=\"select-scroll-down-button\"\n      className={cn(\n        \"flex cursor-default items-center justify-center py-1\",\n        className,\n      )}\n      {...props}\n    >\n      <ChevronDownIcon className=\"size-4\" />\n    </SelectPrimitive.ScrollDownButton>\n  );\n}\n\nexport {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectScrollDownButton,\n  SelectScrollUpButton,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n};\n"
+    },
+    {
+      "id": "separator",
+      "type": "ui",
+      "name": "Separator",
+      "exports": [
+        "Separator"
+      ],
+      "description": "",
+      "source": "engine/components/ui/separator.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/separator.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-separator",
+        "./utils"
+      ],
+      "bytes": 707,
+      "digest": "sha256:54cc34fc3ef7e445948c5bccf7307efbb2c8f9e63db0fc68dd3fa8ee54dc9812",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\n\nimport { cn } from \"./utils\";\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  decorative = true,\n  ...props\n}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {\n  return (\n    <SeparatorPrimitive.Root\n      data-slot=\"separator-root\"\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        \"bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Separator };\n"
+    },
+    {
+      "id": "sheet",
+      "type": "ui",
+      "name": "Sheet",
+      "exports": [
+        "Sheet",
+        "SheetTrigger",
+        "SheetClose",
+        "SheetContent",
+        "SheetHeader",
+        "SheetFooter",
+        "SheetTitle",
+        "SheetDescription"
+      ],
+      "description": "",
+      "source": "engine/components/ui/sheet.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/sheet.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-dialog",
+        "lucide-react",
+        "./utils"
+      ],
+      "bytes": 4105,
+      "digest": "sha256:8e1e064f92e2463bc7b8bb227a7c4d68d7464837c02d48ff75a87585d864c54c",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as SheetPrimitive from \"@radix-ui/react-dialog\";\nimport { XIcon } from \"lucide-react\";\n\nimport { cn } from \"./utils\";\n\nfunction Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {\n  return <SheetPrimitive.Root data-slot=\"sheet\" {...props} />;\n}\n\nfunction SheetTrigger({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Trigger>) {\n  return <SheetPrimitive.Trigger data-slot=\"sheet-trigger\" {...props} />;\n}\n\nfunction SheetClose({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Close>) {\n  return <SheetPrimitive.Close data-slot=\"sheet-close\" {...props} />;\n}\n\nfunction SheetPortal({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Portal>) {\n  return <SheetPrimitive.Portal data-slot=\"sheet-portal\" {...props} />;\n}\n\nfunction SheetOverlay({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {\n  return (\n    <SheetPrimitive.Overlay\n      data-slot=\"sheet-overlay\"\n      className={cn(\n        \"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction SheetContent({\n  className,\n  children,\n  side = \"right\",\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Content> & {\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\";\n}) {\n  return (\n    <SheetPortal>\n      <SheetOverlay />\n      <SheetPrimitive.Content\n        data-slot=\"sheet-content\"\n        className={cn(\n          \"bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500\",\n          side === \"right\" &&\n            \"data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm\",\n          side === \"left\" &&\n            \"data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm\",\n          side === \"top\" &&\n            \"data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b\",\n          side === \"bottom\" &&\n            \"data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <SheetPrimitive.Close className=\"ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none\">\n          <XIcon className=\"size-4\" />\n          <span className=\"sr-only\">Close</span>\n        </SheetPrimitive.Close>\n      </SheetPrimitive.Content>\n    </SheetPortal>\n  );\n}\n\nfunction SheetHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-header\"\n      className={cn(\"flex flex-col gap-1.5 p-4\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SheetFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-footer\"\n      className={cn(\"mt-auto flex flex-col gap-2 p-4\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SheetTitle({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Title>) {\n  return (\n    <SheetPrimitive.Title\n      data-slot=\"sheet-title\"\n      className={cn(\"text-foreground font-semibold\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SheetDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Description>) {\n  return (\n    <SheetPrimitive.Description\n      data-slot=\"sheet-description\"\n      className={cn(\"text-muted-foreground text-sm\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Sheet,\n  SheetTrigger,\n  SheetClose,\n  SheetContent,\n  SheetHeader,\n  SheetFooter,\n  SheetTitle,\n  SheetDescription,\n};\n"
+    },
+    {
+      "id": "skeleton",
+      "type": "ui",
+      "name": "Skeleton",
+      "exports": [
+        "Skeleton"
+      ],
+      "description": "",
+      "source": "engine/components/ui/skeleton.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/skeleton.tsx",
+      "imports": [
+        "./utils"
+      ],
+      "bytes": 275,
+      "digest": "sha256:7fd5d7f3ea479c3c1ae7be79bdbaf84c87647333768f70d396cd84580535d485",
+      "code": "import { cn } from \"./utils\";\n\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\"bg-accent animate-pulse rounded-md\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n"
+    },
+    {
+      "id": "switch",
+      "type": "ui",
+      "name": "Switch",
+      "exports": [
+        "Switch"
+      ],
+      "description": "",
+      "source": "engine/components/ui/switch.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/switch.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-switch",
+        "./utils"
+      ],
+      "bytes": 1182,
+      "digest": "sha256:d4c744131c6161300510909aafe2c2cb6d819f2c7a8c2aeb75d4317004c7eff7",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as SwitchPrimitive from \"@radix-ui/react-switch\";\n\nimport { cn } from \"./utils\";\n\nfunction Switch({\n  className,\n  ...props\n}: React.ComponentProps<typeof SwitchPrimitive.Root>) {\n  return (\n    <SwitchPrimitive.Root\n      data-slot=\"switch\"\n      className={cn(\n        \"peer data-[state=checked]:bg-primary data-[state=unchecked]:bg-switch-background focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full border border-transparent transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <SwitchPrimitive.Thumb\n        data-slot=\"switch-thumb\"\n        className={cn(\n          \"bg-card dark:data-[state=unchecked]:bg-card-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%-2px)] data-[state=unchecked]:translate-x-0\",\n        )}\n      />\n    </SwitchPrimitive.Root>\n  );\n}\n\nexport { Switch };\n"
+    },
+    {
+      "id": "table",
+      "type": "ui",
+      "name": "Table",
+      "exports": [
+        "Table",
+        "TableHeader",
+        "TableBody",
+        "TableFooter",
+        "TableHead",
+        "TableRow",
+        "TableCell",
+        "TableCaption"
+      ],
+      "description": "",
+      "source": "engine/components/ui/table.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/table.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 2460,
+      "digest": "sha256:e4ec7d3be042efd0fa363a57dd0e649a7831b86f975d4ec5192ebbfdd66e0f95",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { cn } from \"./utils\";\n\nfunction Table({ className, ...props }: React.ComponentProps<\"table\">) {\n  return (\n    <div\n      data-slot=\"table-container\"\n      className=\"relative w-full overflow-x-auto\"\n    >\n      <table\n        data-slot=\"table\"\n        className={cn(\"w-full caption-bottom text-sm\", className)}\n        {...props}\n      />\n    </div>\n  );\n}\n\nfunction TableHeader({ className, ...props }: React.ComponentProps<\"thead\">) {\n  return (\n    <thead\n      data-slot=\"table-header\"\n      className={cn(\"[&_tr]:border-b\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TableBody({ className, ...props }: React.ComponentProps<\"tbody\">) {\n  return (\n    <tbody\n      data-slot=\"table-body\"\n      className={cn(\"[&_tr:last-child]:border-0\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TableFooter({ className, ...props }: React.ComponentProps<\"tfoot\">) {\n  return (\n    <tfoot\n      data-slot=\"table-footer\"\n      className={cn(\n        \"bg-muted/50 border-t font-medium [&>tr]:last:border-b-0\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TableRow({ className, ...props }: React.ComponentProps<\"tr\">) {\n  return (\n    <tr\n      data-slot=\"table-row\"\n      className={cn(\n        \"hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TableHead({ className, ...props }: React.ComponentProps<\"th\">) {\n  return (\n    <th\n      data-slot=\"table-head\"\n      className={cn(\n        \"text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TableCell({ className, ...props }: React.ComponentProps<\"td\">) {\n  return (\n    <td\n      data-slot=\"table-cell\"\n      className={cn(\n        \"p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TableCaption({\n  className,\n  ...props\n}: React.ComponentProps<\"caption\">) {\n  return (\n    <caption\n      data-slot=\"table-caption\"\n      className={cn(\"text-muted-foreground mt-4 text-sm\", className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Table,\n  TableHeader,\n  TableBody,\n  TableFooter,\n  TableHead,\n  TableRow,\n  TableCell,\n  TableCaption,\n};\n"
+    },
+    {
+      "id": "tabs",
+      "type": "ui",
+      "name": "Tabs",
+      "exports": [
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent"
+      ],
+      "description": "",
+      "source": "engine/components/ui/tabs.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/tabs.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-tabs",
+        "./utils"
+      ],
+      "bytes": 1961,
+      "digest": "sha256:a71dd6e8a4b3ea52bd0723e1b0ce14c7867b11a398d3e40c0d4e6ac1633821bb",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TabsPrimitive from \"@radix-ui/react-tabs\";\n\nimport { cn } from \"./utils\";\n\nfunction Tabs({\n  className,\n  ...props\n}: React.ComponentProps<typeof TabsPrimitive.Root>) {\n  return (\n    <TabsPrimitive.Root\n      data-slot=\"tabs\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TabsList({\n  className,\n  ...props\n}: React.ComponentProps<typeof TabsPrimitive.List>) {\n  return (\n    <TabsPrimitive.List\n      data-slot=\"tabs-list\"\n      className={cn(\n        \"ss-pattern-control bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center p-[3px] flex\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TabsTrigger({\n  className,\n  ...props\n}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {\n  return (\n    <TabsPrimitive.Trigger\n      data-slot=\"tabs-trigger\"\n      className={cn(\n        \"ss-pattern-control data-[state=active]:bg-card dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TabsContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof TabsPrimitive.Content>) {\n  return (\n    <TabsPrimitive.Content\n      data-slot=\"tabs-content\"\n      className={cn(\"flex-1 outline-none\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Tabs, TabsList, TabsTrigger, TabsContent };\n"
+    },
+    {
+      "id": "textarea",
+      "type": "ui",
+      "name": "Textarea",
+      "exports": [
+        "Textarea"
+      ],
+      "description": "",
+      "source": "engine/components/ui/textarea.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/textarea.tsx",
+      "imports": [
+        "react",
+        "./utils"
+      ],
+      "bytes": 767,
+      "digest": "sha256:6c3127c28ba1dda0428ba286a9e291c52ad95bfc8acd10518b262b71e470f3e7",
+      "code": "import * as React from \"react\";\n\nimport { cn } from \"./utils\";\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"resize-none border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-input-background px-3 py-2 text-base transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Textarea };\n"
+    },
+    {
+      "id": "toggle-group",
+      "type": "ui",
+      "name": "ToggleGroup",
+      "exports": [
+        "ToggleGroup",
+        "ToggleGroupItem"
+      ],
+      "description": "",
+      "source": "engine/components/ui/toggle-group.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/toggle-group.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority",
+        "./utils",
+        "./toggle"
+      ],
+      "bytes": 1920,
+      "digest": "sha256:43e56c5487ed93a2e0d418dcf944a646c716b8c8c55d050fcda1d5cd1248cce6",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as ToggleGroupPrimitive from \"@radix-ui/react-toggle-group\";\nimport { type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"./utils\";\nimport { toggleVariants } from \"./toggle\";\n\nconst ToggleGroupContext = React.createContext<\n  VariantProps<typeof toggleVariants>\n>({\n  size: \"default\",\n  variant: \"default\",\n});\n\nfunction ToggleGroup({\n  className,\n  variant,\n  size,\n  children,\n  ...props\n}: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &\n  VariantProps<typeof toggleVariants>) {\n  return (\n    <ToggleGroupPrimitive.Root\n      data-slot=\"toggle-group\"\n      data-variant={variant}\n      data-size={size}\n      className={cn(\n        \"group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs\",\n        className,\n      )}\n      {...props}\n    >\n      <ToggleGroupContext.Provider value={{ variant, size }}>\n        {children}\n      </ToggleGroupContext.Provider>\n    </ToggleGroupPrimitive.Root>\n  );\n}\n\nfunction ToggleGroupItem({\n  className,\n  children,\n  variant,\n  size,\n  ...props\n}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> &\n  VariantProps<typeof toggleVariants>) {\n  const context = React.useContext(ToggleGroupContext);\n\n  return (\n    <ToggleGroupPrimitive.Item\n      data-slot=\"toggle-group-item\"\n      data-variant={context.variant || variant}\n      data-size={context.size || size}\n      className={cn(\n        toggleVariants({\n          variant: context.variant || variant,\n          size: context.size || size,\n        }),\n        \"min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </ToggleGroupPrimitive.Item>\n  );\n}\n\nexport { ToggleGroup, ToggleGroupItem };\n"
+    },
+    {
+      "id": "toggle",
+      "type": "ui",
+      "name": "Toggle",
+      "exports": [
+        "Toggle"
+      ],
+      "description": "",
+      "source": "engine/components/ui/toggle.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/toggle.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-toggle",
+        "class-variance-authority",
+        "./utils"
+      ],
+      "bytes": 1565,
+      "digest": "sha256:31f91bca26bed6bc884e3dbebe095046d4cf925b9d7676094721ac287d0b2135",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TogglePrimitive from \"@radix-ui/react-toggle\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"./utils\";\n\nconst toggleVariants = cva(\n  \"inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-muted hover:text-muted-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none transition-[color,box-shadow] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive whitespace-nowrap\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent\",\n        outline:\n          \"border border-input bg-transparent hover:bg-accent hover:text-accent-foreground\",\n      },\n      size: {\n        default: \"h-9 px-2 min-w-9\",\n        sm: \"h-8 px-1.5 min-w-8\",\n        lg: \"h-10 px-2.5 min-w-10\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  },\n);\n\nfunction Toggle({\n  className,\n  variant,\n  size,\n  ...props\n}: React.ComponentProps<typeof TogglePrimitive.Root> &\n  VariantProps<typeof toggleVariants>) {\n  return (\n    <TogglePrimitive.Root\n      data-slot=\"toggle\"\n      className={cn(toggleVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Toggle, toggleVariants };\n"
+    },
+    {
+      "id": "tooltip",
+      "type": "ui",
+      "name": "Tooltip",
+      "exports": [
+        "Tooltip",
+        "TooltipTrigger",
+        "TooltipContent",
+        "TooltipProvider"
+      ],
+      "description": "",
+      "source": "engine/components/ui/tooltip.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/ui/tooltip.tsx",
+      "imports": [
+        "react",
+        "@radix-ui/react-tooltip",
+        "./utils"
+      ],
+      "bytes": 1897,
+      "digest": "sha256:2f3a8720fb4b75c6911450be73d0407e2a84bb5ea1ded28ccdbf955be62a0155",
+      "code": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\";\n\nimport { cn } from \"./utils\";\n\nfunction TooltipProvider({\n  delayDuration = 0,\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {\n  return (\n    <TooltipPrimitive.Provider\n      data-slot=\"tooltip-provider\"\n      delayDuration={delayDuration}\n      {...props}\n    />\n  );\n}\n\nfunction Tooltip({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Root>) {\n  return (\n    <TooltipProvider>\n      <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />\n    </TooltipProvider>\n  );\n}\n\nfunction TooltipTrigger({\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />;\n}\n\nfunction TooltipContent({\n  className,\n  sideOffset = 0,\n  children,\n  ...props\n}: React.ComponentProps<typeof TooltipPrimitive.Content>) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Content\n        data-slot=\"tooltip-content\"\n        sideOffset={sideOffset}\n        className={cn(\n          \"bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance\",\n          className,\n        )}\n        {...props}\n      >\n        {children}\n        <TooltipPrimitive.Arrow className=\"bg-primary fill-primary z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]\" />\n      </TooltipPrimitive.Content>\n    </TooltipPrimitive.Portal>\n  );\n}\n\nexport { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };\n"
+    },
+    {
+      "id": "bottom-nav",
+      "type": "pattern",
+      "name": "BottomNav",
+      "exports": [
+        "BottomNav"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/bottom-nav.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/bottom-nav.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 1659,
+      "digest": "sha256:eb72856f0f55b49ff65c268273dd68580803751a5b75249f91e24cc77583a130",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport type { LucideIcon } from \"lucide-react\"\n\ninterface NavItem {\n  name: string\n  icon: LucideIcon\n  href?: string\n  onClick?: () => void\n}\n\ninterface BottomNavProps extends React.ComponentProps<\"nav\"> {\n  items: NavItem[]\n  activeIndex?: number\n  maxWidth?: string\n}\n\nfunction BottomNav({\n  items,\n  activeIndex = 0,\n  maxWidth = \"430px\",\n  className,\n  ...props\n}: BottomNavProps) {\n  return (\n    <nav\n      data-slot=\"bottom-nav\"\n      className={cn(\n        \"fixed bottom-0 left-0 right-0 bg-card border-t border-surface-muted pb-safe\",\n        className,\n      )}\n      {...props}\n    >\n      <div\n        className=\"mx-auto flex items-center justify-around px-6 py-3\"\n        style={{ maxWidth }}\n      >\n        {items.map((item, index) => {\n          const Icon = item.icon\n          const isActive = index === activeIndex\n          return (\n            <button\n              key={item.name}\n              onClick={item.onClick}\n              className={cn(\n                \"flex flex-col items-center gap-1 min-w-11 min-h-11 justify-center\",\n                \"transition-colors duration-[var(--duration-fast)]\",\n                \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg\",\n                isActive ? \"text-brand\" : \"text-text-disabled\",\n              )}\n            >\n              <Icon className=\"size-5\" strokeWidth={2} />\n              <span className=\"text-[10px] font-semibold\">{item.name}</span>\n            </button>\n          )\n        })}\n      </div>\n    </nav>\n  )\n}\n\nexport { BottomNav }\nexport type { BottomNavProps, NavItem }\n"
+    },
+    {
+      "id": "briefing-carousel",
+      "type": "pattern",
+      "name": "BriefingCarousel",
+      "exports": [
+        "BriefingCarousel"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/briefing-carousel.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/briefing-carousel.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 2081,
+      "digest": "sha256:6c2cfee78f1ce4a450f68d1886b1798b1c8afbb8160ed3a598e194b712544ff8",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport type { LucideIcon } from \"lucide-react\"\n\ninterface BriefingItem {\n  icon: LucideIcon\n  badge: string\n  badgeColor: string\n  title: string\n  description: string\n}\n\ninterface BriefingCarouselProps extends React.ComponentProps<\"div\"> {\n  title?: string\n  items: BriefingItem[]\n  cardWidth?: string\n}\n\nfunction BriefingCarousel({\n  title,\n  items,\n  cardWidth = \"280px\",\n  className,\n  ...props\n}: BriefingCarouselProps) {\n  return (\n    <div\n      data-slot=\"briefing-carousel\"\n      className={cn(\"ss-page-padding\", className)}\n      {...props}\n    >\n      {title && (\n        <h3 className=\"text-text-primary font-bold text-[18px] leading-snug mb-4\">\n          {title}\n        </h3>\n      )}\n      <div className=\"flex gap-3 overflow-x-auto pb-2 scrollbar-hide\">\n        {items.map((item, index) => {\n          const IconComponent = item.icon\n          return (\n            <div\n              key={index}\n              className=\"flex-shrink-0 ss-pattern-surface\"\n              style={{ width: cardWidth }}\n            >\n              <div className=\"mb-4\">\n                <div className=\"flex items-center gap-1.5 mb-3\">\n                  <IconComponent\n                    className=\"size-4\"\n                    style={{ color: item.badgeColor }}\n                    strokeWidth={2.5}\n                  />\n                  <span\n                    className=\"text-[12px] font-bold uppercase tracking-[0.05em]\"\n                    style={{ color: item.badgeColor }}\n                  >\n                    {item.badge}\n                  </span>\n                </div>\n                <p className=\"text-text-primary text-[15px] font-bold mb-2 leading-tight\">\n                  {item.title}\n                </p>\n                <p className=\"text-text-tertiary text-[13px]\">\n                  {item.description}\n                </p>\n              </div>\n            </div>\n          )\n        })}\n      </div>\n    </div>\n  )\n}\n\nexport { BriefingCarousel }\nexport type { BriefingCarouselProps, BriefingItem }\n"
+    },
+    {
+      "id": "chart-card",
+      "type": "pattern",
+      "name": "ChartCard",
+      "exports": [
+        "ChartCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/chart-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/chart-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 2590,
+      "digest": "sha256:fcef25237f555cfb5f30554eceac5d1577262730f2dc37c497b0b714de4ced49",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface ChartStat {\n  label: string\n  value: string | number\n  unit?: string\n}\n\ninterface ChartCardProps extends React.ComponentProps<\"div\"> {\n  title?: string\n  headerLeft?: React.ReactNode\n  periods?: string[]\n  activePeriod?: string\n  onPeriodChange?: (period: string) => void\n  stats?: ChartStat[]\n  statsColumns?: number\n}\n\nfunction ChartCard({\n  title,\n  headerLeft,\n  periods,\n  activePeriod,\n  onPeriodChange,\n  stats,\n  statsColumns = 3,\n  className,\n  children,\n  ...props\n}: ChartCardProps) {\n  return (\n    <div\n      data-slot=\"chart-card\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"flex items-center justify-between mb-6\">\n        <div>\n          {title && (\n            <h3 className=\"text-text-primary font-bold text-[18px] leading-snug\">\n              {title}\n            </h3>\n          )}\n          {headerLeft}\n        </div>\n\n        {periods && (\n          <div className=\"flex gap-1 bg-surface-muted p-1 ss-pattern-control\">\n            {periods.map((period) => (\n              <button\n                key={period}\n                onClick={() => onPeriodChange?.(period)}\n                className={cn(\n                  \"px-4 py-1.5 text-[11px] font-semibold ss-pattern-control transition-all\",\n                  activePeriod === period\n                    ? \"bg-brand text-white shadow-sm\"\n                    : \"text-text-tertiary\",\n                )}\n              >\n                {period}\n              </button>\n            ))}\n          </div>\n        )}\n      </div>\n\n      <div className=\"h-40 -mx-2 mb-6\">\n        {children}\n      </div>\n\n      {stats && stats.length > 0 && (\n        <div\n          className=\"gap-3 pt-5 border-t border-surface-muted\"\n          style={{\n            display: \"grid\",\n            gridTemplateColumns: `repeat(${statsColumns}, 1fr)`,\n          }}\n        >\n          {stats.map((stat) => (\n            <div key={stat.label} className=\"text-center\">\n              <p className=\"text-[11px] text-text-secondary mb-2 font-medium uppercase\">\n                {stat.label}\n              </p>\n              <p className=\"text-text-primary font-bold text-[18px] leading-none whitespace-nowrap\">\n                {stat.value}\n                {stat.unit && <span className=\"text-[10px] ms-0.5\">{stat.unit}</span>}\n              </p>\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { ChartCard }\nexport type { ChartCardProps, ChartStat }\n"
+    },
+    {
+      "id": "donut-chart-card",
+      "type": "pattern",
+      "name": "DonutChartCard",
+      "exports": [
+        "DonutChartCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/donut-chart-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/donut-chart-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 4469,
+      "digest": "sha256:d2c8cb110e0d41b1379977250cb481a2f5bf1e2d61027fd8b84c66b1e1d7e492",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface DonutItem {\n  name: string\n  value: number\n  stock?: string | number\n  unit?: string\n}\n\ninterface BottomStat {\n  label: string\n  value: string | number\n  subLabel?: string\n}\n\ninterface DonutChartCardProps extends React.ComponentProps<\"div\"> {\n  title: string\n  centerValue?: string | number\n  centerUnit?: string\n  centerLabel?: string\n  items: DonutItem[]\n  selectedItem?: string | null\n  onItemSelect?: (name: string | null) => void\n  bottomStats?: BottomStat[]\n  bottomColumns?: number\n  chartElement: React.ReactNode\n}\n\nfunction DonutChartCard({\n  title,\n  centerValue,\n  centerUnit,\n  centerLabel,\n  items,\n  selectedItem,\n  onItemSelect,\n  bottomStats,\n  bottomColumns = 4,\n  chartElement,\n  className,\n  ...props\n}: DonutChartCardProps) {\n  const grayColors = [\"#D4D4D4\", \"#A8A8A8\", \"#8B8B8B\", \"#6B6B6B\"]\n\n  return (\n    <div\n      data-slot=\"donut-chart-card\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface\",\n        className,\n      )}\n      {...props}\n    >\n      <h3 className=\"text-text-primary font-bold text-[18px] leading-snug mb-4\">\n        {title}\n      </h3>\n\n      <div className=\"flex items-center gap-8\">\n        <div className=\"relative size-32 flex-shrink-0\">\n          {chartElement}\n          {(centerValue !== undefined || centerLabel) && (\n            <div className=\"absolute inset-0 flex items-center justify-center\">\n              <div className=\"text-center\">\n                {centerValue !== undefined && (\n                  <p className=\"text-text-primary text-[24px] font-bold leading-none whitespace-nowrap\">\n                    {centerValue}\n                    {centerUnit && <span className=\"text-[12px] ms-0.5\">{centerUnit}</span>}\n                  </p>\n                )}\n                {centerLabel && (\n                  <p className=\"text-text-tertiary text-[10px] mt-1 font-medium uppercase\">\n                    {centerLabel}\n                  </p>\n                )}\n              </div>\n            </div>\n          )}\n        </div>\n\n        <div className=\"flex-1 space-y-3.5\">\n          {items.map((item, index) => (\n            <div\n              key={item.name}\n              className=\"flex items-center justify-between cursor-pointer transition-all duration-300\"\n              onClick={() => onItemSelect?.(selectedItem === item.name ? null : item.name)}\n              style={{\n                opacity: selectedItem === null || selectedItem === undefined || selectedItem === item.name ? 1 : 0.3,\n              }}\n            >\n              <div className=\"flex items-center gap-2.5\">\n                <div\n                  className=\"size-3 rounded-full transition-all duration-300\"\n                  style={{\n                    backgroundColor: selectedItem === item.name ? \"var(--brand)\" : grayColors[index % grayColors.length],\n                    boxShadow: selectedItem === item.name ? \"0 0 0 2px color-mix(in srgb, var(--brand) 25%, transparent)\" : \"none\",\n                  }}\n                />\n                <span className=\"text-text-primary text-[13px] font-semibold\">{item.name}</span>\n              </div>\n              {item.stock !== undefined && (\n                <span className=\"text-text-primary text-[15px] font-bold whitespace-nowrap\">\n                  {item.stock}\n                  {item.unit && <span className=\"text-[10px] ms-0.5\">{item.unit}</span>}\n                </span>\n              )}\n            </div>\n          ))}\n        </div>\n      </div>\n\n      {bottomStats && bottomStats.length > 0 && (\n        <div\n          className=\"gap-3 mt-6 pt-6 border-t border-surface-muted\"\n          style={{\n            display: \"grid\",\n            gridTemplateColumns: `repeat(${bottomColumns}, 1fr)`,\n          }}\n        >\n          {bottomStats.map((stat) => (\n            <div key={stat.label} className=\"text-center\">\n              <p className=\"text-[11px] text-text-secondary mb-1.5 font-medium uppercase\">\n                {stat.label}\n              </p>\n              <p className=\"text-text-primary font-bold text-[20px] leading-none\">\n                {stat.value}\n              </p>\n              {stat.subLabel && (\n                <p className=\"text-[11px] text-text-secondary mt-0.5\">{stat.subLabel}</p>\n              )}\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { DonutChartCard }\nexport type { DonutChartCardProps, DonutItem, BottomStat }\n"
+    },
+    {
+      "id": "empty-state",
+      "type": "pattern",
+      "name": "EmptyState",
+      "exports": [
+        "EmptyState"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/empty-state.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/empty-state.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 1146,
+      "digest": "sha256:f2892637d5d49baea0d7e013ff2c726b9de4df79e9606a46435e8bde8f66ce93",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport type { LucideIcon } from \"lucide-react\"\n\ninterface EmptyStateProps extends React.ComponentProps<\"div\"> {\n  icon?: LucideIcon\n  title: string\n  description?: string\n  action?: React.ReactNode\n}\n\nfunction EmptyState({\n  icon: Icon,\n  title,\n  description,\n  action,\n  className,\n  ...props\n}: EmptyStateProps) {\n  return (\n    <div\n      data-slot=\"empty-state\"\n      className={cn(\n        \"flex flex-col items-center justify-center py-12 px-6 text-center\",\n        className,\n      )}\n      {...props}\n    >\n      {Icon && (\n        <div className=\"size-8 ss-pattern-icon flex items-center justify-center mb-3\">\n          <Icon className=\"size-4 text-text-tertiary\" strokeWidth={1.5} />\n        </div>\n      )}\n      <h3 className=\"text-[16px] font-bold text-text-primary tracking-[-0.01em] mb-1.5\">\n        {title}\n      </h3>\n      {description && (\n        <p className=\"text-[14px] leading-normal text-text-secondary mb-6 max-w-[280px]\">\n          {description}\n        </p>\n      )}\n      {action}\n    </div>\n  )\n}\n\nexport { EmptyState }\nexport type { EmptyStateProps }\n"
+    },
+    {
+      "id": "hero-card",
+      "type": "pattern",
+      "name": "HeroCard",
+      "exports": [
+        "HeroCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/hero-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/hero-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 2730,
+      "digest": "sha256:a2870134cb85b410d69d67fc91e54106c397aa0e6de16083cc0d8da392531aeb",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport { TrendingUp, TrendingDown, type LucideIcon } from \"lucide-react\"\n\ninterface HeroCardProps extends React.ComponentProps<\"div\"> {\n  icon: LucideIcon\n  label: string\n  value: string | number\n  unit?: string\n  trend?: {\n    value: string\n    direction: \"up\" | \"down\"\n    label?: string\n  }\n  backgroundElement?: React.ReactNode\n  watermarkIcon?: LucideIcon\n}\n\nfunction HeroCard({\n  icon: Icon,\n  label,\n  value,\n  unit,\n  trend,\n  backgroundElement,\n  watermarkIcon: WatermarkIcon,\n  className,\n  ...props\n}: HeroCardProps) {\n  return (\n    <div\n      data-slot=\"hero-card\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface relative overflow-hidden\",\n        className,\n      )}\n      {...props}\n    >\n      {backgroundElement && (\n        <div className=\"absolute inset-0 opacity-[0.15]\">\n          {backgroundElement}\n        </div>\n      )}\n\n      {WatermarkIcon && (\n        <div className=\"absolute right-6 top-1/2 -translate-y-1/2 opacity-[0.06]\">\n          <WatermarkIcon className=\"size-32 text-brand\" strokeWidth={1.5} />\n        </div>\n      )}\n\n      <div className=\"relative z-10\">\n        <div className=\"flex items-center gap-2 mb-3\">\n          <div className=\"size-8 ss-pattern-icon flex items-center justify-center\">\n            <Icon className=\"size-[18px] text-brand\" strokeWidth={2} />\n          </div>\n          <p className=\"text-[12px] text-text-secondary font-medium uppercase tracking-[0.05em]\">\n            {label}\n          </p>\n        </div>\n\n        <p className=\"text-text-primary text-[48px] font-bold leading-none tracking-[-0.02em] mb-4 whitespace-nowrap\">\n          {value}\n          {unit && <span className=\"text-[24px] ms-0.5 tracking-normal\">{unit}</span>}\n        </p>\n\n        {trend && (\n          <div className=\"flex items-center gap-3\">\n            <div className=\"flex items-center gap-1\">\n              <span\n                className={cn(\n                  \"text-[15px] font-bold\",\n                  trend.direction === \"up\" ? \"text-success\" : \"text-destructive\",\n                )}\n              >\n                {trend.value}\n              </span>\n              {trend.direction === \"up\" ? (\n                <TrendingUp className=\"size-4 text-success\" strokeWidth={2.5} />\n              ) : (\n                <TrendingDown className=\"size-4 text-destructive\" strokeWidth={2.5} />\n              )}\n            </div>\n            {trend.label && (\n              <span className=\"text-[13px] text-text-tertiary font-medium\">\n                {trend.label}\n              </span>\n            )}\n          </div>\n        )}\n      </div>\n    </div>\n  )\n}\n\nexport { HeroCard }\nexport type { HeroCardProps }\n"
+    },
+    {
+      "id": "insight-card",
+      "type": "pattern",
+      "name": "InsightCard",
+      "exports": [
+        "InsightCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/insight-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/insight-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 1742,
+      "digest": "sha256:f03e46eb7f10538895ac4d341f500475bbcc998ae8190505e5008cdca92b69f5",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport type { LucideIcon } from \"lucide-react\"\n\ninterface InsightCardProps extends React.ComponentProps<\"div\"> {\n  icon?: LucideIcon\n  title: string\n  description: string\n  tags?: { label: string; icon?: LucideIcon }[]\n  action?: React.ReactNode\n  variant?: \"default\" | \"highlighted\"\n}\n\nfunction InsightCard({\n  icon: Icon,\n  title,\n  description,\n  tags,\n  action,\n  variant = \"default\",\n  className,\n  ...props\n}: InsightCardProps) {\n  return (\n    <div\n      data-slot=\"insight-card\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface\",\n        variant === \"highlighted\"\n          ? \"bg-brand-tint border border-brand/20\"\n          : \"\",\n        className,\n      )}\n      {...props}\n    >\n      {Icon && (\n        <div className=\"size-8 ss-pattern-icon flex items-center justify-center mb-3\">\n          <Icon className=\"size-[18px] text-brand\" strokeWidth={2} />\n        </div>\n      )}\n\n      <p className=\"text-text-primary font-bold text-[15px] leading-tight mb-2\">\n        {title}\n      </p>\n      <p className=\"text-text-tertiary text-[13px] leading-normal mb-4\">\n        {description}\n      </p>\n\n      {tags && tags.length > 0 && (\n        <div className=\"flex flex-wrap gap-2 mb-4\">\n          {tags.map((tag, i) => (\n            <span\n              key={i}\n              className=\"inline-flex items-center gap-1 px-2.5 py-1 bg-surface-muted ss-pattern-control text-[11px] font-medium text-text-secondary\"\n            >\n              {tag.icon && <tag.icon className=\"size-3\" />}\n              {tag.label}\n            </span>\n          ))}\n        </div>\n      )}\n\n      {action}\n    </div>\n  )\n}\n\nexport { InsightCard }\nexport type { InsightCardProps }\n"
+    },
+    {
+      "id": "list-item",
+      "type": "pattern",
+      "name": "ListItem",
+      "exports": [
+        "ListItem"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/list-item.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/list-item.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 1546,
+      "digest": "sha256:402cbcc2ffb0cd449d9fba26d49d4f649c15e357ff403c35b961e03f62d190eb",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface ListItemProps extends React.ComponentProps<\"div\"> {\n  leading?: React.ReactNode\n  title: string\n  subtitle?: React.ReactNode\n  trailing?: React.ReactNode\n  status?: {\n    label: string\n    color: string\n  }\n}\n\nfunction ListItem({\n  leading,\n  title,\n  subtitle,\n  trailing,\n  status,\n  className,\n  ...props\n}: ListItemProps) {\n  return (\n    <div\n      data-slot=\"list-item\"\n      className={cn(\n        \"flex items-center justify-between p-5 ss-pattern-inset bg-surface-subtle\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"flex items-center gap-3.5\">\n        {leading}\n        <div>\n          <p className=\"text-text-primary font-bold text-[14px] leading-snug mb-1.5\">\n            {title}\n          </p>\n          {status && (\n            <div className=\"inline-flex items-center\">\n              <span\n                className=\"size-1.5 rounded-full me-1.5\"\n                style={{ backgroundColor: status.color }}\n              />\n              <span\n                className=\"text-[11px] font-bold\"\n                style={{ color: status.color }}\n              >\n                {status.label}\n              </span>\n            </div>\n          )}\n          {subtitle && !status && (\n            <p className=\"text-[12px] text-text-secondary\">{subtitle}</p>\n          )}\n        </div>\n      </div>\n      {trailing && <div className=\"flex-shrink-0\">{trailing}</div>}\n    </div>\n  )\n}\n\nexport { ListItem }\nexport type { ListItemProps }\n"
+    },
+    {
+      "id": "news-card",
+      "type": "pattern",
+      "name": "NewsCard",
+      "exports": [
+        "NewsCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/news-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/news-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 1720,
+      "digest": "sha256:bb1c2fe236da3c101d2bb90de0dbd2c45584b369c004bb68b94eccd071195b4c",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface NewsCardProps extends React.ComponentProps<\"div\"> {\n  title: string\n  summary?: string\n  source?: string\n  timestamp?: string\n  trend?: \"up\" | \"down\" | \"neutral\"\n  onClick?: () => void\n}\n\nfunction NewsCard({\n  title,\n  summary,\n  source,\n  timestamp,\n  trend,\n  onClick,\n  className,\n  ...props\n}: NewsCardProps) {\n  return (\n    <div\n      data-slot=\"news-card\"\n      className={cn(\n        \"ss-pattern-surface\",\n        onClick && \"cursor-pointer active:bg-surface-subtle transition-colors duration-150\",\n        className,\n      )}\n      onClick={onClick}\n      {...props}\n    >\n      <div className=\"flex items-start justify-between gap-3\">\n        <div className=\"flex-1 min-w-0\">\n          <p className=\"text-text-primary font-bold text-[14px] leading-snug line-clamp-2 mb-1.5\">\n            {title}\n          </p>\n          {summary && (\n            <p className=\"text-text-tertiary text-[13px] leading-normal line-clamp-2 mb-2\">\n              {summary}\n            </p>\n          )}\n          <div className=\"flex items-center gap-2 text-[11px] text-text-disabled\">\n            {source && <span>{source}</span>}\n            {source && timestamp && <span>·</span>}\n            {timestamp && <span>{timestamp}</span>}\n          </div>\n        </div>\n\n        {trend && trend !== \"neutral\" && (\n          <span\n            className={cn(\n              \"shrink-0 text-[12px] font-bold mt-0.5\",\n              trend === \"up\" ? \"text-destructive\" : \"text-info\",\n            )}\n          >\n            {trend === \"up\" ? \"▲\" : \"▼\"}\n          </span>\n        )}\n      </div>\n    </div>\n  )\n}\n\nexport { NewsCard }\nexport type { NewsCardProps }\n"
+    },
+    {
+      "id": "page-shell",
+      "type": "pattern",
+      "name": "PageShell",
+      "exports": [
+        "PageShell",
+        "PageContent"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/page-shell.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/page-shell.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "../recipes"
+      ],
+      "bytes": 1087,
+      "digest": "sha256:c8deb691d1b438b7df867f9db6e1949ba9fdc633381b1576597dda832d5d0011",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport type { StyleSeedRecipe } from \"../recipes\"\n\ninterface PageShellProps extends React.ComponentProps<\"div\"> {\n  maxWidth?: string\n  recipe?: StyleSeedRecipe\n}\n\nfunction PageShell({\n  maxWidth = \"430px\",\n  recipe,\n  className,\n  children,\n  ...props\n}: PageShellProps) {\n  return (\n    <div\n      className=\"min-h-screen bg-surface-page\"\n      data-styleseed-recipe={recipe}\n      {...props}\n    >\n      <div\n        data-slot=\"page-shell\"\n        className={cn(\"mx-auto bg-surface-page min-h-screen relative\", className)}\n        style={{ maxWidth }}\n      >\n        {children}\n      </div>\n    </div>\n  )\n}\n\ninterface PageContentProps extends React.ComponentProps<\"main\"> {}\n\nfunction PageContent({ className, children, ...props }: PageContentProps) {\n  return (\n    <main\n      data-slot=\"page-content\"\n      className={cn(\"pb-24 flex flex-col ss-pattern-stack\", className)}\n      {...props}\n    >\n      {children}\n    </main>\n  )\n}\n\nexport { PageShell, PageContent }\nexport type { PageShellProps, PageContentProps }\n"
+    },
+    {
+      "id": "progress-bar",
+      "type": "pattern",
+      "name": "ProgressBar",
+      "exports": [
+        "ProgressBar",
+        "DiscreteBar",
+        "ProgressBarWithLabel"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/progress-bar.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/progress-bar.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 2507,
+      "digest": "sha256:3ed1c379193f08e77fb9637ad2027af3b90d0fcfeece093679c0dbb7422161ac",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\n/* === Linear Progress Bar === */\n\ninterface ProgressBarProps extends React.ComponentProps<\"div\"> {\n  value: number\n  max?: number\n  height?: string\n  label?: string\n}\n\nfunction ProgressBar({\n  value,\n  max = 100,\n  height = \"h-4\",\n  label,\n  className,\n  ...props\n}: ProgressBarProps) {\n  const percent = Math.min(100, Math.max(0, (value / max) * 100))\n  return (\n    <div data-slot=\"progress-bar\" className={cn(\"\", className)} {...props}>\n      <div className={cn(\"bg-surface-muted rounded-full overflow-hidden\", height)}>\n        <div\n          className={cn(\"bg-brand h-full rounded-full transition-all duration-300\")}\n          style={{ width: `${percent}%` }}\n        />\n      </div>\n      {label && (\n        <p className=\"text-[11px] text-text-primary mt-2 font-bold\">{label}</p>\n      )}\n    </div>\n  )\n}\n\n/* === Discrete Bar Segments (게이지) === */\n\ninterface DiscreteBarProps extends React.ComponentProps<\"div\"> {\n  total: number\n  filled: number\n  height?: string\n}\n\nfunction DiscreteBar({\n  total,\n  filled,\n  height = \"h-6\",\n  className,\n  ...props\n}: DiscreteBarProps) {\n  return (\n    <div\n      data-slot=\"discrete-bar\"\n      className={cn(\"flex gap-1\", className)}\n      {...props}\n    >\n      {[...Array(total)].map((_, i) => (\n        <div\n          key={i}\n          className={cn(\n            \"flex-1 rounded\",\n            height,\n            i < filled ? \"bg-brand\" : \"bg-surface-muted\",\n          )}\n        />\n      ))}\n    </div>\n  )\n}\n\n/* === Progress Bar with Label (오늘 방문 스타일) === */\n\ninterface ProgressBarWithLabelProps extends React.ComponentProps<\"div\"> {\n  value: number\n  max?: number\n  label: string\n}\n\nfunction ProgressBarWithLabel({\n  value,\n  max = 100,\n  label,\n  className,\n  ...props\n}: ProgressBarWithLabelProps) {\n  const percent = Math.min(100, Math.max(0, (value / max) * 100))\n  return (\n    <div\n      data-slot=\"progress-bar-with-label\"\n      className={cn(\"flex items-center gap-2\", className)}\n      {...props}\n    >\n      <div className=\"flex-1 bg-surface-muted rounded-full h-4\">\n        <div\n          className=\"bg-brand h-full rounded-full transition-all duration-300\"\n          style={{ width: `${percent}%` }}\n        />\n      </div>\n      <span className=\"text-[11px] text-text-primary font-bold\">{label}</span>\n    </div>\n  )\n}\n\nexport { ProgressBar, DiscreteBar, ProgressBarWithLabel }\nexport type { ProgressBarProps, DiscreteBarProps, ProgressBarWithLabelProps }\n"
+    },
+    {
+      "id": "ranked-list",
+      "type": "pattern",
+      "name": "RankedList",
+      "exports": [
+        "RankedList"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/ranked-list.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/ranked-list.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 2479,
+      "digest": "sha256:278d0f96a70ce0b990636a25636854e64fd0e9652aef6e6e850b8dfe3c4dba2b",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface RankedItem {\n  rank: number\n  name: string\n  value: string | number\n  isHighlighted?: boolean\n  badge?: string\n}\n\ninterface RankedListProps extends React.ComponentProps<\"div\"> {\n  title: string\n  items: RankedItem[]\n  footer?: React.ReactNode\n}\n\nfunction RankedList({\n  title,\n  items,\n  footer,\n  className,\n  ...props\n}: RankedListProps) {\n  return (\n    <div\n      data-slot=\"ranked-list\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface\",\n        className,\n      )}\n      {...props}\n    >\n      <h3 className=\"text-text-primary font-bold text-[18px] leading-snug mb-5\">\n        {title}\n      </h3>\n\n      <div className=\"space-y-3\">\n        {items.map((item) => (\n          <div\n            key={item.rank}\n            className={cn(\n              \"flex items-center justify-between p-5 ss-pattern-inset transition-all\",\n              item.isHighlighted\n                ? \"bg-brand-tint border-2 border-brand\"\n                : \"bg-surface-subtle\",\n            )}\n          >\n            <div className=\"flex items-center gap-4\">\n              <div\n                className={cn(\n                  \"size-8 ss-pattern-icon flex items-center justify-center text-[12px] font-bold\",\n                  item.isHighlighted\n                    ? \"bg-brand text-white\"\n                    : \"bg-surface-muted text-text-tertiary\",\n                )}\n              >\n                {item.rank}\n              </div>\n              <div className=\"flex items-center gap-2\">\n                <p\n                  className={cn(\n                    \"font-bold text-[14px]\",\n                    item.isHighlighted ? \"text-brand\" : \"text-text-primary\",\n                  )}\n                >\n                  {item.name}\n                </p>\n                {item.badge && (\n                  <span className=\"px-2 py-0.5 bg-brand text-white text-[9px] font-bold rounded uppercase tracking-wider\">\n                    {item.badge}\n                  </span>\n                )}\n              </div>\n            </div>\n\n            <p className=\"text-text-primary font-bold text-[17px]\">\n              {item.value}\n            </p>\n          </div>\n        ))}\n      </div>\n\n      {footer && (\n        <p className=\"text-[12px] text-text-secondary text-center mt-5 font-medium\">\n          {footer}\n        </p>\n      )}\n    </div>\n  )\n}\n\nexport { RankedList }\nexport type { RankedListProps, RankedItem }\n"
+    },
+    {
+      "id": "section-card",
+      "type": "pattern",
+      "name": "SectionCard",
+      "exports": [
+        "SectionCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/section-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/section-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 982,
+      "digest": "sha256:5229f454d44ab4aab8db5dbd6a2f2442c73aca0264f7b66e4d2d8d6faa8f8e9a",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface SectionCardProps extends React.ComponentProps<\"div\"> {\n  title?: string\n  headerRight?: React.ReactNode\n  footer?: React.ReactNode\n}\n\nfunction SectionCard({\n  title,\n  headerRight,\n  footer,\n  className,\n  children,\n  ...props\n}: SectionCardProps) {\n  return (\n    <div\n      data-slot=\"section-card\"\n      className={cn(\n        \"ss-page-gutter ss-pattern-surface\",\n        className,\n      )}\n      {...props}\n    >\n      {(title || headerRight) && (\n        <div className=\"flex items-center justify-between mb-4\">\n          {title && (\n            <h3 className=\"text-text-primary font-bold text-[18px] leading-snug\">\n              {title}\n            </h3>\n          )}\n          {headerRight}\n        </div>\n      )}\n      {children}\n      {footer && (\n        <div className=\"mt-5\">\n          {footer}\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { SectionCard }\nexport type { SectionCardProps }\n"
+    },
+    {
+      "id": "stat-card",
+      "type": "pattern",
+      "name": "StatCard",
+      "exports": [
+        "StatCard"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/stat-card.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/stat-card.tsx",
+      "imports": [
+        "react",
+        "../ui/utils",
+        "lucide-react"
+      ],
+      "bytes": 1874,
+      "digest": "sha256:5ab5153ff3c10ade121c3b098e3717687e858b5f1eeef8229f39351901ea78f7",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\nimport { TrendingUp, TrendingDown, type LucideIcon } from \"lucide-react\"\n\ninterface StatCardProps extends React.ComponentProps<\"div\"> {\n  icon: LucideIcon\n  label: string\n  value: string | number\n  unit?: string\n  trend?: {\n    value: string\n    direction: \"up\" | \"down\"\n  }\n  children?: React.ReactNode\n}\n\nfunction StatCard({\n  icon: Icon,\n  label,\n  value,\n  unit,\n  trend,\n  children,\n  className,\n  ...props\n}: StatCardProps) {\n  return (\n    <div\n      data-slot=\"stat-card\"\n      className={cn(\n        \"ss-pattern-surface\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"flex items-center gap-2 mb-3\">\n        <div className=\"size-7 ss-pattern-icon flex items-center justify-center\">\n          <Icon className=\"size-4 text-brand\" strokeWidth={2} />\n        </div>\n        <p className=\"text-[12px] text-text-secondary font-medium uppercase tracking-[0.05em]\">\n          {label}\n        </p>\n      </div>\n\n      <p className=\"text-text-primary text-[36px] font-bold leading-none tracking-[-0.02em] mb-3 whitespace-nowrap\">\n        {value}\n        {unit && <span className=\"text-[18px] ms-0.5 tracking-normal\">{unit}</span>}\n      </p>\n\n      {trend && (\n        <div className=\"flex items-center gap-1\">\n          <span\n            className={cn(\n              \"text-[13px] font-bold\",\n              trend.direction === \"up\" ? \"text-success\" : \"text-destructive\",\n            )}\n          >\n            {trend.value}\n          </span>\n          {trend.direction === \"up\" ? (\n            <TrendingUp className=\"size-3.5 text-success\" strokeWidth={2.5} />\n          ) : (\n            <TrendingDown className=\"size-3.5 text-destructive\" strokeWidth={2.5} />\n          )}\n        </div>\n      )}\n\n      {children}\n    </div>\n  )\n}\n\nexport { StatCard }\nexport type { StatCardProps }\n"
+    },
+    {
+      "id": "top-bar",
+      "type": "pattern",
+      "name": "TopBar",
+      "exports": [
+        "TopBar",
+        "TopBarAction"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/top-bar.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/top-bar.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 1588,
+      "digest": "sha256:27604c866a49a2b39cc93aad37c7b6b03129179c7beeefc3cf2f0ba22d6074a7",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface TopBarProps extends React.ComponentProps<\"header\"> {\n  logo?: React.ReactNode\n  subtitle?: string\n  actions?: React.ReactNode\n}\n\nfunction TopBar({\n  logo,\n  subtitle,\n  actions,\n  className,\n  ...props\n}: TopBarProps) {\n  return (\n    <header\n      data-slot=\"top-bar\"\n      className={cn(\"ss-page-padding pt-8 pb-6\", className)}\n      {...props}\n    >\n      <div className=\"flex items-center justify-between\">\n        <div className=\"flex items-center gap-3\">{logo}</div>\n        {actions && (\n          <div className=\"flex items-center gap-3\">{actions}</div>\n        )}\n      </div>\n      {subtitle && (\n        <p className=\"text-[13px] text-text-tertiary font-medium mt-3\">\n          {subtitle}\n        </p>\n      )}\n    </header>\n  )\n}\n\ninterface TopBarActionProps extends React.ComponentProps<\"button\"> {\n  badge?: boolean\n}\n\nfunction TopBarAction({\n  badge,\n  className,\n  children,\n  ...props\n}: TopBarActionProps) {\n  return (\n    <button\n      data-slot=\"top-bar-action\"\n      className={cn(\n        \"relative size-10 ss-pattern-control border border-surface-muted bg-card flex items-center justify-center\",\n        \"transition-all\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      {badge && (\n        <span className=\"absolute top-1 right-1 size-1.5 bg-alert-badge rounded-full\" />\n      )}\n    </button>\n  )\n}\n\nexport { TopBar, TopBarAction }\nexport type { TopBarProps, TopBarActionProps }\n"
+    },
+    {
+      "id": "value-display",
+      "type": "pattern",
+      "name": "ValueDisplay",
+      "exports": [
+        "ValueDisplay"
+      ],
+      "description": "",
+      "source": "engine/components/patterns/value-display.tsx",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/components/patterns/value-display.tsx",
+      "imports": [
+        "react",
+        "../ui/utils"
+      ],
+      "bytes": 1786,
+      "digest": "sha256:04fbc7b2c077889c6d2a54d128daae0991ef73963f1dbc182e29b62110032fc5",
+      "code": "import * as React from \"react\"\nimport { cn } from \"../ui/utils\"\n\ninterface ValueDisplayProps extends React.ComponentProps<\"div\"> {\n  value: number\n  change?: number\n  prefix?: string\n  size?: \"sm\" | \"md\" | \"lg\"\n  formatType?: \"integer\" | \"decimal\"\n  showArrow?: boolean\n}\n\nfunction ValueDisplay({\n  value,\n  change,\n  prefix = \"₩\",\n  size = \"md\",\n  formatType = \"integer\",\n  showArrow = true,\n  className,\n  ...props\n}: ValueDisplayProps) {\n  const formatValue = (n: number) => {\n    if (formatType === \"decimal\") {\n      return n.toLocaleString(\"ko-KR\", { minimumFractionDigits: 2, maximumFractionDigits: 2 })\n    }\n    return Math.round(n).toLocaleString(\"ko-KR\")\n  }\n\n  const sizeStyles = {\n    sm: { value: \"text-[16px] font-semibold leading-tight tracking-[-0.01em]\", change: \"text-[12px]\" },\n    md: { value: \"text-[20px] font-semibold leading-tight tracking-[-0.02em]\", change: \"text-[14px]\" },\n    lg: { value: \"text-[24px] font-bold leading-none tracking-[-0.02em]\", change: \"text-[14px]\" },\n  }\n\n  return (\n    <div\n      data-slot=\"value-display\"\n      className={cn(\"flex flex-col items-end justify-center min-w-20\", className)}\n      {...props}\n    >\n      <p className={cn(\"text-text-primary whitespace-nowrap\", sizeStyles[size].value)}>\n        {prefix}{formatValue(value)}\n      </p>\n\n      {change !== undefined && change !== 0 && (\n        <p\n          className={cn(\n            \"flex items-center gap-0.5 whitespace-nowrap\",\n            sizeStyles[size].change,\n            change > 0 ? \"text-destructive\" : \"text-info\",\n          )}\n        >\n          {showArrow && <span>{change > 0 ? \"▲\" : \"▼\"}</span>}\n          <span>{formatValue(Math.abs(change))}</span>\n        </p>\n      )}\n    </div>\n  )\n}\n\nexport { ValueDisplay }\nexport type { ValueDisplayProps }\n"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "calm-consumer",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `calm-consumer`\n\n- **Best fit:** personal state, reassurance, benefits, lightweight health, and short recurring\n  tasks. Strong with `consumer-service`; usable for a gentle `commerce-conversion`.\n- **Containment:** tonal groups and a few soft cards. One summary may float; secondary rows\n  should not become an equal card wall.\n- **Geometry:** 12–20px outer radius, smaller nested radius, restrained shadow or tonal\n  separation, comfortable 20–24px gutters.\n- **Type/icons:** friendly sans, plain-language values, simple line icons without repeated\n  tinted icon chips.\n- **Controls/collections:** reachable primary action, short rows or grouped sections, pill\n  controls only for true compact choices.\n- **Motion:** immediate and reassuring; spring may be restrained; consequential values do not\n  count theatrically.\n- **Characteristic move:** one calm contextual briefing connected to the user's current state.\n- **Reject:** copying Toss layouts, every service as a rounded card, blue as an automatic brand,\n  cute language in serious states, or chips as decoration.\n- **Lineage:** StyleSeed consumer-service research; brand examples are evidence, not sources to\n  copy.",
+      "digest": "sha256:6aa52992150b131d09f8039cf5e24fab7ace9fa0a51c934ac874852927b265e8"
+    },
+    {
+      "id": "native-mobile",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `native-mobile`\n\n- **Best fit:** focused mobile utilities, capture, communication, media, and one-handed tasks.\n  Compatible with any grammar whose primary surface is a mobile app.\n- **Containment:** content is primary; navigation and controls recede into platform-familiar\n  bars, sheets, lists, and grouped regions.\n- **Geometry:** platform-aware radii and materials, 16–20px screen gutters, touch targets at\n  least 44px, no desktop card grid squeezed into a phone.\n- **Type/icons:** dynamic type and platform conventions; system symbols when licensed for the\n  target platform, otherwise one consistent open icon family.\n- **Controls/collections:** few visible controls, secondary actions disclosed nearby, common\n  gestures have visible alternatives, important actions remain reachable.\n- **Motion/responsive:** adapt to orientation, dark mode, text scaling, and device insets;\n  transitions preserve spatial continuity.\n- **Characteristic move:** one content-first task with controls concentrated in the reachable\n  middle or lower region.\n- **Reject:** decorative glass imitation, copying Apple assets, invisible gesture-only actions,\n  tiny targets, or a web navbar pretending to be native.\n- **Lineage:** [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines).",
+      "digest": "sha256:96773594ff06c38e68e51252dda7ffa7095111973bc8811755d1ad7296db87cc"
+    },
+    {
+      "id": "enterprise-workbench",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `enterprise-workbench`\n\n- **Best fit:** admin, analytics, operations, collaboration, and multi-step B2B work. Strong\n  with `operations-console`.\n- **Containment:** persistent shell, aligned panels, toolbars, tables, and detail regions.\n  Group by work relationship; use card grids sparingly.\n- **Geometry:** 0–8px radius, 1px boundaries or tonal layers, minimal floating shadow, 16–24px\n  page rhythm on an explicit grid.\n- **Type/icons:** neutral UI sans, tabular numbers, compact labels, one functional icon family.\n- **Controls/collections:** rectangular controls, visible filters, bulk actions, dense rows,\n  comparison tables, and preserved loading geometry.\n- **Motion/responsive:** fast state changes; panels reflow or collapse by task priority rather\n  than merely shrinking.\n- **Characteristic move:** one operational focal panel connected directly to an actionable\n  queue or evidence table.\n- **Reject:** identical KPI cards, oversized mobile typography on desktop, decorative\n  gradients, hidden scope controls, or floating shadows on every panel.\n- **Lineage:** [IBM Carbon 2x Grid](https://carbondesignsystem.com/elements/2x-grid/overview/),\n  [Microsoft Fluent 2](https://fluent2.microsoft.design/design-principles),\n  [Atlassian foundations](https://atlassian.design/foundations).",
+      "digest": "sha256:0b472aa9cccada93e1c5c0260070bbfcda76a75d7de61e2cb22938c39981aaf8"
+    },
+    {
+      "id": "developer-platform",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `developer-platform`\n\n- **Best fit:** repositories, observability, infrastructure, APIs, and security. Strong with\n  `technical-instrument`; usable for technical `operations-console`.\n- **Containment:** stable shell, compact toolbars, hairline-separated rows, code/evidence\n  regions, and contextual drill-down.\n- **Geometry:** 4–8px radius, hairline borders, little or no shadow, compact 12–20px rhythm.\n- **Type/icons:** sans for UI; mono only for identifiers, timestamps, logs, commands, and aligned\n  numeric evidence. Icons are small and functional.\n- **Controls/collections:** rectangular or lightly rounded controls, status-aware tables,\n  timelines, command palettes, and copyable evidence.\n- **Motion/responsive:** near-instant, non-blocking, time-aware; live/paused state is explicit.\n- **Characteristic move:** one inspectable evidence region that connects status to diagnosis.\n- **Reject:** terminal cosplay, neon telemetry, mono body copy, rounded feature-card grids, or\n  animation that competes with live data.\n- **Lineage:** [GitHub Primer foundations](https://primer.style/product/getting-started/foundations/)\n  and [Primer pattern guidance](https://primer.style/product/contribute/design/).",
+      "digest": "sha256:69854f65ad674e20973e08c03f95aaf6fe5a794a9c6fb6f696f6a9bd57a87053"
+    },
+    {
+      "id": "commerce-operator",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `commerce-operator`\n\n- **Best fit:** merchant admin, inventory, orders, fulfillment, customer support, and complex\n  purchase operations. Strong with `operations-console` and `commerce-conversion`.\n- **Containment:** resource index → filters → actionable rows → contextual detail. Cards group\n  merchant decisions, not every datum.\n- **Geometry:** 8–12px radius, clear boundaries, moderate density, restrained elevation for\n  overlays and temporary context only.\n- **Type/icons:** highly scannable labels and values; product imagery is evidence; status text\n  accompanies semantic color.\n- **Controls/collections:** filter bars, resource tables/lists, contextual actions, variant and\n  fulfillment state, reversible mutations.\n- **Motion/responsive:** preserve selection and filters; mobile promotes the current task and\n  moves secondary columns into detail.\n- **Characteristic move:** a resource row or order state exposes the next operational action\n  without opening a decorative card.\n- **Reject:** promotional rainbow admin UI, buried costs or constraints, ambiguous statuses,\n  equal-weight analytics tiles, or urgency dark patterns.\n- **Lineage:** [Shopify Polaris](https://polaris-react.shopify.com/) and StyleSeed commerce\n  research. Reuse concepts, not Shopify trade dress.",
+      "digest": "sha256:a5aca0dc1229e15f9ff830a703c53ee2c7eb6a6e4d36dbda43362f2fd5aa1675"
+    },
+    {
+      "id": "public-service",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `public-service`\n\n- **Best fit:** eligibility, applications, regulated forms, healthcare workflows, and civic\n  services. Strong with `institutional-service`.\n- **Containment:** flat document flow, bounded reading measure, explicit sections, one step at a\n  time, review, confirmation, and recovery.\n- **Geometry:** 0–4px radius, strong visible boundaries, no decorative shadow, generous vertical\n  separation, high-contrast focus.\n- **Type/icons:** robust sans, plain language, adjacent labels/help, icons never replace critical\n  words.\n- **Controls/collections:** rectangular buttons and inputs, clear legends, summaries and error\n  links, preserved entered data, reference number on completion.\n- **Motion/responsive:** minimal and non-essential; layout survives zoom, reflow, text scaling,\n  keyboard, and assistive technology.\n- **Characteristic move:** the current task and its requirements are more visually prominent\n  than the organization brand.\n- **Reject:** low-contrast minimalism, novelty navigation, hidden prerequisites, rounded app\n  cards, altered control meanings, or motion that makes the workflow feel unstable.\n- **Lineage:** [GOV.UK patterns](https://design-system.service.gov.uk/patterns/) and\n  [community principles](https://design-system.service.gov.uk/community/community-principles/).",
+      "digest": "sha256:e1344aaa058a760cf1b3bc9ecce48bf14b9a8fa9bb1aef9e80cfc40a0302030f"
+    },
+    {
+      "id": "creative-professional",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `creative-professional`\n\n- **Best fit:** creation, editing, asset management, media, and expert cross-platform tools.\n  Compatible with `operations-console`, `technical-instrument`, and `sequential-story`.\n- **Containment:** focused canvas or artifact, quiet utility chrome, named tool groups, inspectors,\n  and progressive disclosure.\n- **Geometry:** 4–8px radius, crisp boundaries, restrained layers, density adapts between\n  pointer and touch.\n- **Type/icons:** rational, compact, internationalizable labels; icons support trained use but\n  critical actions retain text or discoverable labels.\n- **Controls/collections:** toolbars, property panels, asset grids, contextual controls, and\n  explicit selection state.\n- **Motion/responsive:** desktop and mobile scale independently while sharing one language;\n  motion explains selection, mode, and spatial change.\n- **Characteristic move:** the user's work occupies the focal field while tools form a\n  disciplined supporting frame.\n- **Reject:** decoration around the canvas, one scale stretched across all inputs, unlabeled\n  mystery tools, or copying Adobe product chrome.\n- **Lineage:** [Adobe Spectrum principles](https://spectrum.adobe.com/page/principles/) and\n  [platform scale](https://spectrum.adobe.com/page/platform-scale/).",
+      "digest": "sha256:3856bf930765af9220e0ff4f1e4c0e83ba3f3083c072a8d2766ebc56a1afeaf1"
+    },
+    {
+      "id": "editorial-authority",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `editorial-authority`\n\n- **Best fit:** journalism, reports, research, policy, and documentation. Strong with\n  `editorial-reading`; usable for evidence-heavy `expressive-marketing`.\n- **Containment:** type, whitespace, rules, captions, and bounded columns replace app cards.\n  Chrome recedes after orientation.\n- **Geometry:** 0–4px radius, hairline rules, little or no shadow, generous section rhythm and\n  45–90 character reading measures.\n- **Type/icons:** deliberate display/body roles, serif optional and role-specific, captions and\n  sources remain attached to evidence.\n- **Controls/collections:** calm inline actions, table of contents, footnotes, save/share,\n  figures, pull quotes, and related context after the narrative.\n- **Motion/responsive:** reading position and disclosure only; narrow screens preserve hierarchy\n  and source relationships rather than stacking arbitrary cards.\n- **Characteristic move:** an authoritative opening promise followed by inspectable evidence.\n- **Reject:** dashboard chrome around prose, every section in a card, overly wide measure, serif\n  everywhere, fake print texture, or interruption-heavy interactions.\n- **Lineage:** StyleSeed editorial research and public-content accessibility guidance.",
+      "digest": "sha256:97634faa4de0c7d681d5708fd420276618eef2e96f420d0e2770d9649cc06e27"
+    },
+    {
+      "id": "expressive-brand",
+      "source": "engine/BRAND-RECIPES.md",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/BRAND-RECIPES.md",
+      "contract": "## `expressive-brand`\n\n- **Best fit:** campaigns, launches, portfolios, brand pages, posters, and social stories.\n  Strong with `expressive-marketing` and `sequential-story`.\n- **Containment:** section form varies with the narrative; proof, product media, and display type\n  create rhythm instead of a repeated feature-card template.\n- **Geometry:** project-specific and intentionally consistent; one signature geometry may be\n  sharp, soft, or sculptural, but nested and control shapes stay coherent.\n- **Type/icons:** distinctive display hierarchy plus readable body; commissioned or licensed\n  imagery carries identity more than generic icons.\n- **Controls/collections:** one identifiable CTA, product demonstrations, outcomes, and examples;\n  repeated collections earn their repetition.\n- **Motion/responsive:** cinematic choreography is allowed when native scroll remains under user\n  control and reduced motion yields a complete result.\n- **Characteristic move:** one product-specific visual mechanism that could not be swapped into\n  an unrelated landing page.\n- **Reject:** generic gradient headlines, equal three-card rows, fake metrics, scroll-jacking,\n  copied campaign compositions, or motion that substitutes for a proposition.\n- **Lineage:** independent brand/campaign research; compile supplied references with\n  `ss-reference` when a particular visual language matters.\n\n## Legal and promotion boundary\n\n- Reference-family names document provenance; never present a recipe as official, endorsed, or\n  pixel-compatible with those systems.\n- Do not redistribute protected logos, proprietary icons, fonts, illustrations, product copy,\n  screenshots, or trademarked arrangements.\n- A project-local reference grammar remains the correct path for a specific brand. Promote it to\n  a built-in recipe only after multiple independent sources and transfer tests prove that the\n  morphology is reusable and not a clone.",
+      "digest": "sha256:3b5a536c7127554a106219c26d39c502f53eea1fefe87b7d350a03a0af7c171a"
+    }
+  ],
+  "palettes": [
+    {
+      "id": "quiet-mineral",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### quiet-mineral\n\n- Name: Quiet mineral\n- Mode: light\n- Best for: Calm consumer products, health, benefits, and personal utilities\n- Recipe bias: calm-consumer, native-mobile\n- Semantic roles: background=#F3F0E8 · surface=#FFFDF8 · chrome=#DCE7E0 · foreground=#19211F · mutedForeground=#56635F · chromeForeground=#19211F · border=#BFC9C2 · primary=#276B5E · primaryForeground=#FFFFFF · accent=#D56A45 · accentForeground=#211713 · focus=#155EEF · success=#1E6F50 · successForeground=#FFFFFF · warning=#8A5700 · warningForeground=#FFFFFF · danger=#B42318 · dangerForeground=#FFFFFF\n- Usage: Let warm neutrals carry most of the canvas. Reserve green for the primary action and current-state reassurance; keep coral below ten percent.\n- Generated-media anchors: #F3F0E8, #276B5E, #D56A45\n- Avoid in generated media: neon blue, rainbow gradients, blue-purple AI glow\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:8d01adb8c3cdfe17fa9cc96ee430323e94789473b06ea5c29c13fcbd8d17e589"
+    },
+    {
+      "id": "deep-lime-studio",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### deep-lime-studio\n\n- Name: Deep lime studio\n- Mode: dark\n- Best for: Creative work, focused productivity, and high-craft prototypes\n- Recipe bias: creative-professional, expressive-brand\n- Semantic roles: background=#0B0D0F · surface=#15191D · chrome=#262C31 · foreground=#F5F4ED · mutedForeground=#A8AFAB · chromeForeground=#F5F4ED · border=#465057 · primary=#B8FF5A · primaryForeground=#10140C · accent=#7AA7FF · accentForeground=#0B1020 · focus=#B8FF5A · success=#75E6A4 · successForeground=#0B1A10 · warning=#FFC857 · warningForeground=#1B1300 · danger=#FF766E · dangerForeground=#200704\n- Usage: Use lime for selection and one decisive action, never as body text. Layer chrome one step lighter than the canvas; let generated imagery remain low-luminance.\n- Generated-media anchors: #0B0D0F, #B8FF5A, #7AA7FF\n- Avoid in generated media: pure-white bloom, multicolor neon, lime on light backgrounds\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:9abf2a6edef6c2fff5de8ce5fa6954731a5d4aa3831acb97cdf4098fb74eaa63"
+    },
+    {
+      "id": "cobalt-instrument",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### cobalt-instrument\n\n- Name: Cobalt instrument\n- Mode: light\n- Best for: Developer platforms, data products, and operational workbenches\n- Recipe bias: developer-platform, enterprise-workbench\n- Semantic roles: background=#F1F5FA · surface=#FFFFFF · chrome=#101828 · foreground=#101828 · mutedForeground=#475467 · chromeForeground=#F9FAFB · border=#C7D1E0 · primary=#175CD3 · primaryForeground=#FFFFFF · accent=#6941C6 · accentForeground=#FFFFFF · focus=#175CD3 · success=#067647 · successForeground=#FFFFFF · warning=#934F00 · warningForeground=#FFFFFF · danger=#B42318 · dangerForeground=#FFFFFF\n- Usage: Use neutral layers for evidence and cobalt for action/selection. Violet belongs to secondary categorization, not a second primary action.\n- Generated-media anchors: #101828, #175CD3, #F1F5FA\n- Avoid in generated media: cyan terminal glow, decorative gradients, low-contrast gray text\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:e9a1750ec88b96138a8930210f4c1d03d4398a53ffebde13599a8f02547dcf77"
+    },
+    {
+      "id": "warm-clay-commerce",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### warm-clay-commerce\n\n- Name: Warm clay commerce\n- Mode: light\n- Best for: Commerce, hospitality, booking, and human service brands\n- Recipe bias: commerce-operator, calm-consumer\n- Semantic roles: background=#FFF8F2 · surface=#FFFFFF · chrome=#2B201B · foreground=#2B201B · mutedForeground=#6B5549 · chromeForeground=#FFF8F2 · border=#DCCBC0 · primary=#A64005 · primaryForeground=#FFFFFF · accent=#6441C4 · accentForeground=#FFFFFF · focus=#1D5FD0 · success=#187451 · successForeground=#FFFFFF · warning=#8A5700 · warningForeground=#FFFFFF · danger=#B42318 · dangerForeground=#FFFFFF\n- Usage: Let product imagery and warm paper carry identity. Clay marks purchase intent; violet is reserved for saved or personalized context.\n- Generated-media anchors: #FFF8F2, #A64005, #2B201B\n- Avoid in generated media: orange sale walls, high-saturation red urgency, generic purple gradient\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:a118b52dde99aaf9bab826d26bbb0aa43d2162f844e1aa2abc3a5f815f71935d"
+    },
+    {
+      "id": "civic-blue",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### civic-blue\n\n- Name: Civic blue\n- Mode: light\n- Best for: Public services, regulated applications, and consequential workflows\n- Recipe bias: public-service, enterprise-workbench\n- Semantic roles: background=#F3F5F7 · surface=#FFFFFF · chrome=#003078 · foreground=#0B0C0C · mutedForeground=#4C6272 · chromeForeground=#FFFFFF · border=#B1B4B6 · primary=#1D5F91 · primaryForeground=#FFFFFF · accent=#00703C · accentForeground=#FFFFFF · focus=#B45F06 · success=#00703C · successForeground=#FFFFFF · warning=#8A5700 · warningForeground=#FFFFFF · danger=#B42318 · dangerForeground=#FFFFFF\n- Usage: Use blue for institution and primary action, green only for confirmed success, and amber focus with a visible outline. Pair every status with text.\n- Generated-media anchors: #003078, #F3F5F7, #00703C\n- Avoid in generated media: pastel minimalism, glass navigation, color-only status\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:a624d9df62e21489365d80fdfd6ad34f9572d70a3056f54351796a5be6636914"
+    },
+    {
+      "id": "editorial-ink",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### editorial-ink\n\n- Name: Editorial ink\n- Mode: light\n- Best for: Research, journalism, reports, and authoritative reading\n- Recipe bias: editorial-authority, public-service\n- Semantic roles: background=#F5F1E8 · surface=#FFFCF6 · chrome=#111111 · foreground=#111111 · mutedForeground=#5B564E · chromeForeground=#FFFFFF · border=#C9C0B2 · primary=#8F2C21 · primaryForeground=#FFFFFF · accent=#1D4E9E · accentForeground=#FFFFFF · focus=#1D4E9E · success=#176B45 · successForeground=#FFFFFF · warning=#805200 · warningForeground=#FFFFFF · danger=#A12B22 · dangerForeground=#FFFFFF\n- Usage: Use ink and paper for the reading field. Red marks editorial emphasis sparingly; blue owns links and focus.\n- Generated-media anchors: #F5F1E8, #111111, #8F2C21\n- Avoid in generated media: fake newspaper texture, sepia photos, card-grid chrome\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:e8b36131db1dbad9a718275fbdb632f8d31f274fcc9e85b9e2a577e1a6aca9a5"
+    },
+    {
+      "id": "signal-coral",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### signal-coral\n\n- Name: Signal coral\n- Mode: light\n- Best for: Expressive launches, social products, and consumer discovery\n- Recipe bias: expressive-brand, native-mobile\n- Semantic roles: background=#FFF3EC · surface=#FFFFFF · chrome=#1A1423 · foreground=#1A1423 · mutedForeground=#645A6C · chromeForeground=#FFFFFF · border=#D8C9D0 · primary=#C83D2C · primaryForeground=#FFFFFF · accent=#5B3EC8 · accentForeground=#FFFFFF · focus=#5B3EC8 · success=#19724E · successForeground=#FFFFFF · warning=#875400 · warningForeground=#FFFFFF · danger=#A92924 · dangerForeground=#FFFFFF\n- Usage: Let coral own the hook and selected moment. Violet supports spatial or media context; never let both compete as primary actions.\n- Generated-media anchors: #FFF3EC, #C83D2C, #5B3EC8\n- Avoid in generated media: pink-purple gradient wash, rainbow icon chips, coral body text\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:6ca0832524db774f9fb0246ac75953f6a3a3f778f4336dcf51a0941ec5825b70"
+    },
+    {
+      "id": "nocturne-violet",
+      "source": "engine/color/palettes.json",
+      "sourceUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/engine/color/palettes.json",
+      "contract": "### nocturne-violet\n\n- Name: Nocturne violet\n- Mode: dark\n- Best for: Media, AI, experimental professional tools, and immersive utilities\n- Recipe bias: creative-professional, developer-platform\n- Semantic roles: background=#0D0B16 · surface=#171327 · chrome=#2A2341 · foreground=#F6F2FF · mutedForeground=#B3A9C9 · chromeForeground=#F6F2FF · border=#554A70 · primary=#A98BFF · primaryForeground=#160F28 · accent=#4BE0C3 · accentForeground=#06251F · focus=#D1C2FF · success=#65D6A2 · successForeground=#062118 · warning=#F4BF55 · warningForeground=#241700 · danger=#FF8078 · dangerForeground=#2A0705\n- Usage: Use violet for primary control and mint for creation/progress. Keep media dark enough to preserve chrome and avoid synthetic AI-glow overload.\n- Generated-media anchors: #0D0B16, #A98BFF, #4BE0C3\n- Avoid in generated media: electric blue haze, purple gradient headlines, white bloom behind text\n- Re-run deterministic contrast validation after any project override.",
+      "digest": "sha256:4fb41f1dcf2a239c3e5586faed60ebf5e12134df517b079375965e451be3289a"
+    }
+  ],
+  "skins": [
+    {
+      "id": "arc",
+      "name": "Arc",
+      "description": "Browser reimagined — playful, rainbow gradients on cream, generous radius",
+      "brand": "#FF5E7E",
+      "brandDark": "#FF85A1",
+      "font": "Inter, system-ui, sans-serif",
+      "source": "original",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/arc/theme.css"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "description": "Dark-mode-native design with indigo-violet accent on near-black surfaces and Inter Variable typography",
+      "brand": "#5e6ad2",
+      "brandDark": "#7170ff",
+      "font": "Inter Variable, SF Pro Display, -apple-system, system-ui, sans-serif",
+      "source": "awesome-design-md",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/linear/theme.css"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "description": "Warm neutral minimalism with Notion Blue accent and whisper-weight borders on a warm white canvas",
+      "brand": "#0075de",
+      "brandDark": "#62aef0",
+      "font": "NotionInter, Inter, -apple-system, system-ui, Segoe UI, Helvetica, sans-serif",
+      "source": "awesome-design-md",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/notion/theme.css"
+    },
+    {
+      "id": "raycast",
+      "name": "Raycast",
+      "description": "Productivity launcher — dark, electric, multicolor gradient DNA",
+      "brand": "#FF4E8B",
+      "brandDark": "#FF6FA3",
+      "font": "Inter, system-ui, sans-serif",
+      "source": "original",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/raycast/theme.css"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "description": "Premium fintech design with signature purple CTAs and blue-tinted shadows on a clean white canvas",
+      "brand": "#533afd",
+      "brandDark": "#665efd",
+      "font": "sohne-var, SF Pro Display, -apple-system, system-ui, sans-serif",
+      "source": "awesome-design-md",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/stripe/theme.css"
+    },
+    {
+      "id": "toss",
+      "name": "Toss",
+      "description": "Korean fintech super-app — clean, minimal, data-focused",
+      "brand": "#3182F6",
+      "brandDark": "#4593FC",
+      "font": "Pretendard, Inter, system-ui, sans-serif",
+      "source": "original",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/toss/theme.css"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "description": "Monochrome developer-focused design with shadow-as-border technique and Geist typography",
+      "brand": "#171717",
+      "brandDark": "#ffffff",
+      "font": "Geist, Arial, -apple-system, system-ui, sans-serif",
+      "source": "awesome-design-md",
+      "themeUrl": "https://raw.githubusercontent.com/bitjaru/styleseed/main/skins/vercel/theme.css"
+    }
+  ]
+}

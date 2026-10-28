@@ -1,0 +1,564 @@
+/* =========================================================
+   Chapter 06 · 第三部分 · 去 AI 味
+   light 主题 · hero → 反面教材 grid + 红斜线 → 字体黑名单 / 替代
+   ========================================================= */
+
+.aa {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+/* —— 顶部 eyebrow —— */
+.aa__eyebrow {
+  position: absolute;
+  top: 56px;
+  left: 96px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  z-index: 4;
+}
+.aa__eyebrow-num {
+  font-family: var(--f-serif);
+  font-size: 28px;
+  letter-spacing: 0;
+  color: var(--accent);
+  font-style: italic;
+}
+.aa__eyebrow-bar {
+  width: 36px;
+  height: 1px;
+  background: var(--line-mid);
+}
+.aa__eyebrow-bar--long { width: 96px; }
+.aa__eyebrow-text { color: var(--fg); letter-spacing: 0.18em; }
+.aa__eyebrow-mute { color: var(--fg-faint); font-size: 13px; }
+
+/* —— 通用 prompt 源标签子部件 —— */
+.aa__src-bracket { color: var(--accent); font-weight: 600; }
+.aa__src-label   { color: var(--fg);     font-weight: 600; letter-spacing: 0.22em; }
+.aa__src-sep     { color: var(--fg-faint); }
+.aa__src-line    { color: var(--accent); font-weight: 600; }
+.aa__src-mute    { color: var(--fg-mute); }
+
+/* ===================== Scene HERO ===================== */
+
+.aa__hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 140px 120px;
+  text-align: center;
+  gap: 32px;
+}
+
+.aa__hero-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 168px;
+  line-height: 1.05;
+  margin: 0;
+}
+.aa__hero-em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.aa__hero-em::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 8px;
+  height: 6px;
+  background: var(--accent);
+  opacity: 0.22;
+  transform-origin: left;
+  animation: aaUnderline 1100ms 360ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes aaUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.22; }
+}
+
+.aa__hero-sub {
+  font-family: var(--f-serif);
+  font-size: 36px;
+  line-height: 1.4;
+  color: var(--fg-soft);
+  margin: 0;
+  max-width: 1100px;
+}
+.aa__hero-sub em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.aa__excerpt {
+  width: 100%;
+  max-width: 1100px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+  padding: 18px 28px 22px;
+  text-align: left;
+  margin-top: 12px;
+}
+.aa__excerpt-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 10px;
+}
+.aa__excerpt-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.aa__excerpt-gt {
+  font-family: var(--f-mono);
+  font-size: 28px;
+  color: var(--accent);
+}
+.aa__excerpt-text {
+  font-family: var(--f-mono);
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--fg);
+}
+.aa__excerpt-text em {
+  font-style: normal;
+  color: var(--accent);
+  background: linear-gradient(180deg, transparent 70%, oklch(0.860 0.060 60 / 0.6) 70%);
+  padding: 0 2px;
+}
+
+/* ===================== Scene GRID ===================== */
+
+.aa__grid-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 100px 90px;
+  gap: 32px;
+}
+
+.aa__grid-cap {
+  font-family: var(--f-serif);
+  font-size: 32px;
+  font-style: italic;
+  color: var(--fg-soft);
+  text-align: center;
+}
+
+.aa__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  width: 100%;
+  max-width: 1480px;
+}
+
+.aa__grid-slot {
+  animation: aaGridIn 720ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes aaGridIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+.aa__bad {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: filter 600ms, opacity 600ms;
+}
+.aa__bad.is-slashed {
+  filter: grayscale(0.55) brightness(0.92);
+  opacity: 0.78;
+}
+
+.aa__bad-canvas {
+  position: relative;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(45deg,
+      oklch(0.180 0.014 60 / 0.025) 0 6px,
+      transparent 6px 12px);
+  overflow: hidden;
+}
+
+/* —— 反面教材 1：紫粉蓝渐变 —— */
+.aa__bad-gradient {
+  position: absolute;
+  inset: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 35%, #67e8f9 70%, #fda4af 100%);
+  box-shadow: 0 12px 36px -10px oklch(0.6 0.18 320 / 0.4);
+}
+
+/* —— 反面教材 2：Emoji 滥用 —— */
+.aa__bad-emoji {
+  display: flex;
+  gap: 12px;
+  font-size: 44px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px oklch(0 0 0 / 0.15));
+}
+
+/* —— 反面教材 3：左侧色条卡 —— */
+.aa__bad-leftbar {
+  position: relative;
+  width: 220px;
+  height: 130px;
+  background: white;
+  border-radius: 14px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  box-shadow: 0 16px 28px -10px oklch(0.180 0.014 60 / 0.18);
+}
+.aa__bad-leftbar-stripe {
+  width: 8px;
+  background: linear-gradient(to bottom, #6366f1, #a855f7);
+}
+.aa__bad-leftbar-body {
+  flex: 1;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.aa__bad-leftbar-t {
+  width: 60%;
+  height: 14px;
+  background: oklch(0.4 0.04 280);
+  border-radius: 4px;
+}
+.aa__bad-leftbar-l {
+  width: 90%;
+  height: 8px;
+  background: oklch(0.85 0.02 280);
+  border-radius: 4px;
+}
+.aa__bad-leftbar-l--short { width: 60%; }
+
+/* —— 反面教材 4：烂大街字体 —— */
+.aa__bad-font {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 22px;
+  color: var(--fg);
+}
+.aa__bad-font span:first-child { font-weight: 600; font-size: 26px; }
+
+/* —— 反面教材 5：data slop —— */
+.aa__bad-data {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 18px 32px;
+  font-family: var(--f-mono);
+  font-size: 22px;
+  color: var(--fg);
+}
+.aa__bad-data > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.aa__bad-data span {
+  color: oklch(0.6 0.18 320);
+  font-size: 20px;
+}
+.aa__bad-data b {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--fg);
+}
+
+/* —— 反面教材 6：复杂 SVG —— */
+.aa__bad-svg {
+  width: 130px;
+  height: 130px;
+  filter: drop-shadow(0 6px 12px oklch(0.6 0.18 320 / 0.35));
+}
+
+/* —— 红斜杠 —— */
+.aa__bad-slash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 360ms;
+}
+.aa__bad.is-slashed .aa__bad-slash {
+  opacity: 1;
+}
+.aa__bad-slash-line {
+  display: block;
+  width: 130%;
+  height: 5px;
+  background: var(--crimson);
+  transform: rotate(-18deg) scaleX(0);
+  transform-origin: left;
+  border-radius: 1px;
+  box-shadow:
+    0 0 12px oklch(0.560 0.200 22 / 0.6),
+    0 0 24px oklch(0.560 0.200 22 / 0.25);
+  animation-fill-mode: forwards;
+}
+.aa__bad.is-slashed .aa__bad-slash-line {
+  animation: aaSlash 520ms cubic-bezier(.6,-0.05,.2,1.2) forwards;
+}
+@keyframes aaSlash {
+  from { transform: rotate(-18deg) scaleX(0); }
+  to   { transform: rotate(-18deg) scaleX(1); }
+}
+
+/* 错开每张卡的斜线触发节奏 */
+.aa__grid-slot:nth-child(1) .aa__bad-slash-line { animation-delay: 80ms;  }
+.aa__grid-slot:nth-child(2) .aa__bad-slash-line { animation-delay: 180ms; }
+.aa__grid-slot:nth-child(3) .aa__bad-slash-line { animation-delay: 280ms; }
+.aa__grid-slot:nth-child(4) .aa__bad-slash-line { animation-delay: 380ms; }
+.aa__grid-slot:nth-child(5) .aa__bad-slash-line { animation-delay: 480ms; }
+.aa__grid-slot:nth-child(6) .aa__bad-slash-line { animation-delay: 580ms; }
+
+.aa__bad-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--line-mid);
+  background: var(--bg);
+}
+.aa__bad-en {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.aa__bad-cn {
+  font-family: var(--f-serif);
+  font-size: 26px;
+  color: var(--fg);
+}
+
+.aa__grid-verdict {
+  font-family: var(--f-serif);
+  font-size: 32px;
+  color: var(--fg-soft);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.aa__grid-verdict em {
+  font-style: italic;
+  color: var(--accent);
+}
+.aa__grid-verdict-mark {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--crimson);
+}
+
+/* ===================== Scene FONTS ===================== */
+
+.aa__fonts-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 100px 90px;
+  gap: 32px;
+}
+
+.aa__fonts-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.aa__fonts-num {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.aa__fonts-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.15;
+  color: var(--fg);
+  margin: 0;
+}
+.aa__fonts-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.aa__fonts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  width: 100%;
+  max-width: 1480px;
+}
+
+.aa__fonts-col {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-radius: 4px;
+  padding: 22px 28px 26px;
+}
+.aa__fonts-col--ban {
+  border-top: 3px solid var(--crimson);
+}
+.aa__fonts-col--alt {
+  border-top: 3px solid var(--accent);
+  box-shadow: 0 16px 28px -18px oklch(0.700 0.170 42 / 0.35);
+}
+
+.aa__fonts-col-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px dashed var(--line-mid);
+}
+.aa__fonts-col-mark {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--crimson);
+}
+.aa__fonts-col-mark--ok {
+  color: var(--accent);
+}
+
+.aa__fonts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.aa__fonts-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 4px;
+  animation: aaFontIn 540ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes aaFontIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: none; }
+}
+.aa__fonts-row-name {
+  font-size: 28px;
+  color: var(--fg);
+}
+.aa__fonts-row-sample {
+  font-size: 24px;
+  color: var(--fg-soft);
+}
+.aa__fonts-row-tag {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.aa__fonts-row-strike {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 50%;
+  height: 2px;
+  background: var(--crimson);
+  transform-origin: left;
+  transform: translateY(-50%) scaleX(0);
+  animation: aaRowStrike 520ms cubic-bezier(.6,-0.05,.2,1.2) forwards;
+  opacity: 0.85;
+}
+.aa__fonts-row--ban:nth-child(1) .aa__fonts-row-strike { animation-delay: 480ms; }
+.aa__fonts-row--ban:nth-child(2) .aa__fonts-row-strike { animation-delay: 580ms; }
+.aa__fonts-row--ban:nth-child(3) .aa__fonts-row-strike { animation-delay: 680ms; }
+.aa__fonts-row--ban:nth-child(4) .aa__fonts-row-strike { animation-delay: 780ms; }
+.aa__fonts-row--ban:nth-child(5) .aa__fonts-row-strike { animation-delay: 880ms; }
+@keyframes aaRowStrike {
+  to { transform: translateY(-50%) scaleX(1); }
+}
+
+.aa__fonts-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.aa__fonts-foot span:last-child {
+  color: var(--accent);
+  font-weight: 600;
+}
+.aa__fonts-foot-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+  flex: none;
+}

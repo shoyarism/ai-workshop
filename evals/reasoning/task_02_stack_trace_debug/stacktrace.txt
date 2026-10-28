@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "pipeline.py", line 26, in process_inbound_stream
+    results.append(dispatcher.route_event(sub_event))
+                   ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "dispatcher.py", line 18, in route_event
+    return self.handlers[kind](event["payload"]["content"])
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'content'
+
+Input batch triggering the crash:
+{
+  "mode": "batch",
+  "items": [
+    {"kind": "message", "text": "agent initialization complete"},
+    {"kind": "system", "text": "telemetry connected"}
+  ]
+}

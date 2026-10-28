@@ -1,0 +1,146 @@
+# ==============================================================================
+# Workshop Operating System — Master .gitignore
+# ==============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node & JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+.turbo/
+
+# Vision & Multimodal Temp Frames
+.tmp_*
+*_frames/
+*.tmp
+*.temp
+
+# Secrets & Environment Variables (Never Commit API Keys)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+.workshop_state/sensitive_terms.json
+.workshop_state/secrets/
+
+# Operating System & IDEs
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+
+# Large Binary Caches & Forensic Evidence Vault
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.db-journal
+splunk-log-queue.jsonl
+evidence_*.storedata
+# Scratch Scripts & Ephemeral Extractions
+scratch/
+tools/
+tool_manifest.txt
+test_spec.json
+temp_*/
+graphify-out/
+.hermes_browser_profile/
+.workshop_state/
+*.log
+*.asar
+*.asar.unpacked/
+**/output/
+open-image-models/ComfyUI/
+open-image-models/**/output/
+photoreal-studio/**/output/
+
+# ==============================================================================
+# External Subsystems (Independently Versioned Shallow Git Repositories per ADR-004)
+# ==============================================================================
+/Scrapling/
+/agent-reach/
+/agent-skills/
+/anti-slop/
+auto-company/
+awesome/
+awesome-llm-apps/
+awesome-mcp-servers/
+awesome-selfhosted/
+book-to-skill/
+botdirectory-ai/
+browser-use/
+camofox-browser/
+claude-mem/
+claude-plugins-official/
+eliza/
+free-for-dev/
+google-adk/
+graphify/
+hyperframes/
+i-have-adhd/
+iLEAPP/
+langflow/
+litellm/
+mastra/
+mcp-inspector/
+mcp-servers-official/
+minions/
+open-design/
+open-generative-ai/
+open-notebook/
+open-seo/
+openclaw/
+openhands/
+openai-agents-sdk/
+openworker/
+ponytail/
+public-apis/
+skillclaw/
+stagehand/
+strix/
+
+# Slop Court Artifacts
+.court_verdict.json
+.court_acquittal.json
+.court_docket/

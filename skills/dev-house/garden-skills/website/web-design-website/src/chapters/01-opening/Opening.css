@@ -1,0 +1,705 @@
+/* =========================================================
+   Chapter 01 · Opening 「一则崩盘」
+   - ink 主题（深墨底）
+   - 4 幕全部由 SceneFade 包裹独立铺满 stage，互不重叠
+   - 没有任何"网页 chrome"（无顶部章节标记 / 底部 footer）
+   - 真实数据：LegalZoom -20% / CRCL -20% / CrowdStrike -7% / Figma -7%
+   ========================================================= */
+
+.opening {
+  position: absolute;
+  inset: 0;
+  font-family: var(--f-sans);
+  color: var(--fg);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* 每幕都是覆盖 stage 的全屏容器 */
+.opening__sceneA,
+.opening__sceneB,
+.opening__sceneC,
+.opening__sceneD {
+  position: absolute;
+  inset: 0;
+  padding: 110px 120px;
+}
+
+.opening__sceneC {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.opening__sceneD {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =========================================================
+   SCENE A · Crash
+   ========================================================= */
+
+/* LIVE 报价条（仅 Scene A 出现，作为"市场环境") */
+.opening__live {
+  position: absolute;
+  top: 90px;
+  right: 120px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 20px;
+  border: 1px solid var(--line-mid);
+  background: oklch(0.965 0.018 78 / 0.025);
+  backdrop-filter: blur(6px);
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  z-index: 6;
+  animation: opLiveIn 700ms cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes opLiveIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.opening__live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--crimson);
+  animation: opPulse 1.6s ease-in-out infinite;
+}
+@keyframes opPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50%      { opacity: 1;   transform: scale(1.15); }
+}
+.opening__live-label {
+  color: var(--fg-soft);
+  font-weight: 500;
+}
+.opening__live-clock {
+  color: var(--paper);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+}
+.opening__live-sep {
+  color: var(--fg-faint);
+}
+.opening__live-quote {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.opening__live-quote-tag {
+  color: var(--fg-mute);
+  font-size: 13px;
+  padding: 2px 6px;
+  border: 1px solid var(--line-mid);
+}
+.opening__live-quote-val {
+  color: var(--paper);
+  font-size: 18px;
+}
+.opening__live-quote-d {
+  color: var(--crimson);
+  font-size: 14px;
+}
+
+/* "FIGMA" 巨字背景水印 */
+.opening__crash-mega {
+  position: absolute;
+  left: 100px;
+  bottom: 120px;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 360px;
+  line-height: 0.85;
+  color: oklch(0.965 0.018 78 / 0.05);
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* 引子小字 */
+.opening__crash-intro {
+  position: absolute;
+  top: 230px;
+  left: 120px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  color: var(--fg-mute);
+  z-index: 4;
+}
+.opening__crash-intro-tag {
+  padding: 5px 12px;
+  border: 1px solid var(--line-mid);
+  color: var(--fg-soft);
+  text-transform: uppercase;
+}
+.opening__crash-intro-text {
+  font-family: var(--f-sans);
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--fg-soft);
+}
+
+/* 折线图 */
+.opening__chart {
+  position: absolute;
+  inset: 320px 80px 280px;
+  width: calc(100% - 160px);
+  height: calc(100% - 600px);
+  z-index: 2;
+}
+.opening__chart-grid line {
+  stroke: var(--line);
+}
+.opening__chart-history {
+  stroke: var(--fg-faint);
+  opacity: 0.65;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: opPathDraw 1500ms cubic-bezier(.2,.8,.2,1) forwards,
+             opHistoryHum 6s ease-in-out 1500ms infinite alternate;
+}
+@keyframes opHistoryHum {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(2px); }
+}
+.opening__chart-crash {
+  stroke: var(--crimson);
+  stroke-linecap: round;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: opPathDraw 720ms cubic-bezier(.4,0,1,1) 80ms forwards;
+  filter: drop-shadow(0 0 24px oklch(0.560 0.200 22 / 0.5));
+}
+@keyframes opPathDraw {
+  to { stroke-dashoffset: 0; }
+}
+.opening__chart-fill {
+  opacity: 0;
+  animation: opFadeIn 600ms cubic-bezier(.2,.8,.2,1) 700ms forwards;
+}
+.opening__chart-end {
+  opacity: 0;
+  animation: opFadeIn 500ms cubic-bezier(.2,.8,.2,1) 900ms forwards;
+}
+.opening__chart-end circle {
+  fill: var(--crimson);
+  filter: drop-shadow(0 0 10px oklch(0.560 0.200 22 / 0.7));
+  animation: opEndPulse 1.8s ease-in-out infinite;
+  transform-origin: 1760px 510px;
+}
+@keyframes opEndPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.4); }
+}
+.opening__chart-end line {
+  stroke: var(--fg-faint);
+}
+.opening__chart-end text {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  fill: var(--fg-mute);
+  text-transform: uppercase;
+}
+@keyframes opFadeIn {
+  to { opacity: 1; }
+}
+
+/* 中文 headline */
+.opening__crash-headline {
+  position: absolute;
+  bottom: 140px;
+  left: 120px;
+  right: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 22px;
+  z-index: 4;
+}
+.opening__crash-line {
+  font-size: 42px;
+  color: var(--fg-soft);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+.opening__crash-emph {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 130px;
+  line-height: 0.95;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* 跌幅大数字 */
+.opening__crash-stat {
+  position: absolute;
+  right: 120px;
+  top: 230px;
+  text-align: right;
+  z-index: 4;
+}
+.opening__crash-stat-num {
+  font-family: var(--f-serif);
+  font-size: 240px;
+  line-height: 0.9;
+  color: var(--crimson);
+  letter-spacing: -0.04em;
+  font-feature-settings: "tnum";
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  filter: drop-shadow(0 0 40px oklch(0.560 0.200 22 / 0.35));
+}
+.opening__crash-stat-sign {
+  margin-right: 6px;
+}
+.opening__crash-stat-pct {
+  font-size: 130px;
+  margin-left: 4px;
+}
+.opening__crash-stat-label {
+  margin-top: 18px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+/* =========================================================
+   SCENE B · Victims
+   ========================================================= */
+.opening__vics-eyebrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 56px;
+}
+.opening__vics-eyebrow-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 38px;
+  color: var(--fg-soft);
+  font-weight: 300;
+}
+.opening__vics-em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 92px;
+  color: var(--accent);
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+}
+.opening__vics-em::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 8px;
+  background: oklch(0.700 0.170 42 / 0.25);
+  z-index: -1;
+  animation: opUnderlineGrow 700ms cubic-bezier(.2,.8,.2,1) 320ms both;
+  transform-origin: 0 50%;
+}
+@keyframes opUnderlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.opening__vics-by {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+.opening__vics-by-tag {
+  font-size: 14px;
+  color: var(--fg-faint);
+}
+.opening__vics-by-name {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 60px;
+  color: var(--accent);
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.opening__vics-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line-mid);
+}
+.opening__vics-thead {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr 0.5fr 0.7fr 0.5fr;
+  gap: 32px;
+  padding: 14px 0;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  border-bottom: 1px solid var(--line);
+}
+
+.opening__vic {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr 0.5fr 0.7fr 0.5fr;
+  gap: 32px;
+  align-items: baseline;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.opening__vic-product {
+  font-family: var(--f-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.opening__vic-product::before {
+  content: "▸";
+  color: var(--accent);
+  font-size: 16px;
+}
+.opening__vic-company {
+  font-family: var(--f-serif);
+  font-size: 60px;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  line-height: 1;
+}
+.opening__vic-ticker {
+  font-family: var(--f-mono);
+  font-size: 16px;
+  color: var(--fg-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--line-mid);
+  padding: 4px 10px;
+  display: inline-block;
+  width: fit-content;
+}
+.opening__vic-field {
+  font-size: 18px;
+  color: var(--fg-mute);
+}
+.opening__vic-drop {
+  font-family: var(--f-mono);
+  font-size: 44px;
+  font-weight: 500;
+  color: var(--fg-mute);
+  text-align: right;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
+}
+.opening__vic.is-current {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    oklch(0.700 0.170 42 / 0.05) 30%,
+    oklch(0.700 0.170 42 / 0.10) 70%,
+    transparent 100%
+  );
+}
+.opening__vic.is-current .opening__vic-company {
+  color: var(--paper);
+}
+.opening__vic.is-current .opening__vic-drop {
+  color: var(--crimson);
+}
+.opening__vic-flag {
+  position: absolute;
+  right: 0;
+  top: -4px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 3px 8px;
+  border: 1px solid var(--accent);
+  background: var(--bg);
+  animation: opFlagPulse 1.6s ease-in-out infinite;
+}
+@keyframes opFlagPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* =========================================================
+   SCENE C · Claude Design 揭幕
+   ========================================================= */
+.opening__reveal-meta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 56px;
+}
+.opening__reveal-meta .dot {
+  width: 4px;
+  height: 4px;
+  background: var(--fg-mute);
+  border-radius: 50%;
+}
+
+.opening__reveal-title {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  margin: 0;
+  font-size: 220px;
+  line-height: 0.9;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+.opening__reveal-word {
+  display: inline-block;
+}
+.opening__reveal-word--em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.opening__reveal-sub {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--fg-soft);
+}
+.opening__reveal-tilde {
+  color: var(--accent);
+  font-family: var(--f-serif);
+  font-style: italic;
+}
+
+.opening__reveal-tags {
+  margin-top: 56px;
+  display: flex;
+  gap: 14px;
+}
+.opening__reveal-tags span {
+  padding: 10px 20px;
+  border: 1px solid var(--line-mid);
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  background: oklch(0.965 0.018 78 / 0.025);
+}
+
+/* =========================================================
+   SCENE D · Skill pivot
+   ========================================================= */
+.opening__pivot-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 36px;
+}
+.opening__pivot-eyebrow-bar {
+  width: 56px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.opening__pivot-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 124px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  max-width: 1500px;
+  margin: 0 0 64px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 18px;
+}
+.opening__pivot-em {
+  color: var(--accent);
+  font-style: italic;
+  position: relative;
+  white-space: nowrap;
+}
+.opening__pivot-em::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  height: 8px;
+  background: oklch(0.700 0.170 42 / 0.25);
+  z-index: -1;
+  animation: opUnderlineGrow 800ms cubic-bezier(.2,.8,.2,1) 1100ms both;
+  transform-origin: 0 50%;
+}
+
+.opening__pivot-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.opening__skill-card {
+  position: relative;
+  border: 1px solid var(--line-mid);
+  background: oklch(0.965 0.018 78 / 0.025);
+  padding: 36px 44px;
+  backdrop-filter: blur(4px);
+}
+.opening__skill-card-deco::before,
+.opening__skill-card-deco::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+}
+.opening__skill-card-deco::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.opening__skill-card-deco::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.opening__skill-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.opening__skill-card-tag {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+}
+.opening__skill-card-name {
+  font-family: var(--f-mono);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+}
+.opening__skill-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.opening__skill-card-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  font-size: 22px;
+}
+.opening__skill-card-k {
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  color: var(--fg-mute);
+}
+.opening__skill-card-v {
+  color: var(--paper);
+}
+.opening__skill-card-foot {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--fg-mute);
+}
+.opening__skill-card-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: oklch(0.78 0.18 145);
+  animation: opPulse 1.6s ease-in-out infinite;
+}
+
+.opening__pivot-aside {
+  font-family: var(--f-serif);
+  font-size: 56px;
+  line-height: 1.2;
+  color: var(--fg-soft);
+  position: relative;
+}
+.opening__pivot-aside-q {
+  position: absolute;
+  left: -56px;
+  top: -36px;
+  font-size: 200px;
+  color: var(--accent);
+  opacity: 0.4;
+  font-style: italic;
+  line-height: 1;
+}
+.opening__pivot-aside em {
+  font-style: italic;
+  color: var(--paper);
+  display: block;
+  margin-top: 12px;
+}

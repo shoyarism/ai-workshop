@@ -1,0 +1,591 @@
+/* =========================================================
+   Chapter 14 · Outro · 项目预告 + 三连
+   light 主题 · 开源资源 → Easy Agent → 项目目标 → 三连 → 下期见
+   ========================================================= */
+
+.ot {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+/* ===================== Scene OPEN (step 0) ===================== */
+
+.ot__open {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 100px 140px;
+  text-align: center;
+}
+
+.ot__open-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.ot__open-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 68px;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--fg);
+}
+.ot__open-title em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.ot__open-title em::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 6px;
+  height: 8px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: otOpenUnder 1100ms 800ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes otOpenUnder {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+
+.ot__open-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  width: 100%;
+  max-width: 1500px;
+  margin-top: 24px;
+}
+
+.ot__open-card {
+  position: relative;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-left: 3px solid var(--accent);
+  padding: 32px 32px 28px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 280px;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: otOpenCardIn 720ms cubic-bezier(.2,.8,.2,1) forwards;
+  box-shadow: 0 24px 48px -36px oklch(0 0 0 / 0.18);
+}
+@keyframes otOpenCardIn {
+  to { opacity: 1; transform: none; }
+}
+
+.ot__open-card-num {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: var(--fg-faint);
+}
+
+.ot__open-card-name {
+  font-family: var(--f-mono);
+  font-size: 24px;
+  color: var(--fg);
+  line-height: 1.25;
+  word-break: break-word;
+}
+
+.ot__open-card-cn {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+.ot__open-card-desc {
+  font-family: var(--f-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--fg-mute);
+  margin-top: auto;
+}
+
+.ot__open-card-foot {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.ot__open-card-foot-arrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.ot__open-foot {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-mute);
+}
+
+/* ===================== Scene EASY (step 1) ===================== */
+
+.ot__easy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 120px;
+  text-align: center;
+}
+
+.ot__easy-eyebrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.ot__src-bracket { color: var(--fg-faint); font-family: var(--f-serif); font-style: italic; font-size: 26px; letter-spacing: 0; }
+.ot__src-label   { letter-spacing: 0.18em; }
+
+.ot__easy-pre {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+  margin: 0;
+}
+
+.ot__easy-name {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 240px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--fg);
+  position: relative;
+}
+.ot__easy-name em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+.ot__easy-name em::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 14px;
+  height: 16px;
+  background: var(--accent);
+  opacity: 0.16;
+  transform-origin: left;
+  animation: otEasyUnder 1100ms 1100ms cubic-bezier(.2,.8,.2,1) backwards;
+  z-index: -1;
+}
+@keyframes otEasyUnder {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.16; }
+}
+
+.ot__easy-sub {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--fg-soft);
+}
+.ot__easy-sub em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.ot__easy-meta {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.ot__easy-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+}
+
+/* ===================== Scene GOAL (step 2) ===================== */
+
+.ot__goal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  padding: 120px 140px;
+  text-align: center;
+}
+
+.ot__goal-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.ot__goal-flow {
+  display: grid;
+  grid-template-columns: 1fr 280px 1fr;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1600px;
+}
+
+.ot__goal-step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px 44px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  text-align: left;
+  min-height: 200px;
+  justify-content: center;
+}
+.ot__goal-step--from {
+  border-left: 3px solid var(--fg-faint);
+  opacity: 0.85;
+}
+.ot__goal-step--to {
+  border-left: 3px solid var(--accent);
+  background: oklch(0.965 0.030 38);
+}
+
+.ot__goal-step-tag {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.ot__goal-step-tag--alt { color: var(--accent); font-weight: 600; }
+
+.ot__goal-step-line {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 44px;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.ot__goal-step-line em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.ot__goal-arrow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.ot__goal-arrow-line {
+  width: 100%;
+  height: 1px;
+  background: var(--line-mid);
+}
+.ot__goal-arrow-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg);
+  padding: 0 16px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.ot__goal-arrow-head {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--accent);
+  background: var(--bg);
+  padding-left: 4px;
+  line-height: 1;
+}
+
+.ot__goal-foot {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--fg-mute);
+}
+.ot__goal-foot em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ===================== Scene TRIPLE (step 3) ===================== */
+
+.ot__triple {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 120px;
+  text-align: center;
+}
+
+.ot__triple-eyebrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+
+.ot__triple-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--fg);
+}
+.ot__triple-title em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.ot__triple-title em::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 8px;
+  height: 10px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: otTripleUnder 1100ms 800ms cubic-bezier(.2,.8,.2,1) backwards;
+  z-index: -1;
+}
+@keyframes otTripleUnder {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+
+.ot__triple-row {
+  display: grid;
+  grid-template-columns: repeat(3, 240px);
+  gap: 60px;
+  margin-top: 24px;
+}
+
+.ot__triple-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 36px 24px 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  opacity: 0;
+  transform: translateY(28px) scale(0.94);
+  animation: otTripleCardIn 720ms cubic-bezier(.6,-0.05,.2,1.2) forwards;
+}
+@keyframes otTripleCardIn {
+  to { opacity: 1; transform: none; }
+}
+.ot__triple-card:hover .ot__icon { color: var(--accent); }
+
+.ot__triple-icon-wrap {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg);
+  position: relative;
+}
+.ot__icon {
+  width: 100%;
+  height: 100%;
+  transition: color 280ms cubic-bezier(.2,.8,.2,1), transform 320ms cubic-bezier(.6,-0.05,.2,1.2);
+}
+
+/* hover-like 自动节奏脉冲 —— icon 颜色随节奏从 fg → accent → fg */
+.ot__triple-card:nth-child(1) .ot__icon { animation: otIconPulse 2400ms 1100ms cubic-bezier(.2,.8,.2,1) infinite; }
+.ot__triple-card:nth-child(2) .ot__icon { animation: otIconPulse 2400ms 1500ms cubic-bezier(.2,.8,.2,1) infinite; }
+.ot__triple-card:nth-child(3) .ot__icon { animation: otIconPulse 2400ms 1900ms cubic-bezier(.2,.8,.2,1) infinite; }
+@keyframes otIconPulse {
+  0%, 100% { color: var(--fg); transform: scale(1); }
+  20%      { color: var(--accent); transform: scale(1.06); }
+  60%      { color: var(--fg); transform: scale(1); }
+}
+
+.ot__triple-label {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg);
+}
+
+.ot__triple-mono {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.ot__triple-foot {
+  margin-top: 16px;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-mute);
+}
+.ot__triple-foot em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ===================== Scene BYE (step 4) ===================== */
+
+.ot__bye {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 140px;
+  text-align: center;
+}
+
+.ot__bye-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.ot__bye-line {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 220px;
+  line-height: 1;
+  margin: 0;
+  color: var(--fg);
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+.ot__bye-line em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.ot__bye-line em::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 18px;
+  height: 16px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: otByeUnder 1100ms 1300ms cubic-bezier(.2,.8,.2,1) backwards;
+  z-index: -1;
+}
+@keyframes otByeUnder {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+.ot__bye-arrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 100px;
+  color: var(--fg-faint);
+  line-height: 1;
+  align-self: center;
+  animation: otByeArrow 1100ms 1700ms cubic-bezier(.6,-0.05,.2,1.2) backwards;
+}
+@keyframes otByeArrow {
+  from { transform: translate(-12px, 12px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.ot__bye-sig {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.ot__bye-sig-bar {
+  width: 80px;
+  height: 1px;
+  background: var(--line-mid);
+}

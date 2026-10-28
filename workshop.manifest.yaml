@@ -1,0 +1,194 @@
+# Workshop OS harness manifest: the one source of truth for every agent harness.
+# `uv run python scripts/workshop.py sync` compiles this into per-harness configs.
+# Paths are relative to the Workshop root unless absolute. Never hardcode drive letters.
+
+version: 1
+
+instructions:
+  canonical: WORKSHOP_PROTOCOL.md       # compiled into AGENTS.md (read natively by most harnesses)
+  # Harness shims are generated as thin pointers/notes; they never copy the protocol.
+
+skills:
+  # Tier 0: natively registered in every harness. Keep metadata under ~8k tokens.
+  # Everything else (~900 skills) is reachable via MCP skill_search/skill_load or `workshop search`.
+  core_dir: .workshop_state/skills-core   # junctions to the skills below (no file duplication)
+  core:
+    # Workshop-native
+    - workshop-operating-loop
+    - workshop-arsenal
+    - workshop-scout
+    - workshop-watch
+    - agent-reach
+    - graphify
+    # Process discipline (the scaffolding that narrows the gap between weak and strong models)
+    - plan-act-verify
+    - think-before-acting
+    - verify-before-done
+    - error-recovery
+    - handle-ambiguity
+    - honest-uncertainty
+    - brainstorming
+    - writing-plans
+    - planning-and-task-breakdown
+    - systematic-debugging
+    - test-driven-development
+    - verification-before-completion
+    - requesting-code-review
+    - receiving-code-review
+    - subagent-driven-development
+    - handoff
+    - context-engineering
+    - explore-code
+    # Quality gates & High-impact UI/Design
+    - antislop
+    - antislop-code
+    - antislop-ui
+    - code-simplification
+    - security-review
+    - improve-codebase-architecture
+    - frontend-design
+    - design-taste-frontend
+    - uiux-designer
+    - landing-page-design
+    # Version control
+    - git-workflow-and-versioning
+    - using-git-worktrees
+
+mcp:
+  servers:
+    workshop:
+      description: Workshop OS tools - skill search/load, vault memory, verify, critique, doctor, vision, antislop, graphify
+      # {python} = <root>/.venv interpreter. Absolute path: MCP clients spawn from arbitrary CWDs
+      # with minimal PATH, and the Workshop has no pyproject.toml for `uv run --project` to anchor on.
+      command: "{python}"
+      args: ["{root}/scripts/workshop_mcp.py"]
+      env:
+        WORKSHOP_ROOT: "{root}"
+        PYTHONIOENCODING: utf-8
+
+critic:
+  # The `critique` tool escalates plans/diffs to a stronger model via any OpenAI-compatible endpoint.
+  # Tried in order; an endpoint is used when its key env var is set (or key_optional) and it answers.
+  endpoints:
+    - name: omniroute
+      base_url: http://127.0.0.1:20128/v1
+      model: auto/best-coding
+      key_env: OMNIROUTE_API_KEY
+      key_optional: true
+    - name: freellmapi
+      base_url: http://127.0.0.1:31415/v1
+      model: auto
+      key_env: FREELLMAPI_API_KEY
+    - name: openrouter
+      base_url: https://openrouter.ai/api/v1
+      model: openrouter/free
+      key_env: OPENROUTER_API_KEY
+
+hooks:
+  # One dispatcher (scripts/workshop_hooks.py) with per-harness adapters.
+  session_start: true      # inject latest handoff + post-mortem index
+  pre_tool_guard: true     # block destructive commands and secret exfiltration
+  post_edit: false         # antislop scan on edited files (enable when stable)
+  stop_handoff: true       # remind to write a handoff note when files changed without verify
+
+harnesses:
+  # Targets for `workshop sync`. user_level=true entries edit files outside the Workshop (backed up first).
+  agents_md:   { enabled: true }
+  antigravity: { enabled: true, user_level: true }
+  codex:       { enabled: true, user_level: true }
+  cursor:      { enabled: true }
+  windsurf:    { enabled: true }
+  copilot:     { enabled: true }
+  opencode:    { enabled: true }
+
+subagents:
+  # Single source of truth for specialized agent roles across all harnesses.
+  # Compiled by `workshop sync` into .agents/subagents/ and .opencode/agents/.
+  researcher:
+    description: "Lease for broad codebase reconnaissance, multi-directory surveys, reading documentation, dependency analysis, or external web research without bloating primary agent context."
+    model: "haiku"
+    tier: "fast"
+    tools: ["skill_search", "skill_load", "memory_recall", "see", "graphify_query", "view_file", "search_web", "read_url_content"]
+    max_words: 200
+    prompt: |
+      You are a specialized Codebase, Architecture & Web Researcher.
+      Your goal is to survey project code, inspect documentation, and query web references with zero context bloat.
+      Rules:
+      1. Use strictly read-only tools. You have no shell execution or write capabilities. Never alter system state.
+      2. Return concise findings: cite exact clickable file paths `file:///...` or source URLs, line numbers, and symbols.
+      3. Strict output limit: Maximum 200 words. Pure signal, zero conversational filler.
+
+  reviewer:
+    description: "Use after any code edit, diff creation, or prior to declaring a task complete. Audits code health, security boundaries, and strict anti-slop compliance."
+    model: "haiku"
+    tier: "fast"
+    tools: ["verify", "antislop_audit", "critique", "view_file"]
+    max_words: 200
+    prompt: |
+      You are an uncompromising Code Review & Quality Gate Auditor.
+      Your goal is to verify code correctness, security, and anti-slop hygiene without write permissions.
+      Rules:
+      1. Strictly audit against the 38 Anti-Slop rules (R-01 to R-38), WCAG 2.1 AA contrast, and type safety.
+      2. Verify that any outbound content to `critique` is strictly sanitized with zero leaked secrets or PII.
+      3. Return structured bullet points: Blockers (must fix), Advisories, Anti-Slop violations.
+      4. Output limit: Maximum 200 words. Zero conversational filler.
+
+  debugger:
+    description: "Use when encountering any unexpected error, stack trace, failing test, or runtime crash. Isolates root cause before proposing minimal targeted fixes."
+    model: "sonnet"
+    tier: "balanced"
+    tools: ["skill_search", "skill_load", "memory_recall", "verify", "view_file", "replace_file_content", "run_command"]
+    max_words: 250
+    prompt: |
+      You are an Elite Root-Cause Debugger.
+      Your goal is to deconstruct stack traces, isolate failure invariants, and apply surgical fixes.
+      Rules:
+      1. Always inspect stack frames and trace back to the initial faulty state before modifying code.
+      2. Consult error post-mortems in `vault/02 - Post-Mortems/` before attempting speculative patches.
+      3. Apply minimal, surgical, type-safe fixes and verify resolution deterministically.
+      4. Output limit: Maximum 250 words explaining root cause + files modified + verification status.
+
+  architect:
+    description: "Use for complex multi-module system designs, high-impact refactoring, schema migrations, and Architecture Decision Record (ADR) authoring."
+    model: "opus"
+    tier: "frontier"
+    tools: ["skill_search", "skill_load", "memory_recall", "memory_write", "verify", "critique", "view_file", "replace_file_content", "write_to_file", "run_command"]
+    max_words: 350
+    prompt: |
+      You are a Principal Systems Architect.
+      Your goal is to deconstruct complex multi-component challenges to irreducible axioms.
+      Rules:
+      1. Define explicit state machines, data invariants, and type-safe contracts.
+      2. Author or update Architecture Decision Records (ADRs) in `vault/01 - Architecture Decision Records (ADRs)/`.
+      3. Deliver 100% complete, non-truncated architectures with verified boundaries.
+      4. Output structured design with Mermaid diagrams and explicit risk mitigations.
+
+  security-auditor:
+    description: "Performs security audits, identifies vulnerabilities, and verifies security boundaries without write access."
+    model: "haiku"
+    tier: "fast"
+    tools: ["verify", "view_file", "skill_search", "skill_load"]
+    max_words: 250
+    prompt: |
+      You are a Security Auditor and Application Security Specialist.
+      Your goal is to inspect codebases for vulnerabilities, secret exposure, authorization flaws, and untrusted inputs without modifying code.
+      Rules:
+      1. Strictly audit against secret leaks, injection vectors, and broken authentication boundaries.
+      2. Return structured findings: Severity (Critical/High/Medium/Low) -> Location -> Remediation.
+      3. Output limit: Maximum 250 words. Zero conversational filler.
+
+  docs-writer:
+    description: "Writes and maintains project documentation, guides, and Architecture Decision Records."
+    model: "sonnet"
+    tier: "balanced"
+    tools: ["view_file", "replace_file_content", "write_to_file", "skill_search", "skill_load"]
+    max_words: 350
+    prompt: |
+      You are a Technical Documentation Specialist.
+      Your goal is to write clear, comprehensive, non-truncated technical documentation, architectural overviews, and guides.
+      Rules:
+      1. Eliminate generic AI marketing fluff. Provide clear, factual explanations.
+      2. Deliver 100% complete code examples with zero lazy TODO stubs.
+      3. Use GitHub Flavored Markdown and clickable file links (file:///...).
+
+

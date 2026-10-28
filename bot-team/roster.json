@@ -1,0 +1,184 @@
+{
+  "team": "The 14-bot AI Company",
+  "mission": "Find real demand, build valuable products, deploy, generate revenue.",
+  "model": "auto/best-reasoning",
+  "model_provider": "custom:omniroute (http://127.0.0.1:20128/v1)",
+  "profiles_root": "C:\\Users\\TRIAL\\AppData\\Local\\hermes\\profiles",
+  "persona_source": "D:\\Workshop\\auto-company\\.claude\\agents",
+  "coordination": {
+    "kanban": "shared default board; orchestrator creates tasks with assignee=<handle> (routed by role via profile --description)",
+    "group_chat": "desktop Bots tab -> create a group, add the 14 bots, @mention to speak",
+    "cli": "hermes -p <handle> chat   (or ~/.local/bin/<handle>.bat)"
+  },
+  "bots": [
+    {
+      "handle": "ceo",
+      "title": "Bezos · CEO — Strategy & Priorities",
+      "persona": "Jeff Bezos",
+      "role": "Strategy & Priorities",
+      "layer": "Strategy",
+      "docs_dir": "docs/ceo",
+      "workflows": [
+        "New Product Evaluation",
+        "Product Launch",
+        "Weekly Review",
+        "Opportunity Discovery"
+      ]
+    },
+    {
+      "handle": "cto",
+      "title": "Vogels · CTO — Architecture & Reliability",
+      "persona": "Werner Vogels",
+      "role": "Architecture & Tech Selection",
+      "layer": "Strategy",
+      "docs_dir": "docs/cto",
+      "workflows": [
+        "New Product Evaluation"
+      ]
+    },
+    {
+      "handle": "critic",
+      "title": "Munger · Critic — Inversion & Pre-Mortem",
+      "persona": "Charlie Munger",
+      "role": "Inversion & Pre-Mortem",
+      "layer": "Strategy",
+      "docs_dir": "docs/critic",
+      "workflows": [
+        "New Product Evaluation",
+        "Pricing & Monetization",
+        "Opportunity Discovery"
+      ]
+    },
+    {
+      "handle": "product",
+      "title": "Norman · Product — UX & Usability",
+      "persona": "Don Norman",
+      "role": "Product & Usability",
+      "layer": "Product",
+      "docs_dir": "docs/product",
+      "workflows": [
+        "New Product Evaluation"
+      ]
+    },
+    {
+      "handle": "ui",
+      "title": "Duarte · UI — Visual Design & Design System",
+      "persona": "Matias Duarte",
+      "role": "Visual Design & Design System",
+      "layer": "Product",
+      "docs_dir": "docs/ui",
+      "workflows": [
+        "Feature Development"
+      ]
+    },
+    {
+      "handle": "interaction",
+      "title": "Cooper · Interaction — Flows & Personas",
+      "persona": "Alan Cooper",
+      "role": "Interaction & Flows",
+      "layer": "Product",
+      "docs_dir": "docs/interaction",
+      "workflows": [
+        "Feature Development"
+      ]
+    },
+    {
+      "handle": "fullstack",
+      "title": "DHH · Full-Stack — Implementation & Dev Workflow",
+      "persona": "David Heinemeier Hansson",
+      "role": "Implementation",
+      "layer": "Engineering",
+      "docs_dir": "docs/fullstack",
+      "workflows": [
+        "Feature Development"
+      ]
+    },
+    {
+      "handle": "qa",
+      "title": "Bach · QA — Test Strategy & Quality",
+      "persona": "James Bach",
+      "role": "Testing & Quality",
+      "layer": "Engineering",
+      "docs_dir": "docs/qa",
+      "workflows": [
+        "Feature Development",
+        "Product Launch",
+        "Weekly Review"
+      ]
+    },
+    {
+      "handle": "devops",
+      "title": "Hightower · DevOps — CI/CD & Ops",
+      "persona": "Kelsey Hightower",
+      "role": "CI/CD & Infrastructure",
+      "layer": "Engineering",
+      "docs_dir": "docs/devops",
+      "workflows": [
+        "Feature Development",
+        "Product Launch"
+      ]
+    },
+    {
+      "handle": "marketing",
+      "title": "Godin · Marketing — Positioning & Brand",
+      "persona": "Seth Godin",
+      "role": "Positioning & Brand",
+      "layer": "Business",
+      "docs_dir": "docs/marketing",
+      "workflows": [
+        "Product Launch"
+      ]
+    },
+    {
+      "handle": "ops",
+      "title": "Graham · Operations — Growth & Retention",
+      "persona": "Paul Graham",
+      "role": "Growth & Retention",
+      "layer": "Business",
+      "docs_dir": "docs/ops",
+      "workflows": [
+        "Product Launch",
+        "Weekly Review"
+      ]
+    },
+    {
+      "handle": "sales",
+      "title": "Ross · Sales — Funnel & Conversion",
+      "persona": "Aaron Ross",
+      "role": "Pricing & Conversion",
+      "layer": "Business",
+      "docs_dir": "docs/sales",
+      "workflows": [
+        "Product Launch",
+        "Weekly Review",
+        "Pricing & Monetization"
+      ]
+    },
+    {
+      "handle": "cfo",
+      "title": "Campbell · CFO — Pricing & Unit Economics",
+      "persona": "Patrick Campbell",
+      "role": "Financials & Unit Economics",
+      "layer": "Business",
+      "docs_dir": "docs/cfo",
+      "workflows": [
+        "New Product Evaluation",
+        "Pricing & Monetization",
+        "Weekly Review"
+      ]
+    },
+    {
+      "handle": "research",
+      "title": "Thompson · Research — Market & Competitive",
+      "persona": "Ben Thompson",
+      "role": "Market & Competitive Research",
+      "layer": "Intelligence",
+      "docs_dir": "docs/research",
+      "workflows": [
+        "New Product Evaluation",
+        "Pricing & Monetization",
+        "Opportunity Discovery"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@import './fonts.css';
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './theme.css';
+@import './base.css';
+@import './recipes.css';

@@ -1,0 +1,130 @@
+[
+  {
+    "model": "codestral-latest",
+    "basic_reply": true,
+    "single_tool": true,
+    "multi_tool": true,
+    "context_20k": true,
+    "latencies": [
+      499.2631999994046,
+      462.62629999546334,
+      460.0648999985424,
+      1164.4610000003013
+    ],
+    "errors": [],
+    "score": 100,
+    "avg_latency_ms": 646.6
+  },
+  {
+    "model": "codestral",
+    "basic_reply": true,
+    "single_tool": true,
+    "multi_tool": true,
+    "context_20k": true,
+    "latencies": [
+      350.6254000021727,
+      553.4579999948619,
+      1191.4529999994556,
+      5118.21449999843
+    ],
+    "errors": [],
+    "score": 100,
+    "avg_latency_ms": 1803.4
+  },
+  {
+    "model": "command-r",
+    "basic_reply": true,
+    "single_tool": true,
+    "multi_tool": true,
+    "context_20k": true,
+    "latencies": [
+      423.24209999787854,
+      1246.7252999995253,
+      2554.2889999996987,
+      4628.737200000614
+    ],
+    "errors": [],
+    "score": 100,
+    "avg_latency_ms": 2213.2
+  },
+  {
+    "model": "command-r-plus-08-2024",
+    "basic_reply": false,
+    "single_tool": false,
+    "multi_tool": false,
+    "context_20k": false,
+    "latencies": [],
+    "errors": [
+      "Basic reply error: Max retries exceeded (HTTP 429)",
+      "Single tool error: Max retries exceeded (HTTP 429)",
+      "Multi-tool error: Max retries exceeded (HTTP 429)",
+      "20k context error: Max retries exceeded (HTTP 429)"
+    ],
+    "score": 0,
+    "avg_latency_ms": 0.0
+  },
+  {
+    "model": "gemini-2.5-flash",
+    "basic_reply": false,
+    "single_tool": false,
+    "multi_tool": false,
+    "context_20k": false,
+    "latencies": [],
+    "errors": [
+      "Basic reply error: HTTP 404: Not Found - {\"error\":{\"message\":\"Every routed provider reports the model as not found or removed upstream (1 att",
+      "Single tool error: Max retries exceeded (HTTP 429)",
+      "Multi-tool error: Max retries exceeded (HTTP 429)",
+      "20k context error: Max retries exceeded (HTTP 429)"
+    ],
+    "score": 0,
+    "avg_latency_ms": 0.0
+  },
+  {
+    "model": "mistral-small-3-2-24b-instruct",
+    "basic_reply": false,
+    "single_tool": false,
+    "multi_tool": false,
+    "context_20k": false,
+    "latencies": [],
+    "errors": [
+      "Basic reply error: HTTP 503: Service Unavailable - {\"error\":{\"message\":\"No candidate model has a configured, usable provider key. Add provider API keys",
+      "Single tool error: HTTP 503: Service Unavailable - {\"error\":{\"message\":\"No candidate model has a configured, usable provider key. Add provider API keys",
+      "Multi-tool error: HTTP 503: Service Unavailable - {\"error\":{\"message\":\"No candidate model has a configured, usable provider key. Add provider API keys",
+      "20k context error: HTTP 503: Service Unavailable - {\"error\":{\"message\":\"No candidate model has a configured, usable provider key. Add provider API keys"
+    ],
+    "score": 0,
+    "avg_latency_ms": 0.0
+  },
+  {
+    "model": "openai-gpt-4o-mini",
+    "basic_reply": false,
+    "single_tool": false,
+    "multi_tool": false,
+    "context_20k": false,
+    "latencies": [],
+    "errors": [
+      "Basic reply error: Max retries exceeded (HTTP 429)",
+      "Single tool error: Max retries exceeded (HTTP 429)",
+      "Multi-tool error: HTTP 502: Bad Gateway - {\"error\":{\"message\":\"Provider error (OpenAI GPT-4o Mini): Custom (OpenAI-compatible) returned 200 wi",
+      "20k context error: HTTP 404: Not Found - {\"error\":{\"message\":\"Every routed provider reports the model as not found or removed upstream (1 att"
+    ],
+    "score": 0,
+    "avg_latency_ms": 0.0
+  },
+  {
+    "model": "hyperbolic-llama-3.3-70b",
+    "basic_reply": false,
+    "single_tool": false,
+    "multi_tool": false,
+    "context_20k": false,
+    "latencies": [],
+    "errors": [
+      "Basic reply error: HTTP 502: Bad Gateway - {\"error\":{\"message\":\"Provider error (Hyperbolic Llama 3.3 70B): Custom (OpenAI-compatible) returned ",
+      "Single tool error: HTTP 404: Not Found - {\"error\":{\"message\":\"Every routed provider reports the model as not found or removed upstream (1 att",
+      "Multi-tool error: HTTP 404: Not Found - {\"error\":{\"message\":\"Every routed provider reports the model as not found or removed upstream (1 att",
+      "20k context error: HTTP 502: Bad Gateway - {\"error\":{\"message\":\"Provider error (Hyperbolic Llama 3.3 70B): Custom (OpenAI-compatible) returned "
+    ],
+    "score": 0,
+    "avg_latency_ms": 0.0
+  }
+]

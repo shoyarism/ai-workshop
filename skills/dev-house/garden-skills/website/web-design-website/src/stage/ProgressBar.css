@@ -1,0 +1,105 @@
+/* —— 进度条热区：固定在 viewport 底部 —— */
+.progress-zone {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;          /* 默认热区高度（不可见） */
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 36px 10px;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 320ms cubic-bezier(.4,0,1,1),
+              transform 320ms cubic-bezier(.4,0,1,1),
+              height 320ms cubic-bezier(.4,0,1,1),
+              padding 320ms cubic-bezier(.4,0,1,1);
+}
+
+.progress-zone.is-visible {
+  height: 64px;
+  opacity: 1;
+  transform: translateY(0);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* —— 上方文字标识 —— */
+.progress-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: rgba(245, 240, 230, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  user-select: none;
+}
+.progress-meta__num {
+  font-weight: 600;
+  color: oklch(0.78 0.13 50);   /* ember 提亮版 */
+}
+.progress-meta__title {
+  font-family: "Geist", system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(255, 252, 245, 0.95);
+  flex: 1;
+}
+.progress-meta__count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* —— 实际进度条 —— */
+.progress-bar {
+  position: relative;
+  height: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.progress-bar__track {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+.progress-bar__fill {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: oklch(0.78 0.13 50);
+  transform-origin: 0 50%;
+  transition: transform 280ms cubic-bezier(.2,.8,.2,1);
+}
+.progress-bar__tick {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0;
+  transform: rotate(45deg);
+  transition: background 200ms, border-color 200ms, transform 200ms;
+}
+.progress-bar__tick:hover {
+  background: oklch(0.78 0.13 50);
+  border-color: oklch(0.78 0.13 50);
+}
+.progress-bar__tick.is-current {
+  background: oklch(0.78 0.13 50);
+  border-color: oklch(0.78 0.13 50);
+  transform: rotate(45deg) scale(1.15);
+}

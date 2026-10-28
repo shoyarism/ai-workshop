@@ -1,0 +1,16 @@
+service: "service:ImageGenService"
+labels:
+  owner: workshop
+  project: open-image-models
+python:
+  packages:
+    - torch
+    - torchvision
+    - diffusers
+    - transformers
+    - accelerate
+    - safetensors
+    - pillow
+include:
+  - "service.py"
+  - "generate.py"

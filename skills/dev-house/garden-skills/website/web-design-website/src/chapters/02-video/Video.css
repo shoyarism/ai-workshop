@@ -1,0 +1,183 @@
+/* =========================================================
+   Chapter 02 · Anthropic 官方宣传片
+   light 主题 · 米色纸感底 · 中央虚拟显示器外框
+   ========================================================= */
+
+.vid {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 100px 80px;
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+/* TV 外壳 */
+.vid__tv-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vid__tv {
+  position: relative;
+  width: 1280px;
+  background: linear-gradient(
+    180deg,
+    oklch(0.245 0.015 60) 0%,
+    oklch(0.190 0.014 60) 100%
+  );
+  border-radius: 18px;
+  padding: 18px 22px 22px;
+  box-shadow:
+    0 60px 80px -40px oklch(0.180 0.014 60 / 0.35),
+    0 24px 36px -20px oklch(0.180 0.014 60 / 0.20),
+    inset 0 1px 0 oklch(0.965 0.018 78 / 0.08),
+    inset 0 -1px 0 oklch(0.180 0.014 60 / 0.6);
+}
+
+/* 角落螺丝 */
+.vid__screw {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    oklch(0.700 0.012 60) 0%,
+    oklch(0.380 0.012 60) 70%,
+    oklch(0.180 0.012 60) 100%
+  );
+  box-shadow: inset 0 0 1px oklch(0.180 0.012 60);
+}
+.vid__screw--tl { top: 12px; left: 12px; }
+.vid__screw--tr { top: 12px; right: 12px; }
+.vid__screw--bl { bottom: 14px; left: 12px; }
+.vid__screw--br { bottom: 14px; right: 12px; }
+
+/* 顶部状态条 */
+.vid__topstrip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px 12px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: oklch(0.620 0.020 60);
+  text-transform: uppercase;
+}
+.vid__led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: oklch(0.78 0.18 145);
+  box-shadow: 0 0 8px oklch(0.78 0.18 145 / 0.7);
+  animation: vidLedPulse 1.4s ease-in-out infinite;
+}
+@keyframes vidLedPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+.vid__topstrip-spacer {
+  flex: 1;
+}
+
+/* 屏幕（视频容器） */
+.vid__screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px oklch(0.180 0.014 60),
+    inset 0 0 24px oklch(0.180 0.014 60 / 0.6);
+}
+
+.vid__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* 微弱扫描线 */
+.vid__scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: repeating-linear-gradient(
+    180deg,
+    oklch(0.965 0.018 78 / 0) 0px,
+    oklch(0.965 0.018 78 / 0) 2px,
+    oklch(0.965 0.018 78 / 0.025) 3px,
+    oklch(0.965 0.018 78 / 0) 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* 底部品牌条 */
+.vid__brandstrip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 18px 4px;
+  font-family: var(--f-mono);
+  color: oklch(0.620 0.020 60);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+.vid__brand-mark {
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.vid__brand-name {
+  font-weight: 600;
+  color: oklch(0.880 0.020 78);
+  letter-spacing: 0.22em;
+}
+
+/* 底座 */
+.vid__stand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2px;
+}
+.vid__stand-neck {
+  width: 200px;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    oklch(0.220 0.015 60) 0%,
+    oklch(0.180 0.014 60) 100%
+  );
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  box-shadow: 0 4px 8px -2px oklch(0.180 0.014 60 / 0.3);
+}
+.vid__stand-base {
+  width: 340px;
+  height: 8px;
+  background: linear-gradient(
+    180deg,
+    oklch(0.230 0.015 60) 0%,
+    oklch(0.170 0.014 60) 100%
+  );
+  border-radius: 4px;
+  box-shadow:
+    0 12px 24px -8px oklch(0.180 0.014 60 / 0.5),
+    0 4px 6px -1px oklch(0.180 0.014 60 / 0.3);
+}

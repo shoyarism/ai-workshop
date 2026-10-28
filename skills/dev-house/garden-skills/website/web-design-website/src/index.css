@@ -1,0 +1,46 @@
+/* —— 字体加载 —— */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap");
+/* Ch06 用 —— 黑名单字体 */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;500&family=Fraunces:ital,wght@0,400;1,400&display=swap");
+/* Ch06 用 —— 推荐替代字体 */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Space+Grotesk:wght@400;500&family=Sora:wght@400;600&family=Newsreader:ital,wght@0,400;1,400&display=swap");
+
+@import "./design/tokens.css";
+
+/* —— Reset —— */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; height: 100%; }
+body {
+  font-family: var(--f-sans);
+  color: var(--fg);
+  background: #000;            /* letterbox 黑边 */
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+::selection { background: var(--accent); color: var(--paper); }
+
+/* —— 全局排版基线 —— */
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+p { line-height: 1.5; text-wrap: pretty; }
+
+/* —— Reduced motion —— */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

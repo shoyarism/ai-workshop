@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workshop OS Free Model Fallback Configuration",
+  "description": "Deterministic fallback chain derived from 2026-10-05 empirical fitness benchmarking across 4 criteria (Basic Reply, 1-Tool schema, 3-Tool disambiguation, and 20k context recall).",
+  "updated": "2026-10-05",
+  "recommended_fallback_chain": [
+    {
+      "priority": 1,
+      "model": "codestral-latest",
+      "score": 100,
+      "avg_latency_ms": 646.6,
+      "max_context": "32k",
+      "status": "active",
+      "role": "primary",
+      "notes": "Flawless multi-tool disambiguation, sub-second latency, 20k context recall passed."
+    },
+    {
+      "priority": 2,
+      "model": "codestral",
+      "score": 100,
+      "avg_latency_ms": 1803.4,
+      "max_context": "32k",
+      "status": "active",
+      "role": "secondary",
+      "notes": "Reliable backup with consistent tool calling."
+    },
+    {
+      "priority": 3,
+      "model": "command-r",
+      "score": 100,
+      "avg_latency_ms": 2213.2,
+      "max_context": "128k",
+      "status": "active",
+      "role": "tertiary",
+      "notes": "128k context window, robust instruction following and tool compliance."
+    }
+  ],
+  "excluded_models": [
+    {
+      "model": "command-r-plus-08-2024",
+      "status": "disabled",
+      "reason": "Frequent upstream 429 rate-limiting on free tiers."
+    },
+    {
+      "model": "openai-gpt-4o-mini",
+      "status": "disabled",
+      "reason": "Upstream provider out-of-credits / HTTP 502 Bad Gateway."
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "status": "disabled",
+      "reason": "Upstream model not found (HTTP 404) / routed provider failures."
+    },
+    {
+      "model": "mistral-small-3-2-24b-instruct",
+      "status": "disabled",
+      "reason": "HTTP 503 (missing upstream provider API key)."
+    },
+    {
+      "model": "hyperbolic-llama-3.3-70b",
+      "status": "disabled",
+      "reason": "HTTP 404 / 502 upstream connection failures."
+    },
+    {
+      "model": "qwen-3.8-27b",
+      "status": "disabled",
+      "reason": "Upstream Cloudflare Workers AI credentials missing."
+    }
+  ]
+}

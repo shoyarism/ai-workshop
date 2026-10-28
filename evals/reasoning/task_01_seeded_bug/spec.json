@@ -1,0 +1,10 @@
+{
+  "id": "TASK-01-SEEDED-BUG",
+  "name": "Seeded Bug Fix: Tiered Discount Tax Order",
+  "category": "correctness",
+  "difficulty": "medium",
+  "prompt": "In `evals/reasoning/task_01_seeded_bug/cart.py`, customers report that sales tax calculations are incorrect when discounts apply. All financial calculations must strictly use Python `decimal.Decimal` with round-half-up (`ROUND_HALF_UP`) to 2 decimal places. Fix the bug so that sales tax is correctly computed on the net discounted subtotal and edge cases pass.",
+  "target_file": "evals/reasoning/task_01_seeded_bug/cart.py",
+  "hidden_test": "evals/reasoning/task_01_seeded_bug/test_hidden.py",
+  "expected_failure_initial": true
+}

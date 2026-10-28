@@ -1,0 +1,40 @@
+name: 🐛 Bug Report
+description: Report a broken skill, court misclassification, or script failure
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue in Workshop OS. Please provide reproducible facts.
+  - type: input
+    id: environment
+    attributes:
+      label: Operating System & Agent Harness
+      description: e.g. Windows 11 / Ubuntu 24.04, Claude Code / Gemini Antigravity / Cursor
+      placeholder: e.g. Windows 11 + Claude Code CLI
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Exact CLI command or skill activation sequence.
+      placeholder: |
+        1. Run `python scripts/workshop.py search ...`
+        2. Execute `...`
+    validations:
+      required: true
+  - type: textarea
+    id: court_output
+    attributes:
+      label: Slop Court or Terminal Output
+      description: Paste any error traces or docket logs.
+      render: shell

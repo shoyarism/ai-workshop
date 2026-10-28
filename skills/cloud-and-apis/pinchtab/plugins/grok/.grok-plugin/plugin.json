@@ -1,0 +1,13 @@
+{
+  "name": "pinchtab",
+  "version": "0.1.0",
+  "description": "Browser control for AI agents via PinchTab. CLI skill plus MCP tools for navigate, snapshot, click, fill, and headed profiles.",
+  "author": {
+    "name": "PinchTab",
+    "url": "https://pinchtab.com"
+  },
+  "homepage": "https://pinchtab.com",
+  "repository": "https://github.com/pinchtab/pinchtab",
+  "license": "MIT",
+  "keywords": ["pinchtab"]
+}

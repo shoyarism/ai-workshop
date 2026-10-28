@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>StyleSeed - Design Tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+/* ========================================
+   CSS Custom Properties (from theme.css)
+   ======================================== */
+:root {
+  --brand: #721FE5;
+  --primary: #030213;
+  --primary-foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #030213;
+  --card: #ffffff;
+  --card-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --border: rgba(0,0,0,0.1);
+  --input-background: #f3f3f5;
+  --destructive: #d4183d;
+  --success: #6B9B7A;
+  --warning: #D97706;
+  --info: #3B82F6;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 2px 4px rgba(0,0,0,0.08);
+  --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-modal: 0 8px 24px rgba(0,0,0,0.12);
+  --radius: 0.625rem;
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #f5f5f5;
+  --card: #222222;
+  --card-foreground: #f5f5f5;
+  --muted: #333333;
+  --muted-foreground: #a0a0a0;
+  --border: rgba(255,255,255,0.12);
+  --input-background: #2a2a2a;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-card-hover: 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-elevated: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-modal: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* ========================================
+   Base Reset & Typography
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Pretendard Variable', 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+  transition: background var(--duration-normal) var(--ease-default),
+              color var(--duration-normal) var(--ease-default);
+}
+
+/* ========================================
+   Layout
+   ======================================== */
+.page-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  padding-bottom: 80px;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.page-header-left h1 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.page-header-left h1 span {
+  color: var(--brand);
+}
+
+.page-header-left p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+/* Dark mode toggle */
+.dark-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  user-select: none;
+}
+
+.dark-toggle-track {
+  width: 48px;
+  height: 28px;
+  border-radius: 9999px;
+  background: #cbced4;
+  position: relative;
+  transition: background var(--duration-normal) var(--ease-default);
+  flex-shrink: 0;
+}
+
+.dark .dark-toggle-track {
+  background: var(--brand);
+}
+
+.dark-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform var(--duration-normal) var(--ease-spring);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.dark .dark-toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* ========================================
+   Table of Contents (TOC)
+   ======================================== */
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.toc a {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  background: var(--muted);
+  border-radius: calc(var(--radius) - 2px);
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.toc a:hover {
+  color: var(--foreground);
+  background: var(--border);
+}
+
+/* ========================================
+   Section
+   ======================================== */
+.section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  color: var(--foreground);
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-bottom: 24px;
+}
+
+.subsection-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+/* ========================================
+   Card
+   ======================================== */
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+  padding: 24px;
+  transition: background var(--duration-normal) var(--ease-default),
+              box-shadow var(--duration-normal) var(--ease-default),
+              border-color var(--duration-normal) var(--ease-default);
+}
+
+/* ========================================
+   1. Color Palette
+   ======================================== */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.color-swatch-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-swatch {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.color-swatch-label {
+  text-align: center;
+}
+
+.color-swatch-label .token-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  display: block;
+}
+
+.color-swatch-label .token-value {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  display: block;
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.color-swatch-label .token-var {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  display: block;
+  margin-top: 1px;
+  opacity: 0.7;
+}
+
+/* Contrast demo */
+.contrast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.contrast-demo {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.contrast-demo .label {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contrast-demo .sample {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Chart color strip */
+.chart-strip {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.chart-swatch {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* ========================================
+   2. Typography
+   ======================================== */
+.type-scale-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.type-scale-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 12px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.type-scale-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.type-scale-table tr:last-child td {
+  border-bottom: none;
+}
+
+.type-meta {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+.type-meta .token {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.type-meta code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--muted);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.weight-samples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.weight-sample {
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--muted);
+  transition: background var(--duration-normal) var(--ease-default);
+}
+
+.weight-sample .label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.weight-sample .demo {
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--foreground);
+}
+
+/* ========================================
+   3. Spacing
+   ======================================== */
+.spacing-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spacing-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.spacing-label {
+  width: 80px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  flex-shrink: 0;
+}
+
+.spacing-label small {
+  font-weight: 400;
+  color: var(--muted-foreground);
+  display: block;
+  font-size: 11px;
+}
+
+.spacing-bar {
+  height: 28px;
+  border-radius: 6px;
+  background: var(--brand);
+  opacity: 0.85;
+  position: relative;
+  min-width: 2px;
+  transition: width var(--duration-normal) var(--ease-spring);
+}
+
+.spacing-px {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   4. Border Radius
+   ======================================== */
+.radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.radius-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.radius-box {
+  width: 80px;
+  height: 80px;
+  background: var(--brand);
+  opacity: 0.15;
+  border: 2px solid var(--brand);
+}
+
+.radius-info {
+  text-align: center;
+}
+
+.radius-info .token {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  display: block;
+}
+
+.radius-info .value {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ========================================
+   5. Shadows
+   ======================================== */
+.shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.shadow-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.shadow-box {
+  width: 100%;
+  height: 100px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: box-shadow var(--duration-normal) var(--ease-default);
+}
+
+.shadow-info {
+  text-align: center;
+}
+
+.shadow-info .token {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+  display: block;
+}
+
+.shadow-info .value {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ========================================
+   6. Motion
+   ======================================== */
+.motion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.motion-demo {
+  padding: 20px;
+  background: var(--muted);
+  border-radius: 12px;
+  transition: background var(--duration-normal) var(--ease-default);
+}
+
+.motion-demo .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.motion-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.motion-btn:hover {
+  transform: scale(1.05);
+}
+
+.motion-btn.fast {
+  transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-btn.normal {
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-btn.slow {
+  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.motion-meta code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--card);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Easing visualizer */
+.easing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.easing-demo {
+  padding: 16px;
+  background: var(--muted);
+  border-radius: 12px;
+  text-align: center;
+  transition: background var(--duration-normal) var(--ease-default);
+}
+
+.easing-demo .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.easing-track {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+}
+
+.easing-ball {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand);
+  position: absolute;
+  top: -5px;
+  left: 0;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.easing-ball.ease-default { animation-name: slide; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.easing-ball.ease-in { animation-name: slide; animation-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+.easing-ball.ease-out { animation-name: slide; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+.easing-ball.ease-spring { animation-name: slide; animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes slide {
+  from { left: 0; }
+  to { left: calc(100% - 16px); }
+}
+
+.easing-value {
+  margin-top: 10px;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ========================================
+   7. Component Patterns Preview
+   ======================================== */
+.patterns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.pattern-preview {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.pattern-label {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+
+.pattern-body {
+  padding: 0;
+  position: relative;
+}
+
+/* StatCard mockup */
+.mock-stat-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-stat-card .icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mock-stat-card .icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.mock-stat-card .trend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.mock-stat-card .stat-label {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.mock-stat-card .stat-value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--foreground);
+}
+
+.mock-stat-card .stat-value .unit {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin-left: 4px;
+}
+
+/* TopBar mockup */
+.mock-topbar {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.mock-topbar .logo-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-topbar .logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.mock-topbar .subtitle {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.mock-topbar .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.mock-topbar .action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  position: relative;
+}
+
+.mock-topbar .badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--destructive);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border: 2px solid var(--card);
+}
+
+/* BottomNav mockup */
+.mock-bottomnav {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 12px;
+  border-top: 1px solid var(--border);
+}
+
+.mock-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.mock-nav-item.active {
+  color: var(--foreground);
+}
+
+.mock-nav-item .nav-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.mock-nav-item.active .nav-icon {
+  background: var(--muted);
+}
+
+/* ListItem mockup */
+.mock-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-list-item {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.mock-list-item:last-child {
+  border-bottom: none;
+}
+
+.mock-list-item .item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mock-list-item .item-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.mock-list-item .item-status {
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mock-list-item .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.mock-list-item .item-trailing {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+/* EmptyState mockup */
+.mock-empty {
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.mock-empty .empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.mock-empty .empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.mock-empty .empty-desc {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.mock-empty .empty-btn {
+  margin-top: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ========================================
+   Utility
+   ======================================== */
+.overflow-x { overflow-x: auto; }
+.mt-16 { margin-top: 16px; }
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 600px) {
+  .page-wrapper { padding: 16px; }
+  .color-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .type-scale-table { font-size: 13px; }
+  .patterns-grid { grid-template-columns: 1fr; }
+  .shadow-grid { grid-template-columns: 1fr 1fr; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page-wrapper">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="page-header">
+    <div class="page-header-left">
+      <h1><span>StyleSeed</span> Design System</h1>
+      <p>Design Tokens Reference &mdash; v1.0</p>
+    </div>
+    <div class="dark-toggle" onclick="document.body.classList.toggle('dark')">
+      <span>Dark Mode</span>
+      <div class="dark-toggle-track">
+        <div class="dark-toggle-thumb"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== TOC ===================== -->
+  <nav class="toc">
+    <a href="#colors">Colors</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#radii">Border Radius</a>
+    <a href="#shadows">Shadows</a>
+    <a href="#motion">Motion</a>
+    <a href="#patterns">Component Patterns</a>
+  </nav>
+
+  <!-- ================================================================
+       1. COLOR PALETTE
+       ================================================================ -->
+  <section class="section" id="colors">
+    <h2 class="section-title">Color Palette</h2>
+    <p class="section-subtitle">브랜드, 뉴트럴, 시맨틱, 상태, 차트 컬러 토큰</p>
+
+    <!-- Brand -->
+    <h3 class="subsection-title">Brand</h3>
+    <div class="color-grid">
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#721FE5"></div>
+        <div class="color-swatch-label">
+          <span class="token-name">brand / primary</span>
+          <span class="token-value">#721FE5</span>
+          <span class="token-var">--brand</span>
+        </div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#030213"></div>
+        <div class="color-swatch-label">
+          <span class="token-name">brand / dark</span>
+          <span class="token-value">#030213</span>
+          <span class="token-var">--primary</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neutral -->
+    <h3 class="subsection-title">Neutral Scale</h3>
+    <div class="color-grid">
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#FAFAF9"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-50</span><span class="token-value">#FAFAF9</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#F4F1EC"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-100</span><span class="token-value">#F4F1EC</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#E8E6E1"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-200</span><span class="token-value">#E8E6E1</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#CBCED4"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-300</span><span class="token-value">#CBCED4</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#9B9B9B"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-400</span><span class="token-value">#9B9B9B</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#7A7A7A"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-500</span><span class="token-value">#7A7A7A</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#6A6A6A"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-600</span><span class="token-value">#6A6A6A</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#3C3C3C"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-700</span><span class="token-value">#3C3C3C</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#2A2A2A"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-800</span><span class="token-value">#2A2A2A</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#030213"></div>
+        <div class="color-swatch-label"><span class="token-name">neutral-900</span><span class="token-value">#030213</span></div>
+      </div>
+    </div>
+
+    <!-- Semantic -->
+    <h3 class="subsection-title">Semantic</h3>
+    <div class="color-grid">
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#FFFFFF"></div>
+        <div class="color-swatch-label"><span class="token-name">background</span><span class="token-value">#FFFFFF</span><span class="token-var">--background</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#FFFFFF"></div>
+        <div class="color-swatch-label"><span class="token-name">surface</span><span class="token-value">#FFFFFF</span><span class="token-var">--card</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#030213"></div>
+        <div class="color-swatch-label"><span class="token-name">foreground</span><span class="token-value">#030213</span><span class="token-var">--foreground</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#ECECF0"></div>
+        <div class="color-swatch-label"><span class="token-name">muted (bg)</span><span class="token-value">#ECECF0</span><span class="token-var">--muted</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#717182"></div>
+        <div class="color-swatch-label"><span class="token-name">muted (fg)</span><span class="token-value">#717182</span><span class="token-var">--muted-foreground</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:rgba(0,0,0,0.1); backdrop-filter: none;"></div>
+        <div class="color-swatch-label"><span class="token-name">border</span><span class="token-value">rgba(0,0,0,0.1)</span><span class="token-var">--border</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#F3F3F5"></div>
+        <div class="color-swatch-label"><span class="token-name">input-bg</span><span class="token-value">#F3F3F5</span><span class="token-var">--input-background</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#CBCED4"></div>
+        <div class="color-swatch-label"><span class="token-name">switch-bg</span><span class="token-value">#CBCED4</span><span class="token-var">--switch-background</span></div>
+      </div>
+    </div>
+
+    <!-- Contrast demo -->
+    <h3 class="subsection-title">Contrast Demo (대비)</h3>
+    <div class="contrast-grid">
+      <div class="contrast-demo" style="background:#FFFFFF; color:#030213;">
+        <div class="label">foreground on background</div>
+        <div class="sample">#030213 on #FFFFFF &mdash; 19.8:1</div>
+      </div>
+      <div class="contrast-demo" style="background:#FFFFFF; color:#717182;">
+        <div class="label">muted-foreground on background</div>
+        <div class="sample">#717182 on #FFFFFF &mdash; 4.6:1</div>
+      </div>
+      <div class="contrast-demo" style="background:#FFFFFF; color:#721FE5;">
+        <div class="label">brand on background</div>
+        <div class="sample">#721FE5 on #FFFFFF &mdash; 4.8:1</div>
+      </div>
+      <div class="contrast-demo" style="background:#030213; color:#FFFFFF;">
+        <div class="label">primary-foreground on primary</div>
+        <div class="sample">#FFFFFF on #030213 &mdash; 19.8:1</div>
+      </div>
+      <div class="contrast-demo" style="background:#d4183d; color:#FFFFFF;">
+        <div class="label">destructive-foreground on destructive</div>
+        <div class="sample">#FFFFFF on #D4183D &mdash; 5.2:1</div>
+      </div>
+      <div class="contrast-demo" style="background:#6B9B7A; color:#FFFFFF;">
+        <div class="label">success-foreground on success</div>
+        <div class="sample">#FFFFFF on #6B9B7A &mdash; 3.4:1</div>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <h3 class="subsection-title">Status Colors</h3>
+    <div class="color-grid">
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#6B9B7A"></div>
+        <div class="color-swatch-label"><span class="token-name">success</span><span class="token-value">#6B9B7A</span><span class="token-var">--success</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#D4183D"></div>
+        <div class="color-swatch-label"><span class="token-name">destructive</span><span class="token-value">#D4183D</span><span class="token-var">--destructive</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#D97706"></div>
+        <div class="color-swatch-label"><span class="token-name">warning</span><span class="token-value">#D97706</span><span class="token-var">--warning</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="color-swatch" style="background:#3B82F6"></div>
+        <div class="color-swatch-label"><span class="token-name">info</span><span class="token-value">#3B82F6</span><span class="token-var">--info</span></div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <h3 class="subsection-title">Chart Colors</h3>
+    <div class="chart-strip">
+      <div class="color-swatch-wrapper">
+        <div class="chart-swatch" style="background:oklch(0.646 0.222 41.116)">1</div>
+        <div class="color-swatch-label"><span class="token-name">chart-1</span><span class="token-var">--chart-1</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="chart-swatch" style="background:oklch(0.6 0.118 184.704)">2</div>
+        <div class="color-swatch-label"><span class="token-name">chart-2</span><span class="token-var">--chart-2</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="chart-swatch" style="background:oklch(0.398 0.07 227.392)">3</div>
+        <div class="color-swatch-label"><span class="token-name">chart-3</span><span class="token-var">--chart-3</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="chart-swatch" style="background:oklch(0.828 0.189 84.429)">4</div>
+        <div class="color-swatch-label"><span class="token-name">chart-4</span><span class="token-var">--chart-4</span></div>
+      </div>
+      <div class="color-swatch-wrapper">
+        <div class="chart-swatch" style="background:oklch(0.769 0.188 70.08)">5</div>
+        <div class="color-swatch-label"><span class="token-name">chart-5</span><span class="token-var">--chart-5</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       2. TYPOGRAPHY
+       ================================================================ -->
+  <section class="section" id="typography">
+    <h2 class="section-title">Typography Scale</h2>
+    <p class="section-subtitle">Pretendard + Inter &mdash; 14단계 폰트 사이즈 스케일 (6px base)</p>
+
+    <div class="card overflow-x">
+      <table class="type-scale-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Sample</th>
+            <th>Size / LH / LS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="type-meta"><span class="token">5xl</span></span></td>
+            <td style="font-size:48px; font-weight:700; letter-spacing:-0.02em; line-height:1.0;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>48px</code> / 1.0 / -0.02em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">4xl</span></span></td>
+            <td style="font-size:36px; font-weight:700; letter-spacing:-0.02em; line-height:1.0;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>36px</code> / 1.0 / -0.02em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">3xl</span></span></td>
+            <td style="font-size:30px; font-weight:700; letter-spacing:-0.02em; line-height:1.2;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>30px</code> / 1.2 / -0.02em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">2xl</span></span></td>
+            <td style="font-size:24px; font-weight:700; letter-spacing:-0.01em; line-height:1.35;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>24px</code> / 1.35 / -0.01em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">xl</span></span></td>
+            <td style="font-size:20px; font-weight:600; letter-spacing:-0.01em; line-height:1.35;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>20px</code> / 1.35 / -0.01em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">lg</span></span></td>
+            <td style="font-size:18px; font-weight:600; letter-spacing:-0.01em; line-height:1.35;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>18px</code> / 1.35 / -0.01em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">subhead</span></span></td>
+            <td style="font-size:17px; font-weight:500; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>17px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">md</span></span></td>
+            <td style="font-size:16px; font-weight:500; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>16px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">body</span></span></td>
+            <td style="font-size:15px; font-weight:400; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>15px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">base</span></span></td>
+            <td style="font-size:14px; font-weight:400; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>14px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">caption</span></span></td>
+            <td style="font-size:13px; font-weight:400; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>13px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">sm</span></span></td>
+            <td style="font-size:12px; font-weight:400; letter-spacing:0em; line-height:1.5;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>12px</code> / 1.5 / 0em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">xs</span></span></td>
+            <td style="font-size:11px; font-weight:400; letter-spacing:0.05em; line-height:1.65;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>11px</code> / 1.65 / 0.05em</span></td>
+          </tr>
+          <tr>
+            <td><span class="type-meta"><span class="token">2xs</span></span></td>
+            <td style="font-size:10px; font-weight:400; letter-spacing:0.05em; line-height:1.65;">가나다라마 ABCD 1234</td>
+            <td><span class="type-meta"><code>10px</code> / 1.65 / 0.05em</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Font Weights -->
+    <h3 class="subsection-title">Font Weights</h3>
+    <div class="weight-samples">
+      <div class="weight-sample">
+        <div class="label">400 &mdash; Normal</div>
+        <div class="demo" style="font-weight:400;">본문 텍스트, 설명문<br>Body text, descriptions</div>
+      </div>
+      <div class="weight-sample">
+        <div class="label">500 &mdash; Medium</div>
+        <div class="demo" style="font-weight:500;">라벨, 버튼, 헤딩 기본<br>Labels, buttons, headings</div>
+      </div>
+      <div class="weight-sample">
+        <div class="label">600 &mdash; Semibold</div>
+        <div class="demo" style="font-weight:600;">내비 라벨, 강조 캡션<br>Nav labels, emphasized captions</div>
+      </div>
+      <div class="weight-sample">
+        <div class="label">700 &mdash; Bold</div>
+        <div class="demo" style="font-weight:700;">메트릭 수치, 섹션 헤더<br>Metrics, section headers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       3. SPACING
+       ================================================================ -->
+  <section class="section" id="spacing">
+    <h2 class="section-title">Spacing Scale</h2>
+    <p class="section-subtitle">6px 베이스 유닛 &mdash; 0px ~ 72px</p>
+
+    <div class="card">
+      <div class="spacing-scale">
+        <div class="spacing-row">
+          <div class="spacing-label">0 <small>space-0</small></div>
+          <div class="spacing-bar" style="width:0px;"></div>
+          <div class="spacing-px">0px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">1 <small>space-1</small></div>
+          <div class="spacing-bar" style="width:6px;"></div>
+          <div class="spacing-px">6px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">2 <small>space-2</small></div>
+          <div class="spacing-bar" style="width:12px;"></div>
+          <div class="spacing-px">12px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">3 <small>space-3</small></div>
+          <div class="spacing-bar" style="width:18px;"></div>
+          <div class="spacing-px">18px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">4 <small>space-4</small></div>
+          <div class="spacing-bar" style="width:24px;"></div>
+          <div class="spacing-px">24px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">5 <small>space-5</small></div>
+          <div class="spacing-bar" style="width:30px;"></div>
+          <div class="spacing-px">30px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">6 <small>space-6</small></div>
+          <div class="spacing-bar" style="width:36px;"></div>
+          <div class="spacing-px">36px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">8 <small>space-8</small></div>
+          <div class="spacing-bar" style="width:48px;"></div>
+          <div class="spacing-px">48px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">10 <small>space-10</small></div>
+          <div class="spacing-bar" style="width:60px;"></div>
+          <div class="spacing-px">60px</div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-label">12 <small>space-12</small></div>
+          <div class="spacing-bar" style="width:72px;"></div>
+          <div class="spacing-px">72px</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       4. BORDER RADIUS
+       ================================================================ -->
+  <section class="section" id="radii">
+    <h2 class="section-title">Border Radius</h2>
+    <p class="section-subtitle">Base radius: 0.625rem (10px)</p>
+
+    <div class="radius-grid">
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 6px;"></div>
+        <div class="radius-info">
+          <span class="token">sm</span>
+          <span class="value">calc(0.625rem - 4px) = 6px</span>
+        </div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 8px;"></div>
+        <div class="radius-info">
+          <span class="token">md</span>
+          <span class="value">calc(0.625rem - 2px) = 8px</span>
+        </div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 10px;"></div>
+        <div class="radius-info">
+          <span class="token">lg</span>
+          <span class="value">0.625rem = 10px</span>
+        </div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 14px;"></div>
+        <div class="radius-info">
+          <span class="token">xl</span>
+          <span class="value">calc(0.625rem + 4px) = 14px</span>
+        </div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 16px;"></div>
+        <div class="radius-info">
+          <span class="token">2xl</span>
+          <span class="value">1rem = 16px</span>
+        </div>
+      </div>
+      <div class="radius-demo">
+        <div class="radius-box" style="border-radius: 9999px;"></div>
+        <div class="radius-info">
+          <span class="token">full</span>
+          <span class="value">9999px</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       5. SHADOWS
+       ================================================================ -->
+  <section class="section" id="shadows">
+    <h2 class="section-title">Shadows</h2>
+    <p class="section-subtitle">4단계 그림자 토큰</p>
+
+    <div class="shadow-grid">
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04);"></div>
+        <div class="shadow-info">
+          <span class="token">card</span>
+          <span class="value">--shadow-card</span>
+          <span class="value">0 1px 3px rgba(0,0,0,0.04)</span>
+        </div>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow: 0 2px 4px rgba(0,0,0,0.08);"></div>
+        <div class="shadow-info">
+          <span class="token">cardHover</span>
+          <span class="value">--shadow-card-hover</span>
+          <span class="value">0 2px 4px rgba(0,0,0,0.08)</span>
+        </div>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.08);"></div>
+        <div class="shadow-info">
+          <span class="token">elevated</span>
+          <span class="value">--shadow-elevated</span>
+          <span class="value">0 4px 12px rgba(0,0,0,0.08)</span>
+        </div>
+      </div>
+      <div class="shadow-demo">
+        <div class="shadow-box" style="box-shadow: 0 8px 24px rgba(0,0,0,0.12);"></div>
+        <div class="shadow-info">
+          <span class="token">modal</span>
+          <span class="value">--shadow-modal</span>
+          <span class="value">0 8px 24px rgba(0,0,0,0.12)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       6. MOTION
+       ================================================================ -->
+  <section class="section" id="motion">
+    <h2 class="section-title">Motion</h2>
+    <p class="section-subtitle">듀레이션 & 이징 커브 토큰</p>
+
+    <h3 class="subsection-title">Duration</h3>
+    <div class="motion-grid">
+      <div class="motion-demo">
+        <div class="label">Fast &mdash; 100ms</div>
+        <button class="motion-btn fast">Hover me</button>
+        <div class="motion-meta"><code>--duration-fast: 100ms</code><br>호버, 색상 변경</div>
+      </div>
+      <div class="motion-demo">
+        <div class="label">Normal &mdash; 200ms</div>
+        <button class="motion-btn normal">Hover me</button>
+        <div class="motion-meta"><code>--duration-normal: 200ms</code><br>진입 애니메이션, 확장</div>
+      </div>
+      <div class="motion-demo">
+        <div class="label">Slow &mdash; 350ms</div>
+        <button class="motion-btn slow">Hover me</button>
+        <div class="motion-meta"><code>--duration-slow: 350ms</code><br>페이지 전환, 스프링 효과</div>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">Easing Curves</h3>
+    <div class="easing-grid">
+      <div class="easing-demo">
+        <div class="label">Default</div>
+        <div class="easing-track"><div class="easing-ball ease-default"></div></div>
+        <div class="easing-value">cubic-bezier(0.4, 0, 0.2, 1)</div>
+      </div>
+      <div class="easing-demo">
+        <div class="label">Ease In</div>
+        <div class="easing-track"><div class="easing-ball ease-in"></div></div>
+        <div class="easing-value">cubic-bezier(0.4, 0, 1, 1)</div>
+      </div>
+      <div class="easing-demo">
+        <div class="label">Ease Out</div>
+        <div class="easing-track"><div class="easing-ball ease-out"></div></div>
+        <div class="easing-value">cubic-bezier(0, 0, 0.2, 1)</div>
+      </div>
+      <div class="easing-demo">
+        <div class="label">Spring</div>
+        <div class="easing-track"><div class="easing-ball ease-spring"></div></div>
+        <div class="easing-value">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       7. COMPONENT PATTERNS PREVIEW
+       ================================================================ -->
+  <section class="section" id="patterns">
+    <h2 class="section-title">Component Patterns Preview</h2>
+    <p class="section-subtitle">디자인 시스템 패턴 컴포넌트 미리보기</p>
+
+    <div class="patterns-grid">
+
+      <!-- StatCard -->
+      <div class="pattern-preview">
+        <div class="pattern-label">StatCard</div>
+        <div class="pattern-body">
+          <div class="mock-stat-card">
+            <div class="icon-row">
+              <div class="icon-circle">&#128179;</div>
+              <div class="trend">+8.2%</div>
+            </div>
+            <div class="stat-label">오늘 매출</div>
+            <div class="stat-value">1,870<span class="unit">만원</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- StatCard 2 -->
+      <div class="pattern-preview">
+        <div class="pattern-label">StatCard (variant)</div>
+        <div class="pattern-body">
+          <div class="mock-stat-card">
+            <div class="icon-row">
+              <div class="icon-circle">&#128230;</div>
+              <div class="trend" style="color:var(--destructive);">-2.1%</div>
+            </div>
+            <div class="stat-label">주문 건수</div>
+            <div class="stat-value">47<span class="unit">건</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TopBar -->
+      <div class="pattern-preview">
+        <div class="pattern-label">TopBar</div>
+        <div class="pattern-body">
+          <div class="mock-topbar">
+            <div class="logo-area">
+              <div class="logo-text" style="color:var(--brand);">StyleSeed</div>
+              <div class="subtitle">2026년 3월 30일</div>
+            </div>
+            <div class="actions">
+              <div class="action-btn">
+                &#128269;
+              </div>
+              <div class="action-btn">
+                &#128276;
+                <div class="badge-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BottomNav -->
+      <div class="pattern-preview">
+        <div class="pattern-label">BottomNav</div>
+        <div class="pattern-body">
+          <div class="mock-bottomnav">
+            <div class="mock-nav-item active">
+              <div class="nav-icon">&#127968;</div>
+              <span>홈</span>
+            </div>
+            <div class="mock-nav-item">
+              <div class="nav-icon">&#128230;</div>
+              <span>주문</span>
+            </div>
+            <div class="mock-nav-item">
+              <div class="nav-icon">&#128200;</div>
+              <span>시장</span>
+            </div>
+            <div class="mock-nav-item">
+              <div class="nav-icon">&#9881;</div>
+              <span>관리</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ListItem -->
+      <div class="pattern-preview">
+        <div class="pattern-label">ListItem</div>
+        <div class="pattern-body">
+          <div class="mock-list">
+            <div class="mock-list-item">
+              <div class="item-left">
+                <div class="item-title">GS칼텍스 여의도</div>
+                <div class="item-status">
+                  <div class="status-dot" style="background:#6B9B7A;"></div>
+                  <span style="color:#6B9B7A;">배송완료</span>
+                </div>
+              </div>
+              <div class="item-trailing">840만원</div>
+            </div>
+            <div class="mock-list-item">
+              <div class="item-left">
+                <div class="item-title">SK에너지 강남</div>
+                <div class="item-status">
+                  <div class="status-dot" style="background:#D97706;"></div>
+                  <span style="color:#D97706;">배송중</span>
+                </div>
+              </div>
+              <div class="item-trailing">520만원</div>
+            </div>
+            <div class="mock-list-item">
+              <div class="item-left">
+                <div class="item-title">HD현대오일뱅크</div>
+                <div class="item-status">
+                  <div class="status-dot" style="background:#3B82F6;"></div>
+                  <span style="color:#3B82F6;">접수됨</span>
+                </div>
+              </div>
+              <div class="item-trailing">1,200만원</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EmptyState -->
+      <div class="pattern-preview">
+        <div class="pattern-label">EmptyState</div>
+        <div class="pattern-body">
+          <div class="mock-empty">
+            <div class="empty-icon">&#128230;</div>
+            <div class="empty-title">주문이 없습니다</div>
+            <div class="empty-desc">새 주문을 추가해보세요</div>
+            <button class="empty-btn">주문 추가</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="text-align:center; padding:36px 0 0; border-top:1px solid var(--border); color:var(--muted-foreground); font-size:13px;">
+    StyleSeed &mdash; Generated from <code style="font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--muted); padding:2px 6px; border-radius:4px;">seed/tokens/</code>
+  </footer>
+
+</div>
+</body>
+</html>

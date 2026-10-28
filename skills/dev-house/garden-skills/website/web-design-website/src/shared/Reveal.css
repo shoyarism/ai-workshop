@@ -1,0 +1,42 @@
+.reveal {
+  animation-timing-function: cubic-bezier(.2, .8, .2, 1);
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  will-change: opacity, transform, filter;
+}
+/* span / em / strong 自动转 inline-block，确保 transform 生效 */
+span.reveal, em.reveal, strong.reveal {
+  display: inline-block;
+}
+
+.reveal--rise  { animation-name: revealRise; }
+.reveal--fall  { animation-name: revealFall; }
+.reveal--fade  { animation-name: revealFade; }
+.reveal--blur  { animation-name: revealBlur; }
+.reveal--wipe-r{ animation-name: revealWipeR; }
+.reveal--tight { animation-name: revealTight; }
+
+@keyframes revealRise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealFall {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes revealBlur {
+  from { opacity: 0; filter: blur(18px); transform: translateY(40px); }
+  to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@keyframes revealWipeR {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes revealTight {
+  from { opacity: 0; letter-spacing: 0.4em; filter: blur(8px); }
+  to   { opacity: 1; letter-spacing: -0.02em; filter: blur(0); }
+}

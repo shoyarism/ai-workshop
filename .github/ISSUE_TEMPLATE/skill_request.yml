@@ -1,0 +1,30 @@
+name: ⚡ New Skill or Tool Proposal
+description: Propose a new domain skill, MCP tool, or integration for Workshop OS
+title: "[SKILL]: "
+labels: ["skill", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose a battle-tested domain skill to add to Workshop OS's 960+ skill library.
+  - type: input
+    id: skill_name
+    attributes:
+      label: Skill Name / Identifier
+      description: Use kebab-case (e.g. `postgres-migration-zero-downtime`).
+    validations:
+      required: true
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: Problem & Use Case
+      description: What specific engineering friction does this skill resolve for human developers or autonomous AI agents?
+    validations:
+      required: true
+  - type: textarea
+    id: implementation_plan
+    attributes:
+      label: Input/Output Contracts & Execution Scripts
+      description: What scripts or CLIs does this skill require, and how should an AI agent invoke it?
+    validations:
+      required: true

@@ -1,0 +1,54 @@
+# Binaries
+pinchtab
+browser-bridge
+
+# Test coverage
+coverage.out
+*.test
+
+# Git
+.git/
+.github/
+
+# Tests (E2E fixtures, scenarios, results)
+tests/
+
+# Local state
+.pinchtab/
+.openclaw/
+
+# Agent task board: working state, rewritten every few minutes. Not a build input,
+# and leaving it in the context invalidates the COPY layer on every board write.
+.alp/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+
+# Docs (not needed in image), except the library example built into runner-cli
+docs/
+!docs/examples/
+
+# Development.
+# Each nested tree needs its own line: docker matches .dockerignore patterns against the
+# context-root-relative path, so `node_modules/` excludes the root one and nothing else.
+node_modules/
+dashboard/node_modules/
+npm/node_modules/
+npm/dist/
+plugins/openclaw/node_modules/
+plugins/openclaw/dist/
+plugins/grok/node_modules/
+*.log
+
+# Build caches
+.gocache/
+.gomodcache/
+tmp/
+
+# Markdown (README, RELEASE, etc.)
+*.md
+!dashboard/**/*.md

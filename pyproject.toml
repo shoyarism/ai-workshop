@@ -1,0 +1,22 @@
+[project]
+name = "workshop-os"
+version = "2.2.0"
+description = "Centralized Workshop Operating System & Agentic Arsenal"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml",
+    "requests",
+    "pydantic",
+    "fastapi",
+    "uvicorn",
+    "websockets",
+    "fastmcp",
+    "pillow",
+    "playwright",
+    "gradio-client",
+    "crawl4ai",
+    "mem0ai",
+    "pydantic-ai",
+    "agno",
+    "smolagents",
+]

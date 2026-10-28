@@ -1,0 +1,291 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "omniroute/best-coding",
+  "small_model": "omniroute/best-fast",
+  "default_agent": "general",
+  "subagent_depth": 3,
+  "enabled_providers": [
+    "omniroute"
+  ],
+  "disabled_providers": [
+    "google",
+    "gemini",
+    "anthropic",
+    "github-copilot",
+    "freellmapi",
+    "kilocode",
+    "openrouter",
+    "opencode",
+    "openai"
+  ],
+  "skills": {
+    "paths": [
+      "~/.gemini/config/plugins/science/skills",
+      "~/.gemini/antigravity/builtin/skills",
+      "./skills"
+    ]
+  },
+  "instructions": [
+    "OPENCODE.md",
+    "AGENTS.md",
+    "OPENCODE_GUIDE.md",
+    "OPENCODE_ARSENAL.md"
+  ],
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": "allow",
+    "task": "allow",
+    "external_directory": "allow",
+    "todowrite": "allow"
+  },
+  "tools": {
+    "read": true,
+    "edit": true,
+    "glob": true,
+    "grep": true,
+    "list": true,
+    "bash": true,
+    "task": true,
+    "todowrite": true
+  },
+  "formatter": true,
+  "lsp": true,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "tail_turns": 10
+  },
+  "provider": {
+    "omniroute": {
+      "name": "OmniRoute Native Catalog",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:20128/v1",
+        "apiKey": "sk-2882b3a6cd1c2972-df6739-55e683e9",
+        "setCacheKey": true
+      },
+      "models": {
+        "best-coding": {
+          "name": "⚡ auto/best-coding (Native Built-in SOTA Code Router)",
+          "id": "auto/best-coding",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-coding-fast": {
+          "name": "⚡ auto/best-coding-fast (Native Fast Coding)",
+          "id": "auto/best-coding-fast",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-fast": {
+          "name": "🚀 auto/best-fast (Sub-100ms Speed Router)",
+          "id": "auto/best-fast",
+          "tool_call": true,
+          "reasoning": false,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-reasoning": {
+          "name": "🧠 auto/best-reasoning (Native Deep Thinking & 2M Context)",
+          "id": "auto/best-reasoning",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "pro-coding": {
+          "name": "💎 auto/pro-coding (Native Pro Coding Cascade)",
+          "id": "auto/pro-coding",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "pro-reasoning": {
+          "name": "💎 auto/pro-reasoning (Native Pro Reasoning)",
+          "id": "auto/pro-reasoning",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "claude-sonnet": {
+          "name": "🏆 auto/claude-sonnet (Sonnet Architecture Tier)",
+          "id": "auto/claude-sonnet",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "claude-opus": {
+          "name": "🏆 auto/claude-opus (Opus Architecture Tier)",
+          "id": "auto/claude-opus",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "best-free": {
+          "name": "🎁 auto/best-free (Zero-Cost Free Tier Only)",
+          "id": "auto/best-free",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "chaos": {
+          "name": "🔮 auto/chaos (Parallel Multi-Target Consensus)",
+          "id": "auto/chaos",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "gemini-3.6-flash": {
+          "name": "⚡ antigravity/gemini-3.6-flash-high (Gemini 3.6 Flash Direct)",
+          "id": "antigravity/gemini-3.6-flash-high",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "claude-3-7-sonnet": {
+          "name": "🏆 kiro/claude-3-7-sonnet (Claude 3.7 Sonnet Direct)",
+          "id": "kiro/claude-3-7-sonnet-20250219",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "mimo-v2.5-pro": {
+          "name": "⚡ xiaomi-mimo/mimo-v2.5-pro (MiMo 2.5 Pro Coding)",
+          "id": "xiaomi-mimo/mimo-v2.5-pro",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "🧠 tokenrouter/deepseek-v4-pro (DeepSeek V4 Pro Direct)",
+          "id": "tokenrouter/deepseek-v4-pro",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "mistral-large": {
+          "name": "🧠 mistral/mistral-large-latest (Direct Frontier)",
+          "id": "mistral/mistral-large-latest",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "codestral": {
+          "name": "🚀 mistral/codestral-latest (Direct SOTA Coding)",
+          "id": "mistral/codestral-latest",
+          "tool_call": true,
+          "reasoning": false,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "sonar-pro": {
+          "name": "🔍 perplexity/sonar-pro (Direct Search & Research)",
+          "id": "perplexity/sonar-pro",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 8000
+          }
+        },
+        "llama-3.1-8b": {
+          "name": "⚡ nvidia/meta/llama-3.1-8b-instruct",
+          "id": "nvidia/meta/llama-3.1-8b-instruct",
+          "tool_call": true,
+          "reasoning": false,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        }
+      }
+    }
+  }
+}

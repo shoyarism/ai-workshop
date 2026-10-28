@@ -1,0 +1,21 @@
+.stage-letterbox {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage {
+  position: relative;
+  flex: none;
+  transform-origin: center center;
+  background: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+  transition: background var(--d-base) var(--ease-enter),
+              color var(--d-base) var(--ease-enter);
+}

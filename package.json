@@ -1,0 +1,30 @@
+{
+  "name": "workshop-os",
+  "version": "2.2.0",
+  "description": "Universal AI Workshop OS — Master Engineering Arsenal & Multi-Agent Supreme Tribunal",
+  "author": {
+    "name": "shoyarism",
+    "url": "https://github.com/shoyarism"
+  },
+  "homepage": "https://github.com/shoyarism/ai-workshop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoyarism/ai-workshop.git"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "keywords": [
+    "ai-agents",
+    "quality-gate",
+    "slop-court",
+    "ast-analysis",
+    "design-systems",
+    "graphic-design",
+    "skills",
+    "fastmcp",
+    "mcp-server"
+  ],
+  "dependencies": {
+    "better-sqlite3": "^12.10.0"
+  }
+}

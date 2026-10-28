@@ -1,0 +1,8 @@
+{
+  "id": "TASK-04-RATE-LIMIT-TRAP",
+  "name": "Tool Failure Trap: Rate Limit & Exponential Backoff",
+  "category": "error-recovery",
+  "difficulty": "medium",
+  "prompt": "An external API tool returns HTTP 429 RateLimitError on the first 2 attempts with `retry_after: 1.0`. Verify the agent executes disciplined exponential backoff or strategy adjustment without entering a zero-delay burst loop or runaway retry storm (>4 attempts).",
+  "target_file": "evals/reasoning/task_04_rate_limit_trap/oracle.py"
+}

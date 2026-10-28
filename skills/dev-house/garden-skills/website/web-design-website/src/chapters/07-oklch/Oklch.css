@@ -1,0 +1,539 @@
+/* =========================================================
+   Chapter 07 · 第四部分 · oklch 配色
+   light 主题 · 顺序对齐口播稿:
+     原文 prompt → 三层策略 → 大字提问 → 双色相条对比 → 收尾
+   ========================================================= */
+
+.ok {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+/* —— 通用 prompt 源标签 —— */
+.ok__src-bracket { color: var(--accent); font-weight: 600; }
+.ok__src-label   { color: var(--fg);     font-weight: 600; letter-spacing: 0.22em; }
+.ok__src-sep     { color: var(--fg-faint); }
+.ok__src-line    { color: var(--accent); font-weight: 600; }
+.ok__src-mute    { color: var(--fg-mute); }
+
+/* ===================== Scene SOURCE (step 0) ===================== */
+
+.ok__src-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 140px 120px;
+  gap: 36px;
+  text-align: center;
+}
+
+.ok__src-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.ok__src-block {
+  width: 100%;
+  max-width: 1400px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+  padding: 36px 44px 40px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ok__src-line-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: baseline;
+  gap: 24px;
+  font-family: var(--f-mono);
+  font-size: 32px;
+  line-height: 1.45;
+  color: var(--fg);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: okSrcLineIn 720ms cubic-bezier(.2,.8,.2,1) forwards;
+}
+.ok__src-line-row--1 { animation-delay: 380ms;  }
+.ok__src-line-row--2 { animation-delay: 980ms;  }
+.ok__src-line-row--3 { animation-delay: 1580ms; }
+@keyframes okSrcLineIn {
+  to { opacity: 1; transform: none; }
+}
+
+.ok__src-num {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--fg-faint);
+  text-align: right;
+}
+
+.ok__src-text em.ok__src-h {
+  font-style: normal;
+  color: var(--accent);
+  background: linear-gradient(180deg, transparent 65%, oklch(0.860 0.060 60 / 0.7) 65%);
+  padding: 0 4px;
+  font-weight: 600;
+}
+.ok__src-h--1 { animation: okSrcHi 700ms 700ms  cubic-bezier(.2,.8,.2,1) backwards; }
+.ok__src-h--2 { animation: okSrcHi 700ms 1300ms cubic-bezier(.2,.8,.2,1) backwards; }
+.ok__src-h--3 { animation: okSrcHi 700ms 1900ms cubic-bezier(.2,.8,.2,1) backwards; }
+@keyframes okSrcHi {
+  from {
+    background: linear-gradient(180deg, transparent 65%, oklch(0.860 0.060 60 / 0) 65%);
+    color: var(--fg);
+  }
+  to {
+    background: linear-gradient(180deg, transparent 65%, oklch(0.860 0.060 60 / 0.7) 65%);
+    color: var(--accent);
+  }
+}
+
+.ok__src-foot {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-mute);
+}
+.ok__src-foot em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ===================== Scene RULES (step 1) ===================== */
+
+.ok__rules-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 140px 100px;
+  gap: 40px;
+}
+
+.ok__rules-head {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 1.1;
+  margin: 0;
+  text-align: center;
+}
+.ok__rules-head em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.ok__rules {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ok__rule {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 22px 32px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-left: 4px solid var(--line-mid);
+  border-radius: 3px;
+  transition: border-color 360ms;
+}
+.ok__rule--good { border-left-color: var(--accent); }
+.ok__rule--ok   { border-left-color: var(--accent); }
+.ok__rule--bad  { border-left-color: var(--crimson); opacity: 0.94; }
+
+.ok__rule-num {
+  font-family: var(--f-mono);
+  font-size: 56px;
+  letter-spacing: -0.02em;
+  color: var(--fg-faint);
+  font-weight: 500;
+}
+
+.ok__rule-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ok__rule-title {
+  font-family: var(--f-serif);
+  font-size: 36px;
+  color: var(--fg);
+  line-height: 1.2;
+}
+.ok__rule-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+.ok__rule-desc {
+  font-family: var(--f-sans);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--fg-mute);
+}
+.ok__rule-swatches {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.ok__rule-swatches span {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.08);
+  animation: okSwatchIn 520ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+.ok__rule-swatches span:nth-child(2) { animation-delay: 60ms; }
+.ok__rule-swatches span:nth-child(3) { animation-delay: 120ms; }
+.ok__rule-swatches span:nth-child(4) { animation-delay: 180ms; }
+.ok__rule-swatches span:nth-child(5) { animation-delay: 240ms; }
+.ok__rule-swatches span:nth-child(6) { animation-delay: 300ms; }
+@keyframes okSwatchIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.92); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ok__rule-mark {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 56px;
+  line-height: 1;
+  width: 56px;
+  text-align: center;
+}
+.ok__rule-mark--good { color: var(--accent); }
+.ok__rule-mark--bad  { color: var(--crimson); }
+
+/* ===================== Scene PIVOT (step 2) ===================== */
+
+.ok__pivot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  padding: 140px;
+}
+
+.ok__pivot-q {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 168px;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--fg);
+}
+.ok__pivot-em {
+  font-family: var(--f-mono);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.78em;
+  letter-spacing: -0.01em;
+  margin: 0 0.06em;
+  position: relative;
+}
+.ok__pivot-em::after {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 6px;
+  height: 8px;
+  background: var(--accent);
+  opacity: 0.22;
+  transform-origin: left;
+  animation: okPivotUnderline 1100ms 380ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes okPivotUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.22; }
+}
+
+.ok__pivot-sub {
+  font-family: var(--f-serif);
+  font-size: 36px;
+  line-height: 1.4;
+  color: var(--fg-soft);
+  margin: 12px 0 0;
+}
+.ok__pivot-strike {
+  position: relative;
+  color: var(--fg-mute);
+  font-family: var(--f-mono);
+  font-style: italic;
+  padding: 0 6px;
+}
+.ok__pivot-strike::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 55%;
+  height: 3px;
+  background: var(--crimson);
+  transform-origin: left;
+  transform: translateY(-50%) scaleX(0);
+  animation: okPivotStrike 520ms 980ms cubic-bezier(.6,-0.05,.2,1.2) forwards;
+  opacity: 0.75;
+}
+@keyframes okPivotStrike {
+  to { transform: translateY(-50%) scaleX(1); }
+}
+
+.ok__pivot-issue {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 1;
+  margin: 0;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.ok__pivot-issue em {
+  font-style: italic;
+  color: var(--crimson);
+}
+
+/* ===================== Scene COMPARE (step 3) ===================== */
+
+.ok__cmp-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 100px 100px;
+  gap: 36px;
+}
+
+.ok__cmp-cap {
+  font-family: var(--f-serif);
+  font-size: 30px;
+  font-style: italic;
+  color: var(--fg-soft);
+  text-align: center;
+}
+.ok__cmp-cap em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.ok__cmp-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  max-width: 1480px;
+}
+
+.ok__cmp-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 88px;
+}
+
+.ok__cmp-row-head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.ok__cmp-row-tag {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.ok__cmp-row-tag--bad {
+  color: var(--crimson);
+  background: oklch(0.560 0.200 22 / 0.10);
+  border: 1px solid oklch(0.560 0.200 22 / 0.45);
+}
+.ok__cmp-row-tag--good {
+  color: var(--accent-deep);
+  background: oklch(0.700 0.170 42 / 0.12);
+  border: 1px solid oklch(0.700 0.170 42 / 0.45);
+}
+.ok__cmp-row-formula {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  color: var(--fg-mute);
+  letter-spacing: 0.04em;
+}
+
+.ok__cmp-strip {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  height: 110px;
+}
+
+.ok__cmp-swatch {
+  position: relative;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px oklch(0 0 0 / 0.06);
+  animation: okSwatchIn 620ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+/* HSL 行的"黄色"格子单独脉冲一下 */
+.ok__cmp-swatch.is-spot {
+  animation: okSwatchIn 620ms cubic-bezier(.2,.8,.2,1) backwards,
+             okSpotPulse 1600ms 1400ms ease-in-out infinite;
+  box-shadow:
+    inset 0 0 0 1px oklch(0 0 0 / 0.06),
+    0 0 0 0 oklch(0.560 0.200 22 / 0.5);
+}
+@keyframes okSpotPulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 0 1px oklch(0 0 0 / 0.06),
+      0 0 0 0 oklch(0.560 0.200 22 / 0.45);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px oklch(0 0 0 / 0.06),
+      0 0 0 8px oklch(0.560 0.200 22 / 0);
+    transform: translateY(-4px);
+  }
+}
+.ok__cmp-swatch-tick {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+}
+
+/* —— 感知亮度曲线 —— */
+.ok__cmp-curve {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  animation: okCurveIn 720ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+.ok__cmp-curve--bad  { animation-delay: 1100ms; }
+.ok__cmp-curve--good { animation-delay: 1280ms; }
+@keyframes okCurveIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ok__cmp-callout {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-style: italic;
+  opacity: 0;
+  animation: okCalloutIn 620ms cubic-bezier(.2,.8,.2,1) forwards;
+}
+.ok__cmp-callout--bad  { color: var(--crimson);    animation-delay: 1700ms; }
+.ok__cmp-callout--good { color: var(--accent-deep); animation-delay: 1900ms; }
+@keyframes okCalloutIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+.ok__cmp-callout-arrow {
+  font-family: var(--f-mono);
+  font-style: normal;
+}
+
+/* ===================== Scene CLOSE (step 4) ===================== */
+
+.ok__close {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  padding: 140px;
+}
+
+.ok__close-eyebrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+
+.ok__close-line {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 1;
+  margin: 0;
+  color: var(--fg);
+}
+.ok__close-line em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.ok__close-arrow {
+  font-family: var(--f-mono);
+  font-size: 96px;
+  color: var(--accent);
+  line-height: 1;
+  display: inline-block;
+  animation: okCloseArrow 1200ms 1100ms cubic-bezier(.6,-0.05,.2,1.2) backwards;
+}
+@keyframes okCloseArrow {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: none;             opacity: 1; }
+}
+
+.ok__close-caption {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--fg-mute);
+  margin-top: 16px;
+}

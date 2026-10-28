@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>NovaFlow — Product Launch</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Serif+Display&family=Inter:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Intentional palette — warm earth meets electric */
+    --cream: #FAF7F2;
+    --paper: #F0EBE3;
+    --ink: #1A1816;
+    --warm-gray: #6B6560;
+    --accent: #FF4D00;  /* electric terracotta — one accent */
+    --accent2: #2D5A7C; /* deep ocean — secondary */
+    --light-accent: rgba(255, 77, 0, 0.08);
+  }
+
+  body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--cream);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+  }
+
+  #stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: var(--cream);
+    overflow: hidden;
+  }
+
+  /* SCENE 1: Title — clean, editorial, confident */
+  .scene-1 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 120px;
+  }
+
+  .scene-1 .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+  }
+
+  .scene-1 h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 160px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 48px;
+  }
+
+  .scene-1 h1 span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .scene-1 .tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    font-style: italic;
+    color: var(--warm-gray);
+    font-weight: 400;
+    opacity: 0;
+  }
+
+  /* Decorative line */
+  .scene-1 .line {
+    width: 200px;
+    height: 3px;
+    background: var(--ink);
+    margin-bottom: 48px;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  /* SCENE 2: Problem — bold statement */
+  .scene-2 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 180px;
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .scene-2 .stat {
+    font-family: 'Syne', sans-serif;
+    font-size: 280px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .scene-2 .statement {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    max-width: 1000px;
+    line-height: 1.5;
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .scene-2 .statement strong {
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  /* SCENE 3: Solution — editorial layout */
+  .scene-3 {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 180px;
+    gap: 120px;
+    align-items: center;
+  }
+
+  .scene-3 .content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .scene-3 .content h2 em {
+    font-family: 'DM Serif Display', serif;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .scene-3 .content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+    max-width: 480px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Visual element — abstract shape */
+  .scene-3 .visual {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    opacity: 0;
+  }
+
+  .shape-circle {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .scene-3 .shape-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent);
+    top: 50px;
+    right: 50px;
+    opacity: 0.9;
+  }
+
+  .scene-3 .shape-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--cream);
+    border: 4px solid var(--ink);
+    bottom: 80px;
+    left: 40px;
+  }
+
+  .scene-3 .shape-text {
+    position: absolute;
+    bottom: 200px;
+    right: 100px;
+    font-family: 'Syne', sans-serif;
+    font-size: 120px;
+    font-weight: 800;
+    color: var(--ink);
+    transform: rotate(-15deg);
+  }
+
+  /* SCENE 4: Features — asymmetric grid */
+  .scene-4 {
+    position: absolute;
+    inset: 0;
+    padding: 120px 180px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scene-4 .header {
+    margin-bottom: 80px;
+    opacity: 0;
+  }
+
+  .scene-4 .header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .scene-4 .features {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    flex: 1;
+  }
+
+  .feature-card {
+    background: var(--paper);
+    padding: 60px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: background 0.3s;
+  }
+
+  .feature-card.featured {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .feature-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+  }
+
+  .feature-card.featured p {
+    color: rgba(250, 247, 242, 0.7);
+  }
+
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0;
+  }
+
+  /* SCENE 5: Stats — large typography */
+  .scene-5 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--accent);
+    color: var(--cream);
+  }
+
+  .stats-grid {
+    display: flex;
+    gap: 160px;
+    align-items: baseline;
+  }
+
+  .stat-block {
+    text-align: center;
+    opacity: 0;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 200px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    opacity: 0.8;
+  }
+
+  /* SCENE 6: CTA — minimal, bold */
+  .scene-6 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--cream);
+  }
+
+  .scene-6 .pre {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 40px;
+    opacity: 0;
+  }
+
+  .scene-6 h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .scene-6 h2 em {
+    font-family: 'DM Serif Display', serif;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 32px 80px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .cta-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: var(--warm-gray);
+    margin-top: 32px;
+    opacity: 0;
+  }
+
+  /* Transition overlay */
+  .transition {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- Scene 1: Title -->
+  <div class="scene-1">
+    <div class="line"></div>
+    <div class="eyebrow">NovaFlow AI</div>
+    <h1>
+      Code that<br>
+      <span>flows.</span>
+    </h1>
+    <div class="tagline">AI-powered backend generation for teams that ship.</div>
+  </div>
+
+  <!-- Scene 2: Problem -->
+  <div class="scene-2">
+    <div class="stat">40%</div>
+    <div class="statement">
+      of every sprint disappears into <strong>boilerplate</strong>.<br>
+      Scaffold. Generate. Repeat.
+    </div>
+  </div>
+
+  <!-- Scene 3: Solution -->
+  <div class="scene-3">
+    <div class="content">
+      <h2>Describe it.<br><em>Deploy it.</em></h2>
+      <p>NovaFlow AI generates production-ready backend APIs from natural language. Schema, validation, endpoints — all in one command.</p>
+    </div>
+    <div class="visual">
+      <div class="shape-circle shape-1"></div>
+      <div class="shape-circle shape-2"></div>
+      <div class="shape-text">0→∞</div>
+    </div>
+  </div>
+
+  <!-- Scene 4: Features -->
+  <div class="scene-4">
+    <div class="header">
+      <h2>Built for speed.</h2>
+    </div>
+    <div class="features">
+      <div class="feature-card featured">
+        <div class="feature-icon"></div>
+        <h3>Auto Schema</h3>
+        <p>Generate type-safe schemas from your descriptions. TypeScript, Prisma, Zod — all auto-configured.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Validate</h3>
+        <p>Built-in validation at every layer. Catch errors before they reach production.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Deploy</h3>
+        <p>One command to staging or production. Zero configuration needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 5: Stats -->
+  <div class="scene-5">
+    <div class="stats-grid">
+      <div class="stat-block">
+        <div class="stat-number">10K+</div>
+        <div class="stat-label">Deployments</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">30s</div>
+        <div class="stat-label">First API</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 6: CTA -->
+  <div class="scene-6">
+    <div class="pre">Start building today</div>
+    <h2>Try <em>NovaFlow</em> free</h2>
+    <a href="#" class="cta-button">Get Started →</a>
+    <div class="cta-sub">No credit card required. First API in 30 seconds.</div>
+  </div>
+
+  <!-- Transition overlay -->
+  <div class="transition" id="transition"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const DURATION = 26;
+const FPS = 24;
+let tl = null;
+
+window.seekToTime = function(t) {
+  if (!tl) initTimeline();
+  tl.progress(t / DURATION);
+};
+
+function initTimeline() {
+  tl = gsap.timeline({ paused: true });
+
+  // Scene 1: Title (0-4s)
+  tl.to('.scene-1 .line', { scaleX: 1, duration: 0.6, ease: 'power2.out' }, 0.3);
+  tl.to('.scene-1 .eyebrow', { opacity: 1, duration: 0.5 }, 0.5);
+  tl.to('.scene-1 h1', { opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.7);
+  tl.to('.scene-1 .tagline', { opacity: 1, duration: 0.6, y: 0 }, 1.2);
+
+  // Transition to Scene 2
+  tl.to('.transition', { scaleY: 1, transformOrigin: 'bottom', duration: 0.4, ease: 'power2.inOut' }, 3.5);
+
+  // Scene 2: Problem (4-8s)
+  tl.to('.transition', { scaleY: 0, transformOrigin: 'top', duration: 0.4, ease: 'power2.inOut' }, 4.0);
+  tl.to('.scene-2 .stat', { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' }, 4.2);
+  tl.to('.scene-2 .statement', { opacity: 1, y: 0, duration: 0.6 }, 4.6);
+
+  // Transition to Scene 3
+  tl.to('.transition', { scaleY: 1, transformOrigin: 'bottom', duration: 0.4, ease: 'power2.inOut' }, 7.5);
+
+  // Scene 3: Solution (8-13s)
+  tl.to('.transition', { scaleY: 0, transformOrigin: 'top', duration: 0.4, ease: 'power2.inOut' }, 8.0);
+  tl.to('.scene-3 .content h2', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 8.2);
+  tl.to('.scene-3 .content p', { opacity: 1, y: 0, duration: 0.6 }, 8.6);
+  tl.to('.scene-3 .visual', { opacity: 1, duration: 0.8 }, 8.4);
+  tl.to('.scene-3 .shape-1', { scale: 1.1, repeat: 2, yoyo: true, duration: 2, ease: 'sine.inOut' }, 9);
+  tl.to('.scene-3 .shape-text', { rotate: '-10deg', duration: 1, ease: 'elastic.out(1, 0.5)' }, 9);
+
+  // Transition to Scene 4
+  tl.to('.transition', { scaleY: 1, transformOrigin: 'bottom', duration: 0.4, ease: 'power2.inOut' }, 12.5);
+
+  // Scene 4: Features (13-18s)
+  tl.to('.transition', { scaleY: 0, transformOrigin: 'top', duration: 0.4, ease: 'power2.inOut' }, 13.0);
+  tl.to('.scene-4 .header', { opacity: 1, duration: 0.5 }, 13.2);
+  tl.to('.scene-4 .feature-card', { opacity: 1, y: 0, stagger: 0.15, duration: 0.5 }, 13.5);
+
+  // Transition to Scene 5
+  tl.to('.transition', { scaleY: 1, transformOrigin: 'bottom', duration: 0.4, ease: 'power2.inOut' }, 17.5);
+
+  // Scene 5: Stats (18-22s)
+  tl.to('.transition', { scaleY: 0, transformOrigin: 'top', duration: 0.4, ease: 'power2.inOut' }, 18.0);
+  tl.to('.stat-block', { opacity: 1, duration: 0.5, stagger: 0.15 }, 18.2);
+  tl.to('.stat-number', { scale: 1.05, duration: 0.4, ease: 'power2.out' }, 18.5);
+
+  // Transition to Scene 6
+  tl.to('.transition', { scaleY: 1, transformOrigin: 'bottom', duration: 0.4, ease: 'power2.inOut' }, 21.5);
+
+  // Scene 6: CTA (22-26s)
+  tl.to('.transition', { scaleY: 0, transformOrigin: 'top', duration: 0.4, ease: 'power2.inOut' }, 22.0);
+  tl.to('.scene-6 .pre', { opacity: 1, duration: 0.5 }, 22.2);
+  tl.to('.scene-6 h2', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 22.5);
+  tl.to('.scene-6 .cta-button', { opacity: 1, y: 0, duration: 0.5 }, 23.0);
+  tl.to('.scene-6 .cta-sub', { opacity: 1, duration: 0.5 }, 23.3);
+
+  // Hold on final frame
+  tl.to({}, { duration: 2.7 });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTimeline();
+  window.seekToTime(0);
+});
+</script>
+</body>
+</html>

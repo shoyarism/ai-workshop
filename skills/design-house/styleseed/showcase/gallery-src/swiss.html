@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: Inter, sans-serif; background: #fff; color: #111; -webkit-font-smoothing: antialiased; }
+  .wrap { width: 1240px; height: 860px; padding: 56px 64px; display: flex; flex-direction: column; }
+  .rule { border-top: 1.5px solid #111; }
+  .accent { color: #D6291E; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- nav -->
+  <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;" class="rule-b">
+    <div style="display:flex;align-items:baseline;gap:40px;">
+      <span style="font-weight:800;font-size:20px;letter-spacing:-0.02em;">Relay<span class="accent">.</span></span>
+      <span style="font-size:13px;font-weight:600;color:#555;">Product</span>
+      <span style="font-size:13px;font-weight:600;color:#555;">Pricing</span>
+    </div>
+    <span style="font-size:13px;font-weight:700;border:1.5px solid #111;padding:8px 16px;">Start free</span>
+  </div>
+  <div class="rule" style="margin-top:0;"></div>
+
+  <!-- hero grid -->
+  <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:56px;padding-top:48px;flex:1;">
+    <div>
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#111;">01 — Revenue infrastructure</div>
+      <h1 style="font-size:76px;line-height:0.98;font-weight:800;letter-spacing:-0.035em;margin-top:22px;">Payments that close themselves.</h1>
+      <p style="font-size:17px;line-height:1.5;color:#444;max-width:30ch;margin-top:28px;">Relay turns every invoice into a paid one — automatic reminders, reconciliation, and forecasting in one system.</p>
+      <div style="display:flex;gap:14px;margin-top:36px;">
+        <span style="background:#D6291E;color:#fff;font-weight:700;font-size:14px;padding:13px 26px;">Start free</span>
+        <span style="border:1.5px solid #111;font-weight:700;font-size:14px;padding:13px 26px;">Book a demo</span>
+      </div>
+    </div>
+    <!-- metric column, grid-aligned -->
+    <div style="display:flex;flex-direction:column;">
+      <div class="rule" style="padding:22px 0 20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#777;">MRR</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-top:8px;"><span style="font-size:46px;font-weight:800;letter-spacing:-0.03em;">$48.2<span style="font-size:22px;">K</span></span><span class="accent" style="font-size:14px;font-weight:700;">+8.2%</span></div>
+      </div>
+      <div class="rule" style="padding:22px 0 20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#777;">Active accounts</div>
+        <div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;margin-top:8px;">1,284</div>
+      </div>
+      <div class="rule" style="padding:22px 0 20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#777;">Collected on-time</div>
+        <div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;margin-top:8px;">99.4<span style="font-size:22px;">%</span></div>
+      </div>
+      <div class="rule"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

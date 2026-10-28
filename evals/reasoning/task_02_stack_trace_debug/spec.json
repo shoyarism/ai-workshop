@@ -1,0 +1,10 @@
+{
+  "id": "TASK-02-STACK-TRACE-DEBUG",
+  "name": "Root Cause Debugging from Raw Stack Trace",
+  "category": "debugging",
+  "difficulty": "medium",
+  "prompt": "Investigate the crash in `evals/reasoning/task_02_stack_trace_debug/stacktrace.txt`. Without any file or line hints other than the stack trace, locate the root cause in the stream processing pipeline, fix the code so it handles batch items robustly, and ensure all tests pass.",
+  "target_file": "evals/reasoning/task_02_stack_trace_debug/pipeline.py",
+  "hidden_test": "evals/reasoning/task_02_stack_trace_debug/test_hidden.py",
+  "expected_failure_initial": true
+}

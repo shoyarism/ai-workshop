@@ -1,0 +1,438 @@
+/* =========================================================
+   Chapter 12 · References / advanced-patterns.md
+   light 主题 · Hero → 7 大模板瀑布 → 灵感来源 → 收尾
+   ========================================================= */
+
+.rf {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  overflow: hidden;
+}
+
+.rf__src-bracket { color: var(--accent); font-weight: 600; }
+.rf__src-label   { color: var(--fg);     font-weight: 600; letter-spacing: 0.22em; }
+
+/* ===================== Scene HERO (step 0) ===================== */
+
+.rf__hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  padding: 140px;
+}
+
+.rf__hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+
+.rf__hero-pre {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 44px;
+  color: var(--fg-soft);
+  margin: 0;
+}
+
+.rf__hero-name {
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: 120px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 8px 0 0;
+}
+.rf__hero-name em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+.rf__hero-name em::after {
+  content: '';
+  position: absolute;
+  left: 1%;
+  right: 1%;
+  bottom: 8px;
+  height: 10px;
+  background: var(--accent);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: rfHeroUnderline 1300ms 1100ms cubic-bezier(.2,.8,.2,1) backwards;
+}
+@keyframes rfHeroUnderline {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 0.18; }
+}
+.rf__hero-dim {
+  color: var(--fg-faint);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.rf__hero-meta {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--f-mono);
+  font-size: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.rf__hero-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--fg-faint);
+}
+
+/* ===================== Scene LIST (step 1) ===================== */
+
+.rf__list-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 100px 90px;
+  gap: 32px;
+}
+
+.rf__list-cap {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--fg-soft);
+  text-align: center;
+}
+.rf__list-cap em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.rf__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  width: 100%;
+  max-width: 1640px;
+}
+
+.rf__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 24px 18px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-top: 3px solid var(--accent);
+  border-radius: 3px;
+  min-height: 240px;
+  opacity: 0;
+  animation: rfCardIn 720ms cubic-bezier(.2,.8,.2,1) forwards;
+  transition: transform 360ms, box-shadow 360ms;
+}
+@keyframes rfCardIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.rf__card-num {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.rf__card-glyph {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-faint);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.rf__card-name {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  color: var(--fg);
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.rf__card-cn {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--fg);
+  line-height: 1.15;
+}
+.rf__card-desc {
+  flex: 1;
+  font-family: var(--f-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg-mute);
+}
+.rf__card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--fg-faint);
+  letter-spacing: 0.04em;
+}
+.rf__card-foot-arrow {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+/* —— 第 8 格 hint —— */
+.rf__card--hint {
+  background: oklch(0.700 0.170 42 / 0.06);
+  border: 1px dashed var(--accent);
+  border-top: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  justify-content: center;
+}
+.rf__card-hint-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.rf__card-hint-line {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--fg-soft);
+}
+.rf__card-hint-line em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ===================== Scene ORIGIN (step 2) ===================== */
+
+.rf__origin {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 140px 90px;
+  gap: 32px;
+  text-align: center;
+}
+
+.rf__origin-eyebrow {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--fg-mute);
+}
+
+.rf__origin-row {
+  display: grid;
+  grid-template-columns: 1fr 200px 1fr;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.rf__origin-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 36px 36px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-mid);
+  border-radius: 4px;
+  text-align: left;
+  box-shadow: 0 24px 48px -28px oklch(0 0 0 / 0.22);
+}
+.rf__origin-card--src {
+  border-left: 3px solid var(--fg-faint);
+  opacity: 0.85;
+}
+.rf__origin-card--dst {
+  border-left: 3px solid var(--accent);
+}
+
+.rf__origin-card-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.rf__origin-card-tag--dst .rf__src-label {
+  color: var(--accent);
+}
+
+.rf__origin-card-fn {
+  font-family: var(--f-mono);
+  font-size: 36px;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.rf__origin-card--src .rf__origin-card-fn-name {
+  color: var(--fg);
+}
+.rf__origin-card--dst .rf__origin-card-fn-name {
+  color: var(--accent);
+}
+.rf__origin-card-fn-paren {
+  color: var(--fg-faint);
+}
+
+.rf__origin-card-desc {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--fg-soft);
+}
+.rf__origin-card-desc em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* —— 中间提炼箭头 —— */
+.rf__origin-arrow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.rf__origin-arrow-line {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--fg-faint) 0%,
+    var(--accent) 100%);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left;
+  animation: rfOriginLine 720ms 200ms cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes rfOriginLine {
+  to { transform: translateY(-50%) scaleX(1); }
+}
+.rf__origin-arrow-text {
+  position: relative;
+  z-index: 2;
+  padding: 4px 12px;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.rf__origin-arrow-head {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-family: var(--f-mono);
+  font-size: 28px;
+  color: var(--accent);
+  z-index: 2;
+  background: var(--bg);
+  padding: 0 4px;
+}
+
+.rf__origin-foot {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--fg-soft);
+}
+.rf__origin-foot em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ===================== Scene CLOSE (step 3) ===================== */
+
+.rf__close {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+  padding: 140px;
+}
+.rf__close-l1 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 128px;
+  line-height: 1;
+  margin: 0;
+  color: var(--fg);
+}
+.rf__close-l2 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--fg-soft);
+}
+.rf__close-l1 em,
+.rf__close-l2 em {
+  font-style: italic;
+  color: var(--accent);
+}

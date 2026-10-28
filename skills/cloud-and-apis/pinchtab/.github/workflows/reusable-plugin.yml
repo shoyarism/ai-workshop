@@ -1,0 +1,76 @@
+name: Reusable / Plugin
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check OpenClaw Plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Install plugin dependencies
+        working-directory: plugins/openclaw
+        run: npm install --ignore-scripts --no-package-lock
+
+      - name: Verify JSON schemas
+        working-directory: plugins/openclaw
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json', 'utf8'))"
+          node -e "JSON.parse(require('fs').readFileSync('openclaw.plugin.json', 'utf8'))"
+          echo "✅ All JSON files are valid"
+
+      - name: Verify OpenClaw plugin API types
+        working-directory: plugins/openclaw
+        run: npm run typecheck
+
+      - name: Verify package contents
+        working-directory: plugins/openclaw
+        run: |
+          echo "📦 Package will contain:"
+          npm pack --dry-run 2>&1 | grep -E "^npm notice [0-9]" | awk '{print "  " $4 " (" $3 ")"}'
+
+      - name: Verify ClawHub package metadata
+        run: npx --yes clawhub@latest package publish ./plugins/openclaw --family code-plugin --dry-run --json
+
+  grok:
+    name: Check Grok Plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Check Grok plugin
+        run: bash scripts/check-plugin.sh grok --check-skills
+
+  test:
+    name: Test OpenClaw Plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Install plugin dependencies
+        working-directory: plugins/openclaw
+        run: npm install --ignore-scripts --no-package-lock
+
+      - name: Run tests
+        working-directory: plugins/openclaw
+        run: npm test

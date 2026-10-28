@@ -1,0 +1,15 @@
+name: CI / Smoke
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    uses: ./.github/workflows/reusable-smoke.yml
+    with:
+      ref: ${{ github.sha }}

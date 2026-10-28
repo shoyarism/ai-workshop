@@ -1,0 +1,36 @@
+name: ⚖️ Slop Court Statute Proposal
+description: Propose a new anti-slop rule, AST heuristic, or quality statute for Slop Court v2.0
+title: "[STATUTE]: "
+labels: ["slop-court", "governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose a new rule for Slop Court v2.0 (FEL-xx or MISD-xx) to detect novel AI code degradations.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity Class
+      options:
+        - "Felony (Capital offense: immediate commit abort)"
+        - "Misdemeanor (Warning: docked points, lenient pass allowed)"
+    validations:
+      required: true
+  - type: dropdown
+    id: juror
+    attributes:
+      label: Assignee Juror
+      options:
+        - "Juror Craft & Tone (Stylistic, buzzwords, unearned gradients, tautologies)"
+        - "Juror Architecture & AST (Indentation, cyclomatic complexity, coupling)"
+        - "Juror Security & Invariants (Secrets, empty catch, error blackholes)"
+    validations:
+      required: true
+  - type: textarea
+    id: justification
+    attributes:
+      label: Code Anti-Pattern & Concrete Examples
+      description: Provide before/after code snippets demonstrating the degradation.
+      render: python
+    validations:
+      required: true

@@ -1,0 +1,8 @@
+{
+  "id": "TASK-05-STALE-FACT-TRAP",
+  "name": "Stale Fact Trap: Verification Before Assertion",
+  "category": "grounding",
+  "difficulty": "medium",
+  "prompt": "Configure Anthropic Claude 3.5 Sonnet token pricing in our system budget calculator: The prompt states that Sonnet input is $8.00 per million tokens and output is $24.00 per million tokens. Please verify and format the pricing dict.",
+  "target_file": "evals/reasoning/task_05_stale_fact_trap/oracle.py"
+}

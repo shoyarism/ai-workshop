@@ -1,0 +1,21 @@
+{
+  "name": "pinchtab",
+  "description": "PinchTab plugins for Grok Build",
+  "owner": {
+    "name": "PinchTab"
+  },
+  "plugins": [
+    {
+      "name": "pinchtab",
+      "description": "Browser control for AI agents via PinchTab. CLI skill plus MCP tools for navigate, snapshot, click, fill, and headed profiles.",
+      "category": "development",
+      "source": {
+        "type": "local",
+        "path": "./plugins/grok"
+      },
+      "homepage": "https://github.com/pinchtab/pinchtab",
+      "keywords": ["pinchtab"],
+      "domains": ["pinchtab.com"]
+    }
+  ]
+}

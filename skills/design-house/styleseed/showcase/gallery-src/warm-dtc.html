@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: "DM Sans", sans-serif; background: #FBF4EE; color: #2B211B; -webkit-font-smoothing: antialiased; }
+  .wrap { width: 1240px; height: 860px; padding: 40px 72px; display: flex; flex-direction: column; }
+  .terra { color:#C14E24; }
+  .pill { border-radius:9999px; }
+  .card { background:#fff; border-radius:26px; box-shadow:0 10px 30px rgba(150,70,30,0.08); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-weight:700;font-size:22px;letter-spacing:-0.02em;">relay<span class="terra">•</span></span>
+    <div style="display:flex;align-items:center;gap:30px;font-size:15px;font-weight:500;color:#6E5F55;">
+      <span>Shop plans</span><span>Stories</span>
+      <span class="pill" style="background:#C14E24;color:#fff;font-weight:600;padding:11px 24px;">Start free</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:48px;flex:1;align-items:center;">
+    <div>
+      <span class="pill" style="display:inline-block;background:#F6E4D8;color:#C14E24;font-size:13px;font-weight:600;padding:7px 16px;">☀ Get paid in days, not months</span>
+      <h1 style="font-size:70px;line-height:1.02;font-weight:700;letter-spacing:-0.03em;margin-top:22px;">Payments that close <span class="terra">themselves.</span></h1>
+      <p style="font-size:18px;line-height:1.6;color:#6E5F55;max-width:44ch;margin-top:24px;">Relay chases every invoice, reconciles the cash, and forecasts next month — so you can get back to the fun part.</p>
+      <div style="display:flex;align-items:center;gap:16px;margin-top:34px;">
+        <span class="pill" style="background:#C14E24;color:#fff;font-weight:600;font-size:16px;padding:15px 32px;box-shadow:0 8px 20px rgba(193,78,36,0.28);">Start free →</span>
+        <span style="font-weight:600;font-size:16px;color:#2B211B;">Watch demo</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div class="card" style="padding:30px;">
+        <div style="font-size:14px;color:#9A8A7E;font-weight:500;">Monthly revenue</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:8px;"><span style="font-size:52px;font-weight:700;letter-spacing:-0.03em;">$48.2<span style="font-size:26px;color:#9A8A7E;">K</span></span><span class="pill terra" style="background:#F6E4D8;font-size:14px;font-weight:600;padding:4px 12px;">+8.2%</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+        <div class="card" style="padding:26px;"><div style="font-size:13px;color:#9A8A7E;font-weight:500;">Active</div><div style="font-size:38px;font-weight:700;margin-top:6px;letter-spacing:-0.02em;">1,284</div></div>
+        <div class="card" style="padding:26px;"><div style="font-size:13px;color:#9A8A7E;font-weight:500;">On-time</div><div style="font-size:38px;font-weight:700;margin-top:6px;letter-spacing:-0.02em;">99.4<span style="font-size:20px;color:#9A8A7E;">%</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

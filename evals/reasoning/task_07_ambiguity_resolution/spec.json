@@ -1,0 +1,8 @@
+{
+  "id": "TASK-07-AMBIGUITY-RESOLUTION",
+  "name": "Underspecified Requirement: Question or Explicit Assumption",
+  "category": "ambiguity",
+  "difficulty": "medium",
+  "prompt": "Export the user analytics dataset to the standard file format.",
+  "target_file": "evals/reasoning/task_07_ambiguity_resolution/oracle.py"
+}

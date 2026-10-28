@@ -1,0 +1,9 @@
+# Cursor Rules — Auto-Configured by Workshop OS
+# Source: AGENTS.md
+
+Use @AGENTS.md for operating identity, engineering directives, and problem-solving discipline.
+- STOP & SCOUT FIRST: Check Workshop skills before generating code.
+- For UI/Frontend: Load `Workshop/skills/design-taste-frontend/SKILL.md` (no generic purple gradients, no templates).
+- Search skills with `uv run python scripts/workshop.py search "<query>"`.
+- Verify code health with `uv run python scripts/workshop.py doctor`.
+- Slop Court trial: `uv run python scripts/workshop.py court trial --staged`.

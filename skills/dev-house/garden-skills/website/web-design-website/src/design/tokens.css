@@ -1,0 +1,111 @@
+/* =========================================================
+   Design Tokens — Claude Design Skill 视频站点
+   暖调（Anthropic 米色 + 暖橘）+ 半反转节奏
+   ========================================================= */
+
+:root {
+  /* —— 色彩（OKLCH 派生，禁止再造新色相） —— */
+
+  /* paper 系：默认浅底（米色纸感） */
+  --paper:        oklch(0.965 0.018 78);
+  --paper-deep:   oklch(0.928 0.024 78);
+  --paper-edge:   oklch(0.880 0.028 78);
+
+  /* ink 系：深墨（暗章节用作底色，浅章节作文本） */
+  --ink:          oklch(0.180 0.014 60);
+  --ink-soft:     oklch(0.300 0.014 60);
+  --ink-mute:     oklch(0.520 0.012 60);
+  --ink-faint:    oklch(0.760 0.010 60);
+
+  /* accent 系：暖橘（Claude 调） */
+  --ember:        oklch(0.700 0.170 42);
+  --ember-deep:   oklch(0.560 0.180 38);
+  --ember-soft:   oklch(0.860 0.060 60);
+
+  /* 极少量功能色：仅用于"股价崩盘 / 错误"等明确语义 */
+  --crimson:      oklch(0.560 0.200 22);
+  --cyan:         oklch(0.700 0.090 220);
+
+  /* 中性线条（基于 ink 的透明派生） */
+  --line-1:       oklch(0.180 0.014 60 / 0.10);
+  --line-2:       oklch(0.180 0.014 60 / 0.22);
+  --line-3:       oklch(0.180 0.014 60 / 0.45);
+
+  /* 反色场景下的线条（ink 底） */
+  --line-on-ink-1: oklch(0.965 0.018 78 / 0.10);
+  --line-on-ink-2: oklch(0.965 0.018 78 / 0.22);
+  --line-on-ink-3: oklch(0.965 0.018 78 / 0.45);
+
+  /* —— 间距（8px 基准） —— */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+  --s-9: 192px;
+
+  /* —— 字号（基于 1920×1080 stage 的 px 绝对单位） —— */
+  --t-eyebrow:    18px;   /* 章节编号 / eyebrow */
+  --t-caption:    22px;
+  --t-body:       28px;   /* 正文最小 */
+  --t-body-lg:    34px;
+  --t-lead:       42px;
+  --t-h3:         56px;
+  --t-h2:         84px;
+  --t-h1:        128px;
+  --t-display:   200px;
+  --t-mega:      320px;
+
+  /* —— 字体 —— */
+  --f-serif:  "Instrument Serif", "Songti SC", "Noto Serif SC", Georgia, serif;
+  --f-sans:   "Geist", "PingFang SC", "HarmonyOS Sans SC", system-ui, -apple-system, sans-serif;
+  --f-mono:   "Geist Mono", ui-monospace, "JetBrains Mono", Menlo, monospace;
+
+  /* —— 圆角（保持极克制，几乎都是 0） —— */
+  --r-0: 0px;
+  --r-1: 2px;
+  --r-2: 4px;
+  --r-pill: 999px;
+
+  /* —— 缓动 / 时长（与 motion.ts 同步） —— */
+  --ease-enter:      cubic-bezier(.2, .8, .2, 1);
+  --ease-exit:       cubic-bezier(.4, 0, 1, 1);
+  --ease-emphasized: cubic-bezier(.6, -0.05, .2, 1.2);
+  --d-micro: 200ms;
+  --d-base:  480ms;
+  --d-hero:  900ms;
+  --d-epic:  1600ms;
+
+  /* —— 主题角色（默认浅底） —— */
+  --bg:         var(--paper);
+  --bg-2:       var(--paper-deep);
+  --fg:         var(--ink);
+  --fg-soft:    var(--ink-soft);
+  --fg-mute:    var(--ink-mute);
+  --fg-faint:   var(--ink-faint);
+  --line:       var(--line-1);
+  --line-mid:   var(--line-2);
+  --line-strong:var(--line-3);
+  --accent:     var(--ember);
+  --accent-deep:var(--ember-deep);
+}
+
+/* 深底章节通过给祖先元素加 .theme-ink 翻转角色 —— 仅角色变，token 不变 */
+/* 暗色不再用纯墨黑 —— 调到 oklch 0.27 左右的"软炭灰"，
+   让浅↔深章节切换时眼睛不被刺一下 */
+.theme-ink {
+  --bg:         oklch(0.275 0.012 60);
+  --bg-2:       oklch(0.320 0.014 60);
+  --fg:         var(--paper);
+  --fg-soft:    oklch(0.890 0.020 78);
+  --fg-mute:    oklch(0.700 0.018 78);
+  --fg-faint:   oklch(0.560 0.014 60);
+  --line:       var(--line-on-ink-1);
+  --line-mid:   var(--line-on-ink-2);
+  --line-strong:var(--line-on-ink-3);
+  --accent:     var(--ember);
+  --accent-deep:var(--ember-deep);
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { font-family: Inter, sans-serif; background: #0B0E14; color: #C7CDD9; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  .wrap { width: 1240px; height: 860px; padding: 32px 40px; display: flex; flex-direction: column; }
+  .card { background:#12161F; border:1px solid #232A38; border-radius:6px; }
+  .teal { color:#2DD4BF; }
+  .lbl { font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#6B7385; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:20px;border-bottom:1px solid #1B212D;">
+    <div style="display:flex;align-items:center;gap:28px;">
+      <span style="font-weight:700;font-size:16px;color:#EAEEF5;letter-spacing:-0.01em;">◆ relay</span>
+      <span class="mono" style="font-size:12px;color:#6B7385;">/ dashboard</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;font-size:13px;color:#8A92A3;">
+      <span>Docs</span><span>API</span>
+      <span class="teal" style="border:1px solid #2DD4BF;border-radius:6px;padding:6px 14px;font-weight:600;">Start free</span>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px;padding-top:34px;flex:1;align-items:center;">
+    <div>
+      <div class="teal mono" style="font-size:12px;letter-spacing:0.04em;">// revenue infrastructure</div>
+      <h1 style="font-size:52px;line-height:1.06;font-weight:700;letter-spacing:-0.02em;color:#EAEEF5;margin-top:18px;">Payments that close themselves.</h1>
+      <p style="font-size:15px;line-height:1.6;color:#8A92A3;max-width:46ch;margin-top:20px;">Every invoice reconciled, chased, and forecast — one API, one dashboard, zero spreadsheets.</p>
+      <div style="display:flex;gap:12px;margin-top:28px;">
+        <span style="background:#2DD4BF;color:#06231F;font-weight:600;font-size:14px;padding:11px 22px;border-radius:6px;">Start free</span>
+        <span class="mono" style="border:1px solid #2A3240;color:#C7CDD9;font-size:13px;padding:11px 20px;border-radius:6px;">$ relay init</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="card" style="padding:18px;">
+          <div class="lbl">MRR</div>
+          <div style="margin-top:10px;"><span class="mono" style="font-size:32px;font-weight:600;color:#EAEEF5;">$48.2K</span></div>
+          <div class="teal mono" style="font-size:12px;margin-top:4px;">▲ 8.2%</div>
+        </div>
+        <div class="card" style="padding:18px;">
+          <div class="lbl">Active</div>
+          <div style="margin-top:10px;"><span class="mono" style="font-size:32px;font-weight:600;color:#EAEEF5;">1,284</span></div>
+          <div class="mono" style="font-size:12px;margin-top:4px;color:#6B7385;">accounts</div>
+        </div>
+      </div>
+      <div class="card" style="padding:18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="lbl">Collection log</div><div class="mono" style="font-size:11px;color:#6B7385;">last 5</div>
+        </div>
+        <div class="mono" style="font-size:12.5px;margin-top:14px;line-height:2.05;">
+          <div style="display:flex;justify-content:space-between;"><span style="color:#8A92A3;">inv_9f2a1c</span><span class="teal">paid</span><span style="color:#6B7385;">$1,240</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:#8A92A3;">inv_7b0e44</span><span class="teal">paid</span><span style="color:#6B7385;">$980</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:#8A92A3;">inv_2c81de</span><span style="color:#E0A63C;">due 2d</span><span style="color:#6B7385;">$3,410</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:#8A92A3;">inv_51aa09</span><span class="teal">paid</span><span style="color:#6B7385;">$620</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

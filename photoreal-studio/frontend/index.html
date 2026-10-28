@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photoreal Studio — Ultra-Realistic AI Image Generation System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#f59e0b',
+              amber: '#d97706',
+              cyan: '#06b6d4',
+              surface: '#0f1218',
+              card: '#161b24',
+              panel: '#1b2230',
+              border: '#273346'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#0b0e14] text-slate-200 min-h-screen font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-[#0f131c]/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-3.5 flex items-center justify-between shadow-2xl">
+    <div class="flex items-center space-x-3">
+      <div class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-300 flex items-center justify-center shadow-lg shadow-amber-500/20">
+        <!-- Lens aperture icon -->
+        <svg class="w-6 h-6 text-slate-950 font-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m14.31 8 5.74 9.94"></path>
+          <path d="M9.69 8h11.48"></path>
+          <path d="m7.38 12 5.74-9.94"></path>
+          <path d="M9.69 16 3.95 6.06"></path>
+          <path d="M14.31 16H2.83"></path>
+          <path d="m16.62 12-5.74 9.94"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-lg font-bold tracking-tight text-white flex items-center">
+            PHOTOREAL<span class="text-amber-400 ml-1 font-mono text-sm uppercase px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20">STUDIO</span>
+          </h1>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> Engine Ready
+          </span>
+        </div>
+        <p class="text-xs text-slate-400">Optics, Physics & Biometric Micro-Realism System</p>
+      </div>
+    </div>
+
+    <!-- Center Quick Preset Selector -->
+    <div class="hidden xl:flex items-center space-x-1.5 bg-slate-900/90 border border-slate-800 p-1 rounded-xl" id="presetPillContainer">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center space-x-3">
+      <button id="galleryBtn" class="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition">
+        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+        <span>Gallery (<span id="galleryCount">0</span>)</span>
+      </button>
+
+      <button id="settingsBtn" class="flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>API Keys</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-[1780px] mx-auto px-4 py-5 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN: Photographic Controls & Prompt Studio (5 cols) -->
+    <div class="lg:col-span-5 space-y-5">
+
+      <!-- Subject & Concept Studio Card -->
+      <section class="bg-[#131720] border border-slate-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+        <div class="flex items-center justify-between mb-3">
+          <label class="text-sm font-semibold tracking-wide text-slate-200 flex items-center">
+            <span class="w-2 h-2 rounded-full bg-amber-400 mr-2"></span> Photographic Subject / Vision
+          </label>
+          <button id="enhancePromptBtn" class="flex items-center space-x-1 px-2.5 py-1 text-xs font-semibold rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-md shadow-amber-500/20 transition transform active:scale-95">
+            <span>✨ Magic Enhance</span>
+          </button>
+        </div>
+
+        <textarea id="subjectInput" rows="3" class="w-full bg-[#0b0e14] border border-slate-700/80 rounded-xl p-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition resize-none font-sans" placeholder="Describe your subject (e.g. weathered elderly fisherman in Norway, deep laugh lines, salt-crusted eyebrows, looking thoughtfully into sea mist...)"></textarea>
+
+        <!-- Quick Idea Chips -->
+        <div class="mt-3 flex flex-wrap gap-1.5 text-xs">
+          <span class="text-slate-500 self-center text-[11px] mr-1">Inspirations:</span>
+          <button class="idea-chip px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 text-slate-400 border border-slate-700/60 transition">Fisherman in Greenland</button>
+          <button class="idea-chip px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 text-slate-400 border border-slate-700/60 transition">Kyoto Tea Master</button>
+          <button class="idea-chip px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 text-slate-400 border border-slate-700/60 transition">Rainy Shinjuku Alley</button>
+          <button class="idea-chip px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 text-slate-400 border border-slate-700/60 transition">Vogue Cashmere Model</button>
+          <button class="idea-chip px-2 py-0.5 rounded-md bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 text-slate-400 border border-slate-700/60 transition">Macro Morning Dewdrop</button>
+        </div>
+
+        <div id="enhancementReasoning" class="hidden mt-3 p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/20 text-xs text-amber-200/90 leading-relaxed"></div>
+      </section>
+
+      <!-- Optics & Camera Controls Rack -->
+      <section class="bg-[#131720] border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+        <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase flex items-center justify-between pb-2 border-b border-slate-800">
+          <span>Camera & Optical Configuration</span>
+          <span class="text-[11px] font-mono text-amber-400 font-normal">PHYSICS SIMULATION</span>
+        </h2>
+
+        <!-- Camera & Lens -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center">
+              <span>📷 Camera Body & Sensor</span>
+            </label>
+            <select id="cameraSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+              <!-- Injected by JS -->
+            </select>
+            <p id="cameraDetails" class="text-[11px] text-slate-500 mt-1 truncate"></p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center">
+              <span>🔍 Prime Lens & Optical Profile</span>
+            </label>
+            <select id="lensSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+              <!-- Injected by JS -->
+            </select>
+            <p id="lensDetails" class="text-[11px] text-slate-500 mt-1 truncate"></p>
+          </div>
+        </div>
+
+        <!-- Aperture Selector Pills -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">
+            <span>Aperture / Depth of Field Control</span>
+          </label>
+          <div id="aperturePills" class="flex flex-wrap gap-1.5">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Lighting & Film Stock -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5">
+              <span>💡 Lighting Architecture</span>
+            </label>
+            <select id="lightingSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+              <!-- Injected by JS -->
+            </select>
+            <p id="lightingDetails" class="text-[11px] text-slate-500 mt-1 truncate"></p>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5">
+              <span>🎞️ Film Emulsion & Tone Curve</span>
+            </label>
+            <select id="filmStockSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+              <!-- Injected by JS -->
+            </select>
+            <p id="filmDetails" class="text-[11px] text-slate-500 mt-1 truncate"></p>
+          </div>
+        </div>
+
+        <!-- Exposure & Aspect Ratio -->
+        <div class="grid grid-cols-3 gap-3 pt-1">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Shutter Speed</label>
+            <input type="text" id="shutterInput" value="1/250s" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-amber-500 text-center">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">ISO Sensitivity</label>
+            <input type="number" id="isoInput" value="200" step="50" min="50" max="6400" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-amber-500 text-center">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Aspect Ratio</label>
+            <select id="aspectRatioSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-amber-500 text-center">
+              <option value="3:4">3:4 Portrait</option>
+              <option value="4:5">4:5 Classic</option>
+              <option value="1:1">1:1 Square</option>
+              <option value="16:9">16:9 Cinema</option>
+              <option value="21:9">21:9 Ultrawide</option>
+              <option value="9:16">9:16 Story</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Micro-Realism Physics Toggles -->
+        <div class="pt-2 border-t border-slate-800 space-y-2">
+          <label class="block text-xs font-medium text-slate-300 mb-2">Micro-Detail & Realism Physics Injection</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-slate-700 cursor-pointer">
+              <input type="checkbox" id="skinRealismCheck" checked class="w-4 h-4 rounded text-amber-500 focus:ring-amber-400 bg-slate-800 border-slate-600">
+              <span class="text-slate-300">Biometric Skin Pores & SSS</span>
+            </label>
+            <label class="flex items-center space-x-2.5 p-2 rounded-lg bg-slate-900/60 border border-slate-800 hover:border-slate-700 cursor-pointer">
+              <input type="checkbox" id="materialPhysicsCheck" checked class="w-4 h-4 rounded text-amber-500 focus:ring-amber-400 bg-slate-800 border-slate-600">
+              <span class="text-slate-300">Fabric Weave & Dust Motes</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Provider Selection & Seed -->
+        <div class="pt-2 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Inference Engine Provider</label>
+            <select id="providerSelect" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-amber-500">
+              <option value="flux_dev_realism" selected>🌟 Hugging Face FLUX.1-Dev Realism (SOTA Quality)</option>
+              <option value="hf_flux_schnell">⚡ Hugging Face FLUX.1-Schnell (Fast Turbo)</option>
+              <option value="imagen3">💎 Google Imagen 3 / Gemini (API Key)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Random Seed (0 = Random)</label>
+            <div class="flex space-x-1.5">
+              <input type="number" id="seedInput" value="0" class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-xs font-mono text-slate-200 focus:outline-none focus:border-amber-500 text-center">
+              <button id="randomSeedBtn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700" title="Generate random seed">🎲</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Synthesized Prompt Preview Accordion -->
+      <section class="bg-[#131720] border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between cursor-pointer" id="togglePromptPreview">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center">
+            <svg class="w-4 h-4 text-amber-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+            Synthesized Prompt Preview
+          </span>
+          <span class="text-xs text-slate-500 font-mono" id="promptCharCount">0 chars</span>
+        </div>
+
+        <div id="promptPreviewContent" class="mt-3 space-y-3">
+          <div>
+            <label class="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-1">Positive Prompt</label>
+            <textarea id="positivePromptText" rows="3" class="w-full bg-[#0b0e14] border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 font-mono leading-relaxed focus:outline-none focus:border-amber-500"></textarea>
+          </div>
+          <div>
+            <label class="text-[11px] font-mono text-red-400/90 uppercase tracking-wider block mb-1">Anti-CGI Negative Shield</label>
+            <textarea id="negativePromptText" rows="2" class="w-full bg-[#0b0e14] border border-slate-800 rounded-lg p-2.5 text-xs text-red-300/80 font-mono leading-relaxed focus:outline-none focus:border-red-500"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- BIG GENERATE BUTTON -->
+      <div>
+        <button id="generateBtn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-extrabold text-base tracking-wide uppercase shadow-xl shadow-amber-500/25 flex items-center justify-center space-x-2.5 transition transform active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <line x1="12" y1="2" x2="12" y2="5"></line>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+            <line x1="2" y1="12" x2="5" y2="12"></line>
+            <line x1="19" y1="12" x2="22" y2="12"></line>
+          </svg>
+          <span id="generateBtnText">Generate Master Photograph</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Master High-Res Viewport & Detail Loupe (7 cols) -->
+    <div class="lg:col-span-7 space-y-5">
+
+      <!-- Viewport Card -->
+      <section class="bg-[#131720] border border-slate-800 rounded-2xl p-5 shadow-2xl relative min-h-[640px] flex flex-col justify-between overflow-hidden">
+        
+        <!-- Viewport Top Bar -->
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="font-semibold text-slate-200 uppercase tracking-wider">High-Fidelity Studio Monitor</span>
+            <span id="generationTimeBadge" class="hidden font-mono px-2 py-0.5 rounded bg-slate-800 text-amber-400 text-[11px]"></span>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center space-x-2">
+            <button id="toggleLoupeBtn" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs border border-slate-700 flex items-center space-x-1" title="Toggle 200% Detail Loupe">
+              <span>🔍 Detail Loupe: <b id="loupeStatusText" class="text-amber-400">ON</b></span>
+            </button>
+            <button id="downloadBtn" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow transition flex items-center space-x-1" title="Download High-Res JPG">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span>Download</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Display Frame with Zoom Loupe -->
+        <div class="relative my-4 flex-1 flex items-center justify-center bg-[#090b10] rounded-xl overflow-hidden border border-slate-800/80 min-h-[480px] select-none group" id="viewportFrame">
+          
+          <!-- Loading Overlay -->
+          <div id="loadingOverlay" class="hidden absolute inset-0 z-30 bg-[#090b10]/85 backdrop-blur-sm flex flex-col items-center justify-center space-y-4">
+            <div class="relative w-16 h-16">
+              <div class="absolute inset-0 rounded-full border-4 border-amber-500/20"></div>
+              <div class="absolute inset-0 rounded-full border-4 border-amber-400 border-t-transparent animate-spin"></div>
+              <!-- Aperture Icon in center -->
+              <div class="absolute inset-0 flex items-center justify-center text-amber-400 font-bold text-xs font-mono">REC</div>
+            </div>
+            <div class="text-center">
+              <p class="text-sm font-bold text-white tracking-wide">Synthesizing Optical Realism...</p>
+              <p class="text-xs text-slate-400 mt-1" id="loadingStageText">Simulating sensor dynamic range & subsurface scattering</p>
+            </div>
+          </div>
+
+          <!-- Empty Placeholder State -->
+          <div id="emptyState" class="text-center p-8 space-y-3">
+            <div class="w-20 h-20 rounded-full bg-slate-900 border border-slate-800 mx-auto flex items-center justify-center text-slate-600">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </div>
+            <h3 class="text-base font-semibold text-slate-300">No Image Generated Yet</h3>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto">
+              Select a Master Preset above or write your subject, configure camera parameters, and press <span class="text-amber-400 font-semibold">Generate Master Photograph</span>.
+            </p>
+          </div>
+
+          <!-- Rendered Image -->
+          <img id="renderedImage" src="" alt="Photoreal AI Output" class="hidden max-h-[620px] w-auto object-contain rounded-lg shadow-2xl transition duration-300">
+
+          <!-- Detail Loupe Magnifier Bubble -->
+          <div id="magnifierLoupe" class="hidden pointer-events-none absolute z-20 w-48 h-48 rounded-full border-2 border-amber-400 shadow-2xl overflow-hidden bg-black" style="box-shadow: 0 0 30px rgba(0,0,0,0.8), 0 0 15px rgba(245, 158, 11, 0.4);">
+            <div id="loupeContent" class="absolute w-[800px] h-[800px] bg-no-repeat"></div>
+            <!-- Crosshairs in loupe -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
+              <div class="w-full h-[1px] bg-amber-400"></div>
+              <div class="h-full w-[1px] bg-amber-400 absolute"></div>
+            </div>
+            <div class="absolute bottom-1 left-0 right-0 text-center text-[9px] font-mono text-amber-300 bg-black/60 px-1 py-0.5">
+              300% PORE ZOOM
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Photographic EXIF Metadata Card -->
+        <div id="exifCard" class="hidden mt-2 p-3.5 bg-slate-950/80 border border-slate-800 rounded-xl">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+              <span class="text-slate-500 text-[10px] block uppercase">Camera</span>
+              <span id="exifCamera" class="font-semibold text-slate-200 truncate block">Hasselblad H6D-100c</span>
+            </div>
+            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+              <span class="text-slate-500 text-[10px] block uppercase">Optics</span>
+              <span id="exifLens" class="font-semibold text-slate-200 truncate block">85mm f/1.4</span>
+            </div>
+            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+              <span class="text-slate-500 text-[10px] block uppercase">Exposure</span>
+              <span id="exifExposure" class="font-semibold text-amber-400 block">f/1.8 • 1/250s • ISO 200</span>
+            </div>
+            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+              <span class="text-slate-500 text-[10px] block uppercase">Film / Sensor</span>
+              <span id="exifFilm" class="font-semibold text-slate-200 truncate block">Kodak Portra 400</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Gallery Slide-over Modal -->
+  <div id="galleryModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex justify-end">
+    <div class="w-full max-w-2xl bg-[#11141c] h-full border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <h2 class="text-lg font-bold text-white flex items-center">
+            <span>Studio Session Gallery</span>
+          </h2>
+          <button id="closeGalleryBtn" class="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <div id="galleryGrid" class="mt-5 grid grid-cols-2 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Settings Modal -->
+  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-[#131720] border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <h3 class="text-base font-bold text-white">API Provider Settings</h3>
+        <button id="closeSettingsBtn" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        To produce true unconstrained, studio-grade photorealistic photographs without watermarks, connect your free keys below:
+      </p>
+
+      <div class="space-y-4 text-xs">
+        <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-slate-200 font-semibold flex items-center gap-1.5">
+              <span>💎 Google Imagen 3 (Gemini API)</span>
+            </label>
+            <a href="https://aistudio.google.com/apikey" target="_blank" class="text-[11px] text-amber-400 hover:underline flex items-center gap-1">
+              Get Free Key ↗
+            </a>
+          </div>
+          <p class="text-[11px] text-slate-400">Industry-leading photorealism, authentic facial anatomy, real skin pores, and zero watermarks.</p>
+          <input type="password" id="geminiKeyInput" placeholder="AIzaSy..." class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-slate-200 focus:border-amber-500 focus:outline-none font-mono">
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-slate-200 font-semibold flex items-center gap-1.5">
+              <span>🌟 Hugging Face Token (ZeroGPU)</span>
+            </label>
+            <a href="https://huggingface.co/settings/tokens" target="_blank" class="text-[11px] text-amber-400 hover:underline flex items-center gap-1">
+              Get Free Token ↗
+            </a>
+          </div>
+          <p class="text-[11px] text-slate-400">Unlocks personal ZeroGPU quota for FLUX.1-Dev Realism (24 steps) and FLUX.1-schnell.</p>
+          <input type="password" id="hfTokenInput" placeholder="hf_..." class="w-full bg-[#0b0e14] border border-slate-700 rounded-lg p-2 text-slate-200 focus:border-amber-500 focus:outline-none font-mono">
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t border-slate-800">
+        <button id="saveSettingsBtn" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-lg transition">Save Credentials</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl bg-slate-900 border border-amber-500/30 text-amber-300 text-xs shadow-2xl transition transform translate-y-20 opacity-0 pointer-events-none flex items-center space-x-2">
+    <span id="toastIcon">✨</span>
+    <span id="toastText">Action successful</span>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

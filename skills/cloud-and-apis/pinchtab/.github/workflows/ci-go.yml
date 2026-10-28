@@ -1,0 +1,41 @@
+name: CI / Go
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**'
+      - '!**.md'
+      - '!docs/**'
+      - '!LICENSE'
+      - '!.gitignore'
+      - '!skills/**'
+      - '!plugins/**'
+      - '!.grok-plugin/**'
+      - 'skills/pinchtab/SKILL.md'
+      - 'skills/pinchtab-mcp/SKILL.md'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**'
+      - '!**.md'
+      - '!docs/**'
+      - '!LICENSE'
+      - '!.gitignore'
+      - '!skills/**'
+      - '!plugins/**'
+      - '!.grok-plugin/**'
+      - 'skills/pinchtab/SKILL.md'
+      - 'skills/pinchtab-mcp/SKILL.md'
+  workflow_dispatch:
+
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-go.yml
+    with:
+      ref: ${{ github.sha }}

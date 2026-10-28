@@ -1,0 +1,10 @@
+{
+  "id": "TASK-03-BEHAVIOR-REFACTOR",
+  "name": "Behavior-Preserving Refactoring: O(1) LRU Cache",
+  "category": "refactor",
+  "difficulty": "medium",
+  "prompt": "Refactor `evals/reasoning/task_03_behavior_refactor/lru_cache.py` from linear O(N) list scans to optimal O(1) amortized hash-linked operations (e.g. using collections.OrderedDict or custom node links). The public API and all behavioral invariants in test_invariants.py must stay 100% green.",
+  "target_file": "evals/reasoning/task_03_behavior_refactor/lru_cache.py",
+  "hidden_test": "evals/reasoning/task_03_behavior_refactor/test_invariants.py",
+  "expected_failure_initial": false
+}

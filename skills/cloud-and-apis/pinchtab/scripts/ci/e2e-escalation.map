@@ -1,0 +1,25 @@
+# Which E2E suites a changed path pulls into a pull request run.
+#
+# One rule per line: <ERE matched against the repo-relative path> <suites, space
+# separated, or "-" for none>. The first matching rule decides; a path matching no
+# rule escalates nothing. Adding coverage for a product area is one line.
+
+^tests/e2e/scenarios/[^/]+/[^/]+-smoke\.sh$                smoke
+^tests/e2e/scenarios/[^/]+/[^/]+-basic\.sh$                -
+^tests/e2e/scenarios/api/[^/]+\.sh$                        api-extended
+^tests/e2e/scenarios/cli/[^/]+\.sh$                        cli-extended
+^tests/e2e/scenarios/infra/[^/]+\.sh$                      infra-extended
+
+^(Dockerfile|\.dockerignore)$                              smoke
+^scripts/docker-.*smoke\.sh$                               smoke
+^tests/tools/docker/chrome-cft-smoke\.Dockerfile$          smoke
+^\.github/workflows/(ci-smoke|reusable-smoke)\.yml$        smoke
+^(plugins/|\.grok-plugin/)                                smoke
+
+^internal/audit/                                           api-extended cli-extended
+^pkg/pinchtabaudit/                                        api-extended cli-extended
+^internal/handlers/(a11y_)?audit                           api-extended cli-extended
+^internal/cli/actions/actions_audit                        api-extended cli-extended
+^cmd/pinchtab/cmd_audit                                    api-extended cli-extended
+^internal/cli/actions/actions_compare                      cli-extended
+^cmd/pinchtab/cmd_compare                                  cli-extended

@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="houseGround" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111215"/>
+      <stop offset="60%" stop-color="#141519"/>
+      <stop offset="100%" stop-color="#0f1013"/>
+    </linearGradient>
+
+    <!-- Dot Grid for Architectural Texture -->
+    <pattern id="archGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="0.65" fill="#242630"/>
+    </pattern>
+  </defs>
+
+  <style>
+    .house-head { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -1px; fill: #eceae4; text-transform: uppercase; }
+    .house-mono { font-family: "SF Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1.2px; fill: #8e919a; }
+    .house-mono-bold { font-family: "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; }
+    .card-title { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 800; font-size: 13px; fill: #eceae4; text-transform: uppercase; letter-spacing: -0.3px; }
+    .card-stat { font-family: "SF Mono", monospace; font-size: 11px; font-weight: 700; }
+    .card-item { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 600; font-size: 11px; fill: #ffffff; }
+    .card-sub { font-family: "SF Mono", monospace; font-size: 9px; fill: #727580; }
+  </style>
+
+  <!-- Base Ground -->
+  <rect width="1160" height="520" fill="url(#houseGround)"/>
+  <rect width="1160" height="520" fill="url(#archGrid)"/>
+
+  <!-- Outer Structural Chassis (Zero Radius) -->
+  <rect x="20" y="20" width="1120" height="480" fill="none" stroke="#252730" stroke-width="1.2"/>
+
+  <!-- Precision Calibration Targets -->
+  <g stroke="#eb5e28" stroke-width="1" opacity="0.8">
+    <circle cx="20" cy="20" r="4" fill="none"/>
+    <circle cx="1140" cy="20" r="4" fill="none"/>
+    <circle cx="20" cy="500" r="4" fill="none"/>
+    <circle cx="1140" cy="500" r="4" fill="none"/>
+  </g>
+
+  <!-- Header Section -->
+  <text x="44" y="58" class="house-head">WORKSHOP OS // SOVEREIGN HOUSES TAXONOMY</text>
+  <text x="44" y="78" class="house-mono">DOMAIN GUILDS &#8226; MODULAR CONTEXT LOADING &#8226; 2,150+ BATTLE-TESTED SKILLS</text>
+  <text x="1116" y="58" text-anchor="end" class="house-mono-bold" fill="#eb5e28">TOPOLOGY // SPEC 3.5</text>
+  <text x="1116" y="78" text-anchor="end" class="house-mono" fill="#10b981">DISCOVERY: RECURSIVE AST</text>
+
+  <line x1="44" y1="94" x2="1116" y2="94" stroke="#252730" stroke-width="1"/>
+
+  <!-- 7 Sovereign House Bays -->
+
+  <!-- 1. DESIGN HOUSE -->
+  <g transform="translate(44, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#eb5e28"/>
+    <text x="12" y="24" class="card-title">01 DESIGN</text>
+    <text x="12" y="42" class="card-stat" fill="#eb5e28">109 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">UI UX Pro Max</text>
+    <text x="12" y="86" class="card-sub">Styles &amp; Tokens</text>
+    <text x="12" y="112" class="card-item">Design Taste</text>
+    <text x="12" y="126" class="card-sub">Anti-Slop Dials</text>
+    <text x="12" y="152" class="card-item">Impeccable</text>
+    <text x="12" y="166" class="card-sub">Poster Typography</text>
+    <text x="12" y="192" class="card-item">Archify</text>
+    <text x="12" y="206" class="card-sub">HTML Architecture</text>
+    <text x="12" y="232" class="card-item">PPT Master</text>
+    <text x="12" y="246" class="card-sub">Native PPTX Decks</text>
+    <text x="12" y="272" class="card-item">Vector Craft</text>
+    <text x="12" y="286" class="card-sub">Bespoke SVG &amp; Color</text>
+    <text x="12" y="340" class="house-mono" fill="#eb5e28">ATELIER CORE</text>
+  </g>
+
+  <!-- 2. DEV HOUSE -->
+  <g transform="translate(198, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#38bdf8"/>
+    <text x="12" y="24" class="card-title">02 DEV &amp; ENG</text>
+    <text x="12" y="42" class="card-stat" fill="#38bdf8">198 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">Superpowers</text>
+    <text x="12" y="86" class="card-sub">TDD &amp; Review Loop</text>
+    <text x="12" y="112" class="card-item">Matt Pocock</text>
+    <text x="12" y="126" class="card-sub">TypeScript Mastery</text>
+    <text x="12" y="152" class="card-item">Karpathy Skills</text>
+    <text x="12" y="166" class="card-sub">Anti-Overengineering</text>
+    <text x="12" y="192" class="card-item">Ponytail</text>
+    <text x="12" y="206" class="card-sub">Dead Code Pruning</text>
+    <text x="12" y="232" class="card-item">ECC Rules</text>
+    <text x="12" y="246" class="card-sub">Claude Code Guard</text>
+    <text x="12" y="272" class="card-item">ast-grep &amp; TDD</text>
+    <text x="12" y="286" class="card-sub">AST Refactoring</text>
+    <text x="12" y="340" class="house-mono" fill="#38bdf8">SYSTEMS FOUNDRY</text>
+  </g>
+
+  <!-- 3. INTEL HOUSE -->
+  <g transform="translate(352, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#a855f7"/>
+    <text x="12" y="24" class="card-title">03 INTEL</text>
+    <text x="12" y="42" class="card-stat" fill="#a855f7">90 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">Graphify AST</text>
+    <text x="12" y="86" class="card-sub">Knowledge Graph</text>
+    <text x="12" y="112" class="card-item">Agent Reach</text>
+    <text x="12" y="126" class="card-sub">Zero-Fee Scraper</text>
+    <text x="12" y="152" class="card-item">Last 30 Days</text>
+    <text x="12" y="166" class="card-sub">Engagement Recency</text>
+    <text x="12" y="192" class="card-item">Understand</text>
+    <text x="12" y="206" class="card-sub">Tree-Sitter Mapping</text>
+    <text x="12" y="232" class="card-item">REA Reverse</text>
+    <text x="12" y="246" class="card-sub">Binary &amp; API Sniff</text>
+    <text x="12" y="272" class="card-item">Auspex OSINT</text>
+    <text x="12" y="286" class="card-sub">Cross-Entity Recon</text>
+    <text x="12" y="340" class="house-mono" fill="#a855f7">RECON VAULT</text>
+  </g>
+
+  <!-- 4. OPS HOUSE -->
+  <g transform="translate(506, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#10b981"/>
+    <text x="12" y="24" class="card-title">04 OPS &amp; TOKENS</text>
+    <text x="12" y="42" class="card-stat" fill="#10b981">117 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">Caveman</text>
+    <text x="12" y="86" class="card-sub">-70% Output Fluff</text>
+    <text x="12" y="112" class="card-item">Headroom</text>
+    <text x="12" y="126" class="card-sub">Context Compression</text>
+    <text x="12" y="152" class="card-item">GSD Spec-Dev</text>
+    <text x="12" y="166" class="card-sub">Zero Context Rot</text>
+    <text x="12" y="192" class="card-item">BMAD Method</text>
+    <text x="12" y="206" class="card-sub">6 Agile Stage Gates</text>
+    <text x="12" y="232" class="card-item">gstack Team</text>
+    <text x="12" y="246" class="card-sub">YC Startup Swarm</text>
+    <text x="12" y="272" class="card-item">Career Ops</text>
+    <text x="12" y="286" class="card-sub">Portfolio &amp; Pipeline</text>
+    <text x="12" y="340" class="house-mono" fill="#10b981">ENGINE ROOM</text>
+  </g>
+
+  <!-- 5. MEDIA HOUSE -->
+  <g transform="translate(660, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#ec4899"/>
+    <text x="12" y="24" class="card-title">05 MEDIA</text>
+    <text x="12" y="42" class="card-stat" fill="#ec4899">76 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">HyperFrames</text>
+    <text x="12" y="86" class="card-sub">HTML/JS Video Render</text>
+    <text x="12" y="112" class="card-item">OpenMontage</text>
+    <text x="12" y="126" class="card-sub">Video Studio Engine</text>
+    <text x="12" y="152" class="card-item">Photoreal</text>
+    <text x="12" y="166" class="card-sub">FLUX Optical Physics</text>
+    <text x="12" y="192" class="card-item">Remotion</text>
+    <text x="12" y="206" class="card-sub">React Motion Suite</text>
+    <text x="12" y="232" class="card-item">YouTube Suite</text>
+    <text x="12" y="246" class="card-sub">Retention &amp; Packaging</text>
+    <text x="12" y="272" class="card-item">Talking Head</text>
+    <text x="12" y="286" class="card-sub">Voice &amp; Audio Recut</text>
+    <text x="12" y="340" class="house-mono" fill="#ec4899">MOTION STAGE</text>
+  </g>
+
+  <!-- 6. GROWTH HOUSE -->
+  <g transform="translate(814, 110)">
+    <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="144" height="4" fill="#f59e0b"/>
+    <text x="12" y="24" class="card-title">06 GROWTH</text>
+    <text x="12" y="42" class="card-stat" fill="#f59e0b">79 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">Humanizer</text>
+    <text x="12" y="86" class="card-sub">Anti-AI Prose Tone</text>
+    <text x="12" y="112" class="card-item">Marketing Skills</text>
+    <text x="12" y="126" class="card-sub">CRO &amp; Positioning</text>
+    <text x="12" y="152" class="card-item">Brand Voice</text>
+    <text x="12" y="166" class="card-sub">Tone &amp; Guidelines</text>
+    <text x="12" y="192" class="card-item">Product Hunt</text>
+    <text x="12" y="206" class="card-sub">Launch Choreography</text>
+    <text x="12" y="232" class="card-item">SEO Engine</text>
+    <text x="12" y="246" class="card-sub">Programmatic Audit</text>
+    <text x="12" y="272" class="card-item">Cold Email</text>
+    <text x="12" y="286" class="card-sub">Direct Response</text>
+    <text x="12" y="340" class="house-mono" fill="#f59e0b">GROWTH CHAMBER</text>
+  </g>
+
+  <!-- 7. SECURITY HOUSE -->
+  <g transform="translate(968, 110)">
+    <rect width="148" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
+    <rect width="148" height="4" fill="#ef4444"/>
+    <text x="12" y="24" class="card-title">07 SECURITY</text>
+    <text x="12" y="42" class="card-stat" fill="#ef4444">19 SKILLS</text>
+    <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
+    
+    <text x="12" y="72" class="card-item">Slop Court v2</text>
+    <text x="12" y="86" class="card-sub">3-Juror Tribunal</text>
+    <text x="12" y="112" class="card-item">Git Bailiff</text>
+    <text x="12" y="126" class="card-sub">Pre-Commit Arrest</text>
+    <text x="12" y="152" class="card-item">Strix Pentest</text>
+    <text x="12" y="166" class="card-sub">OWASP Auto-Audit</text>
+    <text x="12" y="192" class="card-item">Anthropic Cyber</text>
+    <text x="12" y="206" class="card-sub">Hardening Skills</text>
+    <text x="12" y="232" class="card-item">Digital Forensics</text>
+    <text x="12" y="246" class="card-sub">TSK &amp; Evidence Proof</text>
+    <text x="12" y="272" class="card-item">AegisOps AI</text>
+    <text x="12" y="286" class="card-sub">Zero-Trust Checks</text>
+    <text x="12" y="340" class="house-mono" fill="#ef4444">THE CITADEL</text>
+  </g>
+
+</svg>
