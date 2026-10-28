@@ -44,10 +44,10 @@
     ]
   },
   "instructions": [
-    "./WORKSHOP.md",
-    "./WORKSHOP_ARSENAL.md",
-    "./OPENCODE.md",
-    "./AGENTS.md"
+    "./AGENTS.md",
+    "./docs/WORKSHOP.md",
+    "./docs/WORKSHOP_ARSENAL.md",
+    "./docs/OPENCODE.md"
   ],
   "permission": {
     "*": "allow",

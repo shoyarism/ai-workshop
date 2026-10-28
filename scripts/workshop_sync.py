@@ -726,10 +726,10 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
             ]
 
             curr_instructions = [
-                f"{r_str}/WORKSHOP.md",
-                f"{r_str}/WORKSHOP_ARSENAL.md",
-                f"{r_str}/OPENCODE.md",
-                f"{r_str}/AGENTS.md"
+                f"{r_str}/AGENTS.md",
+                f"{r_str}/docs/WORKSHOP.md",
+                f"{r_str}/docs/WORKSHOP_ARSENAL.md",
+                f"{r_str}/docs/OPENCODE.md",
             ]
 
             data = json.loads(target_file.read_text(encoding="utf-8"))
