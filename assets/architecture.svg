@@ -88,7 +88,7 @@
 
     <g transform="translate(16, 20)">
       <text x="0" y="0" class="rack-mono-bold" fill="#eb5e28">PORT 02 // GATEKEEPER</text>
-      <text x="0" y="24" class="port-title">SLOP COURT v2.0</text>
+      <text x="0" y="24" class="port-title">SLOP COURT v3.5</text>
       <line x1="0" y1="36" x2="228" y2="36" stroke="#333644"/>
 
       <!-- 3-Juror Matrix -->
@@ -164,7 +164,7 @@
 
       <!-- Foundry Elements -->
       <g transform="translate(0, 52)">
-        <text x="0" y="0" class="port-item">960+ DOMAIN SKILLS</text>
+        <text x="0" y="0" class="port-item">2,150+ DOMAIN SKILLS</text>
         <text x="0" y="14" class="port-sub">Executable runbooks</text>
 
         <text x="0" y="44" class="port-item">OBSIDIAN 2ND BRAIN</text>

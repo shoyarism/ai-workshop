@@ -37,7 +37,7 @@
   <!-- Header Block (Safely Contained with End-Anchoring) -->
   <g transform="translate(40, 44)">
     <rect width="6" height="26" fill="#eb5e28"/>
-    <text x="16" y="20" class="tr-head" font-size="22">TRIBUNAL // SLOP COURT v2.0 SPECIFICATION</text>
+    <text x="16" y="20" class="tr-head" font-size="22">TRIBUNAL // SLOP COURT v3.5 SPECIFICATION</text>
     <text x="1000" y="18" text-anchor="end" class="tr-mono">GOVERNANCE: DETERMINISTIC AST INVARIANTS</text>
   </g>
 
