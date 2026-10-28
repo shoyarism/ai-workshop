@@ -161,3 +161,8 @@ USER_ACTIONS.md
 skills/_archive/
 docs/_archive/
 
+# Obsidian local settings and evidence quarantine
+.obsidian/
+**/evidence_quarantine/
+
+

@@ -110,11 +110,9 @@ class AgentRuntime:
                 except Exception:
                     return 0
         
-        HealthHandler.server = self
-        HealthHandler.runtime = self
-        HealthHandler.start_time = time.time()
-        
         server = HTTPServer(('127.0.0.1', HEALTH_PORT), HealthHandler)
+        server.runtime = self
+        server.start_time = time.time()
         self.health_server = server
         
         thread = threading.Thread(target=server.serve_forever, daemon=True)

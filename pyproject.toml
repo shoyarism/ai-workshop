@@ -44,6 +44,9 @@ agents = [
 dev = [
     "ruff",
     "pytest",
+    "pytest-cov",
+    "pip-audit",
+    "mypy",
 ]
 all = [
     "mcp>=1.0.0",
@@ -61,4 +64,23 @@ all = [
     "smolagents",
     "ruff",
     "pytest",
+    "pytest-cov",
+    "pip-audit",
+    "mypy",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+norecursedirs = [
+    ".git",
+    "node_modules",
+    "skills",
+    "vault",
+    "data",
+    "evidence_quarantine",
+    "dist",
+    "build",
+    "*.egg-info",
+]
+

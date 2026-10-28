@@ -27,8 +27,8 @@ RUN pip install --no-cache-dir hatchling uv && \
 # Copy full application tree
 COPY . /app/
 
-# Install workshop console entrypoint
-RUN pip install --no-cache-dir -e .
+# Install workshop console entrypoint with MCP/gateway extras
+RUN pip install --no-cache-dir -e ".[mcp]"
 
 # Expose standard Workshop gateway ports
 EXPOSE 7860 7861 7862

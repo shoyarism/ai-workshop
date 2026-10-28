@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies and package
         run: |
           python -m pip install --upgrade pip
-          pip install hatchling pyyaml pydantic requests ruff
+          pip install hatchling pyyaml pydantic requests ruff pytest
           pip install -e .
 
       - name: Verify CLI entrypoint and package import
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Unit Test Suite
         run: |
-          python -m unittest discover tests
+          pytest
 
       - name: Enforce Code Linter (Ruff)
         run: |
