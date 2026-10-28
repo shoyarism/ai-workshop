@@ -25,6 +25,7 @@ import time
 import json
 import argparse
 import subprocess
+import shlex
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows consoles
@@ -169,8 +170,8 @@ def launch_application(command_str: str) -> dict:
         creationflags = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
         
     proc = subprocess.Popen(
-        command_str,
-        shell=True,
+        shlex.split(command_str),
+        shell=False,
         creationflags=creationflags,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,

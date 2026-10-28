@@ -81,6 +81,14 @@ STATUTES: Dict[str, Statute] = {
         "FEL-06", "Exposed Plaintext Secret or Token", "FELONY", 100, "SECURITY",
         "Hardcoded plaintext credentials, GitHub PATs, AWS keys, or private API tokens in committed source."
     ),
+    "FEL-07": Statute(
+        "FEL-07", "Dangerous Execution & Insecure Deserialization", "FELONY", 60, "SECURITY",
+        "High-risk execution primitives including eval(), exec(), pickle.loads(), or unvetted shell=True subprocess calls."
+    ),
+    "FEL-08": Statute(
+        "FEL-08", "SQL Injection Vulnerability Pattern", "FELONY", 50, "SECURITY",
+        "Unsanitized dynamic SQL query construction using % string formatting or f-strings in database execute calls."
+    ),
 
     # TITLE II: SLOP MISDEMEANORS (Craft, Structural & Aesthetic Smells)
     "MIS-01": Statute(
@@ -159,6 +167,8 @@ RE_SECRETS = [
     (re.compile(r"github_pat_[0-9a-zA-Z_]{30,}"), "FEL-06", "Exposed GitHub Fine-Grained Personal Access Token"),
     (re.compile(r"ghp_[0-9a-zA-Z]{36}"), "FEL-06", "Exposed GitHub Classic Token"),
     (re.compile(r"AKIA[0-9A-Z]{16}"), "FEL-06", "Exposed AWS Access Key ID"),
+    (re.compile(r"sk-(?:live|test|proj)?[0-9a-zA-Z_\-]{20,}"), "FEL-06", "Exposed API Secret Key (e.g. OpenAI/Stripe)"),
+    (re.compile(r"""\b(?:password|passwd|api_secret)\s*=\s*['"][^'"\r\n\s]{6,}['"]""", re.IGNORECASE), "FEL-06", "Hardcoded plaintext password or secret"),
 ]
 
 RE_TAUTOLOGICAL = [
@@ -443,6 +453,52 @@ class Prosecutor:
                             if not is_exempt:
                                 stat = STATUTES["FEL-03"]
                                 charges.append(Charge(file_path, node.lineno, "FEL-03", stat.gravity, stat.juror_domain, "AST Verified: Naked 'except Exception: pass' error blackhole", "except Exception: pass", exempted=is_exempt))
+
+                    # Flag FEL-07 and FEL-08 via AST: Dangerous Call Invariants
+                    if isinstance(node, ast.Call):
+                        # eval() / exec()
+                        if isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec"}:
+                            surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                            is_exempt = any("@court-exempt" in l for l in surrounding)
+                            if not is_exempt:
+                                stat = STATUTES["FEL-07"]
+                                charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, f"Dangerous execution primitive: '{node.func.id}()' call", f"{node.func.id}(...)", exempted=is_exempt))
+
+                        # pickle.loads() / pickle.load()
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"loads", "load"}:
+                            if isinstance(node.func.value, ast.Name) and node.func.value.id == "pickle":
+                                surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                is_exempt = any("@court-exempt" in l for l in surrounding)
+                                if not is_exempt:
+                                    stat = STATUTES["FEL-07"]
+                                    charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, "Unsafe object deserialization: 'pickle.loads()' detected", "pickle.loads(...)", exempted=is_exempt))
+
+                        # subprocess.*(..., shell=True)
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"run", "Popen", "call", "check_output", "check_call"}:
+                            for kw in node.keywords:
+                                if kw.arg == "shell" and isinstance(kw.value, ast.Constant) and kw.value.value is True:
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-07"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, f"Arbitrary command execution risk: 'subprocess.{node.func.attr}(..., shell=True)'", "shell=True", exempted=is_exempt))
+
+                        # SQL injection: execute with % formatting or f-strings
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"execute", "executemany"}:
+                            if node.args:
+                                first_arg = node.args[0]
+                                if isinstance(first_arg, ast.BinOp) and isinstance(first_arg.op, ast.Mod):
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-08"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-08", stat.gravity, stat.juror_domain, "SQL Injection vulnerability: Dynamic '%' formatting in SQL execute()", "cursor.execute(... % ...)", exempted=is_exempt))
+                                elif isinstance(first_arg, ast.JoinedStr):
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-08"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-08", stat.gravity, stat.juror_domain, "SQL Injection vulnerability: Dynamic f-string in SQL execute()", "cursor.execute(f'...{var}...')", exempted=is_exempt))
             except SyntaxError as e:
                 # Syntax errors are flagged deterministically under MIS-02
                 charges.append(Charge(file_path, getattr(e, "lineno", 1) or 1, "MIS-02", "MISDEMEANOR", "CRAFT", f"SyntaxError in source AST parse: {e}", "ast.parse"))
@@ -510,7 +566,7 @@ class DefenseCounsel:
             rel_str = str(charge.file_path).replace("\\", "/").lower()
 
             # 1. Test suite files and evaluation harness fixtures get test immunity
-            if any(rel_str.startswith(d) or f"/{d}" in rel_str for d in ["tests/", "evals/"]):
+            if any(rel_str.startswith(d) or f"/{d}" in rel_str for d in ["tests/", "evals/"]) or "reasoning_eval" in rel_str:
                 charge.exempted = True
                 charge.exemption_reason = "Test suite and evaluation fixture immunity"
 

@@ -376,7 +376,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
     # Fetch paths to apply archive ranking attenuation
     cand_placeholders = ",".join("?" for _ in all_candidate_ids)
     cur = conn.execute(
-        f"SELECT id, path FROM items WHERE id IN ({cand_placeholders})",
+        f"SELECT id, path FROM items WHERE id IN ({cand_placeholders})",  # @court-exempt: parameterized query placeholders
         list(all_candidate_ids),
     )
     cand_paths = {r["id"]: r["path"] for r in cur.fetchall()}
@@ -408,7 +408,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
         placeholders = ",".join("?" for _ in top_candidates)
         cand_ids = [c[0] for c in top_candidates]
         cur = conn.execute(
-            f"SELECT id, item_type, name, description, path, full_path, body FROM items WHERE id IN ({placeholders})",
+            f"SELECT id, item_type, name, description, path, full_path, body FROM items WHERE id IN ({placeholders})",  # @court-exempt: parameterized query placeholders
             cand_ids,
         )
         items_by_id = {r["id"]: dict(r) for r in cur.fetchall()}
