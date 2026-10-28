@@ -587,19 +587,26 @@ class SlopCourtMagistrate:
         # Consensus evaluation
         guilty_jurors = sum(1 for j in juror_votes if j.vote == "GUILTY")
 
-        if active_felonies > 0 or guilty_jurors >= 2:
+        if active_felonies > 0:
             ruling = "CONTEMPT_OF_COURT"
             notes.append(f"CRITICAL: {active_felonies} Capital Felonies sustained across {guilty_jurors}/3 guilty juror votes.")
             injunctions.append("Immediate remediation required. Purge all truncated stubs, naked exceptions, and exposed credentials.")
+        elif guilty_jurors >= 2:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"CONVICTED: Majority jury conviction ({guilty_jurors}/3 jurors voted GUILTY).")
+            injunctions.append("Remediate sustained code violations before requesting a new trial.")
+        elif guilty_jurors == 1 and self.strict_mode:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"CONVICTED (STRICT MODE): 1/3 jurors voted GUILTY. Strict mode requires unanimous acquittal.")
+            injunctions.append("Remediate domain violations flagged by the dissenting juror.")
+        elif active_misdemeanors > 5:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"CONVICTED: Cumulative misdemeanors ({active_misdemeanors}) exceed maximum threshold of 5.")
+            injunctions.append("Refactor structural smells and reduce complexity.")
         elif active_misdemeanors > 0:
-            if self.strict_mode or active_misdemeanors > 5 or slop_score > 15.0:
-                ruling = "CONTEMPT_OF_COURT"
-                notes.append(f"REJECTED: {active_misdemeanors} Misdemeanors exceed strict threshold ({guilty_jurors}/3 guilty jurors).")
-                injunctions.append("Strip redundant comments and AI buzzwords before requesting a new trial.")
-            else:
-                ruling = "REMANDED"
-                notes.append(f"CONDITIONAL DISMISSAL: {active_misdemeanors} minor craft smells detected.")
-                injunctions.append("Recommended rehabilitation via `workshop court reform`.")
+            ruling = "REMANDED"
+            notes.append(f"CONDITIONAL DISMISSAL: Unanimous juror acquittal, but {active_misdemeanors} minor craft smell(s) detected.")
+            injunctions.append("Recommended rehabilitation via `workshop court reform`.")
         elif indictment.infraction_count > 0:
             ruling = "ACQUITTED_CAUTION"
             notes.append(f"ACQUITTED WITH CAUTION: Zero felonies, {indictment.infraction_count} minor code hygiene advisories.")

@@ -229,6 +229,18 @@ def cmd_username(args):
         print("=================================================================\n")
 
 
+def _extract_crtsh_subdomains(data: list) -> list:
+    """Extract and sanitize unique subdomains from crt.sh JSON records."""
+    subs = set()
+    for item in data[:50]:
+        name = item.get("name_value", "")
+        for s in name.split("\n"):
+            s = s.strip().lower()
+            if s and not s.startswith("*."):
+                subs.add(s)
+    return sorted(list(subs))
+
+
 def cmd_domain(args):
     """Execute DNS, crt.sh subdomain enum, and WHOIS lookup."""
     import dns.resolver
@@ -252,14 +264,7 @@ def cmd_domain(args):
         with urllib.request.urlopen(req, timeout=5) as resp:
             if resp.status == 200:
                 data = json.loads(resp.read().decode("utf-8", errors="replace"))
-                subs = set()
-                for item in data[:50]:
-                    name = item.get("name_value", "")
-                    for s in name.split("\n"):
-                        s = s.strip().lower()
-                        if s and not s.startswith("*."):
-                            subs.add(s)
-                res["subdomains"] = sorted(list(subs))
+                res["subdomains"] = _extract_crtsh_subdomains(data)
     except Exception as e:
         res["subdomain_error"] = str(e)
 
