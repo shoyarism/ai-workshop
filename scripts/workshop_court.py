@@ -256,6 +256,10 @@ class Indictment:
         return sum(1 for c in self.charges if not c.exempted and c.gravity == "INFRACTION")
 
     @property
+    def exempted_count(self) -> int:
+        return sum(1 for c in self.charges if c.exempted)
+
+    @property
     def total_penalty_points(self) -> int:
         return sum(STATUTES[c.statute_code].penalty_points for c in self.charges if not c.exempted)
 
@@ -670,10 +674,17 @@ class SlopCourtMagistrate:
         # Consensus evaluation
         guilty_jurors = sum(1 for j in juror_votes if j.vote == "GUILTY")
 
+        exempted_count = sum(1 for c in indictment.charges if c.exempted)
+        MAX_EXEMPTION_CAP = 150
+
         if active_felonies > 0:
             ruling = "CONTEMPT_OF_COURT"
             notes.append(f"CRITICAL: {active_felonies} Capital Felonies sustained across {guilty_jurors}/3 guilty juror votes.")
             injunctions.append("Immediate remediation required. Purge all truncated stubs, naked exceptions, and exposed credentials.")
+        elif exempted_count > MAX_EXEMPTION_CAP:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"EXCESSIVE EXEMPTIONS: {exempted_count} exemptions exceed maximum allowable budget of {MAX_EXEMPTION_CAP}.")
+            injunctions.append("Refactor error handlers to use structured logging instead of @court-exempt pragmas.")
         elif guilty_jurors >= 2:
             ruling = "CONTEMPT_OF_COURT"
             notes.append(f"CONVICTED: Majority jury conviction ({guilty_jurors}/3 jurors voted GUILTY).")
