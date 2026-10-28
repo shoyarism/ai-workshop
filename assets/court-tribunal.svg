@@ -120,9 +120,9 @@
     <rect width="6" height="60" fill="#eb5e28"/>
 
     <!-- Left side: Clearance Output -->
-    <text x="20" y="24" class="tr-mono-bold" fill="#eb5e28">GIT BAILIFF INTERCEPTOR // PRE-COMMIT HOOK</text>
+    <text x="20" y="24" class="tr-mono-bold" fill="#eb5e28">GIT BAILIFF INTERCEPTOR // PRE-COMMIT &amp; PRE-PUSH HOOK</text>
     <text x="20" y="44" class="tr-col-desc">
-      <tspan fill="#eceae4">0 SUSTAINED FELONIES:</tspan> SHA-256 docket token emitted. Pre-commit hook exits code 0.
+      <tspan fill="#eceae4">0 SUSTAINED FELONIES:</tspan> SHA-256 docket token emitted. Pre-commit/push exits code 0.
     </text>
 
     <!-- Dividing line -->
@@ -132,7 +132,7 @@
     <g transform="translate(530, 0)">
       <text x="0" y="24" class="tr-mono-bold" fill="#eceae4">&gt;= 1 SUSTAINED FELONY:</text>
       <text x="0" y="44" class="tr-col-desc" fill="#eb5e28">
-        CONTEMPT OF COURT. Pre-commit exits code 1. Git commit physically aborted.
+        CONTEMPT OF COURT. Hook exits code 1. Git operation physically aborted.
       </text>
     </g>
   </g>

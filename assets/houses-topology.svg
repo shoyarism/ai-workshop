@@ -52,7 +52,7 @@
     <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
     <rect width="144" height="4" fill="#eb5e28"/>
     <text x="12" y="24" class="card-title">01 DESIGN</text>
-    <text x="12" y="42" class="card-stat" fill="#eb5e28">109 SKILLS</text>
+    <text x="12" y="42" class="card-stat" fill="#eb5e28">132 SKILLS</text>
     <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
     
     <text x="12" y="72" class="card-item">UI UX Pro Max</text>
@@ -75,7 +75,7 @@
     <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
     <rect width="144" height="4" fill="#38bdf8"/>
     <text x="12" y="24" class="card-title">02 DEV &amp; ENG</text>
-    <text x="12" y="42" class="card-stat" fill="#38bdf8">198 SKILLS</text>
+    <text x="12" y="42" class="card-stat" fill="#38bdf8">357 SKILLS</text>
     <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
     
     <text x="12" y="72" class="card-item">Superpowers</text>
@@ -121,7 +121,7 @@
     <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
     <rect width="144" height="4" fill="#10b981"/>
     <text x="12" y="24" class="card-title">04 OPS &amp; TOKENS</text>
-    <text x="12" y="42" class="card-stat" fill="#10b981">117 SKILLS</text>
+    <text x="12" y="42" class="card-stat" fill="#10b981">166 SKILLS</text>
     <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
     
     <text x="12" y="72" class="card-item">Caveman</text>
@@ -144,7 +144,7 @@
     <rect width="144" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
     <rect width="144" height="4" fill="#ec4899"/>
     <text x="12" y="24" class="card-title">05 MEDIA</text>
-    <text x="12" y="42" class="card-stat" fill="#ec4899">76 SKILLS</text>
+    <text x="12" y="42" class="card-stat" fill="#ec4899">178 SKILLS</text>
     <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
     
     <text x="12" y="72" class="card-item">HyperFrames</text>
@@ -190,10 +190,10 @@
     <rect width="148" height="360" fill="#14161d" stroke="#252730" stroke-width="1"/>
     <rect width="148" height="4" fill="#ef4444"/>
     <text x="12" y="24" class="card-title">07 SECURITY</text>
-    <text x="12" y="42" class="card-stat" fill="#ef4444">19 SKILLS</text>
+    <text x="12" y="42" class="card-stat" fill="#ef4444">835 SKILLS</text>
     <line x1="12" y1="52" x2="132" y2="52" stroke="#252730" stroke-width="1"/>
     
-    <text x="12" y="72" class="card-item">Slop Court v2</text>
+    <text x="12" y="72" class="card-item">Slop Court v3.5</text>
     <text x="12" y="86" class="card-sub">3-Juror Tribunal</text>
     <text x="12" y="112" class="card-item">Git Bailiff</text>
     <text x="12" y="126" class="card-sub">Pre-Commit Arrest</text>

@@ -58,18 +58,21 @@
       <line x1="0" y1="36" x2="208" y2="36" stroke="#252732"/>
 
       <!-- Harness Items -->
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="port-item">CLAUDE CODE</text>
-        <text x="0" y="14" class="port-sub">CLAUDE.md + FastMCP tools</text>
+        <text x="0" y="13" class="port-sub">CLAUDE.md + FastMCP tools</text>
 
-        <text x="0" y="44" class="port-item">CURSOR &amp; WINDSURF</text>
-        <text x="0" y="58" class="port-sub">.cursorrules + context</text>
+        <text x="0" y="38" class="port-item">CURSOR &amp; WINDSURF</text>
+        <text x="0" y="51" class="port-sub">.cursorrules + context</text>
 
-        <text x="0" y="88" class="port-item">GEMINI ANTIGRAVITY</text>
-        <text x="0" y="102" class="port-sub">SOUL.md Master Soul Hook</text>
+        <text x="0" y="76" class="port-item">GEMINI ANTIGRAVITY</text>
+        <text x="0" y="89" class="port-sub">SOUL.md Master Soul Hook</text>
 
-        <text x="0" y="132" class="port-item">HUMAN OPERATOR</text>
-        <text x="0" y="146" class="port-sub">Local CLI via `workshop.py`</text>
+        <text x="0" y="114" class="port-item">OPENCODE &amp; KILO</text>
+        <text x="0" y="127" class="port-sub">opencode.json &amp; kilo.jsonc</text>
+
+        <text x="0" y="152" class="port-item">CLI &amp; DOCKER RUNTIME</text>
+        <text x="0" y="165" class="port-sub">`workshop` CLI + Sandbox</text>
       </g>
 
       <line x1="0" y1="230" x2="208" y2="230" stroke="#252732"/>
@@ -165,7 +168,7 @@
       <!-- Foundry Elements -->
       <g transform="translate(0, 52)">
         <text x="0" y="0" class="port-item">2,150+ DOMAIN SKILLS</text>
-        <text x="0" y="14" class="port-sub">Executable runbooks</text>
+        <text x="0" y="14" class="port-sub">7 Sovereign Houses</text>
 
         <text x="0" y="44" class="port-item">OBSIDIAN 2ND BRAIN</text>
         <text x="0" y="58" class="port-sub">ADRs &amp; Post-Mortems</text>
@@ -173,8 +176,8 @@
         <text x="0" y="88" class="port-item">ZERO-CLONE STREAM</text>
         <text x="0" y="102" class="port-sub">Raw GitHub curl stream</text>
 
-        <text x="0" y="132" class="port-item">FASTMCP GATEWAY</text>
-        <text x="0" y="146" class="port-sub">Standard tool bindings</text>
+        <text x="0" y="132" class="port-item">CONTAINER SANDBOX</text>
+        <text x="0" y="146" class="port-sub">Docker Compose isolation</text>
       </g>
 
       <line x1="0" y1="230" x2="208" y2="230" stroke="#252732"/>

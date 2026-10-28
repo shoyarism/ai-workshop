@@ -15,7 +15,7 @@
 <br>
 
 ```
-SPEC: WORKSHOP-OS-3.5  •  LICENSE: APACHE-2.0  •  7 SOVEREIGN HOUSES  •  2,150+ SKILLS  •  COURT: ARMED
+SPEC: WORKSHOP-OS-3.5  •  LICENSE: APACHE-2.0  •  7 SOVEREIGN HOUSES  •  2,150+ SKILLS  •  SLOP COURT: v3.5 ARMED
 ```
 
 ---
@@ -52,11 +52,12 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 ### The 4 Execution Zones
 
 ```
-[ ZONE A: AGENTS ]       [ ZONE B: THE COURT ]       [ ZONE C: THE COUNCIL ]     [ ZONE D: THE FOUNDRY ]
-Claude Code / Codex  -->  Static AST Analysis   -->   Skeptical Inquisitor   -->   2,150+ Domain Skills
-Cursor & Windsurf         3-Juror Deliberation        Radical Minimalist         Obsidian Second Brain
-Gemini Antigravity        Git Bailiff Hook Gate       UI/UX Craft Architect      Zero-Clone HTTP Stream
-Human CLI Operator        SHA-256 Content Hash        Battle-Tested SRE          FastMCP Protocol Server
+[ ZONE A: HARNESSES ]         [ ZONE B: THE COURT ]       [ ZONE C: THE COUNCIL ]     [ ZONE D: THE FOUNDRY ]
+Claude Code / Codex    -->    Static AST Analysis   -->   Skeptical Inquisitor   -->   2,150+ Domain Skills
+Cursor & Windsurf             3-Juror Deliberation        Radical Minimalist         7 Sovereign Houses
+Gemini Antigravity            Git Bailiff Hooks           UI/UX Craft Architect      Obsidian 2nd Brain
+OpenCode & Kilo               Pre-Commit & Pre-Push       Battle-Tested SRE          Zero-Clone HTTP Stream
+CLI (`workshop`)              SHA-256 Content Hash        Adversarial Dialectics     Docker Sandbox
 ```
 
 ---
@@ -182,30 +183,43 @@ python scripts/workshop.py court council "Mandating 100% test coverage before re
 
 ## 07 // QUICK START: GETTING RUNNING IN 60 SECONDS
 
-### Local Workstation Setup
+### Option A: Local Workstation Setup (Python & uv)
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/shoyarism/ai-workshop.git
 cd ai-workshop
 
-# 2. Sync virtual environment with uv (or standard pip)
+# 2. Sync virtual environment and install the native console entrypoint
 uv sync
+pip install -e .
 
-# 3. Arm the Slop Court Bailiff pre-commit hook
-python scripts/workshop.py court bailiff install
+# 3. Arm the Slop Court Bailiff pre-commit and pre-push interceptors
+workshop court bailiff install
 
-# 4. Run automated tests and diagnostics
-python tests/test_court.py
-python scripts/workshop.py doctor
+# 4. Run automated diagnostics and tests
+workshop doctor --strict
+python ci/run_local_ci.py
 ```
 
-### The Zero-Clone Cloud Protocol
+### Option B: Sandboxed Docker Container
 
-Operating inside an ephemeral container, GitHub Codespace, or VPS? You do not need to clone the full repository. Stream any skill runbook directly into your agent context using raw curl:
+Isolate all subprocess executions and file operations in a non-root container sandbox:
 
 ```bash
-# Stream any skill directly into context
+# Run strict health diagnostics inside an isolated container
+docker compose run --rm runtime
+
+# Start sandboxed local browser hubs and background services
+docker compose up -d hub
+```
+
+### Option C: The Zero-Clone Cloud Protocol
+
+Operating inside an ephemeral container, GitHub Codespace, or remote cloud instance? You do not need to clone the entire repository. Stream any skill runbook directly into your agent context using raw curl:
+
+```bash
+# Stream any skill directly into agent context
 curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/dev-house/using-superpowers/SKILL.md
 ```
 
@@ -213,34 +227,40 @@ curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/d
 
 ## 08 // MASTER CLI COMMAND PALETTE
 
+Workshop OS provides a centralized console entrypoint (`workshop` or `python scripts/workshop.py`):
+
 ```bash
 # Enumerate and inspect the 7 Sovereign Houses
-python scripts/workshop.py house list
-python scripts/workshop.py house inspect design-house
+workshop house list
+workshop house inspect design-house
+workshop house inspect dev-house
 
 # Search 2,150+ skills, tools, and subsystems
-python scripts/workshop.py search "<keyword>"
+workshop search "<keyword>"
 
-# Run health diagnostics across all subsystems
-python scripts/workshop.py doctor
+# Run strict health diagnostics across all subsystems
+workshop doctor --strict
 
-# Convene Slop Court quality review on staged code
-python scripts/workshop.py court trial --staged
+# Convene Slop Court quality tribunal on staged code
+workshop court trial --staged
 
 # View 3-juror voting breakdown
-python scripts/workshop.py court jury --staged
+workshop court jury --staged
 
-# Install the Bailiff pre-commit/pre-push interceptor
-python scripts/workshop.py court bailiff install
+# Install the Bailiff pre-commit and pre-push hooks
+workshop court bailiff install
 
 # Summon the 4-persona Supreme Council to debate a decision
-python scripts/workshop.py court council "<topic>" --domain <general|architecture|business|creative>
+workshop court council "<topic>" --domain <general|architecture|business|creative>
 
 # Inspect visual assets using multi-modal vision
-python scripts/workshop.py see path/to/asset.png
+workshop see path/to/asset.png
 
 # Enumerate active FastMCP tools
-python scripts/workshop.py mcp list
+workshop mcp list
+
+# Run the complete 6-gate local CI suite
+python ci/run_local_ci.py
 ```
 
 ---
@@ -256,6 +276,8 @@ Connect Workshop OS to your preferred AI agent environment using the master inst
 | **Gemini Antigravity** | `~/.gemini/config/AGENTS.md` | Master Soul hook (`court_trial`, `court_council`) |
 | **Windsurf** | `.windsurfrules` or `AGENTS.md` | Cascading Context & Tool Forge |
 | **OpenCode / Hermes** | `opencode.json` & `SOUL.md` | Local Foundry execution |
+| **Kilo** | `kilo.jsonc` | Multi-directory workspace indexing |
+| **Docker Sandbox** | `Dockerfile` & `docker-compose.yml` | Non-root isolated execution boundary |
 
 ---
 
