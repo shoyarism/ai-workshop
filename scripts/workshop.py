@@ -52,6 +52,13 @@ try:
 except Exception:  # @court-exempt: optional dotenv fallback
     pass
 
+def _run_subproc(cmd, **kwargs):
+    """Execute child process and propagate its exit code on failure."""
+    res = subprocess.run(cmd, **kwargs)
+    if res.returncode != 0:
+        sys.exit(res.returncode)
+    return res
+
 def cmd_see(args):
     """Execute smart multimodal vision inspector."""
     from workshop_vision import see_media
@@ -117,7 +124,7 @@ def cmd_info(args):
                 
     if not matched_key:
         print(f"[!] Subsystem '{args.name}' not found. Try searching with: python scripts/workshop.py search '{args.name}'")
-        return
+        sys.exit(1)
         
     info = subsystems[matched_key]
     if args.json:
@@ -234,7 +241,7 @@ def cmd_browser(args):
         )
     else:
         sub_argv = sys.argv[2:]
-        subprocess.run([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
+        _run_subproc([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
 
 def cmd_mcp(args):
     """Inspect and launch MCP servers."""
@@ -248,9 +255,10 @@ def cmd_mcp(args):
         if args.name in MCP_REGISTRY:
             cmd = MCP_REGISTRY[args.name]["command"]
             print(f"[*] Starting MCP Server: {args.name}...")
-            subprocess.run(cmd, shell=True if os.name == 'nt' else False)
+            _run_subproc(cmd, shell=True if os.name == 'nt' else False)
         else:
             print(f"[!] Unknown MCP server: {args.name}")
+            sys.exit(1)
 
 def cmd_services(args):
     """Manage Workshop persistent services and gateways."""
@@ -291,19 +299,18 @@ def cmd_desktop(args):
 def cmd_forensic(args):
     """Execute Digital Forensics & Data Recovery commands."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_forensics.py")] + sub_argv)
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_forensics.py")] + sub_argv)
 
 def cmd_osint(args):
     """Execute OSINT & Auspex Intelligence Suite commands."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_osint.py")] + sub_argv)
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_osint.py")] + sub_argv)
 
 
 def cmd_event_bus(args):
     """Execute Agent Nervous System event bus commands."""
     sys.argv = ["workshop_event_bus.py"] + sys.argv[2:]
-    # Execute script directly
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_event_bus.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_event_bus.py")] + sys.argv[1:])
 
 def cmd_guard(args):
     """Execute Adversarial Verification Guard."""
@@ -315,17 +322,17 @@ def cmd_forge(args):
     # Remove the 'forge' command from sys.argv before passing to sub-script
     sub_argv = ["workshop_tool_forge.py"] + sys.argv[2:]
     sys.argv = sub_argv
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_tool_forge.py")] + sub_argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_tool_forge.py")] + sub_argv[1:])
 
 def cmd_route(args):
     """Execute Local Inference Router."""
     sys.argv = ["workshop_local_router.py"] + sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_local_router.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_local_router.py")] + sys.argv[1:])
 
 def cmd_evolve(args):
     """Execute Self-Evolution Engine."""
     sys.argv = ["workshop_evolution.py"] + sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_evolution.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_evolution.py")] + sys.argv[1:])
 
 def cmd_semantic(args):
     """Execute Semantic Skill Indexer and Search."""
@@ -338,7 +345,7 @@ def cmd_semantic(args):
     if hasattr(args, 'limit') and args.limit:
         sub_argv.extend(["--limit", str(args.limit)])
     sys.argv = sub_argv
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_semantic_indexer.py")] + sub_argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_semantic_indexer.py")] + sub_argv[1:])
 
 def cmd_onboard(args):
     """Generate agent-specific config files."""
@@ -395,7 +402,7 @@ def cmd_github(args):
 def cmd_routine(args):
     """Execute Routine Bi-Daily Maintenance Supervisor."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, "-u", str(SCRIPTS_DIR / "workshop_routine.py")] + sub_argv)
+    _run_subproc([sys.executable, "-u", str(SCRIPTS_DIR / "workshop_routine.py")] + sub_argv)
 
 def cmd_status(args):
     """Print centralized Workshop status."""
@@ -645,7 +652,7 @@ def cmd_vox(args):
     """Execute Vox-Inspired Editorial Explainer Video Production Agent."""
     vox_script = SCRIPTS_DIR / "vox_production_agent.py"
     cmd = [sys.executable, str(vox_script)] + (args.args if hasattr(args, "args") and args.args else [])
-    subprocess.run(cmd)
+    _run_subproc(cmd)
 
 def main():
     parser = argparse.ArgumentParser(

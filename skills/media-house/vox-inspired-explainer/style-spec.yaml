@@ -1,0 +1,171 @@
+# ==============================================================================
+# VOX-INSPIRED EXPLAINER STYLE SPECIFICATION (MACHINE-READABLE STYLE LOCK)
+# Target: Editorial Documentary & Explainer Newsroom Motion Graphics
+# Reference: Vox "How wildlife trade is linked to coronavirus" (TPpoJGYlW54)
+# ==============================================================================
+
+version: "1.0.0"
+genre: "editorial-documentary-explainer"
+
+canvas:
+  resolution:
+    width: 1920
+    height: 1080
+    aspect_ratio: "16:9"
+    safe_title_area_percent: 90
+  framerate_fps: 24
+  backgrounds:
+    primary:
+      name: "warm-archival-paper"
+      hex: "#F5F2EA"
+      texture: "subtle-fine-grain-3-percent"
+      vignette: "radial-gradient(circle at center, rgba(0,0,0,0) 65%, rgba(0,0,0,0.06) 100%)"
+    secondary:
+      name: "archival-dark-charcoal"
+      hex: "#16181D"
+      vignette: "radial-gradient(circle at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%)"
+
+color_palette:
+  neutrals:
+    paper_light: "#F5F2EA"
+    paper_surface: "#FFFFFF"
+    newsprint_gray: "#E8E4DA"
+    border_rule_light: "rgba(0, 0, 0, 0.12)"
+    text_primary_dark: "#121417"
+    text_secondary_muted: "#4A5260"
+    text_tertiary_caption: "#737D8C"
+  accents:
+    primary_highlight:
+      name: "felt-marker-yellow"
+      hex: "#FFE500"
+      alpha: 0.85
+      blend_mode: "multiply"
+    documentary_red:
+      name: "investigation-crimson"
+      hex: "#D62828"
+      usage: "prohibitions, alerts, critical boundary boxes, timeline markers"
+    documentary_blue:
+      name: "cartographic-cyan"
+      hex: "#0077B6"
+      usage: "waterways, cold data categories, secondary lines"
+    documentary_green:
+      name: "verified-emerald"
+      hex: "#2A9D8F"
+      usage: "success, verified facts, approved pathways"
+  prohibited_colors:
+    - "neon-gradients"
+    - "cyberpunk-cyan-magenta"
+    - "unearned-purple-indigo-gradients"
+    - "glossy-skeuomorphic-bevels"
+
+typography:
+  font_stack:
+    headline: "Inter, Helvetica Now, Barlow, Arial, sans-serif"
+    dataviz_and_numeral: "Inter, Oswald, Bebas Neue, sans-serif"
+    monospaced_telemetry: "'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+  scale:
+    headline_xl:
+      size_px: 64
+      weight: 900
+      letter_spacing_em: -0.03
+      line_height: 1.05
+    headline_lg:
+      size_px: 44
+      weight: 800
+      letter_spacing_em: -0.02
+      line_height: 1.15
+    data_stat_huge:
+      size_px: 96
+      weight: 900
+      letter_spacing_em: -0.04
+    editorial_body:
+      size_px: 20
+      weight: 400
+      letter_spacing_em: 0.0
+      line_height: 1.45
+    micro_label:
+      size_px: 12
+      weight: 700
+      letter_spacing_em: 0.14
+      transform: "uppercase"
+  rules:
+    max_words_per_graphic_card: 16
+    paragraph_walls_on_screen: false
+    always_bold_focal_words: true
+
+visual_modes:
+  ARCHIVAL:
+    description: "Historical photos, print newspapers, declassified memos, microfiche scans."
+    frame_treatment: "Physical paper cutout border (3px white), soft multi-stage drop shadow (0 12px 28px rgba(0,0,0,0.14)), slight physical rotation (-1.5 deg to +1.5 deg)."
+  INTERVIEW:
+    description: "Expert talking head or quote card with lower-third identifier."
+    lower_third: "Two-line editorial pill with name in bold uppercase and credential in muted uppercase."
+  PHOTO:
+    description: "High-resolution real photograph on neutral ground with focal zoom."
+    motion: "Slow Ken Burns push (scale 1.0 to 1.03) with anchor on focal subject."
+  DOCUMENT:
+    description: "Government policy, medical report, official legal statute, or contract page."
+    treatment: "Camera pushes into specific clause; yellow felt highlighter animates across critical sentence."
+  MAP:
+    description: "Cartographic regional or global diagram."
+    treatment: "Muted tan/gray landmass, white country borders, thin dotted transport lines, red locator dot ping."
+  TIMELINE:
+    description: "Horizontal or vertical chronological progression."
+    treatment: "Thin solid ruler with date tick marks; active year scales in with documentary red callout."
+  CHART:
+    description: "Editorial bar, line, or area chart."
+    treatment: "Minimal axes, no grid slop, direct data callouts on bars rather than legends."
+  DIAGRAM:
+    description: "Biological transmission pathway, architectural cross-section, or physical mechanism."
+    treatment: "Clean vector line icons with thin directional flow arrows (──►) and step indicators."
+  DATA_CARD:
+    description: "Single massive metric or comparison comparison stat."
+    treatment: "Large numeral counter reveal with short context label underneath."
+  RECONSTRUCTION:
+    description: "3D or 2D forensic reenactment of events."
+    mandatory_badge: "RECONSTRUCTION / SIMULASI (must appear in corner)."
+  GRAPHIC_TITLE:
+    description: "Editorial chapter breaker or central investigative question."
+    treatment: "Large bold headline on warm paper canvas with highlight wipe."
+
+motion_principles:
+  pacing:
+    philosophy: "Motion is motivated strictly by narrative comprehension; zero decorative bouncing."
+    camera_motions:
+      - "slow-push (scale 1.0 -> 1.03 over 4-6s)"
+      - "pan-and-scan (x: 0 -> 40px linear tracking subject)"
+      - "map-zoom-in (scale 1.0 -> 1.4 ease-out on target region)"
+    reveals:
+      - "highlighter-wipe (width: 0% -> 100%, duration 0.4s-0.7s, timed to spoken keyword)"
+      - "line-draw (stroke-dashoffset: length -> 0, duration 0.6s-1.2s)"
+      - "number-ticker (interpolated integer increment with ease-out)"
+      - "card-drop (y: 20px -> 0px, opacity: 0 -> 1, duration 0.35s, subtle overshoot)"
+    transitions:
+      standard: "hard-cut or quick 0.15s dip/crossfade between beats"
+      scene_change: "whip-pan or document push with camera blur 4px"
+
+audio_standards:
+  dialogue:
+    style: "Close-mic, calm, authoritative, non-sensational newsroom delivery."
+    loudness_lufs: -18.0
+    eq: "Warm low-end presence, transparent mids, crisp airy highs without sibilance."
+  music_bed:
+    style: "Minimalist, organic documentary acoustic/electronic hybrid (subtle piano, bass pulse, plucked textures)."
+    loudness_lufs_under_dialogue: -32.0
+    ducking_attack_ms: 120
+    ducking_release_ms: 350
+  sfx:
+    style: "Tactile analog newsroom textures (paper slide, archive binder snap, slide projector click, muffled shutter)."
+    frequency: "Sparse; max 1 SFX per major visual change."
+
+anti_slop_qc_gates:
+  gate_1_primary_evidence:
+    rule: "Prioritize real documents, facility photos, and empirical stats over synthetic generic imagery."
+  gate_2_reconstruction_label:
+    rule: "Any AI-generated scenario or reenactment MUST bear an explicit 'RECONSTRUCTION' badge."
+  gate_3_zero_wallpaper:
+    rule: "Every visual beat must perform an articulated 'visual_job'. Decorative filler graphics are rejected."
+  gate_4_kinetic_synchronicity:
+    rule: "Highlights, callout arrows, and data numbers must animate at the EXACT syllable they are uttered."
+  gate_5_restrained_palette:
+    rule: "No scene may contain more than two distinct chromatic accent colors beyond documentary neutrals."

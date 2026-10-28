@@ -1,6 +1,11 @@
 # WORKSHOP // OS
 ### The Irreducible Operating Foundation & Code Quality Gate for AI Agents
 
+[![CI](https://github.com/shoyarism/ai-workshop/actions/workflows/ci.yml/badge.svg)](https://github.com/shoyarism/ai-workshop/actions/workflows/ci.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python 3.11 | 3.12](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](pyproject.toml)
+[![Quality Gate](https://img.shields.io/badge/Slop_Court-v3.5_Armed-eb5e28.svg)](scripts/workshop_court.py)
+
 <br>
 
 <div align="center">
@@ -242,7 +247,7 @@ python scripts/workshop.py mcp list
 
 ## 09 // HARNESS CONFIGURATION MATRIX
 
-Connect Workshop OS to your preferred AI agent environment using the master instructions in [`WORKSHOP_DEFAULT_SYSTEM_PROMPT.md`](WORKSHOP_DEFAULT_SYSTEM_PROMPT.md):
+Connect Workshop OS to your preferred AI agent environment using the master instructions in [`docs/WORKSHOP_DEFAULT_SYSTEM_PROMPT.md`](docs/WORKSHOP_DEFAULT_SYSTEM_PROMPT.md):
 
 | Harness | Configuration File | Integration Mode |
 | :--- | :--- | :--- |

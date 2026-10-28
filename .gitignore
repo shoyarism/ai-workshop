@@ -156,3 +156,8 @@ scripts/.*.log
 
 # Personal operational notes
 USER_ACTIONS.md
+
+# Legacy archive directories
+skills/_archive/
+docs/_archive/
+

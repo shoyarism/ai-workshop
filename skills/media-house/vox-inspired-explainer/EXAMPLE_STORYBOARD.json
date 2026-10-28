@@ -1,0 +1,197 @@
+{
+  "project_title": "How Wildlife Trade Is Linked to Coronavirus",
+  "topic_summary": "An editorial investigation into how the 1988 Chinese Wildlife Protection Law commodified wild animals, creating a multi-billion dollar trade network that catalyzed zoonotic spillovers.",
+  "target_duration_seconds": 529.0,
+  "aspect_ratio": "16:9",
+  "style_reference": "vox-wildlife-documentary",
+  "narrative_arc": [
+    "HOOK",
+    "OBSERVATION",
+    "QUESTION",
+    "PRECEDENT",
+    "MECHANISM",
+    "SYSTEM_POLICY",
+    "INCENTIVE",
+    "CONSEQUENCE",
+    "RESPONSE",
+    "IMPLICATION"
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "timecode_in": 0.0,
+      "timecode_out": 14.5,
+      "narrative_stage": "HOOK",
+      "narration": "In January 2020, Chinese officials confirmed that the new coronavirus originated at a wet market in Wuhan, China. But to understand why wild animals were being sold there in the first place, we have to look back several decades.",
+      "visual_mode": "MAP",
+      "visual_job": "Establish Wuhan geographic location and transition into the wet market locus",
+      "focal_subject": "Hubei province cartographic boundary and Wuhan city locator",
+      "composition": "Central China provincial boundary map with warm paper neutral fill, red country border outline, Wuhan pin pulsing",
+      "camera": "Smooth map zoom-in from national overview into Hubei province (scale 1.0 to 1.35)",
+      "motion": "Locator pin drops at Wuhan; market callout card slides in from right with subtle paper drop shadow",
+      "on_screen_text": {
+        "eyebrow": "WUHAN, HUBEI PROVINCE",
+        "headline": "THE EPICENTER",
+        "subhead": "Huanan Seafood Wholesale Market",
+        "highlighter_target_words": ["Wuhan", "wet market"]
+      },
+      "accent_elements": ["locator_pin", "pulsing_radius", "highlighter"],
+      "source_provenance": "WHO Situation Report 1 & Chinese CDC Official Briefing (Jan 2020)",
+      "audio_cue": "sfx_map_whoosh"
+    },
+    {
+      "beat_id": "beat_02",
+      "timecode_in": 14.5,
+      "timecode_out": 38.0,
+      "narrative_stage": "OBSERVATION",
+      "narration": "Most wet markets in China sell ordinary produce and livestock like chickens and pigs. But a small fraction sell wildlife: civets, porcupines, peacocks, and bats, kept stacked in wire cages.",
+      "visual_mode": "PHOTO",
+      "visual_job": "Differentiate ordinary produce markets from illicit wildlife markets to dispel racist generalization",
+      "focal_subject": "Contrasting photo archival cutouts of standard food market vs wildlife stacked cages",
+      "composition": "Split screen comparison on cream paper ground: Left 50% normal market produce (green check), Right 50% wildlife cage stack (red warning border)",
+      "camera": "Slow Ken Burns push on wildlife cage cutout (scale 1.0 to 1.03)",
+      "motion": "Left side enters first with neutral border; right side drops in with red bounding box and paper tape tag",
+      "on_screen_text": {
+        "eyebrow": "MARKET TYPOLOGY",
+        "headline": "STANDARD MARKETS VS. WILDLIFE TRADE",
+        "subhead": "Only an estimated 1-2% of stalls trade in live wild animals",
+        "highlighter_target_words": ["WILDLIFE TRADE"]
+      },
+      "accent_elements": ["green_check", "red_cross", "paper_tape_label"],
+      "source_provenance": "Environmental Investigation Agency (EIA) Field Survey Reports",
+      "audio_cue": "sfx_paper_slide"
+    },
+    {
+      "beat_id": "beat_03",
+      "timecode_in": 38.0,
+      "timecode_out": 72.0,
+      "narrative_stage": "PRECEDENT",
+      "narration": "This was not the first time. In 2002, the SARS outbreak sickened over 8,000 people and killed 774. It was directly traced back to palm civets sold at a wet market in Guangdong.",
+      "visual_mode": "TIMELINE",
+      "visual_job": "Establish historical precedent of 2002 SARS outbreak to prove pattern recognition",
+      "focal_subject": "2002 timeline marker connecting Guangdong to international spread",
+      "composition": "Horizontal timeline bar along bottom third; center archival newspaper clipping 'Mystery pneumonia strikes southern China'",
+      "camera": "Pan right along timeline line",
+      "motion": "Timeline marker 2002 expands; newspaper clipping drops onto paper with multi-layer shadow; casualty counters count up to 8,096 and 774",
+      "on_screen_text": {
+        "eyebrow": "HISTORICAL PRECEDENT • NOVEMBER 2002",
+        "headline": "THE SARS CORONAVIRUS SPILLOVER",
+        "subhead": "Guangdong Province, China",
+        "highlighter_target_words": ["SARS outbreak", "palm civets"]
+      },
+      "accent_elements": ["timeline_ruler", "fatality_counter", "highlighter"],
+      "source_provenance": "WHO Consensus Document on the Epidemiology of SARS (2003)",
+      "audio_cue": "sfx_counter_ticks"
+    },
+    {
+      "beat_id": "beat_04",
+      "timecode_in": 72.0,
+      "timecode_out": 120.0,
+      "narrative_stage": "MECHANISM",
+      "narration": "The biological mechanism is called zoonotic spillover. In nature, a bat carries a virus with high immune tolerance. In a stacked cage, stress depresses animal immune systems, allowing viral load to surge and jump to an intermediate host, and finally into humans.",
+      "visual_mode": "DIAGRAM",
+      "visual_job": "Explain the biological transmission chain from natural reservoir to human spillover",
+      "focal_subject": "Three-node vector flow chart: Bat (Reservoir) ──► Pangolin/Civet (Amplifier) ──► Human (Host)",
+      "composition": "Linear 3-step vector schematic on ivory paper ground with red connecting flow arrows and viral particle iconography",
+      "camera": "Pan left-to-right tracking the flow of infection",
+      "motion": "Arrows draw dynamically as narrator speaks animal names; virus particles pulse in red",
+      "on_screen_text": {
+        "eyebrow": "TRANSMISSION MECHANISM",
+        "headline": "ZOONOTIC SPILLOVER CHAIN",
+        "subhead": "Viral amplification through multi-species containment",
+        "highlighter_target_words": ["zoonotic spillover", "intermediate host"]
+      },
+      "accent_elements": ["directional_arrows", "biological_callout_labels"],
+      "source_provenance": "Nature Microbiology & Lancet Infectious Diseases 2020",
+      "audio_cue": "sfx_arrow_draw"
+    },
+    {
+      "beat_id": "beat_05",
+      "timecode_in": 120.0,
+      "timecode_out": 185.0,
+      "narrative_stage": "SYSTEM_POLICY",
+      "narration": "So how did this market exist legally? In the 1970s, facing famine after state farming collapsed, the government legalized private peasant farming. In 1988, they passed the Wildlife Protection Law, explicitly designating wild animals as 'natural resources' to be bred and utilized for economic development.",
+      "visual_mode": "DOCUMENT",
+      "visual_job": "Reveal the legal statute that commercialized wildlife into private property",
+      "focal_subject": "1988 People's Republic of China Wildlife Protection Law original text",
+      "composition": "Archival scan of the 1988 Chinese legal document centered with official red seal emblem",
+      "camera": "Push into Article 3 and Article 17 of the law",
+      "motion": "Yellow felt highlighter animates across the exact phrase 'domestication, breeding and utilization' as spoken",
+      "on_screen_text": {
+        "eyebrow": "PRIMARY SOURCE • NOVEMBER 8, 1988",
+        "headline": "WILDLIFE PROTECTION LAW OF THE PRC",
+        "subhead": "Article 3: Wildlife resources belong to the State. The State encourages domestication and breeding.",
+        "highlighter_target_words": ["domestication and breeding", "economic development"]
+      },
+      "accent_elements": ["felt_highlighter_wipe", "red_state_seal", "document_drop_shadow"],
+      "source_provenance": "Standing Committee of the National People's Congress (1988)",
+      "audio_cue": "sfx_marker_swipe"
+    },
+    {
+      "beat_id": "beat_06",
+      "timecode_in": 185.0,
+      "timecode_out": 240.0,
+      "narrative_stage": "INCENTIVE",
+      "narration": "What started as small backyard subsistence farming grew into an industrial empire. By 2016, the Chinese Academy of Engineering reported that wildlife farming was worth over 520 billion yuan—roughly 76 billion US dollars.",
+      "visual_mode": "DATA_CARD",
+      "visual_job": "Show the staggering economic scale and political lobbying power behind the industry",
+      "focal_subject": "Massive numerical valuation stat card with category breakdown",
+      "composition": "Right 60% huge stat '$76 BILLION', Left 40% stacked bar chart showing fur farming (75%), medicine (12%), and exotic meat (13%)",
+      "camera": "Slow pull-back to reveal the full breakdown",
+      "motion": "Numeral 0 increments smoothly to 76,000,000,000; bar segments fill upward with subtle damping",
+      "on_screen_text": {
+        "eyebrow": "CHINESE ACADEMY OF ENGINEERING REPORT (2016)",
+        "headline": "$76 BILLION",
+        "subhead": "Annual economic value of the commercial wildlife farming industry",
+        "highlighter_target_words": ["76 billion US dollars"]
+      },
+      "accent_elements": ["numeral_counter", "segmented_bar_chart"],
+      "source_provenance": "Chinese Academy of Engineering Strategic Report on Wildlife Industry Development",
+      "audio_cue": "sfx_number_counter"
+    },
+    {
+      "beat_id": "beat_07",
+      "timecode_in": 240.0,
+      "timecode_out": 290.0,
+      "narrative_stage": "CONSEQUENCE",
+      "narration": "Because big commercial farms had political backing, they lobbied to keep trading legal. But when legal trade mixes with illegal poaching, enforcement collapses, creating dangerous hubs where stressed animals from around the world pool their pathogens.",
+      "visual_mode": "DIAGRAM",
+      "visual_job": "Demonstrate the laundering loop between legal commercial breeding and wild poaching",
+      "focal_subject": "Feedback loop diagram showing poaching laundering into licensed market supply chains",
+      "composition": "Circular flow diagram on cream paper with red laundering arrow and regulatory blind spot callout",
+      "camera": "Slow tracking along the circular flow",
+      "motion": "Circular dashed arrow rotates; 'LAUNDERING LOOPHOLE' text stamps in with red investigation frame",
+      "on_screen_text": {
+        "eyebrow": "REGULATORY FAILURE",
+        "headline": "THE LAUNDERING LOOPHOLE",
+        "subhead": "Wild-caught animals mixed into licensed farm inventory",
+        "highlighter_target_words": ["enforcement collapses", "dangerous hubs"]
+      },
+      "accent_elements": ["circular_arrows", "warning_badge"],
+      "source_provenance": "TRAFFIC & UNODC World Wildlife Crime Report",
+      "audio_cue": "sfx_stamp_clack"
+    },
+    {
+      "beat_id": "beat_08",
+      "timecode_in": 290.0,
+      "timecode_out": 330.0,
+      "narrative_stage": "RESPONSE",
+      "narration": "In February 2020, Beijing enacted a permanent ban on the trade and consumption of terrestrial wild animals for food. But exemptions remain for fur, traditional medicine, and research—leaving the back door open.",
+      "visual_mode": "DOCUMENT",
+      "visual_job": "Analyze the policy response and identify remaining systemic vulnerabilities",
+      "focal_subject": "2020 Emergency Ban decree with loophole callouts",
+      "composition": "Split policy balance sheet: Left column 'BANNED: FOOD CONSUMPTION' (Green), Right column 'EXEMPTIONS: FUR & MEDICINE' (Red/Amber)",
+      "camera": "Centering between the two columns",
+      "motion": "Green checkmarks drop on food ban; amber warning flags highlight remaining fur and medicinal categories",
+      "on_screen_text": {
+        "eyebrow": "FEBRUARY 24, 2020 RESOLUTION",
+        "headline": "THE COMPLETE BAN—WITH LOOPHOLES",
+        "subhead": "National People's Congress Standing Committee Decision",
+        "highlighter_target_words": ["permanent ban", "leaving the back door open"]
+      },
+      "accent_elements": ["split_balance_sheet", "warning_flags", "highlighter"],
+      "source_provenance": "NPC Standing Committee Decision on Banning Illegal Wildlife Trade (2020)",
+      "audio_cue": "sfx_binder_snap"
+    }
+  ]
+}

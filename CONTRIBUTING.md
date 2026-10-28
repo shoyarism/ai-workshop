@@ -6,7 +6,7 @@ Thank you for your interest in contributing to **Workshop OS**! We welcome high-
 
 ## 🏛️ The Non-Negotiable Quality Standard: Zero Slop
 
-Workshop OS is governed by **Slop Court v2.0**. All pull requests and commits are put on trial before our 3-Juror Bench (Craft, Architecture, Security). 
+Workshop OS is governed by **Slop Court v3.5**. All pull requests and commits are put on trial before our 3-Juror Bench (Craft, Architecture, Security). 
 
 We do **not** accept:
 - Truncated code or lazy omission placeholders (`[truncated code omitted]`, placeholder stubs).

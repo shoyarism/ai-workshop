@@ -204,6 +204,10 @@ EXCLUDED_DIRS = {
     ".idea", ".vscode", "vault", "evidence_quarantine", ".system_generated", ".court_docket"
 }
 
+EXCLUDED_FILES = {
+    ".skills_cache.json", ".services_state.json", "manifest.sha256"
+}
+
 ALLOWED_EXTENSIONS = {
     ".py", ".js", ".ts", ".jsx", ".tsx", ".html", ".css", ".md", ".json", ".yaml", ".yml", ".sh", ".bat"
 }
@@ -536,7 +540,7 @@ class Prosecutor:
         elif target.is_dir():
             for p in target.rglob("*"):
                 if p.is_file() and p.suffix.lower() in ALLOWED_EXTENSIONS:
-                    if not any(part in EXCLUDED_DIRS for part in p.parts):
+                    if not any(part in EXCLUDED_DIRS for part in p.parts) and p.name not in EXCLUDED_FILES and not (p.name.startswith(".") and p.suffix.lower() == ".json"):
                         files_to_scan.append(p)
 
         total_lines = 0
@@ -593,6 +597,11 @@ class DefenseCounsel:
                 if charge.statute_code in {"FEL-01", "FEL-02", "MIS-01", "MIS-02"}:
                     charge.exempted = True
                     charge.exemption_reason = "Educational rule citation immunity"
+
+            # 5. Runtime cache and discovery metadata files
+            if charge.file_path.name in EXCLUDED_FILES or charge.file_path.name.startswith(".skills_cache"):
+                charge.exempted = True
+                charge.exemption_reason = "Runtime cache / discovery state file immunity"
 
 # ==============================================================================
 # CHAMBER 3: THE 3-JUROR BENCH (MULTI-LENS EVALUATION)
