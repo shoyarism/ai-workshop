@@ -106,7 +106,13 @@ def check_command_safety(cmd_string: str) -> tuple[bool, str]:
     Evaluates command safety against regex pattern guards and repository boundaries.
     Returns (is_safe, reason).
     """
-    # 1. Regex pattern guardrail
+    # 1. Sensitive secret file guardrail (.env, id_rsa, etc.)
+    for token in cmd_string.split():
+        clean_tok = Path(token.strip("'\"")).name.lower()
+        if clean_tok in {".env", ".env.local", ".env.production", "id_rsa", "id_ed25519"} or (clean_tok.startswith(".env.") and clean_tok != ".env.example"):
+            return False, f"Access to sensitive file '{clean_tok}' is strictly blocked"
+
+    # 2. Regex pattern guardrail
     for pat in BLOCKED_PATTERNS:
         if re.search(pat, cmd_string, re.IGNORECASE):
             return False, f"Matches high-risk destructive pattern: '{pat}'"

@@ -33,6 +33,8 @@ import os
 import re
 
 import subprocess
+import shlex
+import shutil
 
 import sys
 
@@ -972,38 +974,52 @@ def verify(command_or_path: str = "") -> str:
 
 
     # Interactive safety gate on custom verification commands
-
     from workshop_hooks import check_command_safety
 
-
-
     safe, reason = check_command_safety(target_cmd)
-
     if not safe:
-
         return f"[BLOCKED BY SAFETY GATE] Verification command rejected: {reason}"
 
+    # Strict allowlist of executables (no arbitrary binaries or shell expansion)
+    ALLOWED_VERIFY_EXECUTABLES = {
+        "pytest", "ruff", "python", "python3", "uv", "git",
+        "npm", "pnpm", "yarn", "node", "cargo", "go"
+    }
 
+    try:
+        cmd_tokens = shlex.split(target_cmd)
+    except Exception as e:
+        return f"[BLOCKED BY SAFETY GATE] Invalid command syntax: {e}"
 
-    # Run custom verification command in workshop root
+    if not cmd_tokens:
+        return "[BLOCKED BY SAFETY GATE] Empty verification command provided."
 
-    proc = subprocess.run(
+    raw_exe = cmd_tokens[0]
+    exe_name = Path(raw_exe).name.lower()
+    for ext in [".exe", ".cmd", ".bat"]:
+        if exe_name.endswith(ext):
+            exe_name = exe_name[:-len(ext)]
 
-        target_cmd, shell=True, capture_output=True, text=True, cwd=str(ROOT)
+    if exe_name not in ALLOWED_VERIFY_EXECUTABLES:
+        allowed_list = ", ".join(sorted(ALLOWED_VERIFY_EXECUTABLES))
+        return f"[BLOCKED BY SAFETY GATE] Executable '{raw_exe}' not in verify allowlist ({allowed_list})."
 
-    )
+    # Resolve executable path safely without shell
+    resolved_bin = shutil.which(cmd_tokens[0])
+    exec_args = [resolved_bin if resolved_bin else cmd_tokens[0]] + cmd_tokens[1:]
 
-    status = (
-
-        "SUCCESS (exit code 0)"
-
-        if proc.returncode == 0
-
-        else f"FAILED (exit code {proc.returncode})"
-
-    )
-
-    return f"Verification Command: `{target_cmd}`\nStatus: {status}\n\nSTDOUT:\n{proc.stdout}\n\nSTDERR:\n{proc.stderr}"
+    try:
+        proc = subprocess.run(
+            exec_args, shell=False, capture_output=True, text=True, cwd=str(ROOT), timeout=120
+        )
+        status = (
+            "SUCCESS (exit code 0)"
+            if proc.returncode == 0
+            else f"FAILED (exit code {proc.returncode})"
+        )
+        return f"Verification Command: `{target_cmd}`\nStatus: {status}\n\nSTDOUT:\n{proc.stdout}\n\nSTDERR:\n{proc.stderr}"
+    except Exception as e:
+        return f"[EXECUTION ERROR] Failed to run verification command: {e}"
 
 
 
