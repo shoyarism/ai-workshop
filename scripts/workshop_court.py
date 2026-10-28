@@ -291,7 +291,7 @@ class Prosecutor:
         lines = content.splitlines()
         is_markdown = file_path.suffix.lower() == ".md"
         is_python = file_path.suffix.lower() == ".py"
-        is_court_itself = any(k in file_path.name for k in ("workshop_court", "antislop", "workshop_sync"))
+        is_court_itself = file_path.name in {"workshop_court.py", "antislop.py", "workshop_sync.py"} and file_path.parent.name in {"scripts", "tests"}
 
         for idx, line in enumerate(lines, start=1):
             stripped = line.strip()
@@ -509,11 +509,10 @@ class DefenseCounsel:
             snippet_lower = charge.snippet.lower()
             rel_str = str(charge.file_path).replace("\\", "/").lower()
 
-            # 1. Rule test files, benchmarks, and mock fixtures get automatic mitigation
-            if any(part in rel_str for part in ["test", "mock", "fixture", "benchmark", "eval"]):
-                if charge.gravity in {"MISDEMEANOR", "INFRACTION"}:
-                    charge.exempted = True
-                    charge.exemption_reason = "Test/fixture mock harness mitigation"
+            # 1. Test suite files and evaluation harness fixtures get test immunity
+            if any(rel_str.startswith(d) or f"/{d}" in rel_str for d in ["tests/", "evals/"]):
+                charge.exempted = True
+                charge.exemption_reason = "Test suite and evaluation fixture immunity"
 
             # 2. Documentation describing rules or anti-slop guidelines gets governance immunity
             if any(term in rel_str for term in ["anti-slop", "antislop", "court", "soul.md", "protocol", "claude.md", "agents.md", "gemini.md", "workshop.md", "prompt"]):
@@ -523,9 +522,6 @@ class DefenseCounsel:
                 elif charge.statute_code in {"FEL-01", "FEL-02"} and any(neg in snippet_lower for neg in ["zero", "no ", "never", "reject", "prohibit", "eliminate", "statute", "fel-", "rule"]):
                     charge.exempted = True
                     charge.exemption_reason = "Official prohibition definition immunity"
-            if "anti-slop" in rel_str or "antislop" in rel_str or "court" in rel_str:
-                charge.exempted = True
-                charge.exemption_reason = "Official Anti-Slop jurisprudence documentation immunity"
 
             # 3. Lexicon definitions of banned terms inside scanners/linters/auditors get immunity
             if any(term in snippet_lower for term in ["slop_words", "slop_comments", "banned_words", "buzzwords", "tautological_comments", "statute", "pattern", "r-01", "r-02", "r-03", "r-04", "r-05"]):

@@ -103,6 +103,24 @@ def deeply_nested():
         charges_valid = self.prosecutor.scan_file(Path("test_valid.py"), code_valid)
         self.assertFalse(any(c.statute_code == "FEL-02" for c in charges_valid))
 
+    def test_courtprobe_directory_not_exempt(self):
+        """Regression test for P0-1: A file inside a directory containing 'court' in its name must still be judged."""
+        bad_code = """
+def unfinished_logic():
+    pass
+
+try:
+    crash()
+except Exception:
+    pass
+"""
+        charges = self.prosecutor.scan_file(Path("courtprobe/handler.py"), bad_code)
+        active_felonies = [c for c in charges if not c.exempted and c.gravity == "FELONY"]
+        self.assertGreaterEqual(
+            len(active_felonies), 2,
+            "courtprobe directory must NOT grant blanket immunity to code violations"
+        )
+
     def test_clean_code_acquittal(self):
         """Verify clean, idiomatic code is acquitted with 0 charges."""
         clean_code = """
