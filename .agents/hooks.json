@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "D:/ai-workshop/.venv/Scripts/python.exe D:/ai-workshop/scripts/workshop_hooks.py pre-tool $COMMAND",
+            "command": "python scripts/workshop_hooks.py pre-tool $COMMAND",
             "timeout": 5
           }
         ]

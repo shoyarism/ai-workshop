@@ -68,7 +68,7 @@ Set environment variable before running:
 ```bash
 export WORKSHOP_ROOT=/path/to/Workshop
 # or on Windows:
-set WORKSHOP_ROOT=D:\ai-workshop
+set WORKSHOP_ROOT=%CD%
 ```
 
 ### ".venv not working on different OS"

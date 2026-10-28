@@ -33,24 +33,21 @@
   ],
   "skills": {
     "paths": [
-      "D:/ai-workshop/skills",
-      "D:/ai-workshop/.workshop_state/skills-core",
-      "D:/ai-workshop/ui-ux-arsenal",
-      "D://skills/installed",
-      "C:/Users/USER/.agents/skills",
-      "C:/Users/USER/.config/opencode/skills",
-      "D:/ai-workshop/ai agents handbook/packs/ponytail/skills",
-      "D:/ai-workshop/ai agents handbook/packs/styleseed/skills",
-      "D:/ai-workshop/ai agents handbook/packs/garden-skills/skills",
-      "D:/ai-workshop/hyperframes/skills",
-      "D:/ai-workshop/browser-use/skills"
+      "./skills",
+      "./.workshop_state/skills-core",
+      "./ui-ux-arsenal",
+      "./ai agents handbook/packs/ponytail/skills",
+      "./ai agents handbook/packs/styleseed/skills",
+      "./ai agents handbook/packs/garden-skills/skills",
+      "./hyperframes/skills",
+      "./browser-use/skills"
     ]
   },
   "instructions": [
-    "D:/ai-workshop/WORKSHOP.md",
-    "D:/ai-workshop/WORKSHOP_ARSENAL.md",
-    "D:/ai-workshop/OPENCODE.md",
-    "D:/ai-workshop/AGENTS.md"
+    "./WORKSHOP.md",
+    "./WORKSHOP_ARSENAL.md",
+    "./OPENCODE.md",
+    "./AGENTS.md"
   ],
   "permission": {
     "*": "allow",
@@ -240,7 +237,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-sqlite",
-        "C:/Users/USER/.omniroute/data.sqlite"
+        "./.omniroute/data.sqlite"
       ],
       "enabled": true
     },
@@ -297,7 +294,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "D:/ai-workshop"
+        "."
       ],
       "enabled": true
     },
@@ -305,7 +302,7 @@
       "type": "local",
       "command": [
         "node",
-        "D:/ai-workshop/camofox-browser/mcp/server.mjs"
+        "./camofox-browser/mcp/server.mjs"
       ],
       "environment": {
         "CAMOFOX_BASE_URL": "http://localhost:9377"
@@ -315,11 +312,11 @@
     "workshop": {
       "type": "local",
       "command": [
-        "D:/ai-workshop/.venv/Scripts/python.exe",
-        "D:/ai-workshop/scripts/workshop_mcp.py"
+        "python",
+        "./scripts/workshop_mcp.py"
       ],
       "environment": {
-        "WORKSHOP_ROOT": "D:/ai-workshop",
+        "WORKSHOP_ROOT": ".",
         "PYTHONIOENCODING": "utf-8"
       },
       "enabled": true
@@ -1198,12 +1195,12 @@
     "doctor": {
       "description": "Run Workshop OS health and diagnostic checks",
       "agent": "build",
-      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python D:/ai-workshop/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
+      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python ./scripts/workshop.py doctor`\nAnalyze the diagnostic output."
     },
     "search": {
       "description": "Search Workshop OS skills, subsystems, and APIs",
       "agent": "build",
-      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py search \"$ARGUMENTS\"`"
+      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python ./scripts/workshop.py search \"$ARGUMENTS\"`"
     },
     "review": {
       "description": "Review recent git diff or code changes for quality and anti-slop compliance",
@@ -1220,7 +1217,7 @@
     "audit": {
       "description": "Run anti-slop audit and security check on files",
       "agent": "build",
-      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
+      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python ./scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
     },
     "plan": {
       "description": "Formulate a first-principles architectural plan",
@@ -1230,7 +1227,7 @@
     "verify": {
       "description": "Run deterministic test and verification suite",
       "agent": "build",
-      "template": "Run full system verification suite:\n!`uv run python D:/ai-workshop/scripts/workshop_eval.py`"
+      "template": "Run full system verification suite:\n!`uv run python ./scripts/workshop_eval.py`"
     }
   }
 }

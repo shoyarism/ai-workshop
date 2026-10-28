@@ -1,12 +1,11 @@
 {
   "mcpServers": {
     "workshop": {
-      "command": "D:/ai-workshop/.venv/Scripts/python.exe",
+      "command": "python",
       "args": [
-        "D:/ai-workshop/scripts/workshop_mcp.py"
+        "./scripts/workshop_mcp.py"
       ],
       "env": {
-        "WORKSHOP_ROOT": "D:/ai-workshop",
         "PYTHONIOENCODING": "utf-8"
       }
     }
