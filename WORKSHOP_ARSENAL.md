@@ -1,4 +1,4 @@
-﻿# Workshop Master Arsenal â€” Unified Centralized Reference
+# Workshop Master Arsenal â€” Unified Centralized Reference
 
 **Workspace Root**: `E:/AI/Workshop`  
 **Universal Master CLI**: `python scripts/workshop.py`  

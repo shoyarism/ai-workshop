@@ -1,4 +1,4 @@
-﻿{
+{
     "$schema":  "https://app.kilo.ai/config.json",
     "model":  "nvidia/nemotron-3-ultra-550b-a55b",
     "small_model":  "omniroute/auto/best-fast",

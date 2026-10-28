@@ -1,4 +1,4 @@
-﻿# ðŸŒ WORKSHOP OS â€” Universal AI Agent Entrypoint
+# ðŸŒ WORKSHOP OS â€” Universal AI Agent Entrypoint
 # Root: E:/AI/Workshop
 # ==============================================================================
 # HOW TO TRIGGER FROM ANY AI AGENT / CHAT:

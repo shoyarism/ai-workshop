@@ -1,4 +1,4 @@
-﻿# AI ENGINEERING AGENT â€” MASTER WORKFLOW & ARCHITECTURE RULES
+# AI ENGINEERING AGENT â€” MASTER WORKFLOW & ARCHITECTURE RULES
 
 **Version:** 2.1.1
 **Scope:** Full-stack software delivery, architecture, reverse-engineering of existing codebases, and AI agent operations.

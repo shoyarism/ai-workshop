@@ -1,11 +1,12 @@
 {
   "mcpServers": {
     "workshop": {
-      "command": "python",
+      "command": "C:/Users/USER/AppData/Local/Programs/Python/Python312/python.exe",
       "args": [
-        "scripts/workshop_mcp.py"
+        "D:/ai-workshop/scripts/workshop_mcp.py"
       ],
       "env": {
+        "WORKSHOP_ROOT": "D:/ai-workshop",
         "PYTHONIOENCODING": "utf-8"
       }
     }

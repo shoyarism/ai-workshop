@@ -33,17 +33,24 @@
   ],
   "skills": {
     "paths": [
-      "./skills",
-      "./ui-ux-arsenal",
-      "~/.agents/skills",
-      "~/.config/opencode/skills"
+      "D:/ai-workshop/skills",
+      "D:/ai-workshop/.workshop_state/skills-core",
+      "D:/ai-workshop/ui-ux-arsenal",
+      "D://skills/installed",
+      "C:/Users/USER/.agents/skills",
+      "C:/Users/USER/.config/opencode/skills",
+      "D:/ai-workshop/ai agents handbook/packs/ponytail/skills",
+      "D:/ai-workshop/ai agents handbook/packs/styleseed/skills",
+      "D:/ai-workshop/ai agents handbook/packs/garden-skills/skills",
+      "D:/ai-workshop/hyperframes/skills",
+      "D:/ai-workshop/browser-use/skills"
     ]
   },
   "instructions": [
-    "E:/AI/Workshop/WORKSHOP.md",
-    "E:/AI/Workshop/WORKSHOP_ARSENAL.md",
-    "E:/AI/Workshop/OPENCODE.md",
-    "E:/AI/Workshop/AGENTS.md"
+    "D:/ai-workshop/WORKSHOP.md",
+    "D:/ai-workshop/WORKSHOP_ARSENAL.md",
+    "D:/ai-workshop/OPENCODE.md",
+    "D:/ai-workshop/AGENTS.md"
   ],
   "permission": {
     "*": "allow",
@@ -233,7 +240,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-sqlite",
-        "C:/Users/TRIAL/.omniroute/data.sqlite"
+        "C:/Users/USER/.omniroute/data.sqlite"
       ],
       "enabled": true
     },
@@ -290,7 +297,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "E:/AI/Workshop"
+        "D:/ai-workshop"
       ],
       "enabled": true
     },
@@ -298,7 +305,7 @@
       "type": "local",
       "command": [
         "node",
-        "E:/AI/Workshop/camofox-browser/mcp/server.mjs"
+        "D:/ai-workshop/camofox-browser/mcp/server.mjs"
       ],
       "environment": {
         "CAMOFOX_BASE_URL": "http://localhost:9377"
@@ -308,11 +315,11 @@
     "workshop": {
       "type": "local",
       "command": [
-        "E:/AI/Workshop/.venv/Scripts/python.exe",
-        "E:/AI/Workshop/scripts/workshop_mcp.py"
+        "C:/Users/USER/AppData/Local/Programs/Python/Python312/python.exe",
+        "D:/ai-workshop/scripts/workshop_mcp.py"
       ],
       "environment": {
-        "WORKSHOP_ROOT": "E:/AI/Workshop",
+        "WORKSHOP_ROOT": "D:/ai-workshop",
         "PYTHONIOENCODING": "utf-8"
       },
       "enabled": true
@@ -329,7 +336,7 @@
       },
       "models": {
         "best-coding": {
-          "name": "⚡ auto/best-coding (Native Built-in SOTA Code Router)",
+          "name": "\u26a1 auto/best-coding (Native Built-in SOTA Code Router)",
           "id": "auto/best-coding",
           "tool_call": true,
           "reasoning": true,
@@ -341,7 +348,7 @@
           }
         },
         "best-coding-fast": {
-          "name": "⚡ auto/best-coding-fast (Native Fast Coding)",
+          "name": "\u26a1 auto/best-coding-fast (Native Fast Coding)",
           "id": "auto/best-coding-fast",
           "tool_call": true,
           "reasoning": true,
@@ -353,7 +360,7 @@
           }
         },
         "best-fast": {
-          "name": "🚀 auto/best-fast (Sub-100ms Speed Router)",
+          "name": "\ud83d\ude80 auto/best-fast (Sub-100ms Speed Router)",
           "id": "auto/best-fast",
           "tool_call": true,
           "reasoning": false,
@@ -365,7 +372,7 @@
           }
         },
         "best-reasoning": {
-          "name": "🧠 auto/best-reasoning (Native Deep Thinking & 2M Context)",
+          "name": "\ud83e\udde0 auto/best-reasoning (Native Deep Thinking & 2M Context)",
           "id": "auto/best-reasoning",
           "tool_call": true,
           "reasoning": true,
@@ -377,7 +384,7 @@
           }
         },
         "pro-coding": {
-          "name": "💎 auto/pro-coding (Native Pro Coding Cascade)",
+          "name": "\ud83d\udc8e auto/pro-coding (Native Pro Coding Cascade)",
           "id": "auto/pro-coding",
           "tool_call": true,
           "reasoning": true,
@@ -389,7 +396,7 @@
           }
         },
         "pro-reasoning": {
-          "name": "💎 auto/pro-reasoning (Native Pro Reasoning)",
+          "name": "\ud83d\udc8e auto/pro-reasoning (Native Pro Reasoning)",
           "id": "auto/pro-reasoning",
           "tool_call": true,
           "reasoning": true,
@@ -401,7 +408,7 @@
           }
         },
         "claude-sonnet": {
-          "name": "🏆 auto/claude-sonnet (Sonnet Architecture Tier)",
+          "name": "\ud83c\udfc6 auto/claude-sonnet (Sonnet Architecture Tier)",
           "id": "auto/claude-sonnet",
           "tool_call": true,
           "reasoning": true,
@@ -413,7 +420,7 @@
           }
         },
         "claude-opus": {
-          "name": "🏆 auto/claude-opus (Opus Architecture Tier)",
+          "name": "\ud83c\udfc6 auto/claude-opus (Opus Architecture Tier)",
           "id": "auto/claude-opus",
           "tool_call": true,
           "reasoning": true,
@@ -425,7 +432,7 @@
           }
         },
         "best-free": {
-          "name": "🎁 auto/best-free (Zero-Cost Free Tier Only)",
+          "name": "\ud83c\udf81 auto/best-free (Zero-Cost Free Tier Only)",
           "id": "auto/best-free",
           "tool_call": true,
           "reasoning": true,
@@ -437,7 +444,7 @@
           }
         },
         "chaos": {
-          "name": "🔮 auto/chaos (Parallel Multi-Target Consensus)",
+          "name": "\ud83d\udd2e auto/chaos (Parallel Multi-Target Consensus)",
           "id": "auto/chaos",
           "tool_call": true,
           "reasoning": true,
@@ -449,7 +456,7 @@
           }
         },
         "gemini-3.6-flash": {
-          "name": "⚡ antigravity/gemini-3.6-flash-high (Gemini 3.6 Flash Direct)",
+          "name": "\u26a1 antigravity/gemini-3.6-flash-high (Gemini 3.6 Flash Direct)",
           "id": "antigravity/gemini-3.6-flash-high",
           "tool_call": true,
           "reasoning": true,
@@ -461,7 +468,7 @@
           }
         },
         "claude-3-7-sonnet": {
-          "name": "🏆 kiro/claude-3-7-sonnet (Claude 3.7 Sonnet Direct)",
+          "name": "\ud83c\udfc6 kiro/claude-3-7-sonnet (Claude 3.7 Sonnet Direct)",
           "id": "kiro/claude-3-7-sonnet-20250219",
           "tool_call": true,
           "reasoning": true,
@@ -473,7 +480,7 @@
           }
         },
         "mimo-v2.5-pro": {
-          "name": "⚡ xiaomi-mimo/mimo-v2.5-pro (MiMo 2.5 Pro Coding)",
+          "name": "\u26a1 xiaomi-mimo/mimo-v2.5-pro (MiMo 2.5 Pro Coding)",
           "id": "xiaomi-mimo/mimo-v2.5-pro",
           "tool_call": true,
           "reasoning": true,
@@ -485,7 +492,7 @@
           }
         },
         "deepseek-v4-pro": {
-          "name": "🧠 tokenrouter/deepseek-v4-pro (DeepSeek V4 Pro Direct)",
+          "name": "\ud83e\udde0 tokenrouter/deepseek-v4-pro (DeepSeek V4 Pro Direct)",
           "id": "tokenrouter/deepseek-v4-pro",
           "tool_call": true,
           "reasoning": true,
@@ -497,7 +504,7 @@
           }
         },
         "mistral-large": {
-          "name": "🧠 mistral/mistral-large-latest (Direct Frontier)",
+          "name": "\ud83e\udde0 mistral/mistral-large-latest (Direct Frontier)",
           "id": "mistral/mistral-large-latest",
           "tool_call": true,
           "reasoning": true,
@@ -509,7 +516,7 @@
           }
         },
         "codestral": {
-          "name": "🚀 mistral/codestral-latest (Direct SOTA Coding)",
+          "name": "\ud83d\ude80 mistral/codestral-latest (Direct SOTA Coding)",
           "id": "mistral/codestral-latest",
           "tool_call": true,
           "reasoning": false,
@@ -521,7 +528,7 @@
           }
         },
         "sonar-pro": {
-          "name": "🔍 perplexity/sonar-pro (Direct Search & Research)",
+          "name": "\ud83d\udd0d perplexity/sonar-pro (Direct Search & Research)",
           "id": "perplexity/sonar-pro",
           "tool_call": true,
           "reasoning": true,
@@ -533,7 +540,7 @@
           }
         },
         "llama-3.1-8b": {
-          "name": "⚡ nvidia/meta/llama-3.1-8b-instruct",
+          "name": "\u26a1 nvidia/meta/llama-3.1-8b-instruct",
           "id": "nvidia/meta/llama-3.1-8b-instruct",
           "tool_call": true,
           "reasoning": false,
@@ -549,7 +556,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "🧠 openrouter/nvidia/nemotron-3-ultra-550b-a55b:free (Omniroute Free)",
+          "name": "\ud83e\udde0 openrouter/nvidia/nemotron-3-ultra-550b-a55b:free (Omniroute Free)",
           "id": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
           "tool_call": true
         },
@@ -558,7 +565,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "⚡ openrouter/nvidia/nemotron-3.5-lightning:free (Omniroute Free)",
+          "name": "\u26a1 openrouter/nvidia/nemotron-3.5-lightning:free (Omniroute Free)",
           "id": "openrouter/nvidia/nemotron-3.5-lightning:free",
           "tool_call": true
         },
@@ -567,7 +574,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "🚀 openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free (Omniroute Free)",
+          "name": "\ud83d\ude80 openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free (Omniroute Free)",
           "id": "openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
           "tool_call": true
         },
@@ -576,7 +583,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "👁️ openrouter/nvidia/nemotron-3.5-super-vl (Omniroute Vision-Language)",
+          "name": "\ud83d\udc41\ufe0f openrouter/nvidia/nemotron-3.5-super-vl (Omniroute Vision-Language)",
           "id": "openrouter/nvidia/nemotron-3.5-super-vl",
           "tool_call": true
         },
@@ -604,7 +611,7 @@
       },
       "models": {
         "auto": {
-          "name": "⚡ auto (FreeLLMAPI Smart Router)",
+          "name": "\u26a1 auto (FreeLLMAPI Smart Router)",
           "id": "auto",
           "tool_call": true,
           "reasoning": true,
@@ -627,7 +634,7 @@
       },
       "models": {
         "nemotron-free": {
-          "name": "⚡ nvidia/nemotron-3.5-lightning:free",
+          "name": "\u26a1 nvidia/nemotron-3.5-lightning:free",
           "id": "nvidia/nemotron-3.5-lightning:free",
           "tool_call": true,
           "reasoning": false,
@@ -639,7 +646,7 @@
           }
         },
         "cohere-code-free": {
-          "name": "💻 cohere/north-mini-code:free",
+          "name": "\ud83d\udcbb cohere/north-mini-code:free",
           "id": "cohere/north-mini-code:free",
           "tool_call": true,
           "reasoning": false,
@@ -662,7 +669,7 @@
       },
       "models": {
         "best-coding": {
-          "name": "⚡ 9router/best-coding (SOTA Fallback Cascade)",
+          "name": "\u26a1 9router/best-coding (SOTA Fallback Cascade)",
           "id": "best-coding",
           "tool_call": true,
           "reasoning": true,
@@ -674,7 +681,7 @@
           }
         },
         "best-fast": {
-          "name": "🚀 9router/best-fast (Ultra-low Latency)",
+          "name": "\ud83d\ude80 9router/best-fast (Ultra-low Latency)",
           "id": "best-fast",
           "tool_call": true,
           "reasoning": false,
@@ -686,7 +693,7 @@
           }
         },
         "best-reasoning": {
-          "name": "🧠 9router/best-reasoning (Deep Thought Cascade)",
+          "name": "\ud83e\udde0 9router/best-reasoning (Deep Thought Cascade)",
           "id": "best-reasoning",
           "tool_call": true,
           "reasoning": true,
@@ -698,7 +705,7 @@
           }
         },
         "claude-3-7-sonnet": {
-          "name": "🏆 9router/claude-3-7-sonnet (Claude 3.7 Sonnet)",
+          "name": "\ud83c\udfc6 9router/claude-3-7-sonnet (Claude 3.7 Sonnet)",
           "id": "claude-3-7-sonnet",
           "tool_call": true,
           "reasoning": true,
@@ -721,7 +728,7 @@
       },
       "models": {
         "llama-3.3-70b": {
-          "name": "⚡ llama-3.3-70b-versatile (500+ tok/s LPU)",
+          "name": "\u26a1 llama-3.3-70b-versatile (500+ tok/s LPU)",
           "id": "llama-3.3-70b-versatile",
           "tool_call": true,
           "reasoning": false,
@@ -733,7 +740,7 @@
           }
         },
         "qwen-2.5-coder-32b": {
-          "name": "💻 qwen-2.5-coder-32b (Groq High Speed)",
+          "name": "\ud83d\udcbb qwen-2.5-coder-32b (Groq High Speed)",
           "id": "qwen-2.5-coder-32b",
           "tool_call": true,
           "reasoning": false,
@@ -745,7 +752,7 @@
           }
         },
         "llama-3.1-8b": {
-          "name": "🚀 llama-3.1-8b-instant (Sub-50ms Fast)",
+          "name": "\ud83d\ude80 llama-3.1-8b-instant (Sub-50ms Fast)",
           "id": "llama-3.1-8b-instant",
           "tool_call": true,
           "reasoning": false,
@@ -768,7 +775,7 @@
       },
       "models": {
         "codestral": {
-          "name": "🚀 codestral-latest (256k Context SOTA Coding)",
+          "name": "\ud83d\ude80 codestral-latest (256k Context SOTA Coding)",
           "id": "codestral-latest",
           "tool_call": true,
           "reasoning": false,
@@ -780,7 +787,7 @@
           }
         },
         "mistral-large": {
-          "name": "🧠 mistral-large-latest (Mistral Frontier Reasoning)",
+          "name": "\ud83e\udde0 mistral-large-latest (Mistral Frontier Reasoning)",
           "id": "mistral-large-latest",
           "tool_call": true,
           "reasoning": true,
@@ -792,7 +799,7 @@
           }
         },
         "mistral-small": {
-          "name": "⚡ mistral-small-latest (Fast Balanced Agent)",
+          "name": "\u26a1 mistral-small-latest (Fast Balanced Agent)",
           "id": "mistral-small-latest",
           "tool_call": true,
           "reasoning": false,
@@ -815,7 +822,7 @@
       },
       "models": {
         "llama-3.3-70b": {
-          "name": "⚡ llama-3.3-70b (2000 tok/s Wafer Engine)",
+          "name": "\u26a1 llama-3.3-70b (2000 tok/s Wafer Engine)",
           "id": "llama-3.3-70b",
           "tool_call": true,
           "reasoning": false,
@@ -827,7 +834,7 @@
           }
         },
         "llama-3.1-8b": {
-          "name": "🚀 llama3.1-8b (Ultra Instant)",
+          "name": "\ud83d\ude80 llama3.1-8b (Ultra Instant)",
           "id": "llama3.1-8b",
           "tool_call": true,
           "reasoning": false,
@@ -850,7 +857,7 @@
       },
       "models": {
         "deepseek-v3": {
-          "name": "🧠 deepseek-ai/DeepSeek-V3 (SiliconFlow Hosted)",
+          "name": "\ud83e\udde0 deepseek-ai/DeepSeek-V3 (SiliconFlow Hosted)",
           "id": "deepseek-ai/DeepSeek-V3",
           "tool_call": true,
           "reasoning": true,
@@ -862,7 +869,7 @@
           }
         },
         "qwen-2.5-72b": {
-          "name": "💻 Qwen/Qwen2.5-72B-Instruct (High Capacity)",
+          "name": "\ud83d\udcbb Qwen/Qwen2.5-72B-Instruct (High Capacity)",
           "id": "Qwen/Qwen2.5-72B-Instruct",
           "tool_call": true,
           "reasoning": false,
@@ -885,7 +892,7 @@
       },
       "models": {
         "deepseek-chat": {
-          "name": "⚡ deepseek-chat (V3 SOTA Coding & Fast Chat)",
+          "name": "\u26a1 deepseek-chat (V3 SOTA Coding & Fast Chat)",
           "id": "deepseek-chat",
           "tool_call": true,
           "reasoning": false,
@@ -897,7 +904,7 @@
           }
         },
         "deepseek-reasoner": {
-          "name": "🧠 deepseek-reasoner (R1 Native Deep Reasoning)",
+          "name": "\ud83e\udde0 deepseek-reasoner (R1 Native Deep Reasoning)",
           "id": "deepseek-reasoner",
           "tool_call": true,
           "reasoning": true,
@@ -920,7 +927,7 @@
       },
       "models": {
         "command-r-plus": {
-          "name": "🧠 command-r-plus-08-2024 (Agent Tool Calling)",
+          "name": "\ud83e\udde0 command-r-plus-08-2024 (Agent Tool Calling)",
           "id": "command-r-plus-08-2024",
           "tool_call": true,
           "reasoning": false,
@@ -932,7 +939,7 @@
           }
         },
         "command-r": {
-          "name": "⚡ command-r-08-2024 (Fast Enterprise Model)",
+          "name": "\u26a1 command-r-08-2024 (Fast Enterprise Model)",
           "id": "command-r-08-2024",
           "tool_call": true,
           "reasoning": false,
@@ -959,7 +966,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "🧠 nvidia/nemotron-3-ultra-550b-a55b (NVIDIA NIM SOTA Reasoning & Tool-Use)",
+          "name": "\ud83e\udde0 nvidia/nemotron-3-ultra-550b-a55b (NVIDIA NIM SOTA Reasoning & Tool-Use)",
           "id": "nvidia/nemotron-3-ultra-550b-a55b",
           "tool_call": true
         },
@@ -968,7 +975,7 @@
             "output": 16384,
             "context": 131072
           },
-          "name": "⚡ nvidia/nemotron-3.5-lightning-30b-a3b (NVIDIA NIM Fast Reasoning)",
+          "name": "\u26a1 nvidia/nemotron-3.5-lightning-30b-a3b (NVIDIA NIM Fast Reasoning)",
           "id": "nvidia/nemotron-3.5-lightning-30b-a3b",
           "tool_call": true
         },
@@ -977,7 +984,7 @@
             "output": 8192,
             "context": 131072
           },
-          "name": "👁️ nvidia/nemotron-3.5-super-vl-120b-a12b (NVIDIA NIM Vision-Language)",
+          "name": "\ud83d\udc41\ufe0f nvidia/nemotron-3.5-super-vl-120b-a12b (NVIDIA NIM Vision-Language)",
           "id": "nvidia/nemotron-3.5-super-vl-120b-a12b",
           "tool_call": true
         },
@@ -986,7 +993,7 @@
             "output": 8192,
             "context": 131072
           },
-          "name": "⚡ meta/llama-3.3-70b-instruct (NVIDIA NIM)",
+          "name": "\u26a1 meta/llama-3.3-70b-instruct (NVIDIA NIM)",
           "id": "meta/llama-3.3-70b-instruct",
           "tool_call": true
         }
@@ -1002,7 +1009,7 @@
       },
       "models": {
         "llama-3.3-70b-turbo": {
-          "name": "⚡ meta-llama/Llama-3.3-70B-Instruct-Turbo",
+          "name": "\u26a1 meta-llama/Llama-3.3-70B-Instruct-Turbo",
           "id": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
           "tool_call": true,
           "reasoning": false,
@@ -1025,7 +1032,7 @@
       },
       "models": {
         "deepseek-v3": {
-          "name": "🧠 deepseek-ai/DeepSeek-V3 (Hyperbolic Uncensored)",
+          "name": "\ud83e\udde0 deepseek-ai/DeepSeek-V3 (Hyperbolic Uncensored)",
           "id": "deepseek-ai/DeepSeek-V3",
           "tool_call": true,
           "reasoning": false,
@@ -1048,7 +1055,7 @@
       },
       "models": {
         "llama-3.3-70b": {
-          "name": "🛡️ llama-3.3-70b (Venice Zero-Log Privacy)",
+          "name": "\ud83d\udee1\ufe0f llama-3.3-70b (Venice Zero-Log Privacy)",
           "id": "llama-3.3-70b",
           "tool_call": true,
           "reasoning": false,
@@ -1071,7 +1078,7 @@
       },
       "models": {
         "deepseek-v3": {
-          "name": "⚡ deepseek-ai/DeepSeek-V3 (Chutes Fast Deploy)",
+          "name": "\u26a1 deepseek-ai/DeepSeek-V3 (Chutes Fast Deploy)",
           "id": "deepseek-ai/DeepSeek-V3",
           "tool_call": true,
           "reasoning": false,
@@ -1094,7 +1101,7 @@
       },
       "models": {
         "deepseek-v4-pro": {
-          "name": "🧠 tokenrouter/deepseek-v4-pro",
+          "name": "\ud83e\udde0 tokenrouter/deepseek-v4-pro",
           "id": "deepseek-v4-pro",
           "tool_call": true,
           "reasoning": true,
@@ -1191,12 +1198,12 @@
     "doctor": {
       "description": "Run Workshop OS health and diagnostic checks",
       "agent": "build",
-      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python E:/AI/Workshop/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
+      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python D:/ai-workshop/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
     },
     "search": {
       "description": "Search Workshop OS skills, subsystems, and APIs",
       "agent": "build",
-      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python E:/AI/Workshop/scripts/workshop.py search \"$ARGUMENTS\"`"
+      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py search \"$ARGUMENTS\"`"
     },
     "review": {
       "description": "Review recent git diff or code changes for quality and anti-slop compliance",
@@ -1213,7 +1220,7 @@
     "audit": {
       "description": "Run anti-slop audit and security check on files",
       "agent": "build",
-      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python E:/AI/Workshop/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
+      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
     },
     "plan": {
       "description": "Formulate a first-principles architectural plan",
@@ -1223,7 +1230,7 @@
     "verify": {
       "description": "Run deterministic test and verification suite",
       "agent": "build",
-      "template": "Run full system verification suite:\n!`uv run python E:/AI/Workshop/scripts/workshop_eval.py`"
+      "template": "Run full system verification suite:\n!`uv run python D:/ai-workshop/scripts/workshop_eval.py`"
     }
   }
 }

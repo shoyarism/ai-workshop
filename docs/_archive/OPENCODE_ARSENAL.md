@@ -1,4 +1,4 @@
-﻿# OpenCode & Workshop Master Arsenal — Unified Reference
+# OpenCode & Workshop Master Arsenal — Unified Reference
 
 **Master Reference**: [`WORKSHOP_ARSENAL.md`](file:///WORKSHOP_ARSENAL.md)  
 **Universal Standard**: [`WORKSHOP.md`](file:///WORKSHOP.md)  

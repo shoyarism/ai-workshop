@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Automated Verification Suite for Photoreal Studio (v2.0 with Hugging Face FLUX-Realism).
 """

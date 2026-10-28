@@ -1,4 +1,4 @@
-﻿# Workshop Documentation
+# Workshop Documentation
 
 > **Workspace Root:** `D:\Workshop`  or drive E
 > **Universal Master CLI:** `python scripts/workshop.py`  

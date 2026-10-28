@@ -1,4 +1,4 @@
-﻿Dependency compatibility checks for Azure. Part of the [deployability check](deployability-check.md).
+Dependency compatibility checks for Azure. Part of the [deployability check](deployability-check.md).
 
 ## EOL / Unsupported Runtimes
 

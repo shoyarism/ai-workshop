@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 One-Click Launcher for Photoreal Studio.
 Starts the local server and opens the browser.

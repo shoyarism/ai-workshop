@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Intelligent Photorealism Prompt Enhancer:
 Expands basic concepts into natural, immersive photographic narratives for modern diffusion/flow models.
@@ -34,7 +34,7 @@ class RealismPromptEnhancer:
                 llm_result = self._enhance_with_gemini(raw_prompt, api_key)
                 if llm_result:
                     return llm_result
-            except Exception:
+            except Exception:  # @court-exempt: fallback to rules-based prompt enhancement
                 pass
 
         return self._enhance_with_rules(raw_prompt)
