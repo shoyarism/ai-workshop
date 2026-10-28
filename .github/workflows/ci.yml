@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: ⚖️ Slop Court & System Verification (${{ matrix.os }} / py${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install core dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml pydantic requests ruff
+
+      - name: Run Unit Test Suite
+        run: |
+          python -m unittest discover tests
+
+      - name: Enforce Code Linter (Ruff)
+        run: |
+          ruff check --select F scripts
+
+      - name: Run Slop Court Quality Tribunal on Scripts
+        run: |
+          python scripts/workshop_court.py trial scripts
+
+      - name: Verify Secret & Credential Invariants
+        run: |
+          python scripts/scan_secrets.py
+
+      - name: Run Workshop Doctor Diagnostics (--strict)
+        run: |
+          python scripts/workshop.py doctor --strict
+
+      - name: Verify Agent Instruction Drift Gate
+        run: |
+          python scripts/workshop_sync.py --check
