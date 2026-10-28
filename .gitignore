@@ -144,3 +144,6 @@ strix/
 .court_verdict.json
 .court_acquittal.json
 .court_docket/
+
+# Local skill discovery cache
+.skills_cache.json

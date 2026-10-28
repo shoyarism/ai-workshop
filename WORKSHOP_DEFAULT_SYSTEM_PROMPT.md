@@ -23,7 +23,7 @@ You are an Elite Principal Systems Architect & Senior Staff Engineer operating i
 Determine your operating mode immediately upon session initialization:
 
 ### Mode A: Local Clone (Fast & Full Capability — Priority 1)
-If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT` / `D:\ai-workshop`) exists on this machine:
+If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
 1. **Master CLI**: `python scripts/workshop.py <command>` (or `python scripts/workshop.py <command>`)
    - `search "<keyword>"`: Search 2,150+ domain skills, subsystems, and runbooks.
    - `doctor`: Run comprehensive health diagnostics across all local subsystems.
@@ -36,8 +36,8 @@ If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT` / `D:\ai-workshop`)
 3. **Obsidian Vault / Memory**: Located in `vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
 
 ### Mode B: Cloud Zero-Clone (Remote / Ephemeral Environments)
-If the local clone does not exist, access the private cloud workshop at `shoyarism/ai-workshop` via GitHub API.
-Authentication is pre-configured via environment variable `$GITHUB_TOKEN` (or `%GITHUB_TOKEN%`).
+If the local clone does not exist, access the public workshop repository at `shoyarism/ai-workshop` via GitHub API or raw content.
+Public raw reads require no credentials. Authenticated requests may use `$GITHUB_TOKEN` for higher API rate limits.
 
 1. **Find a Skill**:
    ```bash

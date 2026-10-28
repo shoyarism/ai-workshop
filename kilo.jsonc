@@ -1,696 +1,696 @@
 {
-    "$schema":  "https://app.kilo.ai/config.json",
-    "model":  "nvidia/nemotron-3-ultra-550b-a55b",
-    "small_model":  "omniroute/auto/best-fast",
-    "default_agent":  "build",
-    "subagent_depth":  3,
-    "enabled_providers":  [
-                              "omniroute",
-                              "kilocode"
-                          ],
-    "disabled_providers":  [
-                               "google",
-                               "gemini",
-                               "anthropic",
-                               "github-copilot"
-                           ],
-    "skills":  {
-                   "paths":  [
-                                 "D:/Workshop/skills",
-                                 "D:/Workshop/.workshop_state/skills-core",
-                                 "D:/Workshop/ui-ux-arsenal",
-                                 "D://skills/installed",
-                                 "C:/Users/TRIAL/.agents/skills",
-                                 "C:/Users/TRIAL/.config/opencode/skills",
-                                 "D:/Workshop/ai agents handbook/packs/ponytail/skills",
-                                 "D:/Workshop/ai agents handbook/packs/styleseed/skills",
-                                 "D:/Workshop/ai agents handbook/packs/garden-skills/skills",
-                                 "D:/Workshop/hyperframes/skills",
-                                 "D:/Workshop/browser-use/skills"
-                             ]
-               },
-    "instructions":  [
-                         "D:/Workshop/WORKSHOP.md",
-                         "D:/Workshop/WORKSHOP_ARSENAL.md",
-                         "D:/Workshop/OPENCODE.md",
-                         "D:/Workshop/AGENTS.md"
-                     ],
-    "permission":  {
-                       "*":  "allow",
-                       "read":  "allow",
-                       "edit":  "allow",
-                       "apply_patch":  "allow",
-                       "glob":  "allow",
-                       "grep":  "allow",
-                       "list":  "allow",
-                       "bash":  "allow",
-                       "task":  "allow",
-                       "external_directory":  "allow",
-                       "todo":  "allow",
-                       "todowrite":  "allow",
-                       "todoread":  "allow",
-                       "todorun":  "allow",
-                       "web_search":  "allow",
-                       "websearch":  "allow",
-                       "webfetch":  "allow",
-                       "fetch":  "allow",
-                       "browser":  "allow",
-                       "command":  "allow",
-                       "terminal":  "allow",
-                       "question":  "allow",
-                       "skill":  "allow",
-                       "lsp":  "allow",
-                       "doom_loop":  "allow"
-                   },
-    "tools":  {
-                  "*":  true,
-                  "read":  true,
-                  "edit":  true,
-                  "apply_patch":  true,
-                  "glob":  true,
-                  "grep":  true,
-                  "list":  true,
-                  "bash":  true,
-                  "task":  true,
-                  "todo":  true,
-                  "todowrite":  true,
-                  "todoread":  true,
-                  "todorun":  true,
-                  "web_search":  true,
-                  "websearch":  true,
-                  "webfetch":  true,
-                  "fetch":  true,
-                  "browser":  true,
-                  "command":  true,
-                  "question":  true,
-                  "skill":  true,
-                  "lsp":  true
-              },
-    "formatter":  true,
-    "lsp":  true,
-    "compaction":  {
-                       "auto":  true,
-                       "prune":  true,
-                       "tail_turns":  100
-                   },
-    "indexing":  {
-                     "enabled":  true
-                 },
-    "web_search":  true,
-    "plugin":  [
-                   "@kilocode/kilo-indexing",
-                   "@kilocode/plugin-atomic-chat"
-               ],
-    "mcp":  {
-                "context7":  {
-                                 "type":  "remote",
-                                 "url":  "https://mcp.context7.com/mcp",
-                                 "enabled":  true
-                             },
-                "ai-dev-jobs":  {
-                                    "type":  "remote",
-                                    "url":  "https://aidevboard.com/mcp",
-                                    "enabled":  true
-                                },
-                "sentry":  {
-                               "type":  "remote",
-                               "url":  "https://mcp.sentry.dev/mcp",
-                               "enabled":  true
-                           },
-                "linear":  {
-                               "type":  "remote",
-                               "url":  "https://mcp.linear.app/mcp",
-                               "enabled":  true
-                           },
-                "omniroute":  {
-                                  "type":  "remote",
-                                  "url":  "http://127.0.0.1:20128/api/mcp/sse",
-                                  "enabled":  true
-                              },
-                "playwright":  {
-                                   "type":  "local",
-                                   "command":  [
-                                                   "cmd.exe",
-                                                   "/c",
-                                                   "npx",
-                                                   "-y",
-                                                   "@playwright/mcp"
-                                               ],
-                                   "enabled":  true
-                               },
-                "puppeteer":  {
-                                  "type":  "local",
-                                  "command":  [
-                                                  "cmd.exe",
-                                                  "/c",
-                                                  "npx",
-                                                  "-y",
-                                                  "@modelcontextprotocol/server-puppeteer"
-                                              ],
-                                  "enabled":  true
-                              },
-                "chrome-devtools":  {
-                                        "type":  "local",
-                                        "command":  [
-                                                        "cmd.exe",
-                                                        "/c",
-                                                        "npx",
-                                                        "-y",
-                                                        "chrome-devtools-mcp@latest"
-                                                    ],
-                                        "enabled":  true
-                                    },
-                "memory":  {
-                               "type":  "local",
-                               "command":  [
-                                               "cmd.exe",
-                                               "/c",
-                                               "npx",
-                                               "-y",
-                                               "@modelcontextprotocol/server-memory"
-                                           ],
-                               "enabled":  true
-                           },
-                "sequential-thinking":  {
-                                            "type":  "local",
-                                            "command":  [
-                                                            "cmd.exe",
-                                                            "/c",
-                                                            "npx",
-                                                            "-y",
-                                                            "@modelcontextprotocol/server-sequential-thinking"
-                                                        ],
-                                            "enabled":  true
-                                        },
-                "fetch":  {
-                              "type":  "local",
-                              "command":  [
-                                              "cmd.exe",
-                                              "/c",
-                                              "npx",
-                                              "-y",
-                                              "@modelcontextprotocol/server-fetch"
-                                          ],
-                              "enabled":  true
-                          },
-                "github":  {
-                               "type":  "local",
-                               "command":  [
-                                               "cmd.exe",
-                                               "/c",
-                                               "npx",
-                                               "-y",
-                                               "@modelcontextprotocol/server-github"
-                                           ],
-                               "enabled":  true
-                           },
-                "git":  {
-                            "type":  "local",
-                            "command":  [
-                                            "cmd.exe",
-                                            "/c",
-                                            "npx",
-                                            "-y",
-                                            "mcp-server-git"
-                                        ],
-                            "enabled":  true
-                        },
-                "sqlite":  {
-                               "type":  "local",
-                               "command":  [
-                                               "cmd.exe",
-                                               "/c",
-                                               "npx",
-                                               "-y",
-                                               "@modelcontextprotocol/server-sqlite",
-                                               "C:/Users/TRIAL/.omniroute/data.sqlite"
-                                           ],
-                               "enabled":  true
-                           },
-                "postgres":  {
-                                 "type":  "local",
-                                 "command":  [
-                                                 "cmd.exe",
-                                                 "/c",
-                                                 "npx",
-                                                 "-y",
-                                                 "@modelcontextprotocol/server-postgres"
-                                             ],
-                                 "enabled":  true
-                             },
-                "docker":  {
-                               "type":  "local",
-                               "command":  [
-                                               "cmd.exe",
-                                               "/c",
-                                               "npx",
-                                               "-y",
-                                               "@modelcontextprotocol/server-docker"
-                                           ],
-                               "enabled":  true
-                           },
-                "firebase":  {
-                                 "type":  "local",
-                                 "command":  [
-                                                 "cmd.exe",
-                                                 "/c",
-                                                 "npx",
-                                                 "-y",
-                                                 "firebase-tools@latest",
-                                                 "mcp"
-                                             ],
-                                 "enabled":  true
-                             },
-                "terraform":  {
-                                  "type":  "local",
-                                  "command":  [
-                                                  "cmd.exe",
-                                                  "/c",
-                                                  "npx",
-                                                  "-y",
-                                                  "mcp-terraform"
-                                              ],
-                                  "enabled":  true
-                              },
-                "filesystem":  {
-                                   "type":  "local",
-                                   "command":  [
-                                                   "cmd.exe",
-                                                   "/c",
-                                                   "npx",
-                                                   "-y",
-                                                   "@modelcontextprotocol/server-filesystem",
-                                                   "D:/Workshop"
-                                               ],
-                                   "enabled":  true
-                               },
-                "camofox":  {
-                                "type":  "local",
-                                "command":  [
-                                                "node",
-                                                "D:/Workshop/camofox-browser/mcp/server.mjs"
-                                            ],
-                                "environment":  {
-                                                    "CAMOFOX_BASE_URL":  "http://localhost:9377"
-                                                },
-                                "enabled":  true
-                            },
-                "notion":  {
-                               "type":  "local",
-                               "command":  [
-                                               "cmd.exe",
-                                               "/c",
-                                               "npx",
-                                               "-y",
-                                               "@notionhq/notion-mcp-server"
-                                           ],
-                               "environment":  {
-                                                   "NOTION_TOKEN": "{env:NOTION_TOKEN}"
-                                               },
-                               "enabled":  true
-                           },
-                "workshop":  {
-                                 "type":  "local",
-                                 "command":  [
-                                                 "python",
-                                                 "scripts/workshop_mcp.py"
-                                             ],
-                                 "environment":  {
-                                                     "WORKSHOP_ROOT": ".",
-                                                     "PYTHONIOENCODING":  "utf-8"
-                                                 },
-                                 "enabled":  true
-                             }
-            },
-    "provider":  {
-                     "omniroute":  {
-                                       "name":  "OmniRoute Native Catalog",
-                                       "npm":  "@ai-sdk/openai-compatible",
-                                       "options":  {
-                                                       "baseURL":  "http://127.0.0.1:20128/v1",
-                                                       "apiKey": "{env:OMNIROUTE_API_KEY}",
-                                                       "setCacheKey":  true
-                                                   },
-                                       "models":  {
-                                                      "best-coding":  {
-                                                                          "name":  "⚡ auto/best-coding (OmniRoute Flagship Code Combo)",
-                                                                          "id":  "auto/best-coding",
-                                                                          "tool_call":  true,
-                                                                          "reasoning":  true,
-                                                                          "attachment":  true,
-                                                                          "temperature":  true,
-                                                                          "limit":  {
-                                                                                        "context":  2097152,
-                                                                                        "output":  128000
-                                                                                    }
-                                                                      },
-                                                      "best-fast":  {
-                                                                        "name":  "🚀 auto/best-fast (Sub-100ms Speed Router)",
-                                                                        "id":  "auto/best-fast",
-                                                                        "tool_call":  true,
-                                                                        "reasoning":  false,
-                                                                        "attachment":  false,
-                                                                        "temperature":  true,
-                                                                        "limit":  {
-                                                                                      "context":  2097152,
-                                                                                      "output":  128000
-                                                                                  }
-                                                                    },
-                                                      "best-reasoning":  {
-                                                                             "name":  "🧠 auto/best-reasoning (OmniRoute Deep Thinking Combo)",
-                                                                             "id":  "auto/best-reasoning",
-                                                                             "tool_call":  true,
-                                                                             "reasoning":  true,
-                                                                             "attachment":  true,
-                                                                             "temperature":  true,
-                                                                             "limit":  {
-                                                                                           "context":  2097152,
-                                                                                           "output":  128000
-                                                                                       }
-                                                                         },
-                                                      "best-vision":  {
-                                                                          "name":  "👁️ auto/best-vision (Multimodal UI \u0026 Vision Combo)",
-                                                                          "id":  "auto/best-vision",
-                                                                          "tool_call":  true,
-                                                                          "reasoning":  true,
-                                                                          "attachment":  true,
-                                                                          "temperature":  true,
-                                                                          "limit":  {
-                                                                                        "context":  2097152,
-                                                                                        "output":  128000
-                                                                                    }
-                                                                      },
-                                                      "best-chat":  {
-                                                                        "name":  "💬 auto/best-chat (Balanced Conversational Router)",
-                                                                        "id":  "auto/best-chat",
-                                                                        "tool_call":  true,
-                                                                        "reasoning":  true,
-                                                                        "attachment":  true,
-                                                                        "temperature":  true,
-                                                                        "limit":  {
-                                                                                      "context":  2097152,
-                                                                                      "output":  128000
-                                                                                  }
-                                                                    },
-                                                      "best-coding-fast":  {
-                                                                               "name":  "⚡ auto/best-coding-fast (High-Speed Code Generation)",
-                                                                               "id":  "auto/best-coding-fast",
-                                                                               "tool_call":  true,
-                                                                               "reasoning":  true,
-                                                                               "attachment":  true,
-                                                                               "temperature":  true,
-                                                                               "limit":  {
-                                                                                             "context":  2097152,
-                                                                                             "output":  128000
-                                                                                         }
-                                                                           },
-                                                      "pro-coding":  {
-                                                                         "name":  "🏆 auto/pro-coding (Strict Priority Premium Coding)",
-                                                                         "id":  "auto/pro-coding",
-                                                                         "tool_call":  true,
-                                                                         "reasoning":  true,
-                                                                         "attachment":  true,
-                                                                         "temperature":  true,
-                                                                         "limit":  {
-                                                                                       "context":  2097152,
-                                                                                       "output":  128000
-                                                                                   }
-                                                                     },
-                                                      "pro-reasoning":  {
-                                                                            "name":  "🔬 auto/pro-reasoning (Strict Priority Deep Reasoning)",
-                                                                            "id":  "auto/pro-reasoning",
-                                                                            "tool_call":  true,
-                                                                            "reasoning":  true,
-                                                                            "attachment":  true,
-                                                                            "temperature":  true,
-                                                                            "limit":  {
-                                                                                          "context":  2097152,
-                                                                                          "output":  128000
-                                                                                      }
-                                                                        },
-                                                      "pro-vision":  {
-                                                                         "name":  "🎯 auto/pro-vision (Strict Priority High-Res Vision)",
-                                                                         "id":  "auto/pro-vision",
-                                                                         "tool_call":  true,
-                                                                         "reasoning":  true,
-                                                                         "attachment":  true,
-                                                                         "temperature":  true,
-                                                                         "limit":  {
-                                                                                       "context":  2097152,
-                                                                                       "output":  128000
-                                                                                   }
-                                                                     },
-                                                      "claude-sonnet":  {
-                                                                            "name":  "🎭 auto/claude-sonnet (Claude 3.7 / 3.5 Sonnet Cascade)",
-                                                                            "id":  "auto/claude-sonnet",
-                                                                            "tool_call":  true,
-                                                                            "reasoning":  true,
-                                                                            "attachment":  true,
-                                                                            "temperature":  true,
-                                                                            "limit":  {
-                                                                                          "context":  200000,
-                                                                                          "output":  128000
-                                                                                      }
-                                                                        },
-                                                      "claude-opus":  {
-                                                                          "name":  "👑 auto/claude-opus (Claude Opus / Deep Thinking Cascade)",
-                                                                          "id":  "auto/claude-opus",
-                                                                          "tool_call":  true,
-                                                                          "reasoning":  true,
-                                                                          "attachment":  true,
-                                                                          "temperature":  true,
-                                                                          "limit":  {
-                                                                                        "context":  200000,
-                                                                                        "output":  128000
-                                                                                    }
-                                                                      },
-                                                      "best-free":  {
-                                                                        "name":  "🆓 auto/best-free (100% Free-Tier Zero-Cost Router)",
-                                                                        "id":  "auto/best-free",
-                                                                        "tool_call":  true,
-                                                                        "reasoning":  true,
-                                                                        "attachment":  true,
-                                                                        "temperature":  true,
-                                                                        "limit":  {
-                                                                                      "context":  2097152,
-                                                                                      "output":  128000
-                                                                                  }
-                                                                    },
-                                                      "gemini-3.6-flash":  {
-                                                                               "name":  "⚡ antigravity/gemini-3.6-flash-high (Gemini 3.6 Flash Direct)",
-                                                                               "id":  "antigravity/gemini-3.6-flash-high",
-                                                                               "tool_call":  true,
-                                                                               "reasoning":  true,
-                                                                               "attachment":  true,
-                                                                               "temperature":  true,
-                                                                               "limit":  {
-                                                                                             "context":  2097152,
-                                                                                             "output":  128000
-                                                                                         }
-                                                                           },
-                                                      "gemini-2.5-pro":  {
-                                                                             "name":  "🧠 antigravity/gemini-2.5-pro (Gemini 2.5 Pro Direct)",
-                                                                             "id":  "antigravity/gemini-2.5-pro",
-                                                                             "tool_call":  true,
-                                                                             "reasoning":  true,
-                                                                             "attachment":  true,
-                                                                             "temperature":  true,
-                                                                             "limit":  {
-                                                                                           "context":  2097152,
-                                                                                           "output":  128000
-                                                                                       }
-                                                                         },
-                                                      "deepseek-v4-pro":  {
-                                                                              "name":  "🧠 tokenrouter/deepseek-v4-pro (DeepSeek V4 Pro Direct)",
-                                                                              "id":  "tokenrouter/deepseek-v4-pro",
-                                                                              "tool_call":  true,
-                                                                              "reasoning":  true,
-                                                                              "attachment":  true,
-                                                                              "temperature":  true,
-                                                                              "limit":  {
-                                                                                            "context":  2097152,
-                                                                                            "output":  128000
-                                                                                        }
-                                                                          },
-                                                      "mistral-large":  {
-                                                                            "name":  "🧠 mistral/mistral-large-latest (Mistral Large 3 Direct)",
-                                                                            "id":  "mistral/mistral-large-latest",
-                                                                            "tool_call":  true,
-                                                                            "reasoning":  true,
-                                                                            "attachment":  true,
-                                                                            "temperature":  true,
-                                                                            "limit":  {
-                                                                                          "context":  2097152,
-                                                                                          "output":  128000
-                                                                                      }
-                                                                        },
-                                                      "claude-3-7-sonnet-direct":  {
-                                                                                       "name":  "🏆 anthropic/claude-3-7-sonnet (Claude 3.7 Sonnet Direct)",
-                                                                                       "id":  "anthropic/claude-3-7-sonnet-20250219",
-                                                                                       "tool_call":  true,
-                                                                                       "reasoning":  true,
-                                                                                       "attachment":  true,
-                                                                                       "temperature":  true,
-                                                                                       "limit":  {
-                                                                                                     "context":  200000,
-                                                                                                     "output":  128000
-                                                                                                 }
-                                                                                   },
-                                                      "nemotron-3-ultra-free":  {
-                                                                                    "limit":  {
-                                                                                                  "output":  16384,
-                                                                                                  "context":  131072
-                                                                                              },
-                                                                                    "name":  "🧠 openrouter/nvidia/nemotron-3-ultra-550b-a55b:free (Omniroute Free)",
-                                                                                    "id":  "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
-                                                                                    "tool_call":  true
-                                                                                },
-                                                      "nemotron-3.5-lightning-free":  {
-                                                                                          "limit":  {
-                                                                                                        "output":  16384,
-                                                                                                        "context":  131072
-                                                                                                    },
-                                                                                          "name":  "⚡ openrouter/nvidia/nemotron-3.5-lightning:free (Omniroute Free)",
-                                                                                          "id":  "openrouter/nvidia/nemotron-3.5-lightning:free",
-                                                                                          "tool_call":  true
-                                                                                      },
-                                                      "nemotron-3-nano-omni-free":  {
-                                                                                        "limit":  {
-                                                                                                      "output":  16384,
-                                                                                                      "context":  131072
-                                                                                                  },
-                                                                                        "name":  "🚀 openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free (Omniroute Free)",
-                                                                                        "id":  "openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-                                                                                        "tool_call":  true
-                                                                                    },
-                                                      "nemotron-3.5-super-vl":  {
-                                                                                    "limit":  {
-                                                                                                  "output":  16384,
-                                                                                                  "context":  131072
-                                                                                              },
-                                                                                    "name":  "👁️ openrouter/nvidia/nemotron-3.5-super-vl (Omniroute Vision-Language)",
-                                                                                    "id":  "openrouter/nvidia/nemotron-3.5-super-vl",
-                                                                                    "tool_call":  true
-                                                                                }
-                                                  }
-                                   }
-                 },
-    "agent":  {
-                  "build":  {
-                                "mode":  "primary",
-                                "permission":  {
-                                                   "*":  "allow"
-                                               }
-                            },
-                  "plan":  {
-                               "mode":  "primary",
-                               "description":  "Architectural planning, system analysis, and code exploration without modifications",
-                               "temperature":  0.1,
-                               "permission":  {
-                                                  "edit":  "deny",
-                                                  "bash":  "deny",
-                                                  "*":  "allow"
-                                              }
-                           },
-                  "reviewer":  {
-                                   "mode":  "subagent",
-                                   "description":  "Audits code health, security boundaries, and strict anti-slop compliance without write permissions",
-                                   "temperature":  0.1,
-                                   "steps":  20,
-                                   "permission":  {
-                                                      "edit":  "deny",
-                                                      "bash":  "deny",
-                                                      "*":  "allow"
-                                                  }
-                               },
-                  "debugger":  {
-                                   "mode":  "subagent",
-                                   "description":  "Root-cause debugger for deconstructing errors, stack traces, and fixing issues with targeted precision",
-                                   "temperature":  0.2,
-                                   "steps":  40,
-                                   "permission":  {
-                                                      "*":  "allow"
-                                                  }
-                               },
-                  "researcher":  {
-                                     "mode":  "subagent",
-                                     "description":  "Broad codebase reconnaissance, external documentation scraping, and multi-source research",
-                                     "temperature":  0.2,
-                                     "steps":  30,
-                                     "permission":  {
-                                                        "edit":  "deny",
-                                                        "bash":  "deny",
-                                                        "*":  "allow"
-                                                    }
-                                 },
-                  "architect":  {
-                                    "mode":  "subagent",
-                                    "description":  "Principal systems design, multi-module architecture, schema migrations, and ADR formulation",
-                                    "temperature":  0.2,
-                                    "steps":  50,
-                                    "permission":  {
-                                                       "*":  "allow"
-                                                   }
-                                },
-                  "security-auditor":  {
-                                           "mode":  "subagent",
-                                           "description":  "Performs security audits, identifies vulnerabilities, and verifies boundaries",
-                                           "temperature":  0.1,
-                                           "steps":  25,
-                                           "permission":  {
-                                                              "edit":  "deny",
-                                                              "bash":  "deny",
-                                                              "*":  "allow"
-                                                          }
-                                       },
-                  "docs-writer":  {
-                                      "mode":  "subagent",
-                                      "description":  "Writes and maintains project documentation, guides, and Architecture Decision Records",
-                                      "temperature":  0.3,
-                                      "steps":  30,
-                                      "permission":  {
-                                                         "bash":  "deny",
-                                                         "*":  "allow"
-                                                     }
-                                  }
-              },
-    "command":  {
-                    "doctor":  {
-                                   "description":  "Run Workshop OS health and diagnostic checks",
-                                   "agent":  "build",
-                                   "template":  "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python D:/Workshop/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
-                               },
-                    "search":  {
-                                   "description":  "Search Workshop OS skills, subsystems, and APIs",
-                                   "agent":  "build",
-                                   "template":  "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python D:/Workshop/scripts/workshop.py search \"$ARGUMENTS\"`"
-                               },
-                    "review":  {
-                                   "description":  "Review recent git diff or code changes for quality and anti-slop compliance",
-                                   "agent":  "reviewer",
-                                   "subtask":  true,
-                                   "template":  "Review recent git changes:\n!`git diff HEAD~1`\nAudit strictly against 38 Anti-Slop rules and type safety."
-                               },
-                    "debug":  {
-                                  "description":  "Debug an unexpected error, stack trace, or failing test",
-                                  "agent":  "debugger",
-                                  "subtask":  true,
-                                  "template":  "Deconstruct and debug the following issue: $ARGUMENTS\nIsolate root cause from first principles and post-mortems in vault/02 - Post-Mortems/."
-                              },
-                    "audit":  {
-                                  "description":  "Run anti-slop audit and security check on files",
-                                  "agent":  "build",
-                                  "template":  "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python D:/Workshop/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
-                              },
-                    "plan":  {
-                                 "description":  "Formulate a first-principles architectural plan",
-                                 "agent":  "plan",
-                                 "template":  "Create a comprehensive implementation plan for: $ARGUMENTS"
-                             },
-                    "verify":  {
-                                   "description":  "Run deterministic test and verification suite",
-                                   "agent":  "build",
-                                   "template":  "Run full system verification suite:\n!`uv run python D:/Workshop/scripts/workshop_eval.py`"
-                               }
-                }
+  "$schema": "https://app.kilo.ai/config.json",
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "small_model": "omniroute/auto/best-fast",
+  "default_agent": "build",
+  "subagent_depth": 3,
+  "enabled_providers": [
+    "omniroute",
+    "kilocode"
+  ],
+  "disabled_providers": [
+    "google",
+    "gemini",
+    "anthropic",
+    "github-copilot"
+  ],
+  "skills": {
+    "paths": [
+      "D:/ai-workshop/skills",
+      "D:/ai-workshop/.workshop_state/skills-core",
+      "D:/ai-workshop/ui-ux-arsenal",
+      "D://skills/installed",
+      "C:/Users/USER/.agents/skills",
+      "C:/Users/USER/.config/opencode/skills",
+      "D:/ai-workshop/ai agents handbook/packs/ponytail/skills",
+      "D:/ai-workshop/ai agents handbook/packs/styleseed/skills",
+      "D:/ai-workshop/ai agents handbook/packs/garden-skills/skills",
+      "D:/ai-workshop/hyperframes/skills",
+      "D:/ai-workshop/browser-use/skills"
+    ]
+  },
+  "instructions": [
+    "D:/ai-workshop/WORKSHOP.md",
+    "D:/ai-workshop/WORKSHOP_ARSENAL.md",
+    "D:/ai-workshop/OPENCODE.md",
+    "D:/ai-workshop/AGENTS.md"
+  ],
+  "permission": {
+    "*": "allow",
+    "read": "allow",
+    "edit": "allow",
+    "apply_patch": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "bash": "allow",
+    "task": "allow",
+    "external_directory": "allow",
+    "todo": "allow",
+    "todowrite": "allow",
+    "todoread": "allow",
+    "todorun": "allow",
+    "web_search": "allow",
+    "websearch": "allow",
+    "webfetch": "allow",
+    "fetch": "allow",
+    "browser": "allow",
+    "command": "allow",
+    "terminal": "allow",
+    "question": "allow",
+    "skill": "allow",
+    "lsp": "allow",
+    "doom_loop": "allow"
+  },
+  "tools": {
+    "*": true,
+    "read": true,
+    "edit": true,
+    "apply_patch": true,
+    "glob": true,
+    "grep": true,
+    "list": true,
+    "bash": true,
+    "task": true,
+    "todo": true,
+    "todowrite": true,
+    "todoread": true,
+    "todorun": true,
+    "web_search": true,
+    "websearch": true,
+    "webfetch": true,
+    "fetch": true,
+    "browser": true,
+    "command": true,
+    "question": true,
+    "skill": true,
+    "lsp": true
+  },
+  "formatter": true,
+  "lsp": true,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "tail_turns": 100
+  },
+  "indexing": {
+    "enabled": true
+  },
+  "web_search": true,
+  "plugin": [
+    "@kilocode/kilo-indexing",
+    "@kilocode/plugin-atomic-chat"
+  ],
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "ai-dev-jobs": {
+      "type": "remote",
+      "url": "https://aidevboard.com/mcp",
+      "enabled": true
+    },
+    "sentry": {
+      "type": "remote",
+      "url": "https://mcp.sentry.dev/mcp",
+      "enabled": true
+    },
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
+      "enabled": true
+    },
+    "omniroute": {
+      "type": "remote",
+      "url": "http://127.0.0.1:20128/api/mcp/sse",
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@playwright/mcp"
+      ],
+      "enabled": true
+    },
+    "puppeteer": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "enabled": true
+    },
+    "memory": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    },
+    "fetch": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "enabled": true
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "enabled": true
+    },
+    "git": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "mcp-server-git"
+      ],
+      "enabled": true
+    },
+    "sqlite": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sqlite",
+        "C:/Users/USER/.omniroute/data.sqlite"
+      ],
+      "enabled": true
+    },
+    "postgres": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ],
+      "enabled": true
+    },
+    "docker": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-docker"
+      ],
+      "enabled": true
+    },
+    "firebase": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "firebase-tools@latest",
+        "mcp"
+      ],
+      "enabled": true
+    },
+    "terraform": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "mcp-terraform"
+      ],
+      "enabled": true
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "D:/ai-workshop"
+      ],
+      "enabled": true
+    },
+    "camofox": {
+      "type": "local",
+      "command": [
+        "node",
+        "D:/ai-workshop/camofox-browser/mcp/server.mjs"
+      ],
+      "environment": {
+        "CAMOFOX_BASE_URL": "http://localhost:9377"
+      },
+      "enabled": true
+    },
+    "notion": {
+      "type": "local",
+      "command": [
+        "cmd.exe",
+        "/c",
+        "npx",
+        "-y",
+        "@notionhq/notion-mcp-server"
+      ],
+      "environment": {
+        "NOTION_TOKEN": "{env:NOTION_TOKEN}"
+      },
+      "enabled": true
+    },
+    "workshop": {
+      "type": "local",
+      "command": [
+        "D:/ai-workshop/.venv/Scripts/python.exe",
+        "D:/ai-workshop/scripts/workshop_mcp.py"
+      ],
+      "environment": {
+        "WORKSHOP_ROOT": "D:/ai-workshop",
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "enabled": true
+    }
+  },
+  "provider": {
+    "omniroute": {
+      "name": "OmniRoute Native Catalog",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:20128/v1",
+        "apiKey": "{env:OMNIROUTE_API_KEY}",
+        "setCacheKey": true
+      },
+      "models": {
+        "best-coding": {
+          "name": "\u26a1 auto/best-coding (OmniRoute Flagship Code Combo)",
+          "id": "auto/best-coding",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-fast": {
+          "name": "\ud83d\ude80 auto/best-fast (Sub-100ms Speed Router)",
+          "id": "auto/best-fast",
+          "tool_call": true,
+          "reasoning": false,
+          "attachment": false,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-reasoning": {
+          "name": "\ud83e\udde0 auto/best-reasoning (OmniRoute Deep Thinking Combo)",
+          "id": "auto/best-reasoning",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-vision": {
+          "name": "\ud83d\udc41\ufe0f auto/best-vision (Multimodal UI & Vision Combo)",
+          "id": "auto/best-vision",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-chat": {
+          "name": "\ud83d\udcac auto/best-chat (Balanced Conversational Router)",
+          "id": "auto/best-chat",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "best-coding-fast": {
+          "name": "\u26a1 auto/best-coding-fast (High-Speed Code Generation)",
+          "id": "auto/best-coding-fast",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "pro-coding": {
+          "name": "\ud83c\udfc6 auto/pro-coding (Strict Priority Premium Coding)",
+          "id": "auto/pro-coding",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "pro-reasoning": {
+          "name": "\ud83d\udd2c auto/pro-reasoning (Strict Priority Deep Reasoning)",
+          "id": "auto/pro-reasoning",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "pro-vision": {
+          "name": "\ud83c\udfaf auto/pro-vision (Strict Priority High-Res Vision)",
+          "id": "auto/pro-vision",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "claude-sonnet": {
+          "name": "\ud83c\udfad auto/claude-sonnet (Claude 3.7 / 3.5 Sonnet Cascade)",
+          "id": "auto/claude-sonnet",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "claude-opus": {
+          "name": "\ud83d\udc51 auto/claude-opus (Claude Opus / Deep Thinking Cascade)",
+          "id": "auto/claude-opus",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "best-free": {
+          "name": "\ud83c\udd93 auto/best-free (100% Free-Tier Zero-Cost Router)",
+          "id": "auto/best-free",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "gemini-3.6-flash": {
+          "name": "\u26a1 antigravity/gemini-3.6-flash-high (Gemini 3.6 Flash Direct)",
+          "id": "antigravity/gemini-3.6-flash-high",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "gemini-2.5-pro": {
+          "name": "\ud83e\udde0 antigravity/gemini-2.5-pro (Gemini 2.5 Pro Direct)",
+          "id": "antigravity/gemini-2.5-pro",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "deepseek-v4-pro": {
+          "name": "\ud83e\udde0 tokenrouter/deepseek-v4-pro (DeepSeek V4 Pro Direct)",
+          "id": "tokenrouter/deepseek-v4-pro",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "mistral-large": {
+          "name": "\ud83e\udde0 mistral/mistral-large-latest (Mistral Large 3 Direct)",
+          "id": "mistral/mistral-large-latest",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 2097152,
+            "output": 128000
+          }
+        },
+        "claude-3-7-sonnet-direct": {
+          "name": "\ud83c\udfc6 anthropic/claude-3-7-sonnet (Claude 3.7 Sonnet Direct)",
+          "id": "anthropic/claude-3-7-sonnet-20250219",
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true,
+          "limit": {
+            "context": 200000,
+            "output": 128000
+          }
+        },
+        "nemotron-3-ultra-free": {
+          "limit": {
+            "output": 16384,
+            "context": 131072
+          },
+          "name": "\ud83e\udde0 openrouter/nvidia/nemotron-3-ultra-550b-a55b:free (Omniroute Free)",
+          "id": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+          "tool_call": true
+        },
+        "nemotron-3.5-lightning-free": {
+          "limit": {
+            "output": 16384,
+            "context": 131072
+          },
+          "name": "\u26a1 openrouter/nvidia/nemotron-3.5-lightning:free (Omniroute Free)",
+          "id": "openrouter/nvidia/nemotron-3.5-lightning:free",
+          "tool_call": true
+        },
+        "nemotron-3-nano-omni-free": {
+          "limit": {
+            "output": 16384,
+            "context": 131072
+          },
+          "name": "\ud83d\ude80 openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free (Omniroute Free)",
+          "id": "openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "tool_call": true
+        },
+        "nemotron-3.5-super-vl": {
+          "limit": {
+            "output": 16384,
+            "context": 131072
+          },
+          "name": "\ud83d\udc41\ufe0f openrouter/nvidia/nemotron-3.5-super-vl (Omniroute Vision-Language)",
+          "id": "openrouter/nvidia/nemotron-3.5-super-vl",
+          "tool_call": true
+        }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "*": "allow"
+      }
+    },
+    "plan": {
+      "mode": "primary",
+      "description": "Architectural planning, system analysis, and code exploration without modifications",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "*": "allow"
+      }
+    },
+    "reviewer": {
+      "mode": "subagent",
+      "description": "Audits code health, security boundaries, and strict anti-slop compliance without write permissions",
+      "temperature": 0.1,
+      "steps": 20,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "*": "allow"
+      }
+    },
+    "debugger": {
+      "mode": "subagent",
+      "description": "Root-cause debugger for deconstructing errors, stack traces, and fixing issues with targeted precision",
+      "temperature": 0.2,
+      "steps": 40,
+      "permission": {
+        "*": "allow"
+      }
+    },
+    "researcher": {
+      "mode": "subagent",
+      "description": "Broad codebase reconnaissance, external documentation scraping, and multi-source research",
+      "temperature": 0.2,
+      "steps": 30,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "*": "allow"
+      }
+    },
+    "architect": {
+      "mode": "subagent",
+      "description": "Principal systems design, multi-module architecture, schema migrations, and ADR formulation",
+      "temperature": 0.2,
+      "steps": 50,
+      "permission": {
+        "*": "allow"
+      }
+    },
+    "security-auditor": {
+      "mode": "subagent",
+      "description": "Performs security audits, identifies vulnerabilities, and verifies boundaries",
+      "temperature": 0.1,
+      "steps": 25,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "*": "allow"
+      }
+    },
+    "docs-writer": {
+      "mode": "subagent",
+      "description": "Writes and maintains project documentation, guides, and Architecture Decision Records",
+      "temperature": 0.3,
+      "steps": 30,
+      "permission": {
+        "bash": "deny",
+        "*": "allow"
+      }
+    }
+  },
+  "command": {
+    "doctor": {
+      "description": "Run Workshop OS health and diagnostic checks",
+      "agent": "build",
+      "template": "Execute full health and diagnostic audit for Workshop OS:\n!`uv run python D:/ai-workshop/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
+    },
+    "search": {
+      "description": "Search Workshop OS skills, subsystems, and APIs",
+      "agent": "build",
+      "template": "Search the Workshop catalog for: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py search \"$ARGUMENTS\"`"
+    },
+    "review": {
+      "description": "Review recent git diff or code changes for quality and anti-slop compliance",
+      "agent": "reviewer",
+      "subtask": true,
+      "template": "Review recent git changes:\n!`git diff HEAD~1`\nAudit strictly against 38 Anti-Slop rules and type safety."
+    },
+    "debug": {
+      "description": "Debug an unexpected error, stack trace, or failing test",
+      "agent": "debugger",
+      "subtask": true,
+      "template": "Deconstruct and debug the following issue: $ARGUMENTS\nIsolate root cause from first principles and post-mortems in vault/02 - Post-Mortems/."
+    },
+    "audit": {
+      "description": "Run anti-slop audit and security check on files",
+      "agent": "build",
+      "template": "Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python D:/ai-workshop/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
+    },
+    "plan": {
+      "description": "Formulate a first-principles architectural plan",
+      "agent": "plan",
+      "template": "Create a comprehensive implementation plan for: $ARGUMENTS"
+    },
+    "verify": {
+      "description": "Run deterministic test and verification suite",
+      "agent": "build",
+      "template": "Run full system verification suite:\n!`uv run python D:/ai-workshop/scripts/workshop_eval.py`"
+    }
+  }
 }

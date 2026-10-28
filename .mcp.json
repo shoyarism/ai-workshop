@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "workshop": {
-      "command": "C:/Users/USER/AppData/Local/Programs/Python/Python312/python.exe",
+      "command": "D:/ai-workshop/.venv/Scripts/python.exe",
       "args": [
         "D:/ai-workshop/scripts/workshop_mcp.py"
       ],

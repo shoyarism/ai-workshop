@@ -91,7 +91,7 @@ def sync_skills_core(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
 # ==============================================================================
 
 CANONICAL_PROTOCOL = r"""# 🌐 WORKSHOP OS UNIVERSAL PROTOCOL
-# Version: 2.3.0 (Portable Universal Standard)
+# Version: 3.5.0 (Portable Universal Standard)
 # ==============================================================================
 # This is the single source of truth for ALL AI Agents operating in this Workshop.
 # Universal engineering standard across all models, tools, and environments.
@@ -115,8 +115,8 @@ You operate with absolute technical rigor, proactive autonomous problem-solving,
 ## 2. DUAL-MODE WORKSHOP ACCESS
 
 ### Mode A: Local Clone (Priority 1 — Fast & Full Capability)
-If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this machine:
-1. **Master CLI**: `python E:\AI\Workshop\scripts\workshop.py <command>` (or `python scripts/workshop.py <command>`)
+If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
+1. **Master CLI**: `uv run python scripts/workshop.py <command>`
    - `search "<keyword>"`: Search 990+ domain skills, subsystems, and runbooks.
    - `doctor`: Comprehensive health diagnostics across all subsystems.
    - `council convene "<query>"`: Universal Supreme Council multi-persona adversarial deliberation.
@@ -125,12 +125,12 @@ If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this mac
    - `court reform <file>`: Auto-purge tautological comments and slop markers.
    - `see "<file>"`: Multimodal inspector for images, videos, audio, and documents.
    - `graphify query "<question>"`: Codebase AST knowledge graph exploration.
-2. **Local Skills Library**: `E:\AI\Workshop\skills/<skill-name>/SKILL.md`
-3. **Obsidian Vault / Memory**: `E:\AI\Workshop\vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
+2. **Local Skills Library**: `skills/<skill-name>/SKILL.md`
+3. **Obsidian Vault / Memory**: `vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
 
 ### Mode B: Cloud Zero-Clone (Remote / Ephemeral Environments)
-If the local clone does not exist, access the private cloud workshop at `shoyarism/ai-workshop` via GitHub API.
-Authentication is pre-configured via environment variable `$GITHUB_TOKEN` (or `%GITHUB_TOKEN%`).
+If the local clone does not exist, access the public workshop repository at `shoyarism/ai-workshop` via GitHub API or raw content.
+Public raw reads require no credentials. Authenticated requests may use `$GITHUB_TOKEN` for higher API rate limits.
 
 1. **Find a Skill**:
    ```bash
@@ -784,11 +784,39 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(description="Workshop Harness Synchronizer")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing")
     parser.add_argument("--check", action="store_true", help="Verify all harness configurations are up-to-date")
     args = parser.parse_args()
+
+    if args.check:
+        print("=" * 65)
+        print(" 🔄 WORKSHOP OS HARNESS DRIFT CHECK")
+        print(f" Root: {ROOT}")
+        print("=" * 65)
+        print("[*] Running drift verification on canonical instructions...")
+        drifted = []
+        canonical = CANONICAL_PROTOCOL.strip()
+        for name in ["WORKSHOP_PROTOCOL.md", "AGENTS.md", "GEMINI.md", "CLAUDE.md"]:
+            target_f = ROOT / name
+            if not target_f.exists():
+                drifted.append(f"Missing file: {name}")
+            else:
+                content = target_f.read_text(encoding="utf-8").strip()
+                if content != canonical:
+                    drifted.append(f"Drift in {name}: content does not match CANONICAL_PROTOCOL")
+        if drifted:
+            print("\n❌ Harness instructions drift detected:")
+            for d in drifted:
+                print(f"  - {d}")
+            print("\nRun `python scripts/workshop_sync.py` to recompile all harnesses.")
+            sys.exit(1)
+        else:
+            print("\n✓ All agent instruction files (WORKSHOP_PROTOCOL.md, AGENTS.md, GEMINI.md, CLAUDE.md) are in sync.")
+            sys.exit(0)
 
     manifest = load_manifest()
     print("=" * 65)

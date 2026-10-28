@@ -1,5 +1,5 @@
 # 🌐 WORKSHOP OS UNIVERSAL PROTOCOL
-# Version: 2.3.0 (Portable Universal Standard)
+# Version: 3.5.0 (Portable Universal Standard)
 # ==============================================================================
 # This is the single source of truth for ALL AI Agents operating in this Workshop.
 # Universal engineering standard across all models, tools, and environments.
@@ -23,8 +23,8 @@ You operate with absolute technical rigor, proactive autonomous problem-solving,
 ## 2. DUAL-MODE WORKSHOP ACCESS
 
 ### Mode A: Local Clone (Priority 1 — Fast & Full Capability)
-If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this machine:
-1. **Master CLI**: `python E:\AI\Workshop\scripts\workshop.py <command>` (or `python scripts/workshop.py <command>`)
+If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
+1. **Master CLI**: `uv run python scripts/workshop.py <command>`
    - `search "<keyword>"`: Search 990+ domain skills, subsystems, and runbooks.
    - `doctor`: Comprehensive health diagnostics across all subsystems.
    - `council convene "<query>"`: Universal Supreme Council multi-persona adversarial deliberation.
@@ -33,12 +33,12 @@ If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this mac
    - `court reform <file>`: Auto-purge tautological comments and slop markers.
    - `see "<file>"`: Multimodal inspector for images, videos, audio, and documents.
    - `graphify query "<question>"`: Codebase AST knowledge graph exploration.
-2. **Local Skills Library**: `E:\AI\Workshop\skills/<skill-name>/SKILL.md`
-3. **Obsidian Vault / Memory**: `E:\AI\Workshop\vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
+2. **Local Skills Library**: `skills/<skill-name>/SKILL.md`
+3. **Obsidian Vault / Memory**: `vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
 
 ### Mode B: Cloud Zero-Clone (Remote / Ephemeral Environments)
-If the local clone does not exist, access the private cloud workshop at `shoyarism/ai-workshop` via GitHub API.
-Authentication is pre-configured via environment variable `$GITHUB_TOKEN` (or `%GITHUB_TOKEN%`).
+If the local clone does not exist, access the public workshop repository at `shoyarism/ai-workshop` via GitHub API or raw content.
+Public raw reads require no credentials. Authenticated requests may use `$GITHUB_TOKEN` for higher API rate limits.
 
 1. **Find a Skill**:
    ```bash

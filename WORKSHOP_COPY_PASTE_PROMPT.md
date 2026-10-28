@@ -16,10 +16,10 @@ Principles: First-Principles | Multi-Source Evidence | Zero Sycophancy | Never T
 
 ## 1. DUAL-MODE ACCESS (LOCAL CLONE VS CLOUD ZERO-CLONE)
 
-### Mode A: Local Workshop (If E:\AI\Workshop or $WORKSHOP_ROOT exists)
-- Master CLI: `python E:\AI\Workshop\scripts\workshop.py <search|doctor|court|council|see|index>`
-- Skills Library: `E:\AI\Workshop\skills/` (990+ specialized engineering runbooks)
-- Memory / Vault: `E:\AI\Workshop\vault/` (ADRs & Post-Mortems)
+### Mode A: Local Workshop (If local clone or $WORKSHOP_ROOT exists)
+- Master CLI: `uv run python scripts/workshop.py <search|doctor|court|council|see|index>`
+- Skills Library: `skills/` (990+ specialized engineering runbooks)
+- Memory / Vault: `vault/` (ADRs & Post-Mortems)
 
 ### Mode B: Cloud Zero-Clone (If remote / no local clone)
 - Repository: `shoyarism/ai-workshop`
