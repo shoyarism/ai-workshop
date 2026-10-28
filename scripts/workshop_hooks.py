@@ -81,13 +81,23 @@ BLOCKED_PATTERNS = [
 def is_path_outside_boundary(path_str: str) -> bool:
     """Checks if an argument resolves to an absolute path, traversal (..), or env variable outside ROOT."""
     clean = path_str.strip().strip("'\"")
-    # Expand environment variables (%VAR% and $env:VAR)
-    clean = os.path.expandvars(clean)
+
+    # 1. Immediate detection of user/system profile environment variables (cross-platform)
+    user_system_env = re.compile(
+        r"(?:%|\$env:|\$)(USERPROFILE|HOME|HOMEPATH|HOMEDRIVE|APPDATA|LOCALAPPDATA|WINDIR|SYSTEMROOT|SYSTEMDRIVE)",
+        re.IGNORECASE,
+    )
+    if user_system_env.search(clean):
+        return True
+
+    # 2. Expand environment variables (%VAR% and $env:VAR)
     clean = re.sub(r"\$env:([A-Za-z0-9_]+)", lambda m: os.environ.get(m.group(1), ""), clean)
+    clean = re.sub(r"%([A-Za-z0-9_]+)%", lambda m: os.environ.get(m.group(1), ""), clean)
+    clean = os.path.expandvars(clean)
     if clean.startswith("~"):
         clean = str(Path.home()) + clean[1:]
 
-    # Path traversal with ..
+    # 3. Path traversal with ..
     if ".." in clean:
         try:
             target = (ROOT / clean).resolve()
@@ -97,7 +107,7 @@ def is_path_outside_boundary(path_str: str) -> bool:
         except Exception:
             return True
 
-    # Detect Windows drive letter paths or POSIX absolute paths
+    # 4. Detect Windows drive letter paths or POSIX absolute paths
     m = re.match(r"^[A-Za-z]:[\\/]", clean)
     if m or clean.startswith(("/", "\\")):
         if os.name != "nt" and m:
