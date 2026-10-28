@@ -1,6 +1,6 @@
 # Agent Skills Library — Master Index
 
-Total skills: **796** · Managed at `.\skills`
+Total skills: **2,150+ skills** organized across 7 Sovereign Houses (see [HOUSES.md](./HOUSES.md) for the master domain architecture; see [SOURCES.md](./SOURCES.md) for provenance).
 
 Each entry is a folder containing `SKILL.md` (plus optional `references/`, `scripts/`). Load a skill by matching its folder name to the task. Sources and provenance: see [SOURCES.md](./SOURCES.md).
 

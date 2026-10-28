@@ -201,7 +201,7 @@ Operating inside an ephemeral container, GitHub Codespace, or VPS? You do not ne
 
 ```bash
 # Stream any skill directly into context
-curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/dev-house/superpowers/SKILL.md
+curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/dev-house/using-superpowers/SKILL.md
 ```
 
 ---

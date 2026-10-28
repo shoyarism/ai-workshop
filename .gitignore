@@ -148,3 +148,11 @@ strix/
 # Local skill discovery cache
 .skills_cache.json
 **/.skills_cache.json
+
+# Local service runtime state and operational logs
+scripts/.services_state.json
+scripts/.*.log
+*.log
+
+# Personal operational notes
+USER_ACTIONS.md

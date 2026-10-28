@@ -2,7 +2,7 @@
 """
 Workshop Arsenal Search Engine (Sub-Millisecond Direct Indexing)
 ================================================================
-Scans 865+ skills, MCP servers, Public APIs, Free developer tiers, tools, and repositories in the Workshop.
+Scans 2,150+ skills across 7 Sovereign Houses, MCP servers, Public APIs, Free developer tiers, tools, and repositories in the Workshop.
 
 Usage:
     python scripts/workshop_search.py "<query>" [--category <cat>] [--json] [--limit <n>]

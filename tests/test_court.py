@@ -11,7 +11,7 @@ from pathlib import Path
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
-from workshop_court import Prosecutor, STATUTES
+from workshop_court import Prosecutor
 
 
 class TestSlopCourt(unittest.TestCase):
@@ -28,7 +28,6 @@ class TestSlopCourt(unittest.TestCase):
             ("Standard processing time is 10ms with 5% variance.", False),
             ("Clean technical documentation without claims.", False),
         ]
-        statute_found = False
         for text, should_flag in samples:
             charges = self.prosecutor.scan_file(Path("test_snippet.md"), text)
             fel04_charges = [c for c in charges if c.statute_code == "FEL-04"]

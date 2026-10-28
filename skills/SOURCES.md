@@ -1,6 +1,6 @@
 # Skill Library — Sources & Provenance
 
-This library was assembled on 2026-08-06 by merging the original skill set with the open-source agent-skills ecosystem. Every skill folder contains a `SKILL.md` and follows the standard Agent Skills format. Current size: **658 skills**.
+This library was originally assembled on 2026-08-06 and has since been systematically expanded into the 7 Sovereign Houses. Every skill folder contains a `SKILL.md` and follows the standard Agent Skills format. Current library size: **2,150+ skills** across 7 Sovereign Houses (2,146 verified in `skills/manifest.sha256`; 2,600+ discovered across companion roots).
 
 ## Original set (95 skills + 1 stub)
 

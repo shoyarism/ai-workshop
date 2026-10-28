@@ -655,7 +655,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 
     # Search
-    p_search = subparsers.add_parser("search", help="Search 865+ skills, Subsystems, MCPs, APIs")
+    p_search = subparsers.add_parser("search", help="Search 2,150+ skills across 7 Houses, Subsystems, MCPs, APIs")
     p_search.add_argument("query", nargs="?", default="", help="Query keyword")
     p_search.add_argument("--category", "-c", choices=["all", "skills", "repos", "mcps", "apis"], default="all")
     p_search.add_argument("--limit", "-l", type=int, default=15)
