@@ -1,5 +1,5 @@
 fastapi>=0.162.0
-uvicorn>=0.23.0
+uvicorn>=0.54.0
 pydantic>=2.0.0
 gradio_client>=2.7.2
 requests>=2.31.0
