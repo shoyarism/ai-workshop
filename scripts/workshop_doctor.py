@@ -155,7 +155,10 @@ def check_local_gateways():
             print(f"  [STANDBY] {name:<22} is OFFLINE / Standby ({url})")
 
 
-def check_subsystems_health():
+CORE_SUBSYSTEMS = {"skills", "scripts", "prompts"}
+
+
+def check_subsystems_health(critical_failures: List[str], require_all: bool = False):
     print("\n--- 5. Workshop Subsystems Matrix ---")
     catalog_path = WORKSHOP_DIR / "CATALOG.json"
     if not catalog_path.exists():
@@ -166,19 +169,40 @@ def check_subsystems_health():
         data = json.load(f)
 
     subsystems = data.get("subsystems", {})
-    ready_count = 0
+    ready_core = 0
+    total_core = len(CORE_SUBSYSTEMS)
+    ready_ext = 0
+    total_ext = 0
+
     for key, info in subsystems.items():
         p = WORKSHOP_DIR / info.get("path", key)
         is_ready = p.exists() and (len(list(p.iterdir())) > 1 if p.is_dir() else True)
-        if is_ready:
-            ready_count += 1
         name = info.get("name", key)
         if len(name) > 35:
             name = name[:32] + "..."
-        status_label = "[ACTIVE]" if is_ready else "[STANDBY]"
+
+        is_core = key in CORE_SUBSYSTEMS
+        if is_core:
+            if is_ready:
+                ready_core += 1
+                status_label = "[ACTIVE]"
+            else:
+                status_label = "[MISSING]"
+                critical_failures.append(f"Core repository subsystem '{key}' is missing or empty on disk")
+        else:
+            total_ext += 1
+            if is_ready:
+                ready_ext += 1
+                status_label = "[ACTIVE]"
+            else:
+                status_label = "[STANDBY]"
+                if require_all:
+                    critical_failures.append(f"Subsystem '{key}' is on standby")
         print(f"  {status_label:<9} {name:<36} -> {info.get('path')}")
 
-    print(f"\n  Subsystem Health: {ready_count}/{len(subsystems)} Subsystems Active")
+    print(f"\n  Core Repository Subsystems : {ready_core}/{total_core} Active (Required)")
+    print(f"  Ecosystem Companions       : {ready_ext}/{total_ext} Active (Standby on-demand)")
+
 
 
 def check_skills_integrity(critical_failures: List[str]):
@@ -262,9 +286,11 @@ def check_obsidian_vault(critical_failures: List[str]):
 def main(strict: bool = False):
     parser = argparse.ArgumentParser(description="Workshop OS Health & Doctor")
     parser.add_argument("--strict", action="store_true", help="Exit with code 1 on any critical failure")
+    parser.add_argument("--require-all-subsystems", action="store_true", help="Fail strict mode if any ecosystem subsystem is on standby")
     args, _ = parser.parse_known_args()
 
     is_strict = strict or args.strict
+    require_all = args.require_all_subsystems
 
     print("\n=======================================================")
     print(" [*] WORKSHOP HEALTH & DIAGNOSTIC DOCTOR")
@@ -278,7 +304,7 @@ def main(strict: bool = False):
     check_node_and_system_binaries(critical_failures)
     check_browser_engines()
     check_local_gateways()
-    check_subsystems_health()
+    check_subsystems_health(critical_failures, require_all=require_all)
     check_skills_integrity(critical_failures)
     check_obsidian_vault(critical_failures)
 
