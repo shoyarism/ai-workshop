@@ -182,18 +182,20 @@ workshop court council "Mandating 100% test coverage before release" --domain ge
 
 ---
 
-## 06 // SYSTEM BENCHMARKS: HOW WORKSHOP OS COMPARES
+## 06 // ARCHITECTURAL CAPABILITY & INVARIANT MATRIX
 
-| Capability | Workshop OS | Vanilla Cursor / Copilot | Raw Aider / Claude Code | Fabric / Prompt Repos | AutoGPT / LangChain |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Deterministic Code Arrest** | **Python AST + Lexical Linting** | Relies on external linters | Relies on external linters | None | None |
-| **Pre-Commit Git Bailiff Hook** | **Turnkey Installer (`court bailiff`)** | Manual script setup | Manual script setup | Manual script setup | Manual script setup |
-| **Multi-Persona Adversarial Council**| **4 Conflicting Personas** | Single Model Echo | Single Model Echo | Static Prompts | Fragile Chains |
-| **Executable Runbook Library** | **2,150+ Production Skills** | None | None | ~150 Prompts | Framework Only |
-| **Persistent Epistemic Memory** | **Obsidian Vault + ADRs** | Session Only | Session Only | None | Vector DB Only |
-| **Zero-Clone Cloud Streaming** | **GitHub Raw & FastMCP** | Local Only | Local Only | Clone Required | Heavy Install |
-| **Multi-Harness Native** | **Cursor, Claude, Antigravity**| Vendor Locked | CLI Only | CLI Only | Python Only |
-| **Open Source License** | **Apache 2.0** | Proprietary | Proprietary / CLI | MIT | MIT |
+Workshop OS establishes deterministic guarantees that convert open-ended LLM non-determinism into verifiable, repeatable engineering invariants:
+
+| Engineering Dimension | Workshop OS Architecture | Conventional AI Tools & Assistants | Deterministic Invariant Guaranteed |
+| :--- | :--- | :--- | :--- |
+| **Deterministic Code Arrest** | **Slop Court Python AST + Lexical Linting Engine** | Ad-hoc system prompt hints & external linters | Zero lazy stubs, zero truncated lines, zero bare exceptions |
+| **Pre-Commit Enforcement** | **Turnkey Git Bailiff Interceptor (`court bailiff`)** | Manual pre-commit hooks or manual bash scripts | Commits blocked automatically on AST/Penal Code breach |
+| **Cognitive Bias Defense** | **Universal Supreme Council (4 Adversarial Personas)** | Single-model echo chamber / unverified synthesis | Multi-perspective blindspot exposure prior to critical commits |
+| **Execution Runbooks** | **7 Sovereign Houses with 2,150+ Structured Skills** | Empty workspace or generic unversioned prompts | Standardized YAML frontmatter contracts & executable runbooks |
+| **Epistemic Memory** | **Obsidian Markdown Vault + ADRs + Post-Mortems** | Ephemeral context window lost upon session termination | Grounded organizational learning with immutable post-mortems |
+| **Deployment Footprint** | **Dual-Mode: Local Foundry or Zero-Clone Cloud Protocol** | Heavy full-clone dependencies or cloud SaaS lock-in | Instant zero-clone raw GitHub streaming or isolated Docker sandbox |
+| **Multi-Harness Portability** | **Native Unified Config: Antigravity, Claude, Cursor, Windsurf** | Vendor-specific extension silos | Single source of truth system prompt & skills across all agents |
+| **Open Governance** | **Apache 2.0 Open Source Core** | Proprietary walled gardens | Auditable codebase with transparent synthetic swarm lineage |
 
 ---
 

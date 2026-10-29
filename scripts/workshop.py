@@ -41,7 +41,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 WORKSHOP_DIR = SCRIPTS_DIR.parent
 
 _VENV_PY = WORKSHOP_DIR / ".venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
-if _VENV_PY.exists() and Path(sys.executable).resolve() != _VENV_PY.resolve() and not os.environ.get("_WORKSHOP_VENV_REEXEC"):
+if __name__ == "__main__" and _VENV_PY.exists() and Path(sys.executable).resolve() != _VENV_PY.resolve() and not os.environ.get("_WORKSHOP_VENV_REEXEC"):
     os.environ["_WORKSHOP_VENV_REEXEC"] = "1"
     sys.exit(subprocess.call([str(_VENV_PY), *sys.argv]))
 
@@ -179,7 +179,7 @@ def cmd_house(args):
         print(f" Total House Skills Indexed: {total_skills}")
         print(" Use: python scripts/workshop.py house inspect <slug> to explore any house.")
         print("=======================================================\n")
-        return
+        return 0
 
     # Inspect target house
     target = (args.target or args.action).lower().strip().replace(" ", "-")
@@ -191,7 +191,7 @@ def cmd_house(args):
             
     if not matched:
         print(f"[!] House '{target}' not found. Available houses: " + ", ".join([h[1] for h in houses]))
-        return
+        return 1
 
     title, slug, desc = matched
     p = skills_dir / slug
@@ -208,6 +208,7 @@ def cmd_house(args):
     for i, s in enumerate(subdirs, 1):
         print(f"   {i:3d}. {s}")
     print("\n=======================================================\n")
+    return 0
 
 def cmd_index(args):
     """Regenerate CATALOG.json and INDEX.md."""
@@ -654,7 +655,7 @@ def cmd_vox(args):
     cmd = [sys.executable, str(vox_script)] + (args.args if hasattr(args, "args") and args.args else [])
     _run_subproc(cmd)
 
-def main():
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Centralized Workshop Master CLI",
         formatter_class=argparse.RawDescriptionHelpFormatter
@@ -857,93 +858,70 @@ def main():
     p_house.add_argument("action", choices=["list", "inspect"], nargs="?", default="list", help="House action")
     p_house.add_argument("target", nargs="?", default="", help="House slug to inspect")
 
-    args, extra = parser.parse_known_args()
+    return parser
+
+def main(argv=None):
+    parser = build_parser()
+    args, extra = parser.parse_known_args(argv)
     if extra and hasattr(args, "args") and isinstance(args.args, list):
         args.args.extend(extra)
 
-    if args.command == "routine":
-        cmd_routine(args)
-    elif args.command == "see":
-        cmd_see(args)
-    elif args.command == "vision":
-        cmd_vision(args)
-    elif args.command == "house":
-        cmd_house(args)
-    elif args.command == "search":
-        cmd_search(args)
-    elif args.command == "info":
-        cmd_info(args)
-    elif args.command == "index":
-        cmd_index(args)
-    elif args.command == "doctor":
-        cmd_doctor(args)
-    elif args.command == "hub":
-        cmd_hub(args)
-    elif args.command == "browser":
-        cmd_browser(args)
-    elif args.command == "hf":
-        cmd_hf(args)
-    elif args.command == "openrouter":
-        cmd_openrouter(args)
-    elif args.command == "github":
-        cmd_github(args)
-    elif args.command == "drift":
-        cmd_drift(args)
-    elif args.command == "onboard":
-        cmd_onboard(args)
-    elif args.command == "sync":
-        cmd_sync(args)
-    elif args.command == "eval":
-        cmd_eval(args)
-    elif args.command == "desktop":
-        cmd_desktop(args)
-    elif args.command == "event-bus":
-        cmd_event_bus(args)
-    elif args.command == "guard":
-        cmd_guard(args)
-    elif args.command == "forge":
-        cmd_forge(args)
-    elif args.command == "route":
-        cmd_route(args)
-    elif args.command == "evolve":
-        cmd_evolve(args)
-    elif args.command == "semantic":
-        cmd_semantic(args)
-    elif args.command == "mcp":
-        cmd_mcp(args)
-    elif args.command == "photoreal":
-        cmd_photoreal(args)
-    elif args.command == "antislop":
-        cmd_antislop(args)
-    elif args.command == "court":
-        cmd_court(args)
-    elif args.command == "services":
-        cmd_services(args)
-    elif args.command == "forensic":
-        cmd_forensic(args)
-    elif args.command == "osint":
-        cmd_osint(args)
-    elif args.command == "vault":
-        cmd_vault(args)
-    elif args.command == "backup":
-        cmd_backup(args)
-    elif args.command == "status":
-        cmd_status(args)
-    elif args.command == "vox":
-        cmd_vox(args)
-    elif args.command == "up":
-        cmd_up(args)
-    elif args.command == "down":
-        cmd_down(args)
-    elif args.command == "graphify":
-        cmd_graphify(args)
-    elif args.command == "repomix":
-        cmd_repomix(args)
-    elif args.command == "ast-grep":
-        cmd_ast_grep(args)
-    else:
+    if not args.command:
         cmd_status(args)
         parser.print_help()
+        return 0
+
+    dispatch = {
+        "routine": cmd_routine,
+        "see": cmd_see,
+        "vision": cmd_vision,
+        "house": cmd_house,
+        "search": cmd_search,
+        "info": cmd_info,
+        "index": cmd_index,
+        "doctor": cmd_doctor,
+        "hub": cmd_hub,
+        "browser": cmd_browser,
+        "hf": cmd_hf,
+        "openrouter": cmd_openrouter,
+        "github": cmd_github,
+        "drift": cmd_drift,
+        "onboard": cmd_onboard,
+        "sync": cmd_sync,
+        "eval": cmd_eval,
+        "desktop": cmd_desktop,
+        "event-bus": cmd_event_bus,
+        "guard": cmd_guard,
+        "forge": cmd_forge,
+        "route": cmd_route,
+        "evolve": cmd_evolve,
+        "semantic": cmd_semantic,
+        "mcp": cmd_mcp,
+        "photoreal": cmd_photoreal,
+        "antislop": cmd_antislop,
+        "court": cmd_court,
+        "services": cmd_services,
+        "forensic": cmd_forensic,
+        "osint": cmd_osint,
+        "vault": cmd_vault,
+        "backup": cmd_backup,
+        "status": cmd_status,
+        "vox": cmd_vox,
+        "up": cmd_up,
+        "down": cmd_down,
+        "graphify": cmd_graphify,
+        "repomix": cmd_repomix,
+        "ast-grep": cmd_ast_grep,
+    }
+
+    handler = dispatch.get(args.command)
+    if handler:
+        res = handler(args)
+        return res if isinstance(res, int) else 0
+
+    cmd_status(args)
+    parser.print_help()
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

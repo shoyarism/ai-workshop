@@ -16,6 +16,9 @@
 *.css text eol=lf
 *.txt text eol=lf
 
+# Vendored third-party skills preserve upstream formatting
+skills/** -text
+
 # Windows scripts require CRLF
 *.bat text eol=crlf
 *.cmd text eol=crlf

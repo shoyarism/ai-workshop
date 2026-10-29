@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies and package
         run: |
           python -m pip install --upgrade pip
-          pip install hatchling pyyaml pydantic requests ruff pytest
+          pip install hatchling pyyaml pydantic requests ruff pytest pytest-cov pip-audit mypy
           pip install -e .
 
       - name: Verify CLI entrypoint and package import
@@ -38,9 +38,19 @@ jobs:
           workshop --help
           python -c "import scripts"
 
-      - name: Run Unit Test Suite
+      - name: Run Unit Test Suite with Coverage Gate
         run: |
-          pytest
+          pytest --cov=scripts.workshop --cov=scripts.agent_runtime --cov=scripts.agent_watchdog --cov-fail-under=40 tests
+
+      - name: Dependency Vulnerability Audit
+        continue-on-error: true
+        run: |
+          pip-audit
+
+      - name: Static Type Check Baseline (mypy)
+        continue-on-error: true
+        run: |
+          mypy --ignore-missing-imports scripts
 
       - name: Enforce Code Linter (Ruff)
         run: |

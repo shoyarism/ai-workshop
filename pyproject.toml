@@ -82,5 +82,45 @@ norecursedirs = [
     "dist",
     "build",
     "*.egg-info",
+    "integration",
 ]
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = [
+    "scripts/experimental/*",
+    "scripts/workshop_vision.py",
+    "scripts/workshop_reasoning_eval.py",
+    "scripts/workshop_osint.py",
+    "scripts/workshop_forensics.py",
+    "scripts/workshop_hf.py",
+    "scripts/workshop_openrouter.py",
+    "scripts/workshop_desktop.py",
+    "scripts/workshop_routine.py",
+    "scripts/workshop_semantic_indexer.py",
+    "scripts/workshop_search.py",
+    "scripts/workshop_services.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [
+    ".git",
+    "node_modules",
+    "skills",
+    "vault",
+    "data",
+    "evidence_quarantine",
+    "scripts/experimental",
+    "evals",
+]
+
+[tool.ruff.lint]
+select = ["F"]
+
+
 

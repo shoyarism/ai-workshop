@@ -7,8 +7,12 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
 from workshop_paths import ROOT, SCRIPTS, python_executable
+
+import pytest
+pytest.importorskip("mcp")
+pytest.importorskip("anyio")
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
