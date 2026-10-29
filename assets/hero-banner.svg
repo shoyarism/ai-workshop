@@ -165,8 +165,8 @@
   <line x1="48" y1="78" x2="1152" y2="78" stroke="#181c28" stroke-width="1"/>
   <line x1="48" y1="79" x2="1152" y2="79" stroke="#050608" stroke-width="1"/>
 
-  <!-- 4. Left Hero Sector (Width: 500px, x: 48) -->
-  <g transform="translate(48, 108)">
+  <!-- 4. Left Hero Sector (Width: 500px, x: 48, y: 96) -->
+  <g transform="translate(48, 96)">
     <!-- Small Category Pill -->
     <g transform="translate(0, 0)">
       <rect width="152" height="20" rx="3" fill="#1c1313" stroke="#ff4f17" stroke-width="0.8"/>
@@ -174,18 +174,18 @@
       <text x="20" y="13.5" class="mono-bold" fill="#ff4f17">ENGINEERING RUNTIME</text>
     </g>
 
-    <!-- Hero Title -->
-    <g transform="translate(0, 56)">
-      <text x="0" y="0" class="title-display" font-size="54">WORKSHOP <tspan class="title-accent">//</tspan> OS</text>
+    <!-- Hero Title (Generous Clearance Below Pill) -->
+    <g transform="translate(0, 76)">
+      <text x="0" y="0" class="title-display" font-size="52">WORKSHOP <tspan class="title-accent">//</tspan> OS</text>
     </g>
 
     <!-- Value Proposition -->
-    <text x="0" y="92" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
-    <text x="0" y="118" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
-    <text x="0" y="138" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
+    <text x="0" y="112" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
+    <text x="0" y="138" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
+    <text x="0" y="158" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
 
     <!-- Key Spec Badges / Tabs (Non-colliding text-anchor layout) -->
-    <g transform="translate(0, 172)">
+    <g transform="translate(0, 192)">
       <!-- Badge 1: 7 Houses -->
       <g transform="translate(0, 0)">
         <rect width="144" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
@@ -212,7 +212,7 @@
     </g>
 
     <!-- Interactive Terminal Command Console -->
-    <g transform="translate(0, 226)">
+    <g transform="translate(0, 246)">
       <rect width="492" height="42" rx="4" fill="#090a10" stroke="#1c202c" stroke-width="1"/>
       <circle cx="14" cy="14" r="3" fill="#ff5f56"/>
       <circle cx="24" cy="14" r="3" fill="#ffbd2e"/>
