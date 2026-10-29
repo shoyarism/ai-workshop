@@ -1,237 +1,257 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 520" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="100%" height="100%">
   <defs>
-    <linearGradient id="rackGround" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0e0f12"/>
-      <stop offset="50%" stop-color="#121318"/>
-      <stop offset="100%" stop-color="#0a0b0d"/>
+    <!-- Base Canvas Gradient -->
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090a0d"/>
+      <stop offset="60%" stop-color="#0d0e12"/>
+      <stop offset="100%" stop-color="#08090b"/>
     </linearGradient>
 
-    <!-- Bevel Light -->
-    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2a2d3a"/>
-      <stop offset="50%" stop-color="#404456"/>
-      <stop offset="100%" stop-color="#2a2d3a"/>
+    <!-- Compartment Surface Gradient -->
+    <linearGradient id="compGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141620"/>
+      <stop offset="100%" stop-color="#0f1016"/>
     </linearGradient>
 
-    <!-- Compartment Module Background -->
-    <linearGradient id="compBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#161820"/>
-      <stop offset="100%" stop-color="#111217"/>
-    </linearGradient>
-
-    <!-- Court Highlight Background -->
-    <linearGradient id="courtBg" x1="0%" y1="0%" x2="0%" y2="100%">
+    <!-- Slop Court Highlight Gradient -->
+    <linearGradient id="courtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#1c1618"/>
-      <stop offset="100%" stop-color="#120e10"/>
+      <stop offset="100%" stop-color="#110d10"/>
     </linearGradient>
 
-    <!-- Dot Grid for Architectural Texture -->
-    <pattern id="archGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="10" cy="10" r="0.7" fill="#1e2029"/>
+    <!-- Bevel Light Highlight -->
+    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#232736"/>
+      <stop offset="50%" stop-color="#383e54"/>
+      <stop offset="100%" stop-color="#232736"/>
+    </linearGradient>
+
+    <!-- Dot Grid Pattern -->
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="0.75" fill="#1b1d28"/>
     </pattern>
   </defs>
 
   <style>
-    .rack-head { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; font-weight: 900; letter-spacing: -1.5px; fill: #eceae4; text-transform: uppercase; }
-    .rack-mono { font-family: "SF Mono", "JetBrains Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1.2px; fill: #8e919a; }
-    .rack-mono-bold { font-family: "SF Mono", "JetBrains Mono", Consolas, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
-    .port-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; font-weight: 800; font-size: 13.5px; fill: #eceae4; text-transform: uppercase; letter-spacing: -0.5px; }
-    .port-item { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; font-weight: 700; font-size: 11.5px; fill: #ffffff; }
-    .port-sub { font-family: "SF Mono", "JetBrains Mono", monospace; font-size: 9px; fill: #727580; }
+    .head-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -1px; fill: #f3f4f8; }
+    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1.2px; fill: #8c92a4; }
+    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
+    .port-num { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+    .port-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 800; font-size: 14px; fill: #f3f4f8; letter-spacing: -0.3px; }
+    .item-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; font-size: 11.5px; fill: #f3f4f8; }
+    .item-desc { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 9px; fill: #72798e; }
   </style>
 
-  <!-- Base Ground -->
-  <rect width="1160" height="520" fill="url(#rackGround)"/>
-  <rect width="1160" height="520" fill="url(#archGrid)"/>
+  <!-- 1. Background Ground -->
+  <rect width="1200" height="540" fill="url(#groundGrad)"/>
+  <rect width="1200" height="540" fill="url(#dotGrid)"/>
 
-  <!-- Outer Structural Chassis (Zero Radius Milled Chassis) -->
-  <rect x="20" y="20" width="1120" height="480" fill="none" stroke="#252732" stroke-width="1.2"/>
-  <line x1="21" y1="21" x2="1139" y2="21" stroke="url(#bevelLight)" stroke-width="1"/>
-  <line x1="21" y1="499" x2="1139" y2="499" stroke="#050608" stroke-width="1.2"/>
+  <!-- 2. Outer Perimeter Frame -->
+  <rect x="24" y="24" width="1152" height="492" fill="none" stroke="#212432" stroke-width="1.2"/>
+  <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
+  <line x1="25" y1="515" x2="1175" y2="515" stroke="#050608" stroke-width="1.2"/>
 
-  <!-- Precision Calibration Targets -->
-  <g stroke="#eb5e28" stroke-width="1" opacity="0.85">
-    <circle cx="20" cy="20" r="4" fill="none"/>
-    <circle cx="1140" cy="20" r="4" fill="none"/>
-    <circle cx="20" cy="500" r="4" fill="none"/>
-    <circle cx="1140" cy="500" r="4" fill="none"/>
+  <!-- Optical Calibration Targets -->
+  <g stroke="#ff5722" stroke-width="1" opacity="0.8">
+    <circle cx="24" cy="24" r="4.5" fill="none"/>
+    <circle cx="1176" cy="24" r="4.5" fill="none"/>
+    <circle cx="24" cy="516" r="4.5" fill="none"/>
+    <circle cx="1176" cy="516" r="4.5" fill="none"/>
   </g>
 
-  <!-- Top Title Strip -->
-  <g transform="translate(40, 44)">
-    <rect width="6" height="26" fill="#eb5e28"/>
-    <text x="16" y="20" class="rack-head" font-size="22">SYSTEM TOPOLOGY // ARCHITECTURAL BLUEPRINT</text>
-    <text x="1070" y="18" text-anchor="end" class="rack-mono">SPEC: DETERMINISTIC AST INVARIANTS</text>
+  <!-- 3. Top Title Strip -->
+  <g transform="translate(48, 50)">
+    <rect width="6" height="24" fill="#ff5722"/>
+    <text x="16" y="17" class="head-title">SYSTEM ARCHITECTURE // RECURSIVE AST PIPELINE</text>
+    <text x="1104" y="12" text-anchor="end" class="mono-bold" fill="#ff5722">SPEC 3.5 // INVARIANT FLOW</text>
+    <text x="1104" y="27" text-anchor="end" class="mono-meta" fill="#8c92a4">INGESTION &#8594; SLOP COURT &#8594; COUNCIL &#8594; FOUNDRY</text>
   </g>
 
-  <line x1="40" y1="84" x2="1110" y2="84" stroke="#222530" stroke-width="1.2"/>
-  <line x1="40" y1="85" x2="1110" y2="85" stroke="#0d0e12" stroke-width="1"/>
+  <line x1="48" y1="88" x2="1152" y2="88" stroke="#1d202c" stroke-width="1"/>
+  <line x1="48" y1="89" x2="1152" y2="89" stroke="#0a0b10" stroke-width="1"/>
 
-  <!-- 4 Compartment Industrial Modular Rack -->
+  <!-- 4. The 4 Modular Compartments (Width: 252px, gap: 32px, x: 48, 332, 616, 900) -->
 
-  <!-- COMPARTMENT 01: HARNESSES (Width 240) -->
-  <g transform="translate(40, 108)">
-    <rect width="240" height="344" fill="url(#compBg)" stroke="#282a36" stroke-width="1.2"/>
-    <line x1="1" y1="1" x2="239" y2="1" stroke="url(#bevelLight)" stroke-width="0.8"/>
-    <rect width="240" height="4" fill="#50535e"/>
-    <!-- Mount Screws -->
-    <circle cx="8" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
-    <circle cx="232" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
+  <!-- COMPARTMENT 01: HARNESSES -->
+  <g transform="translate(48, 108)">
+    <rect width="252" height="364" fill="url(#compGrad)" stroke="#25293a" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#505672" stroke-width="2"/>
+    
+    <!-- Screws -->
+    <circle cx="10" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
+    <circle cx="242" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
 
-    <g transform="translate(16, 20)">
-      <text x="0" y="0" class="rack-mono" fill="#8e919a">PORT 01 // CLIENTS</text>
-      <text x="0" y="24" class="port-title">AGENT HARNESSES</text>
-      <line x1="0" y1="36" x2="208" y2="36" stroke="#222530"/>
+    <g transform="translate(18, 22)">
+      <text x="0" y="0" class="port-num" fill="#8c92a4">STAGE 01 // CLIENTS</text>
+      <text x="0" y="20" class="port-title">AGENT HARNESSES</text>
+      <line x1="0" y1="32" x2="216" y2="32" stroke="#222534"/>
 
-      <!-- Harness Items -->
+      <!-- Items -->
       <g transform="translate(0, 48)">
-        <text x="0" y="0" class="port-item">CLAUDE CODE</text>
-        <text x="0" y="13" class="port-sub">CLAUDE.md + FastMCP tools</text>
+        <text x="0" y="0" class="item-title">Claude Code</text>
+        <text x="0" y="14" class="item-desc">CLAUDE.md + FastMCP tools</text>
 
-        <text x="0" y="38" class="port-item">CURSOR &amp; WINDSURF</text>
-        <text x="0" y="51" class="port-sub">.cursorrules + context</text>
+        <text x="0" y="38" class="item-title">Cursor &amp; Windsurf</text>
+        <text x="0" y="52" class="item-desc">.cursorrules + cascading context</text>
 
-        <text x="0" y="76" class="port-item">GEMINI ANTIGRAVITY</text>
-        <text x="0" y="89" class="port-sub">SOUL.md Master Soul Hook</text>
+        <text x="0" y="76" class="item-title">Gemini Antigravity</text>
+        <text x="0" y="90" class="item-desc">Master Soul Hook + AGENTS.md</text>
 
-        <text x="0" y="114" class="port-item">OPENCODE &amp; KILO</text>
-        <text x="0" y="127" class="port-sub">opencode.json &amp; kilo.jsonc</text>
+        <text x="0" y="114" class="item-title">OpenCode &amp; Kilo</text>
+        <text x="0" y="128" class="item-desc">opencode.json &amp; kilo.jsonc</text>
 
-        <text x="0" y="152" class="port-item">CLI &amp; DOCKER RUNTIME</text>
-        <text x="0" y="165" class="port-sub">`workshop` CLI + Sandbox</text>
+        <text x="0" y="152" class="item-title">CLI &amp; Docker Sandbox</text>
+        <text x="0" y="166" class="item-desc">Native console entrypoint</text>
       </g>
 
-      <line x1="0" y1="230" x2="208" y2="230" stroke="#222530"/>
-      <text x="0" y="250" class="rack-mono" fill="#50535e">ZERO VENDOR LOCK-IN</text>
+      <line x1="0" y1="286" x2="216" y2="286" stroke="#222534"/>
+      <text x="0" y="306" class="mono-meta" fill="#8c92a4">INPUT: TASK DIRECTIVE</text>
+      <text x="0" y="322" class="mono-meta" fill="#505672">PORTABLE MULTI-HARNESS</text>
     </g>
   </g>
 
-  <!-- High-Density Signal Conduit 1 -->
-  <line x1="280" y1="270" x2="310" y2="270" stroke="#eb5e28" stroke-width="2"/>
-  <circle cx="280" cy="270" r="3" fill="#eb5e28"/>
-  <circle cx="310" cy="270" r="3" fill="#eb5e28"/>
-  <rect x="291" y="266" width="8" height="8" fill="#eb5e28"/>
+  <!-- Signal Conduit 1 -->
+  <g transform="translate(300, 274)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#ff5722" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#ff5722"/>
+    <circle cx="32" cy="0" r="3.5" fill="#ff5722"/>
+    <rect x="12" y="-4" width="8" height="8" fill="#ff5722"/>
+  </g>
 
-  <!-- COMPARTMENT 02: THE COURT (Width 260) -->
-  <g transform="translate(310, 108)">
-    <rect width="260" height="344" fill="url(#courtBg)" stroke="#eb5e28" stroke-width="1.5"/>
-    <line x1="1" y1="1" x2="259" y2="1" stroke="#f47342" stroke-width="0.8"/>
-    <rect width="260" height="4" fill="#eb5e28"/>
-    <!-- Mount Screws -->
-    <circle cx="8" cy="14" r="2.5" fill="#1a1c24" stroke="#eb5e28" stroke-width="0.5"/>
-    <circle cx="252" cy="14" r="2.5" fill="#1a1c24" stroke="#eb5e28" stroke-width="0.5"/>
+  <!-- COMPARTMENT 02: THE COURT -->
+  <g transform="translate(332, 108)">
+    <rect width="252" height="364" fill="url(#courtGrad)" stroke="#ff5722" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#ff5722" stroke-width="3"/>
 
-    <g transform="translate(16, 20)">
-      <text x="0" y="0" class="rack-mono-bold" fill="#eb5e28">PORT 02 // GATEKEEPER</text>
-      <text x="0" y="24" class="port-title">SLOP COURT v3.5</text>
-      <line x1="0" y1="36" x2="228" y2="36" stroke="#382522"/>
+    <!-- Screws -->
+    <circle cx="10" cy="12" r="3" fill="#161822" stroke="#ff5722" stroke-width="0.8"/>
+    <circle cx="242" cy="12" r="3" fill="#161822" stroke="#ff5722" stroke-width="0.8"/>
 
-      <!-- 3-Juror Matrix -->
-      <g transform="translate(0, 52)">
-        <text x="0" y="0" class="port-item">01. JUROR CRAFT</text>
-        <text x="0" y="14" class="port-sub">Anti-slop &amp; tone audit (40%)</text>
+    <g transform="translate(18, 22)">
+      <text x="0" y="0" class="port-num" fill="#ff5722">STAGE 02 // GATEKEEPER</text>
+      <text x="0" y="20" class="port-title">SLOP COURT v3.5</text>
+      <line x1="0" y1="32" x2="216" y2="32" stroke="#382522"/>
 
-        <text x="0" y="38" class="port-item">02. JUROR AST</text>
-        <text x="0" y="52" class="port-sub">Complexity &amp; Nesting &gt; 6 (30%)</text>
+      <!-- Items -->
+      <g transform="translate(0, 48)">
+        <text x="0" y="0" class="item-title">Juror 01: Craft &amp; Tone</text>
+        <text x="0" y="14" class="item-desc">Fluff &amp; buzzword purge (40%)</text>
 
-        <text x="0" y="76" class="port-item">03. JUROR INVARIANTS</text>
-        <text x="0" y="90" class="port-sub">Silent `except: pass` arrest (30%)</text>
+        <text x="0" y="38" class="item-title">Juror 02: Architecture</text>
+        <text x="0" y="52" class="item-desc">AST Nesting depth &gt; 5 (30%)</text>
 
-        <text x="0" y="116" class="port-item" fill="#eb5e28">GIT BAILIFF HOOKS</text>
-        <text x="0" y="130" class="port-sub">Pre-commit / push gatekeeper</text>
+        <text x="0" y="76" class="item-title">Juror 03: Invariants</text>
+        <text x="0" y="90" class="item-desc">Silent error arrest (30%)</text>
+
+        <text x="0" y="114" class="item-title" fill="#ff5722">Git Bailiff Interceptor</text>
+        <text x="0" y="128" class="item-desc">Pre-commit / push gatekeeper</text>
+
+        <text x="0" y="152" class="item-title">Penal Code Statutes</text>
+        <text x="0" y="166" class="item-desc">FEL-01..06 &amp; MIS-01..06</text>
       </g>
 
-      <line x1="0" y1="210" x2="228" y2="210" stroke="#382522"/>
-      <text x="0" y="230" class="rack-mono" fill="#eb5e28">SHA-256 ACQUITTAL TOKEN</text>
-      <text x="0" y="246" class="rack-mono" fill="#8e919a">FAILURES ABORT WITH EXIT 1</text>
+      <line x1="0" y1="286" x2="216" y2="286" stroke="#382522"/>
+      <text x="0" y="306" class="mono-meta" fill="#ff5722">CRYPTOGRAPHIC SHA-256</text>
+      <text x="0" y="322" class="mono-meta" fill="#8c92a4">EXIT 0 COMMIT CLEARANCE</text>
     </g>
   </g>
 
-  <!-- High-Density Signal Conduit 2 -->
-  <line x1="570" y1="270" x2="600" y2="270" stroke="#eb5e28" stroke-width="2"/>
-  <circle cx="570" cy="270" r="3" fill="#eb5e28"/>
-  <circle cx="600" cy="270" r="3" fill="#eb5e28"/>
-  <rect x="581" y="266" width="8" height="8" fill="#eb5e28"/>
+  <!-- Signal Conduit 2 -->
+  <g transform="translate(584, 274)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#ff5722" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#ff5722"/>
+    <circle cx="32" cy="0" r="3.5" fill="#ff5722"/>
+    <rect x="12" y="-4" width="8" height="8" fill="#ff5722"/>
+  </g>
 
-  <!-- COMPARTMENT 03: THE COUNCIL (Width 250) -->
-  <g transform="translate(600, 108)">
-    <rect width="250" height="344" fill="url(#compBg)" stroke="#282a36" stroke-width="1.2"/>
-    <line x1="1" y1="1" x2="249" y2="1" stroke="url(#bevelLight)" stroke-width="0.8"/>
-    <rect width="250" height="4" fill="#38bdf8"/>
-    <!-- Mount Screws -->
-    <circle cx="8" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
-    <circle cx="242" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
+  <!-- COMPARTMENT 03: THE COUNCIL -->
+  <g transform="translate(616, 108)">
+    <rect width="252" height="364" fill="url(#compGrad)" stroke="#25293a" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#505672" stroke-width="2"/>
 
-    <g transform="translate(16, 20)">
-      <text x="0" y="0" class="rack-mono" fill="#38bdf8">PORT 03 // DELIBERATION</text>
-      <text x="0" y="24" class="port-title">SUPREME COUNCIL</text>
-      <line x1="0" y1="36" x2="218" y2="36" stroke="#222530"/>
+    <!-- Screws -->
+    <circle cx="10" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
+    <circle cx="242" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
 
-      <!-- 4 Personas -->
-      <g transform="translate(0, 52)">
-        <text x="0" y="0" class="port-item">THE INQUISITOR</text>
-        <text x="0" y="14" class="port-sub">Red-teams tail failure modes</text>
+    <g transform="translate(18, 22)">
+      <text x="0" y="0" class="port-num" fill="#8c92a4">STAGE 03 // DELIBERATION</text>
+      <text x="0" y="20" class="port-title">SUPREME COUNCIL</text>
+      <line x1="0" y1="32" x2="216" y2="32" stroke="#222534"/>
 
-        <text x="0" y="38" class="port-item">THE MINIMALIST</text>
-        <text x="0" y="52" class="port-sub">YAGNI &amp; Bloat pruner</text>
+      <!-- Items -->
+      <g transform="translate(0, 48)">
+        <text x="0" y="0" class="item-title">The Inquisitor</text>
+        <text x="0" y="14" class="item-desc">Red-teams tail failure modes</text>
 
-        <text x="0" y="76" class="port-item">THE CRAFT ARCHITECT</text>
-        <text x="0" y="90" class="port-sub">Typography &amp; UI token rigor</text>
+        <text x="0" y="38" class="item-title">The Minimalist</text>
+        <text x="0" y="52" class="item-desc">YAGNI &amp; anti-bloat pruner</text>
 
-        <text x="0" y="114" class="port-item">BATTLE-TESTED SRE</text>
-        <text x="0" y="128" class="port-sub">Backpressure &amp; crash invariants</text>
+        <text x="0" y="76" class="item-title">The Craft Architect</text>
+        <text x="0" y="90" class="item-desc">UI typography &amp; token rigor</text>
+
+        <text x="0" y="114" class="item-title">Battle-Tested SRE</text>
+        <text x="0" y="128" class="item-desc">Backpressure &amp; crash proofing</text>
+
+        <text x="0" y="152" class="item-title">Adversarial Consensus</text>
+        <text x="0" y="166" class="item-desc">Exposes blindspots upfront</text>
       </g>
 
-      <line x1="0" y1="210" x2="218" y2="210" stroke="#222530"/>
-      <text x="0" y="230" class="rack-mono" fill="#38bdf8">ADVERSARIAL DIALECTIC</text>
-      <text x="0" y="246" class="rack-mono" fill="#50535e">BREAKS SINGLE-MODEL ECHO</text>
+      <line x1="0" y1="286" x2="216" y2="286" stroke="#222534"/>
+      <text x="0" y="306" class="mono-meta" fill="#8c92a4">ADVERSARIAL DIALECTIC</text>
+      <text x="0" y="322" class="mono-meta" fill="#505672">BREAKS SINGLE-MODEL ECHO</text>
     </g>
   </g>
 
-  <!-- High-Density Signal Conduit 3 -->
-  <line x1="850" y1="270" x2="880" y2="270" stroke="#eb5e28" stroke-width="2"/>
-  <circle cx="850" cy="270" r="3" fill="#eb5e28"/>
-  <circle cx="880" cy="270" r="3" fill="#eb5e28"/>
-  <rect x="861" y="266" width="8" height="8" fill="#eb5e28"/>
+  <!-- Signal Conduit 3 -->
+  <g transform="translate(868, 274)">
+    <line x1="0" y1="0" x2="32" y2="0" stroke="#ff5722" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#ff5722"/>
+    <circle cx="32" cy="0" r="3.5" fill="#ff5722"/>
+    <rect x="12" y="-4" width="8" height="8" fill="#ff5722"/>
+  </g>
 
-  <!-- COMPARTMENT 04: THE FOUNDRY (Width 230) -->
-  <g transform="translate(880, 108)">
-    <rect width="230" height="344" fill="url(#compBg)" stroke="#282a36" stroke-width="1.2"/>
-    <line x1="1" y1="1" x2="229" y2="1" stroke="url(#bevelLight)" stroke-width="0.8"/>
-    <rect width="230" height="4" fill="#10b981"/>
-    <!-- Mount Screws -->
-    <circle cx="8" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
-    <circle cx="222" cy="14" r="2.5" fill="#1a1c24" stroke="#363948" stroke-width="0.5"/>
+  <!-- COMPARTMENT 04: THE FOUNDRY -->
+  <g transform="translate(900, 108)">
+    <rect width="252" height="364" fill="url(#compGrad)" stroke="#25293a" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#505672" stroke-width="2"/>
 
-    <g transform="translate(16, 20)">
-      <text x="0" y="0" class="rack-mono" fill="#10b981">PORT 04 // STORAGE</text>
-      <text x="0" y="24" class="port-title">THE FOUNDRY</text>
-      <line x1="0" y1="36" x2="198" y2="36" stroke="#222530"/>
+    <!-- Screws -->
+    <circle cx="10" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
+    <circle cx="242" cy="12" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
 
-      <!-- Foundry Elements -->
-      <g transform="translate(0, 52)">
-        <text x="0" y="0" class="port-item">2,150+ SKILL RUNBOOKS</text>
-        <text x="0" y="14" class="port-sub">7 Sovereign Houses</text>
+    <g transform="translate(18, 22)">
+      <text x="0" y="0" class="port-num" fill="#8c92a4">STAGE 04 // STORAGE</text>
+      <text x="0" y="20" class="port-title">THE FOUNDRY</text>
+      <line x1="0" y1="32" x2="216" y2="32" stroke="#222534"/>
 
-        <text x="0" y="38" class="port-item">OBSIDIAN 2ND BRAIN</text>
-        <text x="0" y="52" class="port-sub">ADRs &amp; Post-Mortems</text>
+      <!-- Items -->
+      <g transform="translate(0, 48)">
+        <text x="0" y="0" class="item-title">2,150+ Skill Runbooks</text>
+        <text x="0" y="14" class="item-desc">7 Sovereign Houses</text>
 
-        <text x="0" y="76" class="port-item">FASTMCP PROTOCOL</text>
-        <text x="0" y="90" class="port-sub">Universal Tool Gateway</text>
+        <text x="0" y="38" class="item-title">Obsidian 2nd Brain</text>
+        <text x="0" y="52" class="item-desc">ADRs &amp; immutable post-mortems</text>
 
-        <text x="0" y="114" class="port-item">ZERO-CLONE PROTOCOL</text>
-        <text x="0" y="128" class="port-sub">Raw curl cloud stream</text>
+        <text x="0" y="76" class="item-title">FastMCP Protocol</text>
+        <text x="0" y="90" class="item-desc">Universal tool gateway</text>
+
+        <text x="0" y="114" class="item-title">Zero-Clone Cloud</text>
+        <text x="0" y="128" class="item-desc">Raw GitHub curl stream</text>
+
+        <text x="0" y="152" class="item-title">Supply Chain Hash</text>
+        <text x="0" y="166" class="item-desc">manifest.sha256 verified</text>
       </g>
 
-      <line x1="0" y1="210" x2="198" y2="210" stroke="#222530"/>
-      <text x="0" y="230" class="rack-mono" fill="#10b981">EXECUTION ARSENAL</text>
-      <text x="0" y="246" class="rack-mono" fill="#50535e">EPISODIC PERSISTENCE</text>
+      <line x1="0" y1="286" x2="216" y2="286" stroke="#222534"/>
+      <text x="0" y="306" class="mono-meta" fill="#8c92a4">EXECUTION FOUNDRY</text>
+      <text x="0" y="322" class="mono-meta" fill="#505672">GROUNDED MEMORY STORE</text>
     </g>
   </g>
 
-  <!-- Bottom Global Data Bus -->
-  <line x1="40" y1="472" x2="1110" y2="472" stroke="#222530" stroke-width="1.2"/>
-  <g transform="translate(40, 488)">
-    <text x="0" y="0" class="rack-mono" fill="#606474">BUS ARCHITECTURE: PARALLEL AST CONCURRENCY • SHA-256 CRYPTOGRAPHIC SIGNATURES • ZERO DATA LOSS</text>
+  <!-- 5. Bottom Global Bus Line -->
+  <line x1="48" y1="492" x2="1152" y2="492" stroke="#1d202c" stroke-width="1.2"/>
+  <g transform="translate(48, 510)">
+    <circle cx="4" cy="3" r="3" fill="#ff5722"/>
+    <text x="16" y="7" class="mono-meta">DATA INVARIANT BUS: PARALLEL AST CONCURRENCY • CRYPTOGRAPHIC ACQUITTAL TOKENS • ZERO DATA LOSS</text>
   </g>
 </svg>
