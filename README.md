@@ -1,11 +1,14 @@
-# WORKSHOP // OS
-### The Irreducible Operating Foundation & Code Quality Gate for AI Agents
+<div align="center">
+  <img src="assets/logo.svg" alt="Workshop OS Logo" width="440">
+  <p><strong>The Irreducible Operating Foundation &amp; Code Quality Gate for AI Agents</strong></p>
 
 [![CI](https://github.com/shoyarism/ai-workshop/actions/workflows/ci.yml/badge.svg)](https://github.com/shoyarism/ai-workshop/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python 3.11 | 3.12](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](pyproject.toml)
 [![Quality Gate](https://img.shields.io/badge/Slop_Court-v3.5_Armed-eb5e28.svg)](scripts/workshop_court.py)
 [![Code Style: Ruff](https://img.shields.io/badge/linter-ruff-black.svg)](pyproject.toml)
+
+</div>
 
 <br>
 
