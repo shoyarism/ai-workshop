@@ -327,6 +327,8 @@ Connect Workshop OS to your preferred AI agent environment using the master inst
 * **[BENCHMARKS.md](BENCHMARKS.md):** Empirical latency, memory footprint, and SLA metrics across CLI commands and Git pre-commit interceptors.
 * **[ROADMAP.md](ROADMAP.md):** Architectural roadmap across Phases 1, 2, and 3.
 * **[docs/COUNCIL_AND_SYNC_POLICY.md](docs/COUNCIL_AND_SYNC_POLICY.md):** Model routing, token costs, zero-cost offline fallbacks, and vendored skill maintenance policy.
+* **[docs/GOOD_FIRST_ISSUES.md](docs/GOOD_FIRST_ISSUES.md):** Curated beginner & starter tasks for community contributors.
+* **[docs/COMMUNITY_DISCUSSIONS_WELCOME.md](docs/COMMUNITY_DISCUSSIONS_WELCOME.md):** Community guidelines and GitHub Discussions categories.
 * **[examples/](examples/):**
   * [`examples/01_slop_court_programmatic.py`](examples/01_slop_court_programmatic.py): Programmatic Python API usage for Slop Court.
   * [`examples/02_skill_template/SKILL.md`](examples/02_skill_template/SKILL.md): Standard YAML frontmatter contract template for creating new skills.

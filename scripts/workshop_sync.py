@@ -818,8 +818,17 @@ def main():
         print(f" Root: {ROOT}")
         print("=" * 65)
         print("[*] Running drift verification on canonical instructions...")
+        # Verify dynamic skill count invariant computed directly from manifest
+        manifest_f = ROOT / "skills" / "manifest.sha256"
+        exact_count = len([line for line in manifest_f.read_text(encoding="utf-8").splitlines() if line.strip()]) if manifest_f.is_file() else 0
+        expected_str = f"{exact_count:,} verified"
+        
         drifted = []
         canonical = CANONICAL_PROTOCOL.strip()
+        
+        if expected_str not in canonical:
+            drifted.append(f"Protocol skill count mismatch: manifest has {exact_count} skills, expected '{expected_str}' in CANONICAL_PROTOCOL")
+
         for name in ["WORKSHOP_PROTOCOL.md", "AGENTS.md", "GEMINI.md", "CLAUDE.md"]:
             target_f = ROOT / name
             if not target_f.exists():
@@ -828,6 +837,8 @@ def main():
                 content = target_f.read_text(encoding="utf-8").strip()
                 if content != canonical:
                     drifted.append(f"Drift in {name}: content does not match CANONICAL_PROTOCOL")
+                if expected_str not in content:
+                    drifted.append(f"Skill count drift in {name}: missing '{expected_str}'")
         if drifted:
             print("\n❌ Harness instructions drift detected:")
             for d in drifted:
