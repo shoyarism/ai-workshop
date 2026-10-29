@@ -56,18 +56,45 @@
       50% { opacity: 0.6; }
       100% { transform: translateY(492px); opacity: 0; }
     }
-    @keyframes beacon-ping {
-      0%, 100% { r: 2.5px; opacity: 0.95; }
-      50% { r: 5.5px; opacity: 0.3; }
-    }
     @keyframes house-glow {
-      0%, 100% { stroke-opacity: 0.6; }
-      50% { stroke-opacity: 1; }
+      0%, 100% { stroke-opacity: 0.6; filter: drop-shadow(0 0 2px rgba(255,79,23,0.3)); }
+      50% { stroke-opacity: 1; filter: drop-shadow(0 0 8px rgba(255,79,23,0.8)); }
     }
+    @keyframes reticle-spin-cw {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes reticle-spin-ccw {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes house-laser-bar {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; filter: drop-shadow(0 0 4px currentColor); }
+    }
+    
+    /* 7-Step Running Sequencer */
+    @keyframes seq-1 { 0%, 100% { transform: scale(1); opacity: 0.4; } 14% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-2 { 0%, 100% { transform: scale(1); opacity: 0.4; } 28% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-3 { 0%, 100% { transform: scale(1); opacity: 0.4; } 42% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-4 { 0%, 100% { transform: scale(1); opacity: 0.4; } 56% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-5 { 0%, 100% { transform: scale(1); opacity: 0.4; } 70% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-6 { 0%, 100% { transform: scale(1); opacity: 0.4; } 84% { transform: scale(1.4); opacity: 1; } }
+    @keyframes seq-7 { 0%, 100% { transform: scale(1); opacity: 0.4; } 98% { transform: scale(1.4); opacity: 1; } }
 
     .anim-scan { animation: radar-sweep 7s ease-in-out infinite; }
-    .anim-ping { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     .anim-glow { animation: house-glow 3s ease-in-out infinite; }
+    .anim-spin-cw { animation: reticle-spin-cw 22s linear infinite; }
+    .anim-spin-ccw { animation: reticle-spin-ccw 28s linear infinite; }
+    .anim-laser { animation: house-laser-bar 2.4s ease-in-out infinite; }
+    
+    .anim-seq-1 { animation: seq-1 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-2 { animation: seq-2 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-3 { animation: seq-3 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-4 { animation: seq-4 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-5 { animation: seq-5 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-6 { animation: seq-6 3.5s infinite; transform-origin: 2px -2px; }
+    .anim-seq-7 { animation: seq-7 3.5s infinite; transform-origin: 2px -2px; }
   </style>
 
   <!-- 1. Background Ground -->
@@ -87,23 +114,35 @@
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
   <line x1="25" y1="515" x2="1175" y2="515" stroke="#040507" stroke-width="1.2"/>
 
-  <!-- Precision Calibration Targets -->
-  <g stroke="#ff4f17" stroke-width="1" opacity="0.8">
-    <circle cx="24" cy="24" r="4.5" fill="none"/>
-    <line x1="17" y1="24" x2="31" y2="24"/>
-    <line x1="24" y1="17" x2="24" y2="31"/>
+  <!-- Animated Precision Calibration Targets -->
+  <g stroke="#ff4f17" stroke-width="1" opacity="0.85">
+    <g transform="translate(24, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="24" r="4.5" fill="none"/>
-    <line x1="1169" y1="24" x2="1183" y2="24"/>
-    <line x1="1176" y1="17" x2="1176" y2="31"/>
+    <g transform="translate(1176, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="24" cy="516" r="4.5" fill="none"/>
-    <line x1="17" y1="516" x2="31" y2="516"/>
-    <line x1="24" y1="509" x2="24" y2="523"/>
+    <g transform="translate(24, 516)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="516" r="4.5" fill="none"/>
-    <line x1="1169" y1="516" x2="1183" y2="516"/>
-    <line x1="1176" y1="509" x2="1176" y2="523"/>
+    <g transform="translate(1176, 516)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
   </g>
 
   <!-- 3. Header Bar -->
@@ -122,10 +161,10 @@
   <!-- HOUSE 01: SECURITY -->
   <g transform="translate(48, 104)">
     <rect width="148" height="392" rx="5" fill="url(#secCardGrad)" stroke="#ff4f17" stroke-width="1.3" class="anim-glow"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#ff4f17" stroke-width="3"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#ff4f17" stroke-width="3" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#ff4f17" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#ff4f17" class="anim-seq-1"/>
       <text x="10" y="0" class="house-num">01</text>
       <text x="30" y="0" class="house-name">SECURITY</text>
       
@@ -159,10 +198,10 @@
   <!-- HOUSE 02: DEV -->
   <g transform="translate(207, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#6366f1" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#6366f1" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#6366f1" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#6366f1" class="anim-seq-2"/>
       <text x="10" y="0" class="house-num">02</text>
       <text x="30" y="0" class="house-name">DEVELOPMENT</text>
       
@@ -196,10 +235,10 @@
   <!-- HOUSE 03: MEDIA -->
   <g transform="translate(366, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#d946ef" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#d946ef" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#d946ef" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#d946ef" class="anim-seq-3"/>
       <text x="10" y="0" class="house-num">03</text>
       <text x="30" y="0" class="house-name">MEDIA &amp; VIDEO</text>
       
@@ -233,10 +272,10 @@
   <!-- HOUSE 04: OPS -->
   <g transform="translate(526, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#f59e0b" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#f59e0b" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#f59e0b" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#f59e0b" class="anim-seq-4"/>
       <text x="10" y="0" class="house-num">04</text>
       <text x="30" y="0" class="house-name">OPS &amp; TOKENS</text>
       
@@ -270,10 +309,10 @@
   <!-- HOUSE 05: DESIGN -->
   <g transform="translate(685, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#06b6d4" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#06b6d4" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#06b6d4" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#06b6d4" class="anim-seq-5"/>
       <text x="10" y="0" class="house-num">05</text>
       <text x="30" y="0" class="house-name">DESIGN &amp; UI</text>
       
@@ -307,10 +346,10 @@
   <!-- HOUSE 06: INTEL -->
   <g transform="translate(844, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#00e599" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#00e599" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#00e599" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#00e599" class="anim-seq-6"/>
       <text x="10" y="0" class="house-num">06</text>
       <text x="30" y="0" class="house-name">INTEL &amp; GRAPH</text>
       
@@ -344,10 +383,10 @@
   <!-- HOUSE 07: GROWTH -->
   <g transform="translate(1004, 104)">
     <rect width="148" height="392" rx="5" fill="url(#cardGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#f43f5e" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#f43f5e" stroke-width="2.5" class="anim-laser"/>
     
     <g transform="translate(12, 16)">
-      <circle cx="2" cy="-2" r="2.5" fill="#f43f5e" class="anim-ping"/>
+      <circle cx="2" cy="-2" r="2.5" fill="#f43f5e" class="anim-seq-7"/>
       <text x="10" y="0" class="house-num">07</text>
       <text x="30" y="0" class="house-name">GROWTH &amp; SEO</text>
       

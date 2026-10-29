@@ -56,17 +56,47 @@
       100% { transform: translateY(472px); opacity: 0; }
     }
     @keyframes beacon-ping {
-      0%, 100% { r: 3.5px; opacity: 0.95; }
-      50% { r: 7.5px; opacity: 0.25; }
+      0% { r: 3.5px; opacity: 0.95; }
+      100% { r: 9px; opacity: 0; }
     }
     @keyframes security-pulse {
-      0%, 100% { stroke-opacity: 0.7; }
-      50% { stroke-opacity: 1; }
+      0%, 100% { stroke-opacity: 0.7; filter: drop-shadow(0 0 2px rgba(255,79,23,0.3)); }
+      50% { stroke-opacity: 1; filter: drop-shadow(0 0 8px rgba(255,79,23,0.7)); }
+    }
+    @keyframes reticle-spin-cw {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes reticle-spin-ccw {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes laser-accent {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; filter: drop-shadow(0 0 4px currentColor); }
+    }
+    @keyframes acquittal-glow {
+      0%, 100% { filter: drop-shadow(0 0 1px rgba(0,229,153,0.3)); stroke: #00e599; }
+      50% { filter: drop-shadow(0 0 6px rgba(0,229,153,0.8)); stroke: #34d399; }
+    }
+    @keyframes conviction-glow {
+      0%, 100% { filter: drop-shadow(0 0 1px rgba(255,79,23,0.3)); stroke: #ff4f17; }
+      50% { filter: drop-shadow(0 0 6px rgba(255,79,23,0.8)); stroke: #ff7043; }
+    }
+    @keyframes pip-blink {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
     }
 
     .anim-scan { animation: radar-sweep 7s ease-in-out infinite; }
-    .anim-ping { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .anim-ping { animation: beacon-ping 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite; }
     .anim-security { animation: security-pulse 2.5s ease-in-out infinite; }
+    .anim-spin-cw { animation: reticle-spin-cw 22s linear infinite; }
+    .anim-spin-ccw { animation: reticle-spin-ccw 28s linear infinite; }
+    .anim-laser { animation: laser-accent 2.4s ease-in-out infinite; }
+    .anim-acquit { animation: acquittal-glow 2.5s ease-in-out infinite; }
+    .anim-convict { animation: conviction-glow 2.5s ease-in-out infinite; }
+    .anim-pip { animation: pip-blink 2s ease-in-out infinite; }
   </style>
 
   <!-- 1. Background Ground -->
@@ -86,23 +116,35 @@
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
   <line x1="25" y1="495" x2="1175" y2="495" stroke="#040507" stroke-width="1.2"/>
 
-  <!-- Precision Calibration Targets -->
-  <g stroke="#ff4f17" stroke-width="1" opacity="0.8">
-    <circle cx="24" cy="24" r="4.5" fill="none"/>
-    <line x1="17" y1="24" x2="31" y2="24"/>
-    <line x1="24" y1="17" x2="24" y2="31"/>
+  <!-- Animated Precision Calibration Targets -->
+  <g stroke="#ff4f17" stroke-width="1" opacity="0.85">
+    <g transform="translate(24, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="24" r="4.5" fill="none"/>
-    <line x1="1169" y1="24" x2="1183" y2="24"/>
-    <line x1="1176" y1="17" x2="1176" y2="31"/>
+    <g transform="translate(1176, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="24" cy="496" r="4.5" fill="none"/>
-    <line x1="17" y1="496" x2="31" y2="496"/>
-    <line x1="24" y1="489" x2="24" y2="503"/>
+    <g transform="translate(24, 496)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="496" r="4.5" fill="none"/>
-    <line x1="1169" y1="496" x2="1183" y2="496"/>
-    <line x1="1176" y1="489" x2="1176" y2="503"/>
+    <g transform="translate(1176, 496)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
   </g>
 
   <!-- 3. Header Section -->
@@ -121,14 +163,15 @@
   <!-- JUROR 01: CRAFT & TONE -->
   <g transform="translate(48, 104)">
     <rect width="350" height="262" rx="5" fill="url(#jurorGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="350" y2="0" stroke="#404760" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#404760" stroke-width="2.5" class="anim-laser"/>
     
     <!-- Milled Screws -->
     <circle cx="12" cy="14" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
     <circle cx="338" cy="14" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <text x="0" y="0" class="mono-bold" fill="#8a94a6">JUROR 01 // STYLISTIC</text>
+      <circle cx="-4" cy="-2" r="2.5" fill="#8a94a6" class="anim-pip"/>
+      <text x="6" y="0" class="mono-bold" fill="#8a94a6">JUROR 01 // STYLISTIC</text>
       <text x="0" y="20" class="col-title">CRAFT &amp; TONE AUDITOR</text>
       <line x1="0" y1="32" x2="314" y2="32" stroke="#1c202c"/>
 
@@ -150,15 +193,15 @@
   <!-- JUROR 02: ARCHITECTURE & AST -->
   <g transform="translate(425, 104)">
     <rect width="350" height="262" rx="5" fill="url(#jurorGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="350" y2="0" stroke="#06b6d4" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#06b6d4" stroke-width="2.5" class="anim-laser"/>
 
     <!-- Milled Screws -->
     <circle cx="12" cy="14" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
     <circle cx="338" cy="14" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <circle cx="0" cy="-2" r="2.5" fill="#06b6d4"/>
-      <text x="10" y="0" class="mono-bold" fill="#06b6d4">JUROR 02 // STRUCTURAL</text>
+      <circle cx="-4" cy="-2" r="2.5" fill="#06b6d4" class="anim-pip"/>
+      <text x="6" y="0" class="mono-bold" fill="#06b6d4">JUROR 02 // STRUCTURAL</text>
       <text x="0" y="20" class="col-title">AST &amp; COMPLEXITY ARBITER</text>
       <line x1="0" y1="32" x2="314" y2="32" stroke="#1c202c"/>
 
@@ -180,15 +223,16 @@
   <!-- JUROR 03: SECURITY & INVARIANTS -->
   <g transform="translate(802, 104)">
     <rect width="350" height="262" rx="5" fill="url(#jurorAlertGrad)" stroke="#ff4f17" stroke-width="1.4" class="anim-security"/>
-    <line x1="0" y1="0" x2="350" y2="0" stroke="#ff4f17" stroke-width="3"/>
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#ff4f17" stroke-width="3" class="anim-laser"/>
 
     <!-- Milled Screws -->
     <circle cx="12" cy="14" r="3" fill="#12141e" stroke="#ff4f17" stroke-width="0.8"/>
     <circle cx="338" cy="14" r="3" fill="#12141e" stroke="#ff4f17" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <circle cx="0" cy="-2" r="2.5" fill="#ff4f17" class="anim-ping"/>
-      <text x="10" y="0" class="mono-bold" fill="#ff4f17">JUROR 03 // INTEGRITY</text>
+      <circle cx="-4" cy="-2" r="2.5" fill="#ff4f17" opacity="0.3" class="anim-ping"/>
+      <circle cx="-4" cy="-2" r="2.5" fill="#ff4f17"/>
+      <text x="6" y="0" class="mono-bold" fill="#ff4f17">JUROR 03 // INTEGRITY</text>
       <text x="0" y="20" class="col-title">SECURITY &amp; INVARIANTS</text>
       <line x1="0" y1="32" x2="314" y2="32" stroke="#36181b"/>
 
@@ -209,26 +253,28 @@
 
   <!-- 5. Bottom Dual Decision Chambers (y: 386, height: 92px) -->
 
-  <!-- Chamber A: Acquittal (Exit 0) -->
+  <!-- Chamber A: Acquittal (Exit 0) with Glowing Emerald Seal -->
   <g transform="translate(48, 384)">
     <rect width="538" height="92" rx="5" fill="#091410" stroke="#163828" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="538" y2="0" stroke="#00e599" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#00e599" stroke-width="2.5" class="anim-acquit"/>
 
     <g transform="translate(18, 16)">
-      <circle cx="5" cy="5" r="3.5" fill="#00e599" class="anim-ping"/>
+      <circle cx="5" cy="5" r="3.5" fill="#00e599" opacity="0.3" class="anim-ping"/>
+      <circle cx="5" cy="5" r="3.5" fill="#00e599"/>
       <text x="18" y="9" class="verdict-title" fill="#00e599">RULING A: UNANIMOUS 3/3 ACQUITTAL (EXIT 0)</text>
       <text x="18" y="28" class="verdict-line">&#8226; Zero sustained Capital Felonies across all 3 jurors</text>
       <text x="18" y="46" class="verdict-line">&#8226; Cryptographic SHA-256 clearance token generated for commit</text>
     </g>
   </g>
 
-  <!-- Chamber B: Conviction (Exit 1) -->
+  <!-- Chamber B: Conviction (Exit 1) with Pulsing Warning Bar -->
   <g transform="translate(614, 384)">
     <rect width="538" height="92" rx="5" fill="#16090c" stroke="#3d161a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="538" y2="0" stroke="#ff4f17" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#ff4f17" stroke-width="2.5" class="anim-convict"/>
 
     <g transform="translate(18, 16)">
-      <circle cx="5" cy="5" r="3.5" fill="#ff4f17" class="anim-ping"/>
+      <circle cx="5" cy="5" r="3.5" fill="#ff4f17" opacity="0.3" class="anim-ping"/>
+      <circle cx="5" cy="5" r="3.5" fill="#ff4f17"/>
       <text x="18" y="9" class="verdict-title" fill="#ff4f17">RULING B: CONTEMPT OF COURT (EXIT 1)</text>
       <text x="18" y="28" class="verdict-line">&#8226; Capital Felony breach detected (stub, secret, error blackhole)</text>
       <text x="18" y="46" class="verdict-line">&#8226; Git Bailiff intercepts and aborts commit immediately</text>

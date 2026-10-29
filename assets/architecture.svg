@@ -51,7 +51,7 @@
 
     /* Keyframe Animations */
     @keyframes conduit-dash {
-      to { stroke-dashoffset: -28; }
+      to { stroke-dashoffset: -24; }
     }
     @keyframes radar-sweep {
       0% { transform: translateY(0); opacity: 0.2; }
@@ -59,18 +59,42 @@
       100% { transform: translateY(492px); opacity: 0; }
     }
     @keyframes court-pulse {
-      0%, 100% { stroke-opacity: 0.7; }
-      50% { stroke-opacity: 1; }
+      0%, 100% { stroke-opacity: 0.7; filter: drop-shadow(0 0 2px rgba(255,79,23,0.3)); }
+      50% { stroke-opacity: 1; filter: drop-shadow(0 0 8px rgba(255,79,23,0.7)); }
     }
     @keyframes beacon-ping {
-      0%, 100% { r: 3px; opacity: 0.95; }
-      50% { r: 6.5px; opacity: 0.3; }
+      0% { r: 3px; opacity: 0.95; }
+      100% { r: 8px; opacity: 0; }
+    }
+    @keyframes reticle-spin-cw {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes reticle-spin-ccw {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes bus-flow {
+      to { stroke-dashoffset: -40; }
+    }
+    @keyframes node-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.25); opacity: 1; }
+    }
+    @keyframes stage-accent-glow {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; filter: drop-shadow(0 0 4px currentColor); }
     }
 
     .anim-dash { stroke-dasharray: 4 4; animation: conduit-dash 1.2s linear infinite; }
     .anim-scan { animation: radar-sweep 7s ease-in-out infinite; }
     .anim-court { animation: court-pulse 2.5s ease-in-out infinite; }
-    .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite; }
+    .anim-spin-cw { animation: reticle-spin-cw 22s linear infinite; }
+    .anim-spin-ccw { animation: reticle-spin-ccw 28s linear infinite; }
+    .anim-bus { stroke-dasharray: 6 6; animation: bus-flow 1.6s linear infinite; }
+    .anim-node { animation: node-pulse 2s ease-in-out infinite; }
+    .anim-accent { animation: stage-accent-glow 2.4s ease-in-out infinite; }
   </style>
 
   <!-- 1. Background Ground -->
@@ -90,23 +114,35 @@
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
   <line x1="25" y1="515" x2="1175" y2="515" stroke="#040507" stroke-width="1.2"/>
 
-  <!-- Optical Calibration Reticles -->
-  <g stroke="#ff4f17" stroke-width="1" opacity="0.8">
-    <circle cx="24" cy="24" r="4.5" fill="none"/>
-    <line x1="17" y1="24" x2="31" y2="24"/>
-    <line x1="24" y1="17" x2="24" y2="31"/>
+  <!-- Animated Optical Calibration Reticles -->
+  <g stroke="#ff4f17" stroke-width="1" opacity="0.85">
+    <g transform="translate(24, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="24" r="4.5" fill="none"/>
-    <line x1="1169" y1="24" x2="1183" y2="24"/>
-    <line x1="1176" y1="17" x2="1176" y2="31"/>
+    <g transform="translate(1176, 24)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="24" cy="516" r="4.5" fill="none"/>
-    <line x1="17" y1="516" x2="31" y2="516"/>
-    <line x1="24" y1="509" x2="24" y2="523"/>
+    <g transform="translate(24, 516)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
 
-    <circle cx="1176" cy="516" r="4.5" fill="none"/>
-    <line x1="1169" y1="516" x2="1183" y2="516"/>
-    <line x1="1176" y1="509" x2="1176" y2="523"/>
+    <g transform="translate(1176, 516)">
+      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
+      <circle cx="0" cy="0" r="4.5" fill="none"/>
+      <line x1="-7" y1="0" x2="7" y2="0"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
   </g>
 
   <!-- 3. Top Title Strip -->
@@ -125,14 +161,15 @@
   <!-- COMPARTMENT 01: HARNESSES -->
   <g transform="translate(48, 104)">
     <rect width="252" height="368" rx="5" fill="url(#compGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#404760" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#404760" stroke-width="2.5" class="anim-accent"/>
     
     <!-- Milled Corner Screws -->
     <circle cx="10" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
     <circle cx="242" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <text x="0" y="0" class="port-num" fill="#8a94a6">STAGE 01 // INGESTION</text>
+      <circle cx="-4" cy="-3" r="2.5" fill="#8a94a6" class="anim-node"/>
+      <text x="6" y="0" class="port-num" fill="#8a94a6">STAGE 01 // INGESTION</text>
       <text x="0" y="20" class="port-title">AGENT HARNESSES</text>
       <line x1="0" y1="32" x2="216" y2="32" stroke="#1c202c"/>
 
@@ -160,24 +197,25 @@
     </g>
   </g>
 
-  <!-- Signal Conduit 1 -->
+  <!-- Signal Conduit 1 (Active Energy Pulse) -->
   <g transform="translate(300, 272)">
     <line x1="0" y1="0" x2="32" y2="0" stroke="#ff4f17" stroke-width="2" class="anim-dash"/>
     <circle cx="0" cy="0" r="3.5" fill="#ff4f17"/>
-    <circle cx="32" cy="0" r="3.5" fill="#ff4f17"/>
+    <circle cx="32" cy="0" r="3.5" fill="#ff4f17" class="anim-node"/>
   </g>
 
   <!-- COMPARTMENT 02: THE COURT -->
   <g transform="translate(332, 104)">
     <rect width="252" height="368" rx="5" fill="url(#courtGrad)" stroke="#ff4f17" stroke-width="1.4" class="anim-court"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#ff4f17" stroke-width="3"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#ff4f17" stroke-width="3" class="anim-accent"/>
 
     <!-- Milled Corner Screws -->
     <circle cx="10" cy="12" r="3" fill="#12141e" stroke="#ff4f17" stroke-width="0.8"/>
     <circle cx="242" cy="12" r="3" fill="#12141e" stroke="#ff4f17" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <circle cx="0" cy="-3" r="3" fill="#ff4f17" class="anim-pulse"/>
+      <circle cx="0" cy="-3" r="3" fill="#ff4f17" opacity="0.3" class="anim-pulse"/>
+      <circle cx="0" cy="-3" r="3" fill="#ff4f17"/>
       <text x="10" y="0" class="port-num" fill="#ff4f17">STAGE 02 // GATEKEEPER</text>
       <text x="0" y="20" class="port-title">SLOP COURT v3.5</text>
       <line x1="0" y1="32" x2="216" y2="32" stroke="#36181b"/>
@@ -206,24 +244,25 @@
     </g>
   </g>
 
-  <!-- Signal Conduit 2 -->
+  <!-- Signal Conduit 2 (Active Energy Pulse) -->
   <g transform="translate(584, 272)">
     <line x1="0" y1="0" x2="32" y2="0" stroke="#06b6d4" stroke-width="2" class="anim-dash"/>
     <circle cx="0" cy="0" r="3.5" fill="#06b6d4"/>
-    <circle cx="32" cy="0" r="3.5" fill="#06b6d4"/>
+    <circle cx="32" cy="0" r="3.5" fill="#06b6d4" class="anim-node"/>
   </g>
 
   <!-- COMPARTMENT 03: THE COUNCIL -->
   <g transform="translate(616, 104)">
     <rect width="252" height="368" rx="5" fill="url(#compGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#06b6d4" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#06b6d4" stroke-width="2.5" class="anim-accent"/>
 
     <!-- Milled Corner Screws -->
     <circle cx="10" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
     <circle cx="242" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <text x="0" y="0" class="port-num" fill="#8a94a6">STAGE 03 // DELIBERATION</text>
+      <circle cx="-4" cy="-3" r="2.5" fill="#06b6d4" class="anim-node"/>
+      <text x="6" y="0" class="port-num" fill="#8a94a6">STAGE 03 // DELIBERATION</text>
       <text x="0" y="20" class="port-title">SUPREME COUNCIL</text>
       <line x1="0" y1="32" x2="216" y2="32" stroke="#1c202c"/>
 
@@ -251,24 +290,25 @@
     </g>
   </g>
 
-  <!-- Signal Conduit 3 -->
+  <!-- Signal Conduit 3 (Active Energy Pulse) -->
   <g transform="translate(868, 272)">
     <line x1="0" y1="0" x2="32" y2="0" stroke="#00e599" stroke-width="2" class="anim-dash"/>
     <circle cx="0" cy="0" r="3.5" fill="#00e599"/>
-    <circle cx="32" cy="0" r="3.5" fill="#00e599"/>
+    <circle cx="32" cy="0" r="3.5" fill="#00e599" class="anim-node"/>
   </g>
 
   <!-- COMPARTMENT 04: THE FOUNDRY -->
   <g transform="translate(900, 104)">
     <rect width="252" height="368" rx="5" fill="url(#compGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#00e599" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="252" y2="0" stroke="#00e599" stroke-width="2.5" class="anim-accent"/>
 
     <!-- Milled Corner Screws -->
     <circle cx="10" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
     <circle cx="242" cy="12" r="3" fill="#12141e" stroke="#282d3e" stroke-width="0.8"/>
 
     <g transform="translate(18, 22)">
-      <text x="0" y="0" class="port-num" fill="#8a94a6">STAGE 04 // PERSISTENCE</text>
+      <circle cx="-4" cy="-3" r="2.5" fill="#00e599" class="anim-node"/>
+      <text x="6" y="0" class="port-num" fill="#8a94a6">STAGE 04 // PERSISTENCE</text>
       <text x="0" y="20" class="port-title">THE FOUNDRY</text>
       <line x1="0" y1="32" x2="216" y2="32" stroke="#1c202c"/>
 
@@ -296,11 +336,12 @@
     </g>
   </g>
 
-  <!-- 5. Bottom Global Bus Line -->
+  <!-- 5. Bottom Global Bus Line with Active High-Speed Data Flow -->
   <line x1="48" y1="492" x2="1152" y2="492" stroke="#181c28" stroke-width="1.2"/>
-  <line x1="48" y1="492" x2="1152" y2="492" stroke="#ff4f17" stroke-width="1.2" stroke-opacity="0.3" class="anim-dash"/>
+  <line x1="48" y1="492" x2="1152" y2="492" stroke="#ff4f17" stroke-width="1.4" opacity="0.6" class="anim-bus"/>
   <g transform="translate(48, 510)">
-    <circle cx="4" cy="4" r="3" fill="#ff4f17" class="anim-pulse"/>
+    <circle cx="4" cy="4" r="3" fill="#ff4f17" opacity="0.3" class="anim-pulse"/>
+    <circle cx="4" cy="4" r="3" fill="#ff4f17"/>
     <text x="16" y="7.5" class="mono-meta">DATA INVARIANT BUS: PARALLEL AST CONCURRENCY • CRYPTOGRAPHIC TOKENS • ZERO DATA LOSS</text>
   </g>
 </svg>
