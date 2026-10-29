@@ -17,7 +17,7 @@
 
 | Task | Status | Evidence |
 |------|--------|----------|
-| Initialize Obsidian Vault structure | ✅ Done | `D:\ai-workshop\vault\` created with 5 directories |
+| Initialize Obsidian Vault structure | ✅ Done | `vault/` created with 5 directories |
 | Create Vault Home.md | ✅ Done | Master hub with navigation |
 | Create User DNA Profile | ✅ Done | `00 - Meta/User DNA & Environment Profile.md` |
 | Install missing Python packages | 🔄 In Progress | crawl4ai, mem0 |

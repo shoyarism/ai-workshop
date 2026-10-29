@@ -9,7 +9,6 @@ A self-contained 24/7 agent daemon that:
 4. Executes workshop tools and skills.
 """
 
-import os
 import sys
 import time
 import json
@@ -78,7 +77,7 @@ class AgentRuntime:
     def start_health_server(self):
         """Start a simple HTTP health endpoint."""
         class HealthHandler(BaseHTTPRequestHandler):
-            def log_message(self, format, *args):
+            def log_message(self, format, *args):  # @court-exempt: suppress noisy HTTP server logging
                 pass
             
             def do_GET(self):
@@ -111,11 +110,9 @@ class AgentRuntime:
                 except Exception:
                     return 0
         
-        HealthHandler.server = self
-        HealthHandler.runtime = self
-        HealthHandler.start_time = time.time()
-        
         server = HTTPServer(('127.0.0.1', HEALTH_PORT), HealthHandler)
+        server.runtime = self
+        server.start_time = time.time()
         self.health_server = server
         
         thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -129,7 +126,7 @@ class AgentRuntime:
             conn.execute("INSERT INTO logs (timestamp, level, message) VALUES (?, ?, ?)", (time.time(), level, message))
             conn.commit()
             conn.close()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     def add_task(self, goal: str) -> int:

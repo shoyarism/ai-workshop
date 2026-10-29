@@ -1,4 +1,4 @@
-﻿---
+---
 name: hospital-live-api-connector
 description: >-
   Multi-platform live API connector engine for hospital marketing, patient flow, and customer care.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-⚖️ SLOP COURT v2.0: Supreme Adversarial AI Quality Tribunal & Legal System
+⚖️ SLOP COURT v3.5: Supreme Adversarial AI Quality Tribunal & Legal System
 ===========================================================================
 Advanced 4-Chamber Multi-Agent Judicial Tribunal for autonomous AI agent harnesses.
 Based on 2025-2026 state-of-the-art research (CourtEval, CLEAR, SCBench, and Unanimous Juries).
@@ -28,13 +28,13 @@ import sys
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 # Ensure UTF-8 output across all consoles
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
     try:
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        getattr(sys.stdout, "reconfigure", lambda **kwargs: None)(encoding="utf-8", errors="replace")
+        getattr(sys.stderr, "reconfigure", lambda **kwargs: None)(encoding="utf-8", errors="replace")
     except (AttributeError, ValueError, OSError):
         # Graceful fallback on non-standard terminal streams
         pass
@@ -43,7 +43,7 @@ WORKSHOP_DIR = Path(__file__).resolve().parent.parent
 DOCKET_DIR = WORKSHOP_DIR / ".court_docket"
 
 # ==============================================================================
-# PENAL CODE: STATUTES & CLASSIFICATIONS (v2.0)
+# PENAL CODE: STATUTES & CLASSIFICATIONS (v3.5)
 # ==============================================================================
 
 @dataclass
@@ -80,6 +80,14 @@ STATUTES: Dict[str, Statute] = {
     "FEL-06": Statute(
         "FEL-06", "Exposed Plaintext Secret or Token", "FELONY", 100, "SECURITY",
         "Hardcoded plaintext credentials, GitHub PATs, AWS keys, or private API tokens in committed source."
+    ),
+    "FEL-07": Statute(
+        "FEL-07", "Dangerous Execution & Insecure Deserialization", "FELONY", 60, "SECURITY",
+        "High-risk execution primitives including eval(), exec(), pickle.loads(), or unvetted shell=True subprocess calls."
+    ),
+    "FEL-08": Statute(
+        "FEL-08", "SQL Injection Vulnerability Pattern", "FELONY", 50, "SECURITY",
+        "Unsanitized dynamic SQL query construction using % string formatting or f-strings in database execute calls."
     ),
 
     # TITLE II: SLOP MISDEMEANORS (Craft, Structural & Aesthetic Smells)
@@ -159,6 +167,8 @@ RE_SECRETS = [
     (re.compile(r"github_pat_[0-9a-zA-Z_]{30,}"), "FEL-06", "Exposed GitHub Fine-Grained Personal Access Token"),
     (re.compile(r"ghp_[0-9a-zA-Z]{36}"), "FEL-06", "Exposed GitHub Classic Token"),
     (re.compile(r"AKIA[0-9A-Z]{16}"), "FEL-06", "Exposed AWS Access Key ID"),
+    (re.compile(r"sk-(?:live|test|proj)?[0-9a-zA-Z_\-]{20,}"), "FEL-06", "Exposed API Secret Key (e.g. OpenAI/Stripe)"),
+    (re.compile(r"""\b(?:password|passwd|api_secret)\s*=\s*['"][^'"\r\n\s]{6,}['"]""", re.IGNORECASE), "FEL-06", "Hardcoded plaintext password or secret"),
 ]
 
 RE_TAUTOLOGICAL = [
@@ -192,6 +202,10 @@ RE_GRADIENTS = [
 EXCLUDED_DIRS = {
     ".git", "node_modules", "venv", ".venv", "__pycache__", "dist", "build",
     ".idea", ".vscode", "vault", "evidence_quarantine", ".system_generated", ".court_docket"
+}
+
+EXCLUDED_FILES = {
+    ".skills_cache.json", ".services_state.json", "manifest.sha256"
 }
 
 ALLOWED_EXTENSIONS = {
@@ -246,6 +260,10 @@ class Indictment:
         return sum(1 for c in self.charges if not c.exempted and c.gravity == "INFRACTION")
 
     @property
+    def exempted_count(self) -> int:
+        return sum(1 for c in self.charges if c.exempted)
+
+    @property
     def total_penalty_points(self) -> int:
         return sum(STATUTES[c.statute_code].penalty_points for c in self.charges if not c.exempted)
 
@@ -291,7 +309,7 @@ class Prosecutor:
         lines = content.splitlines()
         is_markdown = file_path.suffix.lower() == ".md"
         is_python = file_path.suffix.lower() == ".py"
-        is_court_itself = any(k in file_path.name for k in ("workshop_court", "antislop", "workshop_sync"))
+        is_court_itself = file_path.name in {"workshop_court.py", "antislop.py", "workshop_sync.py"} and file_path.parent.name in {"scripts", "tests"}
 
         for idx, line in enumerate(lines, start=1):
             stripped = line.strip()
@@ -402,16 +420,93 @@ class Prosecutor:
                             if alias.name == "*":
                                 stat = STATUTES["MIS-05"]
                                 charges.append(Charge(file_path, node.lineno, "MIS-05", stat.gravity, stat.juror_domain, f"Wildcard import 'from {node.module or ''} import *'", f"from {node.module} import *"))
-                    # Flag god-functions (> 150 statements)
+                    # Flag god-functions (> 150 statements) and stubs (FEL-02)
                     if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                         body_len = len(node.body)
                         if body_len > 150:
                             stat = STATUTES["INF-03"]
                             charges.append(Charge(file_path, node.lineno, "INF-03", stat.gravity, stat.juror_domain, f"God-function anomaly: '{node.name}' has {body_len} statements", f"def {node.name}(...)"))
+                        
+                        # Flag FEL-02: Pure function stub (body is only pass or Ellipsis without abstract decorator)
+                        is_abstract = any(
+                            (isinstance(d, ast.Name) and d.id in {"abstractmethod", "abstractproperty", "override"}) or
+                            (isinstance(d, ast.Attribute) and d.attr in {"abstractmethod", "abstractproperty"})
+                            for d in node.decorator_list
+                        )
+                        if not is_abstract and len(node.body) == 1:
+                            first_stmt = node.body[0]
+                            is_stub = isinstance(first_stmt, ast.Pass) or (
+                                isinstance(first_stmt, ast.Expr) and isinstance(first_stmt.value, ast.Constant) and first_stmt.value.value is Ellipsis
+                            )
+                            if is_stub:
+                                surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                is_exempt = any("@court-exempt" in l for l in surrounding)
+                                if not is_exempt:
+                                    stat = STATUTES["FEL-02"]
+                                    charges.append(Charge(file_path, node.lineno, "FEL-02", stat.gravity, stat.juror_domain, f"AST Verified: Truncated code stub in '{node.name}' (unimplemented pass/...)", f"def {node.name}(...): pass", exempted=is_exempt))
+
                         nest_depth = _get_control_flow_depth(node)
                         if nest_depth > 5:
                             stat = STATUTES["MIS-06"]
                             charges.append(Charge(file_path, node.lineno, "MIS-06", stat.gravity, stat.juror_domain, f"Excessive control flow nesting depth in '{node.name}' ({nest_depth} levels > 5 max)", f"def {node.name}(...)"))
+
+                    # Flag FEL-03 via AST: ExceptHandler with pass
+                    if isinstance(node, ast.ExceptHandler):
+                        is_naked = node.type is None or (
+                            isinstance(node.type, ast.Name) and node.type.id in {"Exception", "BaseException"}
+                        )
+                        if is_naked and len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
+                            surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                            is_exempt = any("@court-exempt" in l for l in surrounding)
+                            if not is_exempt:
+                                stat = STATUTES["FEL-03"]
+                                charges.append(Charge(file_path, node.lineno, "FEL-03", stat.gravity, stat.juror_domain, "AST Verified: Naked 'except Exception: pass' error blackhole", "except Exception: pass", exempted=is_exempt))
+
+                    # Flag FEL-07 and FEL-08 via AST: Dangerous Call Invariants
+                    if isinstance(node, ast.Call):
+                        # eval() / exec()
+                        if isinstance(node.func, ast.Name) and node.func.id in {"eval", "exec"}:
+                            surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                            is_exempt = any("@court-exempt" in l for l in surrounding)
+                            if not is_exempt:
+                                stat = STATUTES["FEL-07"]
+                                charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, f"Dangerous execution primitive: '{node.func.id}()' call", f"{node.func.id}(...)", exempted=is_exempt))
+
+                        # pickle.loads() / pickle.load()
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"loads", "load"}:
+                            if isinstance(node.func.value, ast.Name) and node.func.value.id == "pickle":
+                                surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                is_exempt = any("@court-exempt" in l for l in surrounding)
+                                if not is_exempt:
+                                    stat = STATUTES["FEL-07"]
+                                    charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, "Unsafe object deserialization: 'pickle.loads()' detected", "pickle.loads(...)", exempted=is_exempt))
+
+                        # subprocess.*(..., shell=True)
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"run", "Popen", "call", "check_output", "check_call"}:
+                            for kw in node.keywords:
+                                if kw.arg == "shell" and isinstance(kw.value, ast.Constant) and kw.value.value is True:
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-07"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-07", stat.gravity, stat.juror_domain, f"Arbitrary command execution risk: 'subprocess.{node.func.attr}(..., shell=True)'", "shell=True", exempted=is_exempt))
+
+                        # SQL injection: execute with % formatting or f-strings
+                        elif isinstance(node.func, ast.Attribute) and node.func.attr in {"execute", "executemany"}:
+                            if node.args:
+                                first_arg = node.args[0]
+                                if isinstance(first_arg, ast.BinOp) and isinstance(first_arg.op, ast.Mod):
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-08"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-08", stat.gravity, stat.juror_domain, "SQL Injection vulnerability: Dynamic '%' formatting in SQL execute()", "cursor.execute(... % ...)", exempted=is_exempt))
+                                elif isinstance(first_arg, ast.JoinedStr):
+                                    surrounding = lines[max(0, node.lineno - 1):min(len(lines), node.lineno + 3)]
+                                    is_exempt = any("@court-exempt" in l for l in surrounding)
+                                    if not is_exempt:
+                                        stat = STATUTES["FEL-08"]
+                                        charges.append(Charge(file_path, node.lineno, "FEL-08", stat.gravity, stat.juror_domain, "SQL Injection vulnerability: Dynamic f-string in SQL execute()", "cursor.execute(f'...{var}...')", exempted=is_exempt))
             except SyntaxError as e:
                 # Syntax errors are flagged deterministically under MIS-02
                 charges.append(Charge(file_path, getattr(e, "lineno", 1) or 1, "MIS-02", "MISDEMEANOR", "CRAFT", f"SyntaxError in source AST parse: {e}", "ast.parse"))
@@ -445,7 +540,7 @@ class Prosecutor:
         elif target.is_dir():
             for p in target.rglob("*"):
                 if p.is_file() and p.suffix.lower() in ALLOWED_EXTENSIONS:
-                    if not any(part in EXCLUDED_DIRS for part in p.parts):
+                    if not any(part in EXCLUDED_DIRS for part in p.parts) and p.name not in EXCLUDED_FILES and not (p.name.startswith(".") and p.suffix.lower() == ".json"):
                         files_to_scan.append(p)
 
         total_lines = 0
@@ -478,23 +573,19 @@ class DefenseCounsel:
             snippet_lower = charge.snippet.lower()
             rel_str = str(charge.file_path).replace("\\", "/").lower()
 
-            # 1. Rule test files, benchmarks, and mock fixtures get automatic mitigation
-            if any(part in rel_str for part in ["test", "mock", "fixture", "benchmark", "eval"]):
-                if charge.gravity in {"MISDEMEANOR", "INFRACTION"}:
-                    charge.exempted = True
-                    charge.exemption_reason = "Test/fixture mock harness mitigation"
+            # 1. Test suite files and evaluation harness fixtures get test immunity
+            if any(rel_str.startswith(d) or f"/{d}" in rel_str for d in ["tests/", "evals/"]) or "reasoning_eval" in rel_str:
+                charge.exempted = True
+                charge.exemption_reason = "Test suite and evaluation fixture immunity"
 
             # 2. Documentation describing rules or anti-slop guidelines gets governance immunity
-            if any(term in rel_str for term in ["anti-slop", "antislop", "court", "soul.md", "protocol", "claude.md", "agents.md", "gemini.md", "workshop.md", "prompt"]):
+            if any(term in rel_str for term in ["anti-slop", "antislop", "court", "soul.md", "protocol", "claude.md", "agents.md", "gemini.md", "workshop.md", "prompt", "glossary"]):
                 if charge.statute_code in {"MIS-02", "MIS-01", "MIS-03", "MIS-04"}:
                     charge.exempted = True
                     charge.exemption_reason = "Official Workshop OS rules and governance documentation immunity"
                 elif charge.statute_code in {"FEL-01", "FEL-02"} and any(neg in snippet_lower for neg in ["zero", "no ", "never", "reject", "prohibit", "eliminate", "statute", "fel-", "rule"]):
                     charge.exempted = True
                     charge.exemption_reason = "Official prohibition definition immunity"
-            if "anti-slop" in rel_str or "antislop" in rel_str or "court" in rel_str:
-                charge.exempted = True
-                charge.exemption_reason = "Official Anti-Slop jurisprudence documentation immunity"
 
             # 3. Lexicon definitions of banned terms inside scanners/linters/auditors get immunity
             if any(term in snippet_lower for term in ["slop_words", "slop_comments", "banned_words", "buzzwords", "tautological_comments", "statute", "pattern", "r-01", "r-02", "r-03", "r-04", "r-05"]):
@@ -506,6 +597,11 @@ class DefenseCounsel:
                 if charge.statute_code in {"FEL-01", "FEL-02", "MIS-01", "MIS-02"}:
                     charge.exempted = True
                     charge.exemption_reason = "Educational rule citation immunity"
+
+            # 5. Runtime cache and discovery metadata files
+            if charge.file_path.name in EXCLUDED_FILES or charge.file_path.name.startswith(".skills_cache"):
+                charge.exempted = True
+                charge.exemption_reason = "Runtime cache / discovery state file immunity"
 
 # ==============================================================================
 # CHAMBER 3: THE 3-JUROR BENCH (MULTI-LENS EVALUATION)
@@ -579,7 +675,7 @@ class SlopCourtMagistrate:
 
         active_felonies = indictment.felony_count
         active_misdemeanors = indictment.misdemeanor_count
-        slop_score = indictment.slop_index
+        _slop_score = indictment.slop_index
 
         notes: List[str] = []
         injunctions: List[str] = []
@@ -587,19 +683,33 @@ class SlopCourtMagistrate:
         # Consensus evaluation
         guilty_jurors = sum(1 for j in juror_votes if j.vote == "GUILTY")
 
-        if active_felonies > 0 or guilty_jurors >= 2:
+        exempted_count = sum(1 for c in indictment.charges if c.exempted)
+        MAX_EXEMPTION_CAP = 150
+
+        if active_felonies > 0:
             ruling = "CONTEMPT_OF_COURT"
             notes.append(f"CRITICAL: {active_felonies} Capital Felonies sustained across {guilty_jurors}/3 guilty juror votes.")
             injunctions.append("Immediate remediation required. Purge all truncated stubs, naked exceptions, and exposed credentials.")
+        elif exempted_count > MAX_EXEMPTION_CAP:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"EXCESSIVE EXEMPTIONS: {exempted_count} exemptions exceed maximum allowable budget of {MAX_EXEMPTION_CAP}.")
+            injunctions.append("Refactor error handlers to use structured logging instead of @court-exempt pragmas.")
+        elif guilty_jurors >= 2:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"CONVICTED: Majority jury conviction ({guilty_jurors}/3 jurors voted GUILTY).")
+            injunctions.append("Remediate sustained code violations before requesting a new trial.")
+        elif guilty_jurors == 1 and self.strict_mode:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append("CONVICTED (STRICT MODE): 1/3 jurors voted GUILTY. Strict mode requires unanimous acquittal.")
+            injunctions.append("Remediate domain violations flagged by the dissenting juror.")
+        elif active_misdemeanors > 5:
+            ruling = "CONTEMPT_OF_COURT"
+            notes.append(f"CONVICTED: Cumulative misdemeanors ({active_misdemeanors}) exceed maximum threshold of 5.")
+            injunctions.append("Refactor structural smells and reduce complexity.")
         elif active_misdemeanors > 0:
-            if self.strict_mode or active_misdemeanors > 5 or slop_score > 15.0:
-                ruling = "CONTEMPT_OF_COURT"
-                notes.append(f"REJECTED: {active_misdemeanors} Misdemeanors exceed strict threshold ({guilty_jurors}/3 guilty jurors).")
-                injunctions.append("Strip redundant comments and AI buzzwords before requesting a new trial.")
-            else:
-                ruling = "REMANDED"
-                notes.append(f"CONDITIONAL DISMISSAL: {active_misdemeanors} minor craft smells detected.")
-                injunctions.append("Recommended rehabilitation via `workshop court reform`.")
+            ruling = "REMANDED"
+            notes.append(f"CONDITIONAL DISMISSAL: Unanimous juror acquittal, but {active_misdemeanors} minor craft smell(s) detected.")
+            injunctions.append("Recommended rehabilitation via `workshop court reform`.")
         elif indictment.infraction_count > 0:
             ruling = "ACQUITTED_CAUTION"
             notes.append(f"ACQUITTED WITH CAUTION: Zero felonies, {indictment.infraction_count} minor code hygiene advisories.")
@@ -675,7 +785,7 @@ class Bailiff:
         hooks_dir.mkdir(parents=True, exist_ok=True)
 
         hook_script = """#!/usr/bin/env bash
-# SLOP COURT BAILIFF ENFORCEMENT HOOK v2.0
+# SLOP COURT BAILIFF ENFORCEMENT HOOK v3.5
 # Automatically generated by Workshop OS Anti-Slop Court
 
 echo "⚖️  Slop Court Bailiff: Convening Pre-Flight Judicial Review..."
@@ -762,7 +872,7 @@ def render_trial_report(verdict: Verdict, show_jury: bool = True) -> str:
     out = [
         "",
         banner,
-        f" ⚖️  SLOP COURT v2.0: SUPREME JUDICIAL TRIBUNAL TRIAL REPORT",
+        " ⚖️  SLOP COURT v3.5: SUPREME JUDICIAL TRIBUNAL TRIAL REPORT",
         banner,
         f" Case Docket : {ind.case_number}",
         f" Target      : {ind.target_path}",
@@ -788,8 +898,9 @@ def render_trial_report(verdict: Verdict, show_jury: bool = True) -> str:
     if active_charges:
         out.append(" [CHARGES SUSTAINED BY THE TRIBUNAL]")
         for c in active_charges[:25]:
+            rel: str
             try:
-                rel = c.file_path.relative_to(WORKSHOP_DIR)
+                rel = str(c.file_path.relative_to(WORKSHOP_DIR))
             except ValueError:
                 rel = c.file_path.name
             out.append(f"  • [{c.gravity}] {c.statute_code} ({c.juror_domain}) at {rel}:{c.line_number}")
@@ -836,7 +947,7 @@ def render_trial_report(verdict: Verdict, show_jury: bool = True) -> str:
 def main():
     parser = argparse.ArgumentParser(
         prog="workshop court",
-        description="⚖️ Slop Court v2.0: Supreme Adversarial Quality Tribunal and Anti-Slop Enforcement System"
+        description="⚖️ Slop Court v3.5: Supreme Adversarial Quality Tribunal and Anti-Slop Enforcement System"
     )
     subparsers = parser.add_subparsers(dest="action", help="Court Action")
 
@@ -896,7 +1007,7 @@ def main():
         if p_t.exists() and p_t.is_file():
             try:
                 topic = p_t.read_text(encoding="utf-8", errors="ignore")[:2000]
-            except Exception as err:  # @court-exempt: read fallback
+            except Exception:  # @court-exempt: read fallback
                 pass
         council = UniversalCouncil(domain=args.domain, seats=args.seats)
         session = council.convene(topic, rounds=args.rounds)
@@ -907,7 +1018,7 @@ def main():
         sys.exit(0)
     elif args.action == "statutes":
         print("\n" + "=" * 70)
-        print(" ⚖️  SLOP COURT v2.0: CODIFIED PENAL STATUTES")
+        print(" ⚖️  SLOP COURT v3.5: CODIFIED PENAL STATUTES")
         print("=" * 70 + "\n")
         for code, stat in STATUTES.items():
             print(f" • [{stat.gravity:<11}] {stat.code:<7} ({stat.juror_domain:<12}): {stat.title} ({stat.penalty_points} pts)")

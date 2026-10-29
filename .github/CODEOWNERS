@@ -1,0 +1,8 @@
+# Global repository owners
+* @shoyarism
+
+# CI & Quality Gates
+/.github/workflows/ @shoyarism
+/scripts/workshop_court.py @shoyarism
+/scripts/scan_secrets.py @shoyarism
+/tests/ @shoyarism

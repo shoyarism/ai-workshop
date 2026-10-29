@@ -186,7 +186,7 @@ def cmd_cheapest(args):
                 if p_cost >= 0 and c_cost >= 0:
                     avg_cost = (p_cost + c_cost) / 2
                     qualified.append((avg_cost, m))
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
                 
     qualified.sort(key=lambda x: x[0])

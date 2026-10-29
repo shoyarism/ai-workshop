@@ -1,5 +1,5 @@
 # 🌐 WORKSHOP OS UNIVERSAL PROTOCOL
-# Version: 3.5.0 (Sovereign Houses Standard)
+# Version: 3.5.0 (Portable Universal Standard)
 # ==============================================================================
 # This is the single source of truth for ALL AI Agents operating in this Workshop.
 # Universal engineering standard across all models, tools, and environments.
@@ -23,9 +23,9 @@ You operate with absolute technical rigor, proactive autonomous problem-solving,
 ## 2. DUAL-MODE WORKSHOP ACCESS
 
 ### Mode A: Local Clone (Priority 1 — Fast & Full Capability)
-If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this machine:
-1. **Master CLI**: `python scripts/workshop.py <command>` (or `python scripts/workshop.py <command>`)
-   - `search "<keyword>"`: Search 2,150+ domain skills, subsystems, and runbooks.
+If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
+1. **Master CLI**: `uv run python scripts/workshop.py <command>`
+   - `search "<keyword>"`: Search 2,147 verified domain skills, subsystems, and runbooks.
    - `doctor`: Comprehensive health diagnostics across all subsystems.
    - `council convene "<query>"`: Universal Supreme Council multi-persona adversarial deliberation.
    - `court trial <path> [--staged]`: Slop Court quality tribunal.
@@ -37,17 +37,25 @@ If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this mac
 3. **Obsidian Vault / Memory**: `vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
 
 ### Mode B: Cloud Zero-Clone (Remote / Ephemeral Environments)
-If operating in a remote or containerized environment without a full clone, fetch skill runbooks on demand directly from the public GitHub repository:
+If the local clone does not exist, access the public workshop repository at `shoyarism/ai-workshop` via GitHub API or raw content.
+Public raw reads require no credentials. Authenticated requests may use `$GITHUB_TOKEN` for higher API rate limits.
 
-1. **Fetch Skill Instructions on Demand (Public Raw Endpoint, No Auth Required)**:
+1. **Find a Skill**:
    ```bash
-   curl -sL "https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/<house>/<skill-name>/SKILL.md"
+   # List available skills via GitHub API (Windows PowerShell: use curl.exe)
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        -H "User-Agent: Workshop-Agent" \
+        "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
    ```
-2. **Browse Skill Catalog via GitHub API**:
+2. **Fetch Skill Instructions on Demand**:
    ```bash
-   curl -s "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
+   # Stream raw SKILL.md directly into context
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github.raw+json" \
+        -H "User-Agent: Workshop-Agent" \
+        -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
    ```
-   *(Optional: Use `$GITHUB_TOKEN` if you encounter GitHub API unauthenticated rate limits).*
 3. Follow the retrieved instructions strictly.
 
 ---
@@ -70,7 +78,7 @@ Match the user prompt to the domain and LOAD the corresponding skill before writ
 | **Debugging & Error Recovery** | `skills/systematic-debugging/SKILL.md`<br>`vault/02 - Post-Mortems/` (PM-001 to PM-008) | Check existing post-mortems first. Isolate failure invariants. |
 | **Code Review & Simplification** | `skills/slop-court/SKILL.md`<br>`skills/antislop/SKILL.md`<br>`skills/code-simplification/SKILL.md` | Strict penal code check (FEL-01..06, MIS-01..05), strip unnecessary abstractions. |
 
-### Step 0.B: Dynamic Search (for anything else across 2,150+ domain skills)
+### Step 0.B: Dynamic Search (for anything else across 2,147 verified skills)
 Run via shell or call MCP tool `skill_search`:
 ```bash
 uv run python scripts/workshop.py search "<keyword>"
@@ -83,7 +91,8 @@ In your very first turn, announce the loaded skill before presenting the solutio
 ---
 
 ## 4. ⚖️ SLOP COURT QUALITY GATE (CODIFIED PENAL CODE)
-Strict enforcement across all agent deliverables:
+Strict enforcement across all agent deliverables.
+*Scope boundary: Deterministic Python AST analysis; regex heuristics for non-Python assets.*
 
 ### Codified Penal Statutes:
 - **Capital Felonies (Immediate Rejection):**

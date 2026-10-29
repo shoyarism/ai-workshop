@@ -7,12 +7,9 @@ it enters a structured synthesis loop to generate a typed MCP server wrapper,
 test it against the live target, and distill it into a permanent skill.
 """
 
-import os
 import sys
 import json
-import re
 import subprocess
-import tempfile
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -190,12 +187,12 @@ def forge_tool(target_spec: dict, test_args: dict = None) -> dict:
     
     # 3. Test
     if test_args:
-        print(f"[FORGE] Testing generated server...")
+        print("[FORGE] Testing generated server...")
         test_result = test_generated_server(server_path, test_args)
         if not test_result["success"]:
             print(f"[FORGE] Test failed: {test_result.get('stderr', test_result.get('error'))}")
             return {"status": "failed", "spec": spec, "server_path": str(server_path), "test": test_result}
-        print(f"[FORGE] Test passed")
+        print("[FORGE] Test passed")
     
     # 4. Distill into skill
     skill_dir = SKILLS_DIR / f"auto-{spec['service_name']}"

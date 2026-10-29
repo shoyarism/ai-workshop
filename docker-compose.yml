@@ -1,0 +1,42 @@
+services:
+  runtime:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workshop-runtime
+    command: ["workshop", "doctor", "--strict"]
+    ports:
+      - "127.0.0.1:7860:7860"
+    volumes:
+      - .:/app
+    environment:
+      - WORKSHOP_ROOT=/app
+      - PYTHONUNBUFFERED=1
+
+  hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workshop-hub
+    command: ["workshop", "hub", "--port", "7861"]
+    ports:
+      - "127.0.0.1:7861:7861"
+    volumes:
+      - .:/app
+    environment:
+      - WORKSHOP_ROOT=/app
+    restart: unless-stopped
+
+  watchdog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workshop-watchdog
+    command: ["workshop", "routine"]
+    ports:
+      - "127.0.0.1:7862:7862"
+    volumes:
+      - .:/app
+    environment:
+      - WORKSHOP_ROOT=/app
+    restart: unless-stopped

@@ -17,7 +17,6 @@ Usage:
     python scripts/run_browser_agent.py --url "https://github.com" --profile "C:/Users/.../AppData/Roaming/Mozilla/Firefox/Profiles/..."
 """
 
-import os
 import sys
 import time
 import json
@@ -47,7 +46,7 @@ def notify_hub(action_name: str, details: str = "", url: str = None, screenshot_
             headers={"Content-Type": "application/json"}
         )
         urllib.request.urlopen(req, timeout=0.5)
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
 def run_agent_session(
@@ -60,7 +59,7 @@ def run_agent_session(
     profile: str = None
 ):
     print("\n=======================================================")
-    print(f" [*] Launching AI Agent Browser Session")
+    print(" [*] Launching AI Agent Browser Session")
     print(f" Target URL:   {url or (cdp and 'Attached Browser')}")
     print(f" Browser Type: {browser_type.upper()}")
     if cdp:
@@ -144,7 +143,7 @@ def run_agent_session(
                 print("\n--- Page Snippet ---")
                 print(text_content.strip())
                 print("--------------------\n")
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
 
         print(" -> Browser session active. Press Ctrl+C to close or wait 5s...")
@@ -153,7 +152,7 @@ def run_agent_session(
                 time.sleep(1)
                 try:
                     page.screenshot(path=str(screenshot_path), type="jpeg", quality=75)
-                except Exception as err:  # @court-exempt: handled fallback
+                except Exception:  # @court-exempt: handled fallback
                     pass
         except KeyboardInterrupt:
             print("\n [!] Stopping browser session.")

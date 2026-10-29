@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -31,7 +32,7 @@ from workshop_paths import ROOT  # noqa: E402
 SKILL_ROOTS: tuple[Path, ...] = (
     ROOT / "skills",
     ROOT / "open-design",
-    ROOT / "ai agents handbook",
+    ROOT / "ai-agents-handbook",
     ROOT / "agent-skills" / "skills",
     ROOT / "claude-plugins-official",
     ROOT / "claude-mem",
@@ -180,6 +181,51 @@ def core_skills(names: list[str]) -> tuple[list[Skill], list[str]]:
     return found, missing
 
 
+MANIFEST_PATH = ROOT / "skills" / "manifest.sha256"
+
+
+def generate_manifest() -> Path:
+    """Generate cryptographic SHA-256 manifest of all discovered skill files (LF normalized)."""
+    skills = discover()
+    entries: list[str] = []
+    for s in sorted(skills, key=lambda x: str(x.path)):
+        try:
+            rel = s.path.relative_to(ROOT).as_posix()
+            content = s.path.read_bytes().replace(b"\r\n", b"\n")
+            digest = hashlib.sha256(content).hexdigest()
+            entries.append(f"{digest}  {rel}")
+        except (OSError, IOError):  # @court-exempt: unreadable file skipped
+            pass
+    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    MANIFEST_PATH.write_text("\n".join(entries) + "\n", encoding="utf-8")
+    return MANIFEST_PATH
+
+
+def verify_manifest() -> tuple[bool, int, list[str]]:
+    """Verify all skills against cryptographic SHA-256 manifest (LF normalized)."""
+    if not MANIFEST_PATH.exists():
+        return False, 0, [f"Manifest file not found: {MANIFEST_PATH}"]
+    lines = MANIFEST_PATH.read_text(encoding="utf-8").strip().splitlines()
+    mismatches: list[str] = []
+    verified = 0
+    for line in lines:
+        parts = line.strip().split(maxsplit=1)
+        if len(parts) != 2:
+            continue
+        expected_hash, rel_path = parts
+        fpath = ROOT / rel_path
+        if not fpath.exists():
+            mismatches.append(f"Missing file: {rel_path}")
+            continue
+        content = fpath.read_bytes().replace(b"\r\n", b"\n")
+        current_hash = hashlib.sha256(content).hexdigest()
+        if current_hash != expected_hash:
+            mismatches.append(f"Hash mismatch: {rel_path}")
+        else:
+            verified += 1
+    return len(mismatches) == 0, verified, mismatches
+
+
 def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -189,6 +235,8 @@ def main() -> None:
     p_lint = sub.add_parser("lint")
     p_lint.add_argument("--json", action="store_true")
     sub.add_parser("core", help="Show Tier 0 skills from the manifest and their context cost")
+    p_man = sub.add_parser("manifest", help="Generate or verify cryptographic SHA-256 manifest of all skills")
+    p_man.add_argument("--verify", action="store_true", help="Verify integrity against existing manifest")
     args = ap.parse_args()
 
     if args.cmd == "stats":
@@ -218,6 +266,19 @@ def main() -> None:
         if missing:
             print(f"MISSING: {', '.join(missing)}")
             sys.exit(1)
+    elif args.cmd == "manifest":
+        if args.verify:
+            ok, verified, mismatches = verify_manifest()
+            print(f"Verified {verified} skill(s) against manifest.")
+            if not ok:
+                print(f"[!] Integrity check failed ({len(mismatches)} mismatches):", file=sys.stderr)
+                for m in mismatches[:10]:
+                    print(f"   • {m}", file=sys.stderr)
+                sys.exit(1)
+            print("[✓] All skills verified clean against SHA-256 manifest.")
+        else:
+            p = generate_manifest()
+            print(f"[✓] Generated cryptographic manifest: {p}")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-﻿---
+---
 name: social-media-unified-metrics
 description: >-
   Cross-platform analytics normalization and aggregation engine for hospital digital marketing.

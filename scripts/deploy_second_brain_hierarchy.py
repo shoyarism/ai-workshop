@@ -10,7 +10,6 @@ All 6 sub-spaces are fully migrated and live locally in `vault/`.
 import os
 import sys
 import time
-from datetime import datetime
 from typing import List, Dict, Any
 from notion_client import Client
 
@@ -309,7 +308,7 @@ def main():
 
             # Append content blocks
             batch_size = 50
-            total_batches = (len(blocks) + batch_size - 1) // batch_size
+            _total_batches = (len(blocks) + batch_size - 1) // batch_size
             for i in range(0, len(blocks), batch_size):
                 batch = blocks[i:i + batch_size]
                 notion.blocks.children.append(

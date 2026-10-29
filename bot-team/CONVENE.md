@@ -1,4 +1,4 @@
-﻿# Convening the Team (copy-paste orchestrator)
+# Convening the Team (copy-paste orchestrator)
 
 Paste this into your main `default` profile (or the desktop Bots group chat) to run the team on a task. The orchestrator picks 2-5 of the 14 bots, runs them, and consolidates.
 

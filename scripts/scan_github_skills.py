@@ -23,7 +23,6 @@ import re
 import sys
 import urllib.request
 import urllib.error
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 

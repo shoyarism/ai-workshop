@@ -1,6 +1,6 @@
 {
   "name": "workshop-os",
-  "version": "2.2.0",
+  "version": "3.5.0",
   "description": "Universal AI Workshop OS — Master Engineering Arsenal & Multi-Agent Supreme Tribunal",
   "author": {
     "name": "shoyarism",
@@ -23,8 +23,5 @@
     "skills",
     "fastmcp",
     "mcp-server"
-  ],
-  "dependencies": {
-    "better-sqlite3": "^12.10.0"
-  }
+  ]
 }

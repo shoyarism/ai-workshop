@@ -1,0 +1,39 @@
+# Auto-detect text files and normalize line endings to LF on checkout and commit
+* text=auto eol=lf
+
+# Explicit text files
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+*.ts text eol=lf
+*.js text eol=lf
+*.svg text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.txt text eol=lf
+
+# Vendored third-party skills preserve upstream formatting
+skills/** -text
+
+# Windows scripts require CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.db binary
+*.sqlite binary
+*.sqlite3 binary

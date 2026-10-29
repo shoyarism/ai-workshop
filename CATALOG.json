@@ -1,6 +1,6 @@
 {
   "workspace": "Workshop",
-  "version": "3.0.0",
+  "version": "3.5.0",
   "description": "Centralized Universal AI Operating System & Engineering Arsenal",
   "master_cli": "python scripts/workshop.py",
   "total_subsystems": 44,

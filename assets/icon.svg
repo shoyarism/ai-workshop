@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Core Dark Substrate -->
+    <linearGradient id="iconBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121520"/>
+      <stop offset="100%" stop-color="#08090d"/>
+    </linearGradient>
+
+    <!-- Signal Vermilion Flame -->
+    <linearGradient id="iconFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7043"/>
+      <stop offset="50%" stop-color="#ff4f17"/>
+      <stop offset="100%" stop-color="#d83a00"/>
+    </linearGradient>
+
+    <!-- Cyber Cyan Core Invariant -->
+    <linearGradient id="iconCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Hex Edge Glow -->
+    <linearGradient id="borderGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4f17"/>
+      <stop offset="50%" stop-color="#2a3045"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <linearGradient id="laserTrace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4f17"/>
+      <stop offset="50%" stop-color="#00e599"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    @keyframes pulse-core {
+      0%, 100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 4px rgba(255,79,23,0.3)); }
+      50% { transform: scale(1.06) translateY(-2px); filter: drop-shadow(0 0 10px rgba(6,182,212,0.6)); }
+    }
+    @keyframes rotate-cw {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes rotate-ccw {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes shield-flow {
+      to { stroke-dashoffset: -80; }
+    }
+    @keyframes node-blink {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    @keyframes crosshair-scan {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; stroke-width: 2; }
+    }
+
+    .anim-core { animation: pulse-core 3.2s ease-in-out infinite; transform-origin: 64px 64px; }
+    .anim-ring-cw { animation: rotate-cw 20s linear infinite; transform-origin: 64px 64px; }
+    .anim-ring-ccw { animation: rotate-ccw 28s linear infinite; transform-origin: 64px 64px; }
+    .anim-border-trace { stroke-dasharray: 12 12; animation: shield-flow 2.8s linear infinite; }
+    .anim-node-1 { animation: node-blink 2s ease-in-out infinite; transform-origin: 20px 20px; }
+    .anim-node-2 { animation: node-blink 2s ease-in-out 0.5s infinite; transform-origin: 108px 20px; }
+    .anim-node-3 { animation: node-blink 2s ease-in-out 1s infinite; transform-origin: 20px 108px; }
+    .anim-node-4 { animation: node-blink 2s ease-in-out 1.5s infinite; transform-origin: 108px 108px; }
+    .anim-crosshair { animation: crosshair-scan 2.4s ease-in-out infinite; }
+  </style>
+
+  <!-- Ambient Glow Core -->
+  <circle cx="64" cy="64" r="52" fill="#ff4f17" opacity="0.12" filter="blur(16px)"/>
+  <circle cx="64" cy="64" r="32" fill="#06b6d4" opacity="0.16" filter="blur(12px)"/>
+
+  <!-- Outer Rounded Tech Shield -->
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#iconBaseGrad)" stroke="url(#borderGlow)" stroke-width="1.8"/>
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="none" stroke="url(#laserTrace)" stroke-width="1.4" opacity="0.75" class="anim-border-trace"/>
+
+  <!-- Dual Counter-Rotating Calibration Reticles -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#2a3246" stroke-width="1" stroke-dasharray="4 8" class="anim-ring-cw"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#1d2334" stroke-width="0.8" stroke-dasharray="8 16" class="anim-ring-ccw"/>
+
+  <!-- Sequential Corner Alignment Nodes -->
+  <circle cx="20" cy="20" r="2.5" fill="#ff4f17" class="anim-node-1"/>
+  <circle cx="108" cy="20" r="2.5" fill="#06b6d4" class="anim-node-2"/>
+  <circle cx="20" cy="108" r="2.5" fill="#06b6d4" class="anim-node-3"/>
+  <circle cx="108" cy="108" r="2.5" fill="#00e599" class="anim-node-4"/>
+
+  <!-- Center Anvil / AST Monolith Emblem (Floating & Breathing) -->
+  <g class="anim-core">
+    <!-- Top Geometric Facet -->
+    <path d="M 64 26 L 94 44 L 64 62 L 34 44 Z" fill="url(#iconFlameGrad)"/>
+    
+    <!-- Left Geometric Facet -->
+    <path d="M 34 44 L 64 62 L 64 98 L 34 80 Z" fill="#b83200"/>
+
+    <!-- Right Geometric Facet -->
+    <path d="M 64 62 L 94 44 L 94 80 L 64 98 Z" fill="#ff5a22"/>
+
+    <!-- Inner Floating Invariant Monolith (Cyan Kernel) -->
+    <polygon points="64,48 76,56 76,72 64,80 52,72 52,56" fill="url(#iconCyanGrad)" opacity="0.95"/>
+    <polygon points="64,54 70,58 70,68 64,72 58,68 58,58" fill="#ffffff" opacity="0.95"/>
+  </g>
+
+  <!-- Precision Technical Crosshairs with Active Laser Scans -->
+  <line x1="64" y1="10" x2="64" y2="22" stroke="#ff4f17" stroke-width="1.6" class="anim-crosshair"/>
+  <line x1="64" y1="106" x2="64" y2="118" stroke="#00e599" stroke-width="1.6" class="anim-crosshair"/>
+  <line x1="10" y1="64" x2="22" y2="64" stroke="#ff4f17" stroke-width="1.6" class="anim-crosshair"/>
+  <line x1="106" y1="64" x2="118" y2="64" stroke="#06b6d4" stroke-width="1.6" class="anim-crosshair"/>
+</svg>

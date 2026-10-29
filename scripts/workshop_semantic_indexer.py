@@ -12,7 +12,6 @@ Usage:
     python scripts/workshop_semantic_indexer.py search "<query>" [--limit 10] [--mode hybrid|dense|sparse]
 """
 
-import os
 import sys
 import re
 import json
@@ -20,7 +19,7 @@ import sqlite3
 import hashlib
 import yaml
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):
@@ -39,12 +38,12 @@ SKILL_PATHS = [
     WORKSHOP_DIR / "skills",
     WORKSHOP_DIR / "hyperframes" / "skills",
     WORKSHOP_DIR / "browser-use" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "ponytail" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "styleseed" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "garden-skills" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "baoyu-design" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "karpathy" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "universal" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "ponytail" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "styleseed" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "garden-skills" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "baoyu-design" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "karpathy" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "universal" / "skills",
 ]
 
 # FastEmbed lazy loader
@@ -59,7 +58,7 @@ def get_embedding_model():
             from fastembed import TextEmbedding
 
             _embedding_model = TextEmbedding(model_name="BAAI/bge-small-en-v1.5")
-        except Exception as e:
+        except Exception:
             return None
     return _embedding_model
 
@@ -315,7 +314,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
             cur = conn.execute(sql, (fts_match_expr,))
             for row in cur.fetchall():
                 sparse_ranks[row["id"]] = float(row["rank"])
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 2. Dense Semantic Vector search
@@ -347,7 +346,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
 
                 for item_id, sim in zip(ids, similarities):
                     dense_scores[item_id] = float(sim)
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 3. Reciprocal Rank Fusion (RRF) / Hybrid scoring
@@ -377,7 +376,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
     # Fetch paths to apply archive ranking attenuation
     cand_placeholders = ",".join("?" for _ in all_candidate_ids)
     cur = conn.execute(
-        f"SELECT id, path FROM items WHERE id IN ({cand_placeholders})",
+        f"SELECT id, path FROM items WHERE id IN ({cand_placeholders})",  # @court-exempt: parameterized query placeholders
         list(all_candidate_ids),
     )
     cand_paths = {r["id"]: r["path"] for r in cur.fetchall()}
@@ -409,7 +408,7 @@ def search(query: str, limit: int = 10, mode: str = "hybrid") -> List[Dict[str, 
         placeholders = ",".join("?" for _ in top_candidates)
         cand_ids = [c[0] for c in top_candidates]
         cur = conn.execute(
-            f"SELECT id, item_type, name, description, path, full_path, body FROM items WHERE id IN ({placeholders})",
+            f"SELECT id, item_type, name, description, path, full_path, body FROM items WHERE id IN ({placeholders})",  # @court-exempt: parameterized query placeholders
             cand_ids,
         )
         items_by_id = {r["id"]: dict(r) for r in cur.fetchall()}
@@ -457,12 +456,12 @@ def main():
         if getattr(args, "json", False):
             print(json.dumps(results, indent=2))
         else:
-            print(f"\n=======================================================")
+            print("\n=======================================================")
             print(
                 f" 🔍 WORKSHOP HYBRID SEARCH: '{args.query}' (Mode: {args.mode.upper()})"
             )
             print(f" Returned {len(results)} top results")
-            print(f"=======================================================\n")
+            print("=======================================================\n")
             for r in results:
                 kind = f"[{r['item_type'].upper()}]"
                 sim_str = (

@@ -1,12 +1,12 @@
 name: ⚖️ Slop Court Statute Proposal
-description: Propose a new anti-slop rule, AST heuristic, or quality statute for Slop Court v2.0
+description: Propose a new anti-slop rule, AST heuristic, or quality statute for Slop Court v3.5
 title: "[STATUTE]: "
 labels: ["slop-court", "governance"]
 body:
   - type: markdown
     attributes:
       value: |
-        Propose a new rule for Slop Court v2.0 (FEL-xx or MISD-xx) to detect novel AI code degradations.
+        Propose a new rule for Slop Court v3.5 (FEL-xx or MISD-xx) to detect novel AI code degradations.
   - type: dropdown
     id: severity
     attributes:

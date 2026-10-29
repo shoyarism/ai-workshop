@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VoxExplainerStoryboard",
+  "description": "Strict machine-readable storyboard schema for newsroom-grade editorial explainer documentaries.",
+  "type": "object",
+  "required": [
+    "project_title",
+    "topic_summary",
+    "target_duration_seconds",
+    "aspect_ratio",
+    "style_reference",
+    "narrative_arc",
+    "beats"
+  ],
+  "properties": {
+    "project_title": {
+      "type": "string",
+      "description": "Title of the video production"
+    },
+    "topic_summary": {
+      "type": "string",
+      "description": "Core thesis and journalistic scope of the video"
+    },
+    "target_duration_seconds": {
+      "type": "number",
+      "minimum": 10.0,
+      "maximum": 1200.0
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "enum": ["16:9", "9:16", "1:1"]
+    },
+    "style_reference": {
+      "type": "string",
+      "description": "Style mode reference name, e.g. 'vox-wildlife-documentary'"
+    },
+    "narrative_arc": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "HOOK",
+          "OBSERVATION",
+          "QUESTION",
+          "PRECEDENT",
+          "MECHANISM",
+          "SYSTEM_POLICY",
+          "INCENTIVE",
+          "CONSEQUENCE",
+          "RESPONSE",
+          "IMPLICATION"
+        ]
+      },
+      "minItems": 4
+    },
+    "beats": {
+      "type": "array",
+      "description": "Sequential chronological list of video beats / scenes",
+      "items": {
+        "type": "object",
+        "required": [
+          "beat_id",
+          "timecode_in",
+          "timecode_out",
+          "narrative_stage",
+          "narration",
+          "visual_mode",
+          "visual_job",
+          "focal_subject",
+          "composition",
+          "camera",
+          "motion",
+          "on_screen_text",
+          "source_provenance"
+        ],
+        "properties": {
+          "beat_id": {
+            "type": "string",
+            "pattern": "^beat_[0-9]{2,3}$"
+          },
+          "timecode_in": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "timecode_out": {
+            "type": "number",
+            "minimum": 0.1
+          },
+          "narrative_stage": {
+            "type": "string",
+            "enum": [
+              "HOOK",
+              "OBSERVATION",
+              "QUESTION",
+              "PRECEDENT",
+              "MECHANISM",
+              "SYSTEM_POLICY",
+              "INCENTIVE",
+              "CONSEQUENCE",
+              "RESPONSE",
+              "IMPLICATION"
+            ]
+          },
+          "narration": {
+            "type": "string",
+            "description": "Exact Indonesian or English narration spoken by the narrator during this beat"
+          },
+          "visual_mode": {
+            "type": "string",
+            "enum": [
+              "ARCHIVAL",
+              "INTERVIEW",
+              "PHOTO",
+              "DOCUMENT",
+              "MAP",
+              "TIMELINE",
+              "CHART",
+              "DIAGRAM",
+              "DATA CARD",
+              "DATA_CARD",
+              "RECONSTRUCTION",
+              "GRAPHIC TITLE",
+              "GRAPHIC_TITLE"
+            ]
+          },
+          "visual_job": {
+            "type": "string",
+            "description": "The specific functional communicative duty of this visual beat (e.g. 'Explain transmission pathway from bat to pangolin to human')"
+          },
+          "focal_subject": {
+            "type": "string",
+            "description": "Primary visual center of attention"
+          },
+          "composition": {
+            "type": "string",
+            "description": "Framing and spatial arrangement (e.g. 'Left 55% architectural cross section, Right 45% rule card grid')"
+          },
+          "camera": {
+            "type": "string",
+            "description": "Camera motion type, e.g. 'slow push-in 1.0 -> 1.03', 'static', 'map zoom-in 1.4'"
+          },
+          "motion": {
+            "type": "string",
+            "description": "Specific graphic animation behavior synchronized to speech (e.g. 'highlighter draws across keyword as spoken')"
+          },
+          "on_screen_text": {
+            "type": "object",
+            "required": ["headline"],
+            "properties": {
+              "eyebrow": { "type": "string" },
+              "headline": { "type": "string" },
+              "subhead": { "type": "string" },
+              "highlighter_target_words": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "accent_elements": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Graphic annotations: directional_arrow, dashed_box, red_cross, green_check, locator_pin"
+          },
+          "source_provenance": {
+            "type": "string",
+            "description": "Origin of factual evidence: primary document, law statute, hospital policy, or news report"
+          },
+          "audio_cue": {
+            "type": "string",
+            "description": "Sound design trigger: sfx_paper_slide, sfx_click, sfx_marker_swipe"
+          }
+        }
+      }
+    }
+  }
+}

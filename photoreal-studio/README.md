@@ -1,4 +1,4 @@
-﻿# Photoreal Studio — Ultra-Realistic AI Image Generation System
+# Photoreal Studio — Ultra-Realistic AI Image Generation System
 
 > An advanced optical physics, biometric micro-texture, and prompt synthesis engine designed to bridge the "uncanny valley" and produce AI-generated images indistinguishable from real photography.
 

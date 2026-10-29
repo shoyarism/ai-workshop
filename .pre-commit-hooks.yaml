@@ -1,0 +1,8 @@
+- id: slop-court
+  name: Slop Court Quality Gate
+  description: Three-juror AST code arrest and code hygiene prosecutor for AI agents
+  entry: python scripts/workshop_court.py trial --staged
+  language: python
+  stages: [pre-commit, pre-push]
+  pass_filenames: false
+  always_run: true

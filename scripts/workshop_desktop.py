@@ -25,6 +25,7 @@ import time
 import json
 import argparse
 import subprocess
+import shlex
 from pathlib import Path
 
 # Ensure UTF-8 output on Windows consoles
@@ -79,7 +80,7 @@ def take_screenshot(output_path: str = None, monitor_idx: int = 1) -> dict:
             }
             print(f"[OK] Screenshot captured: {out} ({img.width}x{img.height}) [Engine: pillow]")
             return res
-        except Exception as e_pil:
+        except Exception:
             print(f"[!] Desktop display surface not accessible in current execution context ({e_mss}).")
             print("    [NOTE] Desktop screenshots require an interactive desktop session (WinSta0\\Default).")
             return {
@@ -169,8 +170,8 @@ def launch_application(command_str: str) -> dict:
         creationflags = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
         
     proc = subprocess.Popen(
-        command_str,
-        shell=True,
+        shlex.split(command_str),
+        shell=False,
         creationflags=creationflags,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,

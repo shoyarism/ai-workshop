@@ -78,7 +78,7 @@ def write_log(msg: str):
     try:
         with open(LOG_FILE, "a", encoding="utf-8") as f:
             f.write(line)
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
     print(line.strip())
 
@@ -95,13 +95,13 @@ def save_state(state: dict):
     try:
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(state, f, indent=2)
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
 def start_health_server():
     """Start a simple HTTP health endpoint for the watchdog itself."""
     class HealthHandler(BaseHTTPRequestHandler):
-        def log_message(self, format, *args):
+        def log_message(self, format, *args):  # @court-exempt: suppress noisy HTTP server logging
             pass
         
         def do_GET(self):

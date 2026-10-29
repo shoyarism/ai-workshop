@@ -18,7 +18,18 @@ Workshop OS is an engineering orchestration layer and skill catalog designed to 
 - **Not an Operating System Sandbox**: Pattern matching and blocklists are **speed bumps, not security containers**. They cannot prevent intentional adversarial evasion (e.g., using alternate interpreters or encoded commands).
 - **Container Isolation Requirement**: When granting an agent shell execution access (`shell=True`) on untrusted repositories or with third-party models, operators **MUST** run the agent inside an isolated container (Docker, Podman, or Firecracker microVM) with restricted network egress and mounted non-root permissions.
 
-### B. Skill Supply Chain & Prompt Injection
+### B. Container Operation & Recommended Isolation Setup
+Workshop OS includes a pre-configured [`Dockerfile`](Dockerfile) and [`docker-compose.yml`](docker-compose.yml) to facilitate rapid containerized execution:
+```bash
+# Build and run isolated containerized runtime diagnostics:
+docker compose run --rm runtime
+
+# Start sandboxed local browser and gateway hubs:
+docker compose up -d hub
+```
+This isolates agent subprocess spawning, file-system mutations, and local gateway bindings from your primary host system.
+
+### C. Skill Supply Chain & Prompt Injection
 - **Markdown-as-Code**: Skills in Workshop OS are structured Markdown documents (`SKILL.md`) that serve as system instructions for LLM agents.
 - **Supply Chain Risks**: Loading unreviewed third-party skills or synchronizing external skill repositories can expose agents to indirect prompt injection or malicious workflow guidance.
 - **Audit Mandate**: Operators should inspect skill manifests and run `python scripts/workshop.py court trial <path>` before promoting community skills into production agent contexts.

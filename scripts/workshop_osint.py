@@ -22,7 +22,6 @@ Usage:
     python scripts/workshop_osint.py launch-auspex [--web]
 """
 
-import os
 import sys
 import json
 import asyncio
@@ -203,7 +202,7 @@ async def run_username_recon(username: str, fast: bool = False) -> dict:
                             text = await resp.text()
                             if plat["pattern"] in text:
                                 found.append({"platform": plat["name"], "url": plat["url"]})
-                except Exception as err:  # @court-exempt: handled fallback
+                except Exception:  # @court-exempt: handled fallback
                     pass
             tasks.append(check_platform(p))
         await asyncio.gather(*tasks)
@@ -229,6 +228,18 @@ def cmd_username(args):
         print("=================================================================\n")
 
 
+def _extract_crtsh_subdomains(data: list) -> list:
+    """Extract and sanitize unique subdomains from crt.sh JSON records."""
+    subs = set()
+    for item in data[:50]:
+        name = item.get("name_value", "")
+        for s in name.split("\n"):
+            s = s.strip().lower()
+            if s and not s.startswith("*."):
+                subs.add(s)
+    return sorted(list(subs))
+
+
 def cmd_domain(args):
     """Execute DNS, crt.sh subdomain enum, and WHOIS lookup."""
     import dns.resolver
@@ -242,7 +253,7 @@ def cmd_domain(args):
         try:
             answers = dns.resolver.resolve(domain, rtype)
             res["dns"][rtype] = [str(r) for r in answers]
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
     # 2. crt.sh Subdomain Enumeration
@@ -252,14 +263,7 @@ def cmd_domain(args):
         with urllib.request.urlopen(req, timeout=5) as resp:
             if resp.status == 200:
                 data = json.loads(resp.read().decode("utf-8", errors="replace"))
-                subs = set()
-                for item in data[:50]:
-                    name = item.get("name_value", "")
-                    for s in name.split("\n"):
-                        s = s.strip().lower()
-                        if s and not s.startswith("*."):
-                            subs.add(s)
-                res["subdomains"] = sorted(list(subs))
+                res["subdomains"] = _extract_crtsh_subdomains(data)
     except Exception as e:
         res["subdomain_error"] = str(e)
 
@@ -273,7 +277,7 @@ def cmd_domain(args):
             "expiration_date": str(w.expiration_date) if w.expiration_date else None,
             "name_servers": w.name_servers if hasattr(w, "name_servers") else [],
         }
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
     if args.json:
@@ -352,7 +356,7 @@ def cmd_metadata(args):
     try:
         magics = puremagic.magic_file(str(file_path))
         res["magic_info"] = [m.name for m in magics] if magics else ["Unknown"]
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
     try:
@@ -362,7 +366,7 @@ def cmd_metadata(args):
             for tag_id, val in raw_exif.items():
                 tag_name = TAGS.get(tag_id, str(tag_id))
                 res["exif"][tag_name] = str(val)
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
     if args.json:

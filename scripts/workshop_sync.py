@@ -18,12 +18,10 @@ from __future__ import annotations
 import argparse
 import datetime
 import json
-import os
-import re
 import shutil
 import sys
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, Optional
 
 import yaml
 
@@ -31,9 +29,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from workshop_paths import (
     ROOT,
     SCRIPTS,
-    VAULT,
-    SKILLS,
-    STATE,
     BACKUPS,
     python_executable,
     posix,
@@ -96,7 +91,7 @@ def sync_skills_core(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
 # ==============================================================================
 
 CANONICAL_PROTOCOL = r"""# 🌐 WORKSHOP OS UNIVERSAL PROTOCOL
-# Version: 2.3.0 (Portable Universal Standard)
+# Version: 3.5.0 (Portable Universal Standard)
 # ==============================================================================
 # This is the single source of truth for ALL AI Agents operating in this Workshop.
 # Universal engineering standard across all models, tools, and environments.
@@ -120,9 +115,9 @@ You operate with absolute technical rigor, proactive autonomous problem-solving,
 ## 2. DUAL-MODE WORKSHOP ACCESS
 
 ### Mode A: Local Clone (Priority 1 — Fast & Full Capability)
-If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this machine:
-1. **Master CLI**: `python E:\AI\Workshop\scripts\workshop.py <command>` (or `python scripts/workshop.py <command>`)
-   - `search "<keyword>"`: Search 990+ domain skills, subsystems, and runbooks.
+If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
+1. **Master CLI**: `uv run python scripts/workshop.py <command>`
+   - `search "<keyword>"`: Search 2,147 verified domain skills, subsystems, and runbooks.
    - `doctor`: Comprehensive health diagnostics across all subsystems.
    - `council convene "<query>"`: Universal Supreme Council multi-persona adversarial deliberation.
    - `court trial <path> [--staged]`: Slop Court quality tribunal.
@@ -130,26 +125,28 @@ If the local directory `E:\AI\Workshop` (or `$WORKSHOP_ROOT`) exists on this mac
    - `court reform <file>`: Auto-purge tautological comments and slop markers.
    - `see "<file>"`: Multimodal inspector for images, videos, audio, and documents.
    - `graphify query "<question>"`: Codebase AST knowledge graph exploration.
-2. **Local Skills Library**: `E:\AI\Workshop\skills/<skill-name>/SKILL.md`
-3. **Obsidian Vault / Memory**: `E:\AI\Workshop\vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
+2. **Local Skills Library**: `skills/<skill-name>/SKILL.md`
+3. **Obsidian Vault / Memory**: `vault/` (ADRs in `01 - Architecture Decision Records`, Post-Mortems in `02 - Post-Mortems`).
 
 ### Mode B: Cloud Zero-Clone (Remote / Ephemeral Environments)
-If the local clone does not exist, access the private cloud workshop at `shoyarism/ai-workshop` via GitHub API.
-Authentication is pre-configured via environment variable `$GITHUB_TOKEN` (or `%GITHUB_TOKEN%`).
+If the local clone does not exist, access the public workshop repository at `shoyarism/ai-workshop` via GitHub API or raw content.
+Public raw reads require no credentials. Authenticated requests may use `$GITHUB_TOKEN` for higher API rate limits.
 
 1. **Find a Skill**:
    ```bash
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            -H "User-Agent: Workshop-Agent" \
-            "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
+   # List available skills via GitHub API (Windows PowerShell: use curl.exe)
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        -H "User-Agent: Workshop-Agent" \
+        "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
    ```
 2. **Fetch Skill Instructions on Demand**:
    ```bash
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.raw+json" \
-            -H "User-Agent: Workshop-Agent" \
-            -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
+   # Stream raw SKILL.md directly into context
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github.raw+json" \
+        -H "User-Agent: Workshop-Agent" \
+        -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
    ```
 3. Follow the retrieved instructions strictly.
 
@@ -173,7 +170,7 @@ Match the user prompt to the domain and LOAD the corresponding skill before writ
 | **Debugging & Error Recovery** | `skills/systematic-debugging/SKILL.md`<br>`vault/02 - Post-Mortems/` (PM-001 to PM-008) | Check existing post-mortems first. Isolate failure invariants. |
 | **Code Review & Simplification** | `skills/slop-court/SKILL.md`<br>`skills/antislop/SKILL.md`<br>`skills/code-simplification/SKILL.md` | Strict penal code check (FEL-01..06, MIS-01..05), strip unnecessary abstractions. |
 
-### Step 0.B: Dynamic Search (for anything else across 990+ skills)
+### Step 0.B: Dynamic Search (for anything else across 2,147 verified skills)
 Run via shell or call MCP tool `skill_search`:
 ```bash
 uv run python scripts/workshop.py search "<keyword>"
@@ -186,7 +183,8 @@ In your very first turn, announce the loaded skill before presenting the solutio
 ---
 
 ## 4. ⚖️ SLOP COURT QUALITY GATE (CODIFIED PENAL CODE)
-Strict enforcement across all agent deliverables:
+Strict enforcement across all agent deliverables.
+*Scope boundary: Deterministic Python AST analysis; regex heuristics for non-Python assets.*
 
 ### Codified Penal Statutes:
 - **Capital Felonies (Immediate Rejection):**
@@ -304,7 +302,7 @@ def sync_antigravity(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
     
     backup_file(mcp_cfg_path)
     
-    mcp_data = {"mcpServers": {}}
+    mcp_data: Dict[str, Any] = {"mcpServers": {}}
     if mcp_cfg_path.is_file() and mcp_cfg_path.stat().st_size > 0:
         try:
             mcp_data = json.loads(mcp_cfg_path.read_text(encoding="utf-8"))
@@ -351,6 +349,7 @@ def sync_antigravity(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
                 {"path": skills_path}
             ]
         }
+        hooks_cmd = "python scripts/workshop_hooks.py pre-tool $COMMAND" if t == ROOT else f"{py_path} {root_str}/scripts/workshop_hooks.py pre-tool $COMMAND"
         hooks_content = {
             "workshop-safety-gate": {
                 "enabled": True,
@@ -360,7 +359,7 @@ def sync_antigravity(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
                         "hooks": [
                             {
                                 "type": "command",
-                                "command": f"{py_path} {root_str}/scripts/workshop_hooks.py pre-tool $COMMAND",
+                                "command": hooks_cmd,
                                 "timeout": 5
                             }
                         ]
@@ -368,11 +367,26 @@ def sync_antigravity(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
                 ]
             }
         }
-        mcp_local_content = {
-            "mcpServers": {
-                "workshop": mcp_server_entry
+        if t == ROOT:
+            mcp_local_content = {
+                "mcpServers": {
+                    "workshop": {
+                        "command": "python",
+                        "args": [
+                            "./scripts/workshop_mcp.py"
+                        ],
+                        "env": {
+                            "PYTHONIOENCODING": "utf-8"
+                        }
+                    }
+                }
             }
-        }
+        else:
+            mcp_local_content = {
+                "mcpServers": {
+                    "workshop": mcp_server_entry
+                }
+            }
         if not dry_run:
             agents_dir.mkdir(parents=True, exist_ok=True)
             (agents_dir / "skills.json").write_text(json.dumps(skills_json_content, indent=2), encoding="utf-8")
@@ -400,7 +414,7 @@ def sync_subagents(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[str,
         opencode_global_agents.mkdir(parents=True, exist_ok=True)
 
     roles_summary = []
-    antigravity_manifest = {"subagents": {}}
+    antigravity_manifest: Dict[str, Any] = {"subagents": {}}
 
     for role, cfg in subagents.items():
         desc = cfg.get("description", "")
@@ -655,71 +669,72 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
         }
     }
 
-    target_commands = {
-        "doctor": {
-            "description": "Run Workshop OS health and diagnostic checks",
-            "agent": "build",
-            "template": f"Execute full health and diagnostic audit for Workshop OS:\n!`uv run python {root_str}/scripts/workshop.py doctor`\nAnalyze the diagnostic output."
-        },
-        "search": {
-            "description": "Search Workshop OS skills, subsystems, and APIs",
-            "agent": "build",
-            "template": f"Search the Workshop catalog for: $ARGUMENTS\n!`uv run python {root_str}/scripts/workshop.py search \"$ARGUMENTS\"`"
-        },
-        "review": {
-            "description": "Review recent git diff or code changes for quality and anti-slop compliance",
-            "agent": "reviewer",
-            "subtask": True,
-            "template": "Review recent git changes:\n!`git diff HEAD~1`\nAudit strictly against 38 Anti-Slop rules and type safety."
-        },
-        "debug": {
-            "description": "Debug an unexpected error, stack trace, or failing test",
-            "agent": "debugger",
-            "subtask": True,
-            "template": "Deconstruct and debug the following issue: $ARGUMENTS\nIsolate root cause from first principles and post-mortems in vault/02 - Post-Mortems/."
-        },
-        "audit": {
-            "description": "Run anti-slop audit and security check on files",
-            "agent": "build",
-            "template": f"Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python {root_str}/scripts/workshop.py antislop audit \"$ARGUMENTS\"`"
-        },
-        "plan": {
-            "description": "Formulate a first-principles architectural plan",
-            "agent": "plan",
-            "template": "Create a comprehensive implementation plan for: $ARGUMENTS"
-        },
-        "verify": {
-            "description": "Run deterministic test and verification suite",
-            "agent": "build",
-            "template": f"Run full system verification suite:\n!`uv run python {root_str}/scripts/workshop_eval.py`"
-        }
-    }
-
-    target_skill_paths = [
-        f"{root_str}/skills",
-        f"{root_str}/.workshop_state/skills-core",
-        f"{root_str}/ui-ux-arsenal",
-        f"{str(ROOT.parent).replace(chr(92), '/')}/skills/installed",
-        f"{home_str}/.agents/skills",
-        f"{home_str}/.config/opencode/skills",
-        f"{root_str}/ai agents handbook/packs/ponytail/skills",
-        f"{root_str}/ai agents handbook/packs/styleseed/skills",
-        f"{root_str}/ai agents handbook/packs/garden-skills/skills",
-        f"{root_str}/hyperframes/skills",
-        f"{root_str}/browser-use/skills"
-    ]
-
-    target_instructions = [
-        f"{root_str}/WORKSHOP.md",
-        f"{root_str}/WORKSHOP_ARSENAL.md",
-        f"{root_str}/OPENCODE.md",
-        f"{root_str}/AGENTS.md"
-    ]
-
     for target_file in targets:
         if not target_file.is_file():
             continue
         try:
+            is_local_repo = (target_file.parent == ROOT)
+            r_str = "." if is_local_repo else root_str
+            scripts_prefix = "scripts" if is_local_repo else f"{root_str}/scripts"
+
+            curr_commands = {
+                "doctor": {
+                    "description": "Run Workshop OS health and diagnostic checks",
+                    "agent": "build",
+                    "template": f"Execute full health and diagnostic audit for Workshop OS:\n!`uv run python {scripts_prefix}/workshop.py doctor`\nAnalyze the diagnostic output."
+                },
+                "search": {
+                    "description": "Search Workshop OS skills, subsystems, and APIs",
+                    "agent": "build",
+                    "template": f"Search the Workshop catalog for: $ARGUMENTS\n!`uv run python {scripts_prefix}/workshop.py search \"$ARGUMENTS\"`"
+                },
+                "review": {
+                    "description": "Review recent git diff or code changes for quality and anti-slop compliance",
+                    "agent": "reviewer",
+                    "subtask": True,
+                    "template": "Review recent git changes:\n!`git diff HEAD~1`\nAudit strictly against 38 Anti-Slop rules and type safety."
+                },
+                "debug": {
+                    "description": "Debug an unexpected error, stack trace, or failing test",
+                    "agent": "debugger",
+                    "subtask": True,
+                    "template": "Deconstruct and debug the following issue: $ARGUMENTS\nIsolate root cause from first principles and post-mortems in vault/02 - Post-Mortems/."
+                },
+                "audit": {
+                    "description": "Run anti-slop audit and security check on files",
+                    "agent": "build",
+                    "template": f"Audit files for anti-slop and security compliance: $ARGUMENTS\n!`uv run python {scripts_prefix}/workshop.py antislop audit \"$ARGUMENTS\"`"
+                },
+                "plan": {
+                    "description": "Formulate a first-principles architectural plan",
+                    "agent": "plan",
+                    "template": "Create a comprehensive implementation plan for: $ARGUMENTS"
+                },
+                "verify": {
+                    "description": "Run deterministic test and verification suite",
+                    "agent": "build",
+                    "template": f"Run full system verification suite:\n!`uv run python {scripts_prefix}/workshop_eval.py`"
+                }
+            }
+
+            curr_skill_paths = [
+                f"{r_str}/skills",
+                f"{r_str}/.workshop_state/skills-core",
+                f"{r_str}/ui-ux-arsenal",
+                f"{r_str}/ai-agents-handbook/packs/ponytail/skills",
+                f"{r_str}/ai-agents-handbook/packs/styleseed/skills",
+                f"{r_str}/ai-agents-handbook/packs/garden-skills/skills",
+                f"{r_str}/hyperframes/skills",
+                f"{r_str}/browser-use/skills"
+            ]
+
+            curr_instructions = [
+                f"{r_str}/AGENTS.md",
+                f"{r_str}/docs/WORKSHOP.md",
+                f"{r_str}/docs/WORKSHOP_ARSENAL.md",
+                f"{r_str}/docs/OPENCODE.md",
+            ]
+
             data = json.loads(target_file.read_text(encoding="utf-8"))
 
             # 1. Update permissions and tools
@@ -728,15 +743,15 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
 
             # 2. Update agent and command definitions
             data["agent"] = target_agents
-            data["command"] = target_commands
+            data["command"] = curr_commands
 
             # 3. Update skills paths
             if "skills" not in data or not isinstance(data["skills"], dict):
                 data["skills"] = {}
-            data["skills"]["paths"] = target_skill_paths
+            data["skills"]["paths"] = curr_skill_paths
 
             # 4. Update instructions
-            data["instructions"] = target_instructions
+            data["instructions"] = curr_instructions
 
             # 5. Update MCP servers
             if "mcp" not in data or not isinstance(data["mcp"], dict):
@@ -746,11 +761,11 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
             data["mcp"]["workshop"] = {
                 "type": "local",
                 "command": [
-                    py_path,
-                    mcp_script
+                    "python" if is_local_repo else py_path,
+                    "./scripts/workshop_mcp.py" if is_local_repo else mcp_script
                 ],
                 "environment": {
-                    "WORKSHOP_ROOT": root_str,
+                    "WORKSHOP_ROOT": "." if is_local_repo else root_str,
                     "PYTHONIOENCODING": "utf-8"
                 },
                 "enabled": True
@@ -760,26 +775,26 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
             if "filesystem" in data["mcp"] and isinstance(data["mcp"]["filesystem"], dict):
                 cmd = data["mcp"]["filesystem"].get("command", [])
                 if len(cmd) >= 6:
-                    cmd[5] = root_str
+                    cmd[5] = "." if is_local_repo else root_str
                     data["mcp"]["filesystem"]["command"] = cmd
 
             # Update camofox MCP server
             if "camofox" in data["mcp"] and isinstance(data["mcp"]["camofox"], dict):
                 cmd = data["mcp"]["camofox"].get("command", [])
                 if len(cmd) >= 2:
-                    cmd[1] = f"{root_str}/camofox-browser/mcp/server.mjs"
+                    cmd[1] = f"{r_str}/camofox-browser/mcp/server.mjs"
                     data["mcp"]["camofox"]["command"] = cmd
 
             # Update sqlite MCP server
             if "sqlite" in data["mcp"] and isinstance(data["mcp"]["sqlite"], dict):
                 cmd = data["mcp"]["sqlite"].get("command", [])
                 if len(cmd) >= 6:
-                    cmd[5] = f"{home_str}/.omniroute/data.sqlite"
+                    cmd[5] = "./.omniroute/data.sqlite" if is_local_repo else f"{home_str}/.omniroute/data.sqlite"
                     data["mcp"]["sqlite"]["command"] = cmd
 
             if not dry_run:
                 target_file.write_text(json.dumps(data, indent=2), encoding="utf-8")
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
 
 # ==============================================================================
@@ -789,11 +804,50 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(description="Workshop Harness Synchronizer")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing")
     parser.add_argument("--check", action="store_true", help="Verify all harness configurations are up-to-date")
     args = parser.parse_args()
+
+    if args.check:
+        print("=" * 65)
+        print(" 🔄 WORKSHOP OS HARNESS DRIFT CHECK")
+        print(f" Root: {ROOT}")
+        print("=" * 65)
+        print("[*] Running drift verification on canonical instructions...")
+        # Verify dynamic skill count invariant computed directly from manifest
+        manifest_f = ROOT / "skills" / "manifest.sha256"
+        exact_count = len([line for line in manifest_f.read_text(encoding="utf-8").splitlines() if line.strip()]) if manifest_f.is_file() else 0
+        expected_str = f"{exact_count:,} verified"
+        
+        drifted = []
+        canonical = CANONICAL_PROTOCOL.strip()
+        
+        if expected_str not in canonical:
+            drifted.append(f"Protocol skill count mismatch: manifest has {exact_count} skills, expected '{expected_str}' in CANONICAL_PROTOCOL")
+
+        for name in ["WORKSHOP_PROTOCOL.md", "AGENTS.md", "GEMINI.md", "CLAUDE.md"]:
+            target_f = ROOT / name
+            if not target_f.exists():
+                drifted.append(f"Missing file: {name}")
+            else:
+                content = target_f.read_text(encoding="utf-8").strip()
+                if content != canonical:
+                    drifted.append(f"Drift in {name}: content does not match CANONICAL_PROTOCOL")
+                if expected_str not in content:
+                    drifted.append(f"Skill count drift in {name}: missing '{expected_str}'")
+        if drifted:
+            print("\n❌ Harness instructions drift detected:")
+            for d in drifted:
+                print(f"  - {d}")
+            print("\nRun `python scripts/workshop_sync.py` to recompile all harnesses.")
+            sys.exit(1)
+        else:
+            print("\n✓ All agent instruction files (WORKSHOP_PROTOCOL.md, AGENTS.md, GEMINI.md, CLAUDE.md) are in sync.")
+            sys.exit(0)
 
     manifest = load_manifest()
     print("=" * 65)

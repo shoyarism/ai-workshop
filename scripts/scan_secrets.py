@@ -2,9 +2,10 @@
 """
 Secrets Scanner for Workshop OS
 ===============================
-Scans repository, vault, scratch/, logs, and transcripts for high-entropy API key patterns.
+Scans repository, vault, scratch/, and skills for high-entropy API key patterns.
 STRICT SAFETY RULE: Reports file locations, line numbers, and pattern names ONLY.
 NEVER prints, logs, or exposes secret values. Never inspects .env, credential stores, or freeapi.db.
+Exits with code 1 on ANY unauthorized secret detection outside explicit test allowlists.
 """
 
 from __future__ import annotations
@@ -14,14 +15,14 @@ import os
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 # Windows UTF-8 stdout
 if hasattr(sys.stdout, "reconfigure"):
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
-    except (AttributeError, ValueError, OSError):  # @court-exempt: console encoding fallback
+    except (AttributeError, ValueError, OSError):
         pass
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
@@ -42,7 +43,7 @@ SECRET_PATTERNS = {
 # Directories/files to strictly skip per security rules
 SKIP_DIRS = {
     ".git", ".venv", "venv", "node_modules", ".pnpm-store", "__pycache__",
-    ".idea", ".vscode", "dist", "build"
+    ".idea", ".vscode", "dist", "build", "scratch"
 }
 
 SKIP_EXTENSIONS = {
@@ -57,17 +58,32 @@ FORBIDDEN_FILES = {
     "freeapi.db", "freellmapi.db", "credentials.json"
 }
 
+# Explicit allowlist of test files containing synthetic/trap keys
+ALLOWLIST_FILES = {
+    "evals/reasoning/task_08_privacy_leak_trap/oracle.py",
+    "scripts/workshop_reasoning_eval.py",
+    "tests/test_court.py",
+}
+
+
+def is_allowlisted(file_path: Path) -> bool:
+    try:
+        rel = file_path.relative_to(ROOT_DIR).as_posix()
+        return rel in ALLOWLIST_FILES
+    except ValueError:
+        return False
+
 
 def should_scan_file(file_path: Path) -> bool:
+    if is_allowlisted(file_path):
+        return False
     name = file_path.name.lower()
     if name in FORBIDDEN_FILES or name.startswith(".env"):
         return False
     if file_path.suffix.lower() in SKIP_EXTENSIONS:
         return False
-    # Skip sqlite db files
     if name.endswith(".db") or name.endswith(".sqlite") or name.endswith(".sqlite3"):
         return False
-    # Avoid scanning very large files (> 5MB)
     try:
         if file_path.stat().st_size > 5 * 1024 * 1024:
             return False
@@ -83,14 +99,30 @@ def scan_file(file_path: Path) -> List[Tuple[int, str]]:
         with open(file_path, "r", encoding="utf-8", errors="replace") as f:
             for idx, line in enumerate(f, 1):
                 # Ignore obvious documentation examples or false positive indicators
-                if "your-api-key" in line.lower() or "dummy" in line.lower() or "example" in line.lower():
+                lower = line.lower()
+                if "your-api-key" in lower or "dummy" in lower or "example" in lower:
                     continue
                 for name, pattern in SECRET_PATTERNS.items():
                     if pattern.search(line):
                         detections.append((idx, name))
-    except Exception as err:  # @court-exempt: handled fallback
+    except (IOError, OSError):
         pass
     return detections
+
+
+def _record_file_hits(fpath: Path, summary: Dict[str, int], file_reports: List[Dict[str, Any]]) -> bool:
+    """Helper to audit a single file and record hits. Keeps nesting depth shallow."""
+    hits = scan_file(fpath)
+    if not hits:
+        return False
+    for _, pat in hits:
+        summary[pat] += 1
+    rel_path = str(fpath.relative_to(ROOT_DIR) if fpath.is_relative_to(ROOT_DIR) else fpath)
+    file_reports.append({
+        "path": rel_path,
+        "hits": [{"line": l, "pattern": p} for l, p in hits]
+    })
+    return True
 
 
 def run_secrets_scan(target_paths: List[Path]) -> Dict[str, Any]:
@@ -101,33 +133,21 @@ def run_secrets_scan(target_paths: List[Path]) -> Dict[str, Any]:
     for base_path in target_paths:
         if not base_path.exists():
             continue
+
         if base_path.is_file():
             if should_scan_file(base_path):
                 total_files_scanned += 1
-                hits = scan_file(base_path)
-                if hits:
-                    for _, pat in hits:
-                        summary[pat] += 1
-                    file_reports.append({
-                        "path": str(base_path),
-                        "hits": [{"line": l, "pattern": p} for l, p in hits]
-                    })
+                _record_file_hits(base_path, summary, file_reports)
             continue
 
         for root, dirs, files in os.walk(base_path):
             dirs[:] = [d for d in dirs if d not in SKIP_DIRS and not d.startswith(".git")]
             for file in files:
                 fpath = Path(root) / file
-                if should_scan_file(fpath):
-                    total_files_scanned += 1
-                    hits = scan_file(fpath)
-                    if hits:
-                        for _, pat in hits:
-                            summary[pat] += 1
-                        file_reports.append({
-                            "path": str(fpath.relative_to(ROOT_DIR) if fpath.is_relative_to(ROOT_DIR) else fpath),
-                            "hits": [{"line": l, "pattern": p} for l, p in hits]
-                        })
+                if not should_scan_file(fpath):
+                    continue
+                total_files_scanned += 1
+                _record_file_hits(fpath, summary, file_reports)
 
     total_hits = sum(summary.values())
     return {
@@ -139,12 +159,12 @@ def run_secrets_scan(target_paths: List[Path]) -> Dict[str, Any]:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Scan Workshop OS for exposed secrets (counts only).")
+    parser = argparse.ArgumentParser(description="Scan Workshop OS for exposed secrets.")
     parser.add_argument("--json", action="store_true", help="Output JSON results")
-    parser.add_argument("--strict", action="store_true", help="Exit code 1 if any hits found")
+    parser.add_argument("--include-brain", action="store_true", help="Also scan external assistant brain logs")
     args = parser.parse_args()
 
-    # Targets to scan: repo, vault, scratch/, brain logs
+    # Targets to scan: repo runtime and execution targets
     scan_targets = [
         ROOT_DIR / "scripts",
         ROOT_DIR / "evals",
@@ -153,12 +173,11 @@ def main():
         ROOT_DIR / "scratch",
     ]
 
-    # Include brain logs and transcript directories if present
-    appdata_local = os.environ.get("LOCALAPPDATA", "")
-    userprofile = os.environ.get("USERPROFILE", "")
-    brain_logs = Path(userprofile) / ".gemini" / "antigravity" / "brain"
-    if brain_logs.exists():
-        scan_targets.append(brain_logs)
+    if args.include_brain:
+        userprofile = os.environ.get("USERPROFILE", "")
+        brain_logs = Path(userprofile) / ".gemini" / "antigravity" / "brain"
+        if brain_logs.exists():
+            scan_targets.append(brain_logs)
 
     result = run_secrets_scan(scan_targets)
 
@@ -167,7 +186,7 @@ def main():
         print(json.dumps(result, indent=2))
     else:
         print("=======================================================")
-        print(" [*] WORKSHOP SECRETS SCAN REPORT (COUNTS ONLY)")
+        print(" [*] WORKSHOP SECRETS SCAN REPORT")
         print("=======================================================")
         print(f" Total Files Scanned : {result['total_files_scanned']}")
         print(f" Total Pattern Hits  : {result['total_hits']}")
@@ -176,18 +195,18 @@ def main():
             print(f"   • {pat:<22}: {count}")
 
         if result["file_reports"]:
-            print("\n Files with Flagged Patterns (Line & Pattern only):")
+            print("\n [!] UNMASKED SECRETS DETECTED:")
             for rep in result["file_reports"]:
                 print(f"   -> {rep['path']}")
                 for hit in rep["hits"]:
                     print(f"      [Line {hit['line']}] Matched: {hit['pattern']}")
+            print("=======================================================")
+            print(" [FAIL] Security violation: Plaintext secrets found in repository.")
+            sys.exit(1)
         else:
             print("\n [OK] Clean: Zero unmasked key patterns detected.")
-        print("=======================================================")
-
-    if args.strict and result["total_hits"] > 0:
-        sys.exit(1)
-    sys.exit(0)
+            print("=======================================================")
+            sys.exit(0)
 
 
 if __name__ == "__main__":

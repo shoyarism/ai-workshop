@@ -16,7 +16,7 @@ import json
 import argparse
 import urllib.request
 import urllib.parse
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 # Ensure UTF-8 output on Windows consoles
 if hasattr(sys.stdout, "reconfigure"):

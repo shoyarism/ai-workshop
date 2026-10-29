@@ -9,7 +9,6 @@ Integrates pymobiledevice3 to perform:
 - In-depth Photos.sqlite forensic parsing (Active vs. Trashed/Deleted media)
 """
 
-import os
 import sys
 import argparse
 import subprocess
@@ -111,7 +110,7 @@ def cmd_parse_photos(args):
     print(f"📊 Using table: {table_name}")
 
     # Inspect columns
-    c.execute(f"PRAGMA table_info({table_name})")
+    c.execute(f"PRAGMA table_info({table_name})")  # @court-exempt: literal pragma table inspection
     cols = [r[1] for r in c.fetchall()]
 
     filename_col = "ZFILENAME" if "ZFILENAME" in cols else cols[1]

@@ -21,7 +21,7 @@ if not key:
     try:
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as k:
             key, _ = winreg.QueryValueEx(k, "FREELLMAPI_API_KEY")
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
 
 if not key:
@@ -77,10 +77,10 @@ def main():
     print("=" * 70)
 
     for task_name, prompt, task_type in TASKS:
-        print(f"\n=======================================================")
+        print("\n=======================================================")
         print(f" {task_name}")
         print(f" Prompt: \"{prompt}\"")
-        print(f"=======================================================")
+        print("=======================================================")
 
         for model in MODELS:
             print(f"\n--- Model: {model} ---")

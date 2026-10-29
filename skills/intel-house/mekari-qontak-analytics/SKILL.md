@@ -1,4 +1,4 @@
-﻿---
+---
 name: mekari-qontak-analytics
 description: Omnichannel CRM, WhatsApp API, and Customer Care Agent Performance Analytics for Mekari Qontak
 ---

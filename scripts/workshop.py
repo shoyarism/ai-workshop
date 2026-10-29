@@ -41,7 +41,7 @@ SCRIPTS_DIR = Path(__file__).resolve().parent
 WORKSHOP_DIR = SCRIPTS_DIR.parent
 
 _VENV_PY = WORKSHOP_DIR / ".venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
-if _VENV_PY.exists() and Path(sys.executable).resolve() != _VENV_PY.resolve() and not os.environ.get("_WORKSHOP_VENV_REEXEC"):
+if __name__ == "__main__" and _VENV_PY.exists() and Path(sys.executable).resolve() != _VENV_PY.resolve() and not os.environ.get("_WORKSHOP_VENV_REEXEC"):
     os.environ["_WORKSHOP_VENV_REEXEC"] = "1"
     sys.exit(subprocess.call([str(_VENV_PY), *sys.argv]))
 
@@ -51,6 +51,13 @@ try:
     load_dotenv(WORKSHOP_DIR / ".env")
 except Exception:  # @court-exempt: optional dotenv fallback
     pass
+
+def _run_subproc(cmd, **kwargs):
+    """Execute child process and propagate its exit code on failure."""
+    res = subprocess.run(cmd, **kwargs)
+    if res.returncode != 0:
+        sys.exit(res.returncode)
+    return res
 
 def cmd_see(args):
     """Execute smart multimodal vision inspector."""
@@ -117,7 +124,7 @@ def cmd_info(args):
                 
     if not matched_key:
         print(f"[!] Subsystem '{args.name}' not found. Try searching with: python scripts/workshop.py search '{args.name}'")
-        return
+        sys.exit(1)
         
     info = subsystems[matched_key]
     if args.json:
@@ -172,7 +179,7 @@ def cmd_house(args):
         print(f" Total House Skills Indexed: {total_skills}")
         print(" Use: python scripts/workshop.py house inspect <slug> to explore any house.")
         print("=======================================================\n")
-        return
+        return 0
 
     # Inspect target house
     target = (args.target or args.action).lower().strip().replace(" ", "-")
@@ -184,7 +191,7 @@ def cmd_house(args):
             
     if not matched:
         print(f"[!] House '{target}' not found. Available houses: " + ", ".join([h[1] for h in houses]))
-        return
+        return 1
 
     title, slug, desc = matched
     p = skills_dir / slug
@@ -201,6 +208,7 @@ def cmd_house(args):
     for i, s in enumerate(subdirs, 1):
         print(f"   {i:3d}. {s}")
     print("\n=======================================================\n")
+    return 0
 
 def cmd_index(args):
     """Regenerate CATALOG.json and INDEX.md."""
@@ -210,7 +218,7 @@ def cmd_index(args):
 def cmd_doctor(args):
     """Run health diagnostic check."""
     from workshop_doctor import main as doctor_main
-    doctor_main()
+    doctor_main(strict=getattr(args, "strict", False))
 
 def cmd_hub(args):
     """Start live browser hub web dashboard."""
@@ -219,16 +227,22 @@ def cmd_hub(args):
 
 def cmd_browser(args):
     """Run browser agent task with optional live watching, CDP attachment, or profile mounting."""
-    from run_browser_agent import run_agent_session
-    run_agent_session(
-        args.url,
-        task=args.task,
-        headed=args.headed,
-        live=args.live,
-        browser_type=getattr(args, "browser", "chromium") or "chromium",
-        cdp=getattr(args, "cdp", None),
-        profile=getattr(args, "profile", None)
-    )
+    url = getattr(args, "url", None)
+    cdp = getattr(args, "cdp", None)
+    if url or cdp:
+        from run_browser_agent import run_agent_session
+        run_agent_session(
+            url,
+            task=getattr(args, "task", ""),
+            headed=getattr(args, "headed", False),
+            live=getattr(args, "live", False),
+            browser_type=getattr(args, "browser", "chromium") or "chromium",
+            cdp=cdp,
+            profile=getattr(args, "profile", None)
+        )
+    else:
+        sub_argv = sys.argv[2:]
+        _run_subproc([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
 
 def cmd_mcp(args):
     """Inspect and launch MCP servers."""
@@ -242,9 +256,10 @@ def cmd_mcp(args):
         if args.name in MCP_REGISTRY:
             cmd = MCP_REGISTRY[args.name]["command"]
             print(f"[*] Starting MCP Server: {args.name}...")
-            subprocess.run(cmd, shell=True if os.name == 'nt' else False)
+            _run_subproc(cmd, shell=True if os.name == 'nt' else False)
         else:
             print(f"[!] Unknown MCP server: {args.name}")
+            sys.exit(1)
 
 def cmd_services(args):
     """Manage Workshop persistent services and gateways."""
@@ -282,28 +297,21 @@ def cmd_desktop(args):
     sys.argv = ["workshop_desktop.py"] + sys.argv[2:]
     workshop_desktop.main()
 
-def cmd_browser(args):
-    """Launch/manage Virtual AI Computer & Browser Runner."""
-    sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "run_browser_agent.py")] + sub_argv)
-
 def cmd_forensic(args):
     """Execute Digital Forensics & Data Recovery commands."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_forensics.py")] + sub_argv)
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_forensics.py")] + sub_argv)
 
 def cmd_osint(args):
     """Execute OSINT & Auspex Intelligence Suite commands."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_osint.py")] + sub_argv)
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_osint.py")] + sub_argv)
 
 
 def cmd_event_bus(args):
     """Execute Agent Nervous System event bus commands."""
-    import workshop_event_bus
     sys.argv = ["workshop_event_bus.py"] + sys.argv[2:]
-    # Execute script directly
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_event_bus.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_event_bus.py")] + sys.argv[1:])
 
 def cmd_guard(args):
     """Execute Adversarial Verification Guard."""
@@ -312,27 +320,23 @@ def cmd_guard(args):
 
 def cmd_forge(args):
     """Execute Dynamic Tool Forge."""
-    import workshop_tool_forge
     # Remove the 'forge' command from sys.argv before passing to sub-script
     sub_argv = ["workshop_tool_forge.py"] + sys.argv[2:]
     sys.argv = sub_argv
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_tool_forge.py")] + sub_argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_tool_forge.py")] + sub_argv[1:])
 
 def cmd_route(args):
     """Execute Local Inference Router."""
-    import workshop_local_router
     sys.argv = ["workshop_local_router.py"] + sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_local_router.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_local_router.py")] + sys.argv[1:])
 
 def cmd_evolve(args):
     """Execute Self-Evolution Engine."""
-    import workshop_evolution
     sys.argv = ["workshop_evolution.py"] + sys.argv[2:]
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_evolution.py")] + sys.argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_evolution.py")] + sys.argv[1:])
 
 def cmd_semantic(args):
     """Execute Semantic Skill Indexer and Search."""
-    import workshop_semantic_indexer
     # Pass the semantic subcommand args to the sub-script
     sub_argv = ["workshop_semantic_indexer.py"]
     if hasattr(args, 'action') and args.action:
@@ -342,7 +346,7 @@ def cmd_semantic(args):
     if hasattr(args, 'limit') and args.limit:
         sub_argv.extend(["--limit", str(args.limit)])
     sys.argv = sub_argv
-    subprocess.run([sys.executable, str(SCRIPTS_DIR / "workshop_semantic_indexer.py")] + sub_argv[1:])
+    _run_subproc([sys.executable, str(SCRIPTS_DIR / "workshop_semantic_indexer.py")] + sub_argv[1:])
 
 def cmd_onboard(args):
     """Generate agent-specific config files."""
@@ -399,7 +403,7 @@ def cmd_github(args):
 def cmd_routine(args):
     """Execute Routine Bi-Daily Maintenance Supervisor."""
     sub_argv = sys.argv[2:]
-    subprocess.run([sys.executable, "-u", str(SCRIPTS_DIR / "workshop_routine.py")] + sub_argv)
+    _run_subproc([sys.executable, "-u", str(SCRIPTS_DIR / "workshop_routine.py")] + sub_argv)
 
 def cmd_status(args):
     """Print centralized Workshop status."""
@@ -453,7 +457,6 @@ def cmd_backup(args):
 
 def cmd_photoreal(args):
     """Execute Ultra-Realistic FLUX Photoreal Studio commands."""
-    import shutil
     photoreal_dir = WORKSHOP_DIR / "photoreal-studio"
     if not photoreal_dir.exists():
         print("[!] Photoreal Studio directory not found.")
@@ -650,9 +653,9 @@ def cmd_vox(args):
     """Execute Vox-Inspired Editorial Explainer Video Production Agent."""
     vox_script = SCRIPTS_DIR / "vox_production_agent.py"
     cmd = [sys.executable, str(vox_script)] + (args.args if hasattr(args, "args") and args.args else [])
-    subprocess.run(cmd)
+    _run_subproc(cmd)
 
-def main():
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Centralized Workshop Master CLI",
         formatter_class=argparse.RawDescriptionHelpFormatter
@@ -660,7 +663,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 
     # Search
-    p_search = subparsers.add_parser("search", help="Search 865+ skills, Subsystems, MCPs, APIs")
+    p_search = subparsers.add_parser("search", help="Search 2,150+ skills across 7 Houses, Subsystems, MCPs, APIs")
     p_search.add_argument("query", nargs="?", default="", help="Query keyword")
     p_search.add_argument("--category", "-c", choices=["all", "skills", "repos", "mcps", "apis"], default="all")
     p_search.add_argument("--limit", "-l", type=int, default=15)
@@ -687,7 +690,8 @@ def main():
     p_vision.add_argument("subcommand", nargs=argparse.REMAINDER)
 
     # Doctor
-    subparsers.add_parser("doctor", help="Run health diagnostics on Workshop")
+    p_doc = subparsers.add_parser("doctor", help="Run health diagnostics on Workshop")
+    p_doc.add_argument("--strict", action="store_true", help="Exit with code 1 on any critical failure")
 
     # Live Browser Hub
     p_hub = subparsers.add_parser("hub", help="Start Live Browser Hub (http://localhost:7860)")
@@ -854,93 +858,70 @@ def main():
     p_house.add_argument("action", choices=["list", "inspect"], nargs="?", default="list", help="House action")
     p_house.add_argument("target", nargs="?", default="", help="House slug to inspect")
 
-    args, extra = parser.parse_known_args()
+    return parser
+
+def main(argv=None):
+    parser = build_parser()
+    args, extra = parser.parse_known_args(argv)
     if extra and hasattr(args, "args") and isinstance(args.args, list):
         args.args.extend(extra)
 
-    if args.command == "routine":
-        cmd_routine(args)
-    elif args.command == "see":
-        cmd_see(args)
-    elif args.command == "vision":
-        cmd_vision(args)
-    elif args.command == "house":
-        cmd_house(args)
-    elif args.command == "search":
-        cmd_search(args)
-    elif args.command == "info":
-        cmd_info(args)
-    elif args.command == "index":
-        cmd_index(args)
-    elif args.command == "doctor":
-        cmd_doctor(args)
-    elif args.command == "hub":
-        cmd_hub(args)
-    elif args.command == "browser":
-        cmd_browser(args)
-    elif args.command == "hf":
-        cmd_hf(args)
-    elif args.command == "openrouter":
-        cmd_openrouter(args)
-    elif args.command == "github":
-        cmd_github(args)
-    elif args.command == "drift":
-        cmd_drift(args)
-    elif args.command == "onboard":
-        cmd_onboard(args)
-    elif args.command == "sync":
-        cmd_sync(args)
-    elif args.command == "eval":
-        cmd_eval(args)
-    elif args.command == "desktop":
-        cmd_desktop(args)
-    elif args.command == "event-bus":
-        cmd_event_bus(args)
-    elif args.command == "guard":
-        cmd_guard(args)
-    elif args.command == "forge":
-        cmd_forge(args)
-    elif args.command == "route":
-        cmd_route(args)
-    elif args.command == "evolve":
-        cmd_evolve(args)
-    elif args.command == "semantic":
-        cmd_semantic(args)
-    elif args.command == "mcp":
-        cmd_mcp(args)
-    elif args.command == "photoreal":
-        cmd_photoreal(args)
-    elif args.command == "antislop":
-        cmd_antislop(args)
-    elif args.command == "court":
-        cmd_court(args)
-    elif args.command == "services":
-        cmd_services(args)
-    elif args.command == "forensic":
-        cmd_forensic(args)
-    elif args.command == "osint":
-        cmd_osint(args)
-    elif args.command == "vault":
-        cmd_vault(args)
-    elif args.command == "backup":
-        cmd_backup(args)
-    elif args.command == "status":
-        cmd_status(args)
-    elif args.command == "vox":
-        cmd_vox(args)
-    elif args.command == "up":
-        cmd_up(args)
-    elif args.command == "down":
-        cmd_down(args)
-    elif args.command == "graphify":
-        cmd_graphify(args)
-    elif args.command == "repomix":
-        cmd_repomix(args)
-    elif args.command == "ast-grep":
-        cmd_ast_grep(args)
-    else:
+    if not args.command:
         cmd_status(args)
         parser.print_help()
+        return 0
+
+    dispatch = {
+        "routine": cmd_routine,
+        "see": cmd_see,
+        "vision": cmd_vision,
+        "house": cmd_house,
+        "search": cmd_search,
+        "info": cmd_info,
+        "index": cmd_index,
+        "doctor": cmd_doctor,
+        "hub": cmd_hub,
+        "browser": cmd_browser,
+        "hf": cmd_hf,
+        "openrouter": cmd_openrouter,
+        "github": cmd_github,
+        "drift": cmd_drift,
+        "onboard": cmd_onboard,
+        "sync": cmd_sync,
+        "eval": cmd_eval,
+        "desktop": cmd_desktop,
+        "event-bus": cmd_event_bus,
+        "guard": cmd_guard,
+        "forge": cmd_forge,
+        "route": cmd_route,
+        "evolve": cmd_evolve,
+        "semantic": cmd_semantic,
+        "mcp": cmd_mcp,
+        "photoreal": cmd_photoreal,
+        "antislop": cmd_antislop,
+        "court": cmd_court,
+        "services": cmd_services,
+        "forensic": cmd_forensic,
+        "osint": cmd_osint,
+        "vault": cmd_vault,
+        "backup": cmd_backup,
+        "status": cmd_status,
+        "vox": cmd_vox,
+        "up": cmd_up,
+        "down": cmd_down,
+        "graphify": cmd_graphify,
+        "repomix": cmd_repomix,
+        "ast-grep": cmd_ast_grep,
+    }
+
+    handler = dispatch.get(args.command)
+    if handler:
+        res = handler(args)
+        return res if isinstance(res, int) else 0
+
+    cmd_status(args)
+    parser.print_help()
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -28,11 +28,8 @@ Usage:
 import os
 import sys
 import json
-import math
-import base64
 import argparse
 import subprocess
-import time
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 
@@ -493,11 +490,11 @@ def generate_video_storyboard(
         for _, f in framedata:
             try:
                 f.unlink()
-            except Exception as err:  # @court-exempt: handled fallback
+            except Exception:  # @court-exempt: handled fallback
                 pass
         try:
             temp_dir.rmdir()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
             
         return output_image
@@ -533,12 +530,12 @@ def video_ocr_timeline(video_path: Path, sample_count: int = 8) -> Dict[str, Any
         
         try:
             frame_file.unlink()
-        except Exception as err:  # @court-exempt: handled fallback
+        except Exception:  # @court-exempt: handled fallback
             pass
             
     try:
         temp_dir.rmdir()
-    except Exception as err:  # @court-exempt: handled fallback
+    except Exception:  # @court-exempt: handled fallback
         pass
         
     return {
@@ -751,7 +748,7 @@ def main():
             print(res.get("agent_visual_summary", "No summary generated."))
             print(f"\nTheme: {res.get('theme')}")
             print(f"Dimensions: {res.get('dimensions')}")
-            print(f"Dominant Palette:")
+            print("Dominant Palette:")
             for p in res.get("dominant_palette", []):
                 print(f"  - {p['hex']} ({p['name']}) : {p['coverage_pct']}%")
             print()

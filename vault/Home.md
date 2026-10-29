@@ -56,7 +56,7 @@ python scripts/workshop.py vault search "<query>"
 ## 🏛️ Governance
 
 - **Immutable**: ADRs and Post-Mortems are append-only after merge
-- **Versioned**: All changes tracked via git in `D:\ai-workshop`
+- **Versioned**: All changes tracked via git in the Workshop repository root
 - **Cross-Session**: Survives agent restarts, context clears, /clear commands
 - **MCP Accessible**: `memory_recall` / `memory_write` tools for agents
 
