@@ -2,155 +2,207 @@
   <defs>
     <!-- Base Canvas Gradient -->
     <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090a0d"/>
-      <stop offset="60%" stop-color="#0d0e12"/>
-      <stop offset="100%" stop-color="#08090b"/>
+      <stop offset="0%" stop-color="#08090d"/>
+      <stop offset="50%" stop-color="#0d0e14"/>
+      <stop offset="100%" stop-color="#07080b"/>
     </linearGradient>
 
     <!-- Juror Standard Surface -->
     <linearGradient id="jurorGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#141620"/>
-      <stop offset="100%" stop-color="#0f1016"/>
+      <stop offset="0%" stop-color="#13151f"/>
+      <stop offset="100%" stop-color="#0c0d14"/>
     </linearGradient>
 
     <!-- Juror 03 Security Alert Surface -->
     <linearGradient id="jurorAlertGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1a1416"/>
-      <stop offset="100%" stop-color="#100c0e"/>
+      <stop offset="0%" stop-color="#1b1214"/>
+      <stop offset="100%" stop-color="#0e0a0c"/>
     </linearGradient>
 
-    <!-- Bevel Light Highlight -->
+    <!-- Structural Bevel Light -->
     <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#232736"/>
-      <stop offset="50%" stop-color="#383e54"/>
-      <stop offset="100%" stop-color="#232736"/>
+      <stop offset="0%" stop-color="#1e2230"/>
+      <stop offset="50%" stop-color="#363d54"/>
+      <stop offset="100%" stop-color="#1e2230"/>
     </linearGradient>
 
     <!-- Dot Grid Pattern -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="12" cy="12" r="0.75" fill="#1b1d28"/>
+      <circle cx="12" cy="12" r="0.75" fill="#181a24"/>
     </pattern>
+
+    <!-- Subtle Radar Scan Beam Gradient -->
+    <linearGradient id="scanBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff5722" stop-opacity="0"/>
+      <stop offset="85%" stop-color="#ff5722" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#ff5722" stop-opacity="0.08"/>
+    </linearGradient>
   </defs>
 
   <style>
-    .head-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -1px; fill: #f3f4f8; }
-    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1.2px; fill: #8c92a4; }
-    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
-    .col-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 800; font-size: 14.5px; fill: #f3f4f8; letter-spacing: -0.3px; }
-    .item-bullet { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 500; font-size: 12px; fill: #cbd0e0; }
-    .verdict-title { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
-    .verdict-line { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11.5px; fill: #9da3b4; }
+    /* Typography Invariants */
+    .head-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.8px; fill: #f3f4f8; }
+    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1px; fill: #8c92a4; }
+    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; }
+    .col-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 800; font-size: 14px; fill: #f3f4f8; letter-spacing: -0.3px; }
+    .item-bullet { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 500; font-size: 11.5px; fill: #cbd0e0; }
+    .verdict-title { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+    .verdict-line { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 11px; fill: #9da3b4; }
+
+    /* CSS Micro-Animations */
+    @keyframes radar-sweep {
+      0% { transform: translateY(0); opacity: 0.2; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(472px); opacity: 0; }
+    }
+    @keyframes beacon-ping {
+      0%, 100% { r: 3.5px; opacity: 0.9; }
+      50% { r: 7.5px; opacity: 0.25; }
+    }
+    @keyframes security-pulse {
+      0%, 100% { stroke-opacity: 0.7; }
+      50% { stroke-opacity: 1; }
+    }
+
+    .anim-scan { animation: radar-sweep 7s ease-in-out infinite; }
+    .anim-ping { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .anim-security { animation: security-pulse 2.5s ease-in-out infinite; }
   </style>
 
   <!-- 1. Background Ground -->
   <rect width="1200" height="520" fill="url(#groundGrad)"/>
   <rect width="1200" height="520" fill="url(#dotGrid)"/>
 
+  <!-- Scanning Radar Beam Overlay -->
+  <g clip-path="url(#courtClip)">
+    <rect x="24" y="24" width="1152" height="48" fill="url(#scanBeam)" class="anim-scan"/>
+  </g>
+  <clipPath id="courtClip">
+    <rect x="24" y="24" width="1152" height="472"/>
+  </clipPath>
+
   <!-- 2. Outer Frame -->
-  <rect x="24" y="24" width="1152" height="472" fill="none" stroke="#212432" stroke-width="1.2"/>
+  <rect x="24" y="24" width="1152" height="472" fill="none" stroke="#1f222e" stroke-width="1.2"/>
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
-  <line x1="25" y1="495" x2="1175" y2="495" stroke="#050608" stroke-width="1.2"/>
+  <line x1="25" y1="495" x2="1175" y2="495" stroke="#040507" stroke-width="1.2"/>
 
   <!-- Precision Calibration Targets -->
-  <g stroke="#ff5722" stroke-width="1" opacity="0.8">
+  <g stroke="#ff5722" stroke-width="1" opacity="0.75">
     <circle cx="24" cy="24" r="4.5" fill="none"/>
+    <line x1="17" y1="24" x2="31" y2="24"/>
+    <line x1="24" y1="17" x2="24" y2="31"/>
+
     <circle cx="1176" cy="24" r="4.5" fill="none"/>
+    <line x1="1169" y1="24" x2="1183" y2="24"/>
+    <line x1="1176" y1="17" x2="1176" y2="31"/>
+
     <circle cx="24" cy="496" r="4.5" fill="none"/>
+    <line x1="17" y1="496" x2="31" y2="496"/>
+    <line x1="24" y1="489" x2="24" y2="503"/>
+
     <circle cx="1176" cy="496" r="4.5" fill="none"/>
+    <line x1="1169" y1="496" x2="1183" y2="496"/>
+    <line x1="1176" y1="489" x2="1176" y2="503"/>
   </g>
 
-  <!-- 3. Header Section -->
+  <!-- 3. Header Section (Calibrated non-colliding layout) -->
   <g transform="translate(48, 50)">
-    <rect width="6" height="24" fill="#ff5722"/>
-    <text x="16" y="17" class="head-title">JUDICIAL TRIBUNAL // SLOP COURT v3.5 BENCH</text>
-    <text x="1104" y="12" text-anchor="end" class="mono-bold" fill="#ff5722">38 STATUTE PENAL CODE</text>
-    <text x="1104" y="27" text-anchor="end" class="mono-meta" fill="#8c92a4">FEL-01..06 (CAPITAL) • MIS-01..06 (CRAFT)</text>
+    <rect width="5" height="22" fill="#ff5722"/>
+    <text x="14" y="16" class="head-title">JUDICIAL TRIBUNAL // SLOP COURT v3.5 BENCH</text>
+    
+    <text x="1104" y="10" text-anchor="end" class="mono-bold" fill="#ff5722">38 STATUTE PENAL CODE</text>
+    <text x="1104" y="24" text-anchor="end" class="mono-meta" fill="#8c92a4">FEL-01..08 (CAPITAL) • MIS-01..06 (CRAFT)</text>
   </g>
 
-  <line x1="48" y1="88" x2="1152" y2="88" stroke="#1d202c" stroke-width="1"/>
-  <line x1="48" y1="89" x2="1152" y2="89" stroke="#0a0b10" stroke-width="1"/>
+  <line x1="48" y1="84" x2="1152" y2="84" stroke="#1a1d28" stroke-width="1"/>
+  <line x1="48" y1="85" x2="1152" y2="85" stroke="#08090d" stroke-width="1"/>
 
   <!-- 4. Three Asymmetric Juror Monoliths (Width: 350px each, gap: 27px, x: 48, 425, 802) -->
 
   <!-- JUROR 01: CRAFT & TONE -->
-  <g transform="translate(48, 108)">
-    <rect width="350" height="258" fill="url(#jurorGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="350" y2="0" stroke="#505672" stroke-width="2"/>
+  <g transform="translate(48, 104)">
+    <rect width="350" height="262" fill="url(#jurorGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#444b64" stroke-width="2.5"/>
     
-    <!-- Screws -->
-    <circle cx="12" cy="14" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
-    <circle cx="338" cy="14" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
+    <!-- Milled Screws -->
+    <circle cx="12" cy="14" r="3" fill="#141620" stroke="#2a2e40" stroke-width="0.8"/>
+    <circle cx="338" cy="14" r="3" fill="#141620" stroke="#2a2e40" stroke-width="0.8"/>
 
-    <g transform="translate(20, 24)">
+    <g transform="translate(18, 22)">
       <text x="0" y="0" class="mono-bold" fill="#8c92a4">JUROR 01 // STYLISTIC</text>
-      <text x="0" y="22" class="col-title">CRAFT &amp; TONE AUDITOR</text>
-      <line x1="0" y1="34" x2="310" y2="34" stroke="#222534"/>
+      <text x="0" y="20" class="col-title">CRAFT &amp; TONE AUDITOR</text>
+      <line x1="0" y1="32" x2="314" y2="32" stroke="#1e2230"/>
 
       <!-- Bullet Points -->
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-bullet">&#8226; AI buzzword &amp; marketing fluff purge (MIS-02)</text>
-        <text x="0" y="24" class="item-bullet">&#8226; Unearned purple gradient ban in CSS (MIS-03)</text>
-        <text x="0" y="48" class="item-bullet">&#8226; Tautological syntax comment purge (MIS-01)</text>
-        <text x="0" y="72" class="item-bullet">&#8226; Truncated code stub arrest: FEL-01</text>
+        <text x="0" y="22" class="item-bullet">&#8226; Unearned purple gradient ban in CSS (MIS-03)</text>
+        <text x="0" y="44" class="item-bullet">&#8226; Tautological syntax comment purge (MIS-01)</text>
+        <text x="0" y="66" class="item-bullet">&#8226; Truncated code stub arrest: FEL-01</text>
+        <text x="0" y="88" class="item-bullet">&#8226; Fabricated statistics &amp; metrics: FEL-04</text>
       </g>
 
-      <line x1="0" y1="184" x2="310" y2="184" stroke="#222534"/>
+      <line x1="0" y1="184" x2="314" y2="184" stroke="#1e2230"/>
       <text x="0" y="204" class="mono-meta" fill="#cbd0e0">BENCH WEIGHT: 40%</text>
-      <text x="0" y="220" class="mono-meta" fill="#505672">THRESHOLD: ZERO CAPITAL FELONIES</text>
+      <text x="0" y="220" class="mono-meta" fill="#505670">THRESHOLD: ZERO CAPITAL FELONIES</text>
     </g>
   </g>
 
   <!-- JUROR 02: ARCHITECTURE & AST -->
-  <g transform="translate(425, 108)">
-    <rect width="350" height="258" fill="url(#jurorGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="350" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(425, 104)">
+    <rect width="350" height="262" fill="url(#jurorGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="350" y2="0" stroke="#06b6d4" stroke-width="2.5"/>
 
-    <!-- Screws -->
-    <circle cx="12" cy="14" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
-    <circle cx="338" cy="14" r="3" fill="#161822" stroke="#2e3346" stroke-width="0.8"/>
+    <!-- Milled Screws -->
+    <circle cx="12" cy="14" r="3" fill="#141620" stroke="#2a2e40" stroke-width="0.8"/>
+    <circle cx="338" cy="14" r="3" fill="#141620" stroke="#2a2e40" stroke-width="0.8"/>
 
-    <g transform="translate(20, 24)">
-      <text x="0" y="0" class="mono-bold" fill="#cbd0e0">JUROR 02 // STRUCTURAL</text>
-      <text x="0" y="22" class="col-title">AST &amp; COMPLEXITY ARBITER</text>
-      <line x1="0" y1="34" x2="310" y2="34" stroke="#222534"/>
+    <g transform="translate(18, 22)">
+      <circle cx="0" cy="-2" r="2.5" fill="#06b6d4"/>
+      <text x="10" y="0" class="mono-bold" fill="#06b6d4">JUROR 02 // STRUCTURAL</text>
+      <text x="0" y="20" class="col-title">AST &amp; COMPLEXITY ARBITER</text>
+      <line x1="0" y1="32" x2="314" y2="32" stroke="#1e2230"/>
 
       <!-- Bullet Points -->
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-bullet">&#8226; Recursive Python AST syntax tree validation</text>
-        <text x="0" y="24" class="item-bullet">&#8226; Control nesting depth &gt; 5 rejection (MIS-06)</text>
-        <text x="0" y="48" class="item-bullet">&#8226; God-function &amp; cyclo-complexity restraint</text>
-        <text x="0" y="72" class="item-bullet">&#8226; Strict type safety &amp; contract boundaries</text>
+        <text x="0" y="22" class="item-bullet">&#8226; Control nesting depth &gt; 5 rejection (MIS-06)</text>
+        <text x="0" y="44" class="item-bullet">&#8226; Monolithic functions &gt; 150 stmts (MIS-07)</text>
+        <text x="0" y="66" class="item-bullet">&#8226; Lazy stubbed NotImplementedError: FEL-02</text>
+        <text x="0" y="88" class="item-bullet">&#8226; Strict type safety &amp; interface contracts</text>
       </g>
 
-      <line x1="0" y1="184" x2="310" y2="184" stroke="#222534"/>
+      <line x1="0" y1="184" x2="314" y2="184" stroke="#1e2230"/>
       <text x="0" y="204" class="mono-meta" fill="#cbd0e0">BENCH WEIGHT: 30%</text>
-      <text x="0" y="220" class="mono-meta" fill="#505672">THRESHOLD: ZERO CAPITAL FELONIES</text>
+      <text x="0" y="220" class="mono-meta" fill="#505670">THRESHOLD: ZERO CAPITAL FELONIES</text>
     </g>
   </g>
 
   <!-- JUROR 03: SECURITY & INVARIANTS -->
-  <g transform="translate(802, 108)">
-    <rect width="350" height="258" fill="url(#jurorAlertGrad)" stroke="#ff5722" stroke-width="1.5"/>
+  <g transform="translate(802, 104)">
+    <rect width="350" height="262" fill="url(#jurorAlertGrad)" stroke="#ff5722" stroke-width="1.4" class="anim-security"/>
     <line x1="0" y1="0" x2="350" y2="0" stroke="#ff5722" stroke-width="3"/>
 
-    <!-- Screws -->
-    <circle cx="12" cy="14" r="3" fill="#161822" stroke="#ff5722" stroke-width="0.8"/>
-    <circle cx="338" cy="14" r="3" fill="#161822" stroke="#ff5722" stroke-width="0.8"/>
+    <!-- Milled Screws -->
+    <circle cx="12" cy="14" r="3" fill="#141620" stroke="#ff5722" stroke-width="0.8"/>
+    <circle cx="338" cy="14" r="3" fill="#141620" stroke="#ff5722" stroke-width="0.8"/>
 
-    <g transform="translate(20, 24)">
-      <text x="0" y="0" class="mono-bold" fill="#ff5722">JUROR 03 // INTEGRITY</text>
-      <text x="0" y="22" class="col-title">SECURITY &amp; INVARIANTS</text>
-      <line x1="0" y1="34" x2="310" y2="34" stroke="#382522"/>
+    <g transform="translate(18, 22)">
+      <circle cx="0" cy="-2" r="2.5" fill="#ff5722" class="anim-ping"/>
+      <text x="10" y="0" class="mono-bold" fill="#ff5722">JUROR 03 // INTEGRITY</text>
+      <text x="0" y="20" class="col-title">SECURITY &amp; INVARIANTS</text>
+      <line x1="0" y1="32" x2="314" y2="32" stroke="#361a1d"/>
 
       <!-- Bullet Points -->
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-bullet">&#8226; Silent `except: pass` error blackhole (FEL-03)</text>
-        <text x="0" y="24" class="item-bullet">&#8226; Plaintext API token &amp; key scanner (FEL-06)</text>
-        <text x="0" y="48" class="item-bullet">&#8226; Subprocess exit code propagation verification</text>
-        <text x="0" y="72" class="item-bullet">&#8226; Irreversible data destruction guardrails</text>
+        <text x="0" y="22" class="item-bullet">&#8226; Plaintext API token &amp; key scanner (FEL-06)</text>
+        <text x="0" y="44" class="item-bullet">&#8226; Dangerous shell execution guard (FEL-07)</text>
+        <text x="0" y="66" class="item-bullet">&#8226; Raw SQL injection patterns: FEL-08</text>
+        <text x="0" y="88" class="item-bullet">&#8226; Subprocess exit code propagation verification</text>
       </g>
 
-      <line x1="0" y1="184" x2="310" y2="184" stroke="#382522"/>
+      <line x1="0" y1="184" x2="314" y2="184" stroke="#361a1d"/>
       <text x="0" y="204" class="mono-meta" fill="#ff5722">BENCH WEIGHT: 30%</text>
       <text x="0" y="220" class="mono-meta" fill="#8c92a4">THRESHOLD: ZERO CAPITAL FELONIES</text>
     </g>
@@ -159,28 +211,28 @@
   <!-- 5. Bottom Dual Decision Chambers (y: 386, height: 92px) -->
 
   <!-- Chamber A: Acquittal (Exit 0) (Width: 538px, x: 48) -->
-  <g transform="translate(48, 386)">
-    <rect width="538" height="92" fill="#0e1412" stroke="#163828" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="538" y2="0" stroke="#10b981" stroke-width="2"/>
+  <g transform="translate(48, 384)">
+    <rect width="538" height="92" fill="#0b1310" stroke="#163828" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#10b981" stroke-width="2.5"/>
 
-    <g transform="translate(18, 18)">
-      <circle cx="5" cy="5" r="4" fill="#10b981"/>
+    <g transform="translate(18, 16)">
+      <circle cx="5" cy="5" r="3.5" fill="#10b981" class="anim-ping"/>
       <text x="18" y="9" class="verdict-title" fill="#10b981">RULING A: UNANIMOUS 3/3 ACQUITTAL (EXIT 0)</text>
-      <text x="18" y="30" class="verdict-line">&#8226; Zero sustained Capital Felonies across all 3 jurors</text>
-      <text x="18" y="48" class="verdict-line">&#8226; Cryptographic SHA-256 clearance token generated for commit</text>
+      <text x="18" y="28" class="verdict-line">&#8226; Zero sustained Capital Felonies across all 3 jurors</text>
+      <text x="18" y="46" class="verdict-line">&#8226; Cryptographic SHA-256 clearance token generated for commit</text>
     </g>
   </g>
 
   <!-- Chamber B: Conviction (Exit 1) (Width: 538px, x: 614) -->
-  <g transform="translate(614, 386)">
-    <rect width="538" height="92" fill="#160e10" stroke="#3d1b1d" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="538" y2="0" stroke="#ff5722" stroke-width="2"/>
+  <g transform="translate(614, 384)">
+    <rect width="538" height="92" fill="#150b0e" stroke="#3d1b1d" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#ff5722" stroke-width="2.5"/>
 
-    <g transform="translate(18, 18)">
-      <circle cx="5" cy="5" r="4" fill="#ff5722"/>
+    <g transform="translate(18, 16)">
+      <circle cx="5" cy="5" r="3.5" fill="#ff5722" class="anim-ping"/>
       <text x="18" y="9" class="verdict-title" fill="#ff5722">RULING B: CONTEMPT OF COURT (EXIT 1)</text>
-      <text x="18" y="30" class="verdict-line">&#8226; Capital Felony breach detected (stub, secret, error blackhole)</text>
-      <text x="18" y="48" class="verdict-line">&#8226; Git Bailiff intercepts and aborts commit immediately</text>
+      <text x="18" y="28" class="verdict-line">&#8226; Capital Felony breach detected (stub, secret, error blackhole)</text>
+      <text x="18" y="46" class="verdict-line">&#8226; Git Bailiff intercepts and aborts commit immediately</text>
     </g>
   </g>
 </svg>

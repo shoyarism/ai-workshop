@@ -2,85 +2,140 @@
   <defs>
     <!-- Base Canvas Gradient -->
     <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090a0d"/>
-      <stop offset="60%" stop-color="#0d0e12"/>
-      <stop offset="100%" stop-color="#08090b"/>
+      <stop offset="0%" stop-color="#08090d"/>
+      <stop offset="50%" stop-color="#0d0e14"/>
+      <stop offset="100%" stop-color="#07080b"/>
     </linearGradient>
 
     <!-- Card Inset Surface -->
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#141620"/>
-      <stop offset="100%" stop-color="#0f1016"/>
+      <stop offset="0%" stop-color="#13151f"/>
+      <stop offset="100%" stop-color="#0c0d14"/>
     </linearGradient>
 
-    <!-- Bevel Light Highlight -->
+    <!-- Security High-Alert Card Inset -->
+    <linearGradient id="secCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b1214"/>
+      <stop offset="100%" stop-color="#0e0a0c"/>
+    </linearGradient>
+
+    <!-- Structural Bevel Light -->
     <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#232736"/>
-      <stop offset="50%" stop-color="#383e54"/>
-      <stop offset="100%" stop-color="#232736"/>
+      <stop offset="0%" stop-color="#1e2230"/>
+      <stop offset="50%" stop-color="#363d54"/>
+      <stop offset="100%" stop-color="#1e2230"/>
     </linearGradient>
 
     <!-- Dot Grid Pattern -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="12" cy="12" r="0.75" fill="#1b1d28"/>
+      <circle cx="12" cy="12" r="0.75" fill="#181a24"/>
     </pattern>
+
+    <!-- Subtle Radar Scan Beam Gradient -->
+    <linearGradient id="scanBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff5722" stop-opacity="0"/>
+      <stop offset="85%" stop-color="#ff5722" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#ff5722" stop-opacity="0.08"/>
+    </linearGradient>
   </defs>
 
   <style>
-    .head-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -1px; fill: #f3f4f8; }
-    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; letter-spacing: 1.2px; fill: #8c92a4; }
-    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; }
-    .house-num { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 11px; font-weight: 800; fill: #f3f4f8; }
-    .house-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 800; font-size: 12px; fill: #cbd0e0; letter-spacing: -0.2px; }
-    .house-stat { font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 700; fill: #ff5722; }
-    .item-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; font-size: 11px; fill: #f3f4f8; }
-    .item-desc { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 9px; fill: #72798e; }
+    /* Typography Invariants */
+    .head-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; font-size: 20px; letter-spacing: -0.8px; fill: #f3f4f8; }
+    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 9.5px; letter-spacing: 1px; fill: #8c92a4; }
+    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; }
+    .house-num { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 10px; font-weight: 800; fill: #f3f4f8; }
+    .house-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 800; font-size: 11px; fill: #cbd0e0; letter-spacing: -0.2px; }
+    .house-stat { font-family: "JetBrains Mono", monospace; font-size: 9px; font-weight: 700; fill: #ff5722; }
+    .item-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-weight: 700; font-size: 10.5px; fill: #f3f4f8; }
+    .item-desc { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 8.5px; fill: #72798e; }
+
+    /* CSS Micro-Animations */
+    @keyframes radar-sweep {
+      0% { transform: translateY(0); opacity: 0.2; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(492px); opacity: 0; }
+    }
+    @keyframes beacon-ping {
+      0%, 100% { r: 2.5px; opacity: 0.9; }
+      50% { r: 5.5px; opacity: 0.3; }
+    }
+    @keyframes house-glow {
+      0%, 100% { stroke-opacity: 0.6; }
+      50% { stroke-opacity: 1; }
+    }
+
+    .anim-scan { animation: radar-sweep 7s ease-in-out infinite; }
+    .anim-ping { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .anim-glow { animation: house-glow 3s ease-in-out infinite; }
   </style>
 
-  <!-- 1. Background Substrate -->
+  <!-- 1. Background Ground -->
   <rect width="1200" height="540" fill="url(#groundGrad)"/>
   <rect width="1200" height="540" fill="url(#dotGrid)"/>
 
+  <!-- Scanning Radar Beam Overlay -->
+  <g clip-path="url(#housesClip)">
+    <rect x="24" y="24" width="1152" height="48" fill="url(#scanBeam)" class="anim-scan"/>
+  </g>
+  <clipPath id="housesClip">
+    <rect x="24" y="24" width="1152" height="492"/>
+  </clipPath>
+
   <!-- 2. Outer Frame -->
-  <rect x="24" y="24" width="1152" height="492" fill="none" stroke="#212432" stroke-width="1.2"/>
+  <rect x="24" y="24" width="1152" height="492" fill="none" stroke="#1f222e" stroke-width="1.2"/>
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
-  <line x1="25" y1="515" x2="1175" y2="515" stroke="#050608" stroke-width="1.2"/>
+  <line x1="25" y1="515" x2="1175" y2="515" stroke="#040507" stroke-width="1.2"/>
 
   <!-- Optical Precision Targets -->
-  <g stroke="#ff5722" stroke-width="1" opacity="0.8">
+  <g stroke="#ff5722" stroke-width="1" opacity="0.75">
     <circle cx="24" cy="24" r="4.5" fill="none"/>
+    <line x1="17" y1="24" x2="31" y2="24"/>
+    <line x1="24" y1="17" x2="24" y2="31"/>
+
     <circle cx="1176" cy="24" r="4.5" fill="none"/>
+    <line x1="1169" y1="24" x2="1183" y2="24"/>
+    <line x1="1176" y1="17" x2="1176" y2="31"/>
+
     <circle cx="24" cy="516" r="4.5" fill="none"/>
+    <line x1="17" y1="516" x2="31" y2="516"/>
+    <line x1="24" y1="509" x2="24" y2="523"/>
+
     <circle cx="1176" cy="516" r="4.5" fill="none"/>
+    <line x1="1169" y1="516" x2="1183" y2="516"/>
+    <line x1="1176" y1="509" x2="1176" y2="523"/>
   </g>
 
   <!-- 3. Header Bar -->
   <g transform="translate(48, 50)">
-    <rect width="6" height="24" fill="#ff5722"/>
-    <text x="16" y="17" class="head-title">WORKSHOP OS // SOVEREIGN HOUSES TOPOLOGY</text>
-    <text x="1104" y="12" text-anchor="end" class="mono-bold" fill="#ff5722">SPEC 3.5 // MODULAR RUNTIME</text>
-    <text x="1104" y="27" text-anchor="end" class="mono-meta" fill="#8c92a4">2,150+ RUNBOOKS • ZERO-SLOP AST</text>
+    <rect width="5" height="22" fill="#ff5722"/>
+    <text x="14" y="16" class="head-title">WORKSHOP OS // 7 SOVEREIGN HOUSES TOPOLOGY</text>
+    
+    <text x="1104" y="10" text-anchor="end" class="mono-bold" fill="#ff5722">SPEC 3.5 // MODULAR RUNTIME</text>
+    <text x="1104" y="24" text-anchor="end" class="mono-meta" fill="#8c92a4">2,150+ RUNBOOKS • ZERO-SLOP AST</text>
   </g>
 
-  <line x1="48" y1="88" x2="1152" y2="88" stroke="#1d202c" stroke-width="1"/>
-  <line x1="48" y1="89" x2="1152" y2="89" stroke="#0a0b10" stroke-width="1"/>
+  <line x1="48" y1="84" x2="1152" y2="84" stroke="#1a1d28" stroke-width="1"/>
+  <line x1="48" y1="85" x2="1152" y2="85" stroke="#08090d" stroke-width="1"/>
 
   <!-- 4. The 7 Sovereign Houses Matrix (Width: 148px each, x: 48, 207, 366, 526, 685, 844, 1004) -->
 
   <!-- HOUSE 01: SECURITY -->
-  <g transform="translate(48, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#2d3244" stroke-width="1.2"/>
+  <g transform="translate(48, 104)">
+    <rect width="148" height="392" fill="url(#secCardGrad)" stroke="#ff5722" stroke-width="1.3" class="anim-glow"/>
     <line x1="0" y1="0" x2="148" y2="0" stroke="#ff5722" stroke-width="3"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">01</text>
-      <text x="24" y="0" class="house-name">SECURITY</text>
-      <rect x="0" y="10" width="84" height="18" fill="#1f1414" stroke="#ff5722" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#ff5722">835 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#ff5722" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">01</text>
+      <text x="30" y="0" class="house-name">SECURITY</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#201113" stroke="#ff5722" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#ff5722">835 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#361a1d"/>
 
-      <!-- Items (Guaranteed <= 16 chars) -->
-      <g transform="translate(0, 54)">
+      <!-- Items -->
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">Slop Court v3.5</text>
         <text x="0" y="14" class="item-desc">AST Pre-Commit</text>
 
@@ -97,25 +152,26 @@
         <text x="0" y="166" class="item-desc">FEL-06 Invariant</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#ff5722">CHAMBER: DEFENSE</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#361a1d"/>
+      <text x="0" y="356" class="mono-meta" fill="#ff5722">GUILD // DEFENSE</text>
     </g>
   </g>
 
   <!-- HOUSE 02: DEV -->
-  <g transform="translate(207, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(207, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#505672" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
+    <g transform="translate(12, 16)">
       <text x="0" y="0" class="house-num">02</text>
-      <text x="24" y="0" class="house-name">DEVELOPMENT</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">357 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+      <text x="20" y="0" class="house-name">DEVELOPMENT</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#12141f" stroke="#363d54" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#cbd0e0">357 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">Superpowers</text>
         <text x="0" y="14" class="item-desc">Strict TDD Suite</text>
 
@@ -132,25 +188,27 @@
         <text x="0" y="166" class="item-desc">Syntax Refactor</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: SYNTAX</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#8c92a4">GUILD // SYNTAX</text>
     </g>
   </g>
 
   <!-- HOUSE 03: MEDIA -->
-  <g transform="translate(366, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(366, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#a855f7" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">03</text>
-      <text x="24" y="0" class="house-name">MEDIA &amp; VIDEO</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">178 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#a855f7" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">03</text>
+      <text x="30" y="0" class="house-name">MEDIA &amp; VIDEO</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#1b1224" stroke="#6b21a8" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#c084fc">178 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">HyperFrames</text>
         <text x="0" y="14" class="item-desc">Physics Motion</text>
 
@@ -167,25 +225,27 @@
         <text x="0" y="166" class="item-desc">Visual Rigor</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: SIGHT</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#c084fc">GUILD // SIGHT</text>
     </g>
   </g>
 
   <!-- HOUSE 04: OPS -->
-  <g transform="translate(526, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(526, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#f59e0b" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">04</text>
-      <text x="24" y="0" class="house-name">OPS &amp; TOKENS</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">166 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#f59e0b" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">04</text>
+      <text x="30" y="0" class="house-name">OPS &amp; TOKENS</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#1f180f" stroke="#b45309" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#fbbf24">166 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">Caveman Diet</text>
         <text x="0" y="14" class="item-desc">-70% Token Diet</text>
 
@@ -202,25 +262,27 @@
         <text x="0" y="166" class="item-desc">Sprint Velocity</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: BUDGET</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#fbbf24">GUILD // BUDGET</text>
     </g>
   </g>
 
   <!-- HOUSE 05: DESIGN -->
-  <g transform="translate(685, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(685, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#06b6d4" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">05</text>
-      <text x="24" y="0" class="house-name">DESIGN &amp; UI</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">132 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#06b6d4" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">05</text>
+      <text x="30" y="0" class="house-name">DESIGN &amp; UI</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#0c1920" stroke="#0891b2" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#38bdf8">132 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">UI/UX Pro Max</text>
         <text x="0" y="14" class="item-desc">Design Tokens</text>
 
@@ -237,25 +299,27 @@
         <text x="0" y="166" class="item-desc">Deck Architecture</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: CRAFT</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#38bdf8">GUILD // CRAFT</text>
     </g>
   </g>
 
   <!-- HOUSE 06: INTEL -->
-  <g transform="translate(844, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(844, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#10b981" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">06</text>
-      <text x="24" y="0" class="house-name">INTEL &amp; GRAPH</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">90 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#10b981" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">06</text>
+      <text x="30" y="0" class="house-name">INTEL &amp; GRAPH</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#0e1a14" stroke="#059669" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#34d399">90 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">Graphify AST</text>
         <text x="0" y="14" class="item-desc">Knowledge Graph</text>
 
@@ -272,25 +336,27 @@
         <text x="0" y="166" class="item-desc">Reverse Engine</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: INTEL</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#34d399">GUILD // INTEL</text>
     </g>
   </g>
 
   <!-- HOUSE 07: GROWTH -->
-  <g transform="translate(1004, 108)">
-    <rect width="148" height="388" fill="url(#cardGrad)" stroke="#25293a" stroke-width="1.2"/>
-    <line x1="0" y1="0" x2="148" y2="0" stroke="#71788e" stroke-width="2"/>
+  <g transform="translate(1004, 104)">
+    <rect width="148" height="392" fill="url(#cardGrad)" stroke="#222636" stroke-width="1.2"/>
+    <line x1="0" y1="0" x2="148" y2="0" stroke="#ec4899" stroke-width="2.5"/>
     
-    <g transform="translate(14, 18)">
-      <text x="0" y="0" class="house-num">07</text>
-      <text x="24" y="0" class="house-name">GROWTH &amp; SEO</text>
-      <rect x="0" y="10" width="84" height="18" fill="#141722" stroke="#40465c" stroke-width="0.8"/>
-      <text x="8" y="23" class="house-stat" fill="#cbd0e0">79 SKILLS</text>
-      <line x1="0" y1="38" x2="120" y2="38" stroke="#222534"/>
+    <g transform="translate(12, 16)">
+      <circle cx="2" cy="-2" r="2.5" fill="#ec4899" class="anim-ping"/>
+      <text x="10" y="0" class="house-num">07</text>
+      <text x="30" y="0" class="house-name">GROWTH &amp; SEO</text>
+      
+      <rect x="0" y="10" width="80" height="17" fill="#201019" stroke="#be185d" stroke-width="0.8"/>
+      <text x="6" y="22" class="house-stat" fill="#f472b6">79 SKILLS</text>
+      <line x1="0" y1="36" x2="124" y2="36" stroke="#1e2230"/>
 
       <!-- Items -->
-      <g transform="translate(0, 54)">
+      <g transform="translate(0, 52)">
         <text x="0" y="0" class="item-title">OpenSEO Engine</text>
         <text x="0" y="14" class="item-desc">Technical Audits</text>
 
@@ -307,8 +373,8 @@
         <text x="0" y="166" class="item-desc">Signal Analytics</text>
       </g>
 
-      <line x1="0" y1="334" x2="120" y2="334" stroke="#222534"/>
-      <text x="0" y="352" class="mono-meta" fill="#8c92a4">CHAMBER: MARKET</text>
+      <line x1="0" y1="338" x2="124" y2="338" stroke="#1e2230"/>
+      <text x="0" y="356" class="mono-meta" fill="#f472b6">GUILD // MARKET</text>
     </g>
   </g>
 </svg>
