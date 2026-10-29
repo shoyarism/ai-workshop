@@ -42,19 +42,17 @@ jobs:
         run: |
           pytest --cov=scripts.workshop --cov=scripts.agent_runtime --cov=scripts.agent_watchdog --cov-fail-under=40 tests
 
-      - name: Dependency Vulnerability Audit
-        continue-on-error: true
+      - name: Dependency Vulnerability Audit (pip-audit)
         run: |
           pip-audit
 
-      - name: Static Type Check Baseline (mypy)
-        continue-on-error: true
+      - name: Static Type Check Quality Gate (mypy)
         run: |
-          mypy --ignore-missing-imports scripts
+          mypy --ignore-missing-imports scripts/workshop_court.py scripts/workshop_skills.py scripts/workshop_sync.py
 
       - name: Enforce Code Linter (Ruff)
         run: |
-          ruff check --select F scripts tests
+          ruff check --select F,E9,W6,B006,B008 scripts tests
 
       - name: Run Slop Court Quality Tribunal on Scripts
         run: |

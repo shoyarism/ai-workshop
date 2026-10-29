@@ -28,13 +28,13 @@ import sys
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 # Ensure UTF-8 output across all consoles
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
     try:
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        getattr(sys.stdout, "reconfigure", lambda **kwargs: None)(encoding="utf-8", errors="replace")
+        getattr(sys.stderr, "reconfigure", lambda **kwargs: None)(encoding="utf-8", errors="replace")
     except (AttributeError, ValueError, OSError):
         # Graceful fallback on non-standard terminal streams
         pass
@@ -898,8 +898,9 @@ def render_trial_report(verdict: Verdict, show_jury: bool = True) -> str:
     if active_charges:
         out.append(" [CHARGES SUSTAINED BY THE TRIBUNAL]")
         for c in active_charges[:25]:
+            rel: str
             try:
-                rel = c.file_path.relative_to(WORKSHOP_DIR)
+                rel = str(c.file_path.relative_to(WORKSHOP_DIR))
             except ValueError:
                 rel = c.file_path.name
             out.append(f"  • [{c.gravity}] {c.statute_code} ({c.juror_domain}) at {rel}:{c.line_number}")

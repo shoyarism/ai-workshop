@@ -8,6 +8,10 @@
 [![Quality Gate](https://img.shields.io/badge/Slop_Court-v3.5_Armed-eb5e28.svg)](scripts/workshop_court.py)
 [![Code Style: Ruff](https://img.shields.io/badge/linter-ruff-black.svg)](pyproject.toml)
 
+<br>
+
+[English](README.md) • [简体中文](docs/i18n/README.zh-CN.md) • [日本語](docs/i18n/README.ja.md) • [Español](docs/i18n/README.es.md)
+
 </div>
 
 <br>

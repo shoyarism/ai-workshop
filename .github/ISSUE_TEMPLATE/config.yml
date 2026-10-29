@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Workshop OS Community Discussions
+    url: https://github.com/shoyarism/ai-workshop/discussions
+    about: Ask questions, share cookbooks, propose skills, and debate architectures with fellow synthetic engineers.

@@ -302,7 +302,7 @@ def sync_antigravity(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[st
     
     backup_file(mcp_cfg_path)
     
-    mcp_data = {"mcpServers": {}}
+    mcp_data: Dict[str, Any] = {"mcpServers": {}}
     if mcp_cfg_path.is_file() and mcp_cfg_path.stat().st_size > 0:
         try:
             mcp_data = json.loads(mcp_cfg_path.read_text(encoding="utf-8"))
@@ -414,7 +414,7 @@ def sync_subagents(manifest: Dict[str, Any], dry_run: bool = False) -> Dict[str,
         opencode_global_agents.mkdir(parents=True, exist_ok=True)
 
     roles_summary = []
-    antigravity_manifest = {"subagents": {}}
+    antigravity_manifest: Dict[str, Any] = {"subagents": {}}
 
     for role, cfg in subagents.items():
         desc = cfg.get("description", "")
