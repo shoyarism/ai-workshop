@@ -44,6 +44,9 @@
 - [08 // Master CLI Command Palette](#08--master-cli-command-palette)
 - [09 // Harness Configuration Matrix](#09--harness-configuration-matrix)
 - [10 // Project Documentation & Examples](#10--project-documentation--examples)
+- [10b // Architecture Decision Records & Post-Mortems](#10b--architecture-decision-records--post-mortems)
+- [10c // Test Coverage & Quality Assurance](#10c--test-coverage--quality-assurance)
+- [10d // Interactive Brand Assets](#10d--interactive-brand-assets)
 - [11 // Synthetic Team, Authors & Contributors](#11--the-synthetic-team-authors--contributors)
 - [12 // Open Source Governance & Licensing](#12--open-source-governance--licensing)
 
@@ -337,13 +340,103 @@ Connect Workshop OS to your preferred AI agent environment using the master inst
 
 ---
 
+## 10b // Architecture Decision Records & Post-Mortems
+
+Workshop OS maintains a formal knowledge base in [`vault/`](vault/) documenting architectural choices and incident analysis:
+
+### Architecture Decision Records (ADRs)
+
+| ADR | Title | Status | Date |
+| --- | --- | --- | --- |
+| [ADR-001](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-001-slop-court-implementation.md) | Slop Court Judicial Quality Tribunal Implementation | Accepted | 2026-08-06 |
+| [ADR-002](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-002-supreme-council-debate.md) | Universal Supreme Council Multi-Persona Debate Framework | Accepted | 2026-08-06 |
+| [ADR-003](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-003-obsidian-second-brain.md) | Obsidian Second Brain Persistent Memory System | Accepted | 2026-08-06 |
+| [ADR-004](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-004-fastmcp-protocol-server.md) | FastMCP Protocol Server Native Integration | Accepted | 2026-08-06 |
+| [ADR-005](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-005-git-bailiff-enforcement-system.md) | Git Bailiff Pre-Commit/Pre-Push Enforcement System | Accepted | 2026-08-06 |
+| [ADR-006](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-006-workshop-cli-command-architecture.md) | Workshop Master CLI Command Architecture | Accepted | 2026-09-22 |
+| [ADR-007](vault/01%20-%20Architecture%20Decision%20Records%20(ADRs)/ADR-007-zero-clone-cloud-streaming.md) | Zero-Clone Cloud Streaming Protocol | Accepted | 2026-09-22 |
+
+### Post-Mortems
+
+| PM | Title | Severity | Date | Status |
+| --- | --- | --- | --- | --- |
+| [PM-001](vault/02%20-%20Post-Mortems/PM-001-truncated-code-fraud.md) | Truncated Code Fraud Incident | P0 | 2026-09-15 | Resolved |
+| [PM-002](vault/02%20-%20Post-Mortems/PM-002-naked-exception-blackhole.md) | Silent Exception Blackhole Outage | P1 | 2026-09-22 | Resolved |
+
+---
+
+## 10c // Test Coverage & Quality Assurance
+
+### Extended Slop Court Test Suite
+
+The [`tests/test_court_extended.py`](tests/test_court_extended.py) file provides comprehensive test coverage for all 8 felony statutes and 5 misdemeanor violations:
+
+```bash
+# Run extended Slop Court verification suite
+python -m pytest tests/test_court_extended.py -v
+```
+
+**Coverage includes:**
+- **FEL-07:** Dynamic code execution (`eval()`, `exec()`) detection
+- **FEL-08:** SQL injection via f-string pattern detection
+- **MIS-06:** Deep nesting complexity violations
+- **INF-02:** Missing docstrings in public functions
+- **Wildcard imports:** `from module import *` detection
+- **Hardcoded secrets:** Stripe, AWS, and other credential patterns
+- **Clean code validation:** Type-hinted, documented code passes
+
+---
+
+## 10d // Interactive Brand Assets
+
+Launch interactive demonstration assets to explore Workshop OS design systems:
+
+```bash
+# Open the interactive CLI command showcase with modal popups
+start assets/cli-command-showcase.html
+
+# View the animated hero banner with CSS transitions
+start assets/hero-banner-animated.html
+```
+
+### Asset Gallery
+
+| Asset | Preview | Description |
+| --- | --- | --- |
+| [`brand-colors.svg`](assets/brand-colors.svg) | Color swatches | Signal vermilion (`#eb5e28`) primary palette with dark canvas variants |
+| [`court-tribunal-animated.svg`](assets/court-tribunal-animated.svg) | Animated SVG | Slop Court judicial tribunal visualization |
+| [`hero-banner-animated.html`](assets/hero-banner-animated.html) | Full-screen | Interactive CSS-animated hero banner with grid pulse and accent sweep |
+| [`cli-command-showcase.html`](assets/cli-command-showcase.html) | Modal popups | Interactive CLI reference with expandable command details |
+
+<details>
+<summary><b>🔍 Expand: Color Token Palette</b></summary>
+
+```css
+:root {
+  --signal-primary: #eb5e28;    /* Signal Vermilion */
+  --signal-deep: #e0531c;       /* Ochre Deep */
+  --canvas-ground: #111215;     /* Matte Dark Graphite */
+  --canvas-mid: #141519;        /* Mid-Tone Graphite */
+  --canvas-deep: #0f1013;       /* Deep Obsidian */
+  --text-primary: #f0f0f0;      /* Bone White */
+  --text-secondary: #b8bac2;    /* Soft Gray */
+  --text-disabled: #50535e;     /* Cool Gray */
+  --divider: #252730;           /* Dividers */
+}
+```
+</details>
+
+---
+
 ## 11 // THE SYNTHETIC TEAM, AUTHORS & CONTRIBUTORS
 
 Workshop OS is built through a human-synthetic collaborative engineering swarm and an open-source lineage. See [AUTHORS.md](AUTHORS.md) for full attribution:
 
 * **Human Founder, Lead Architect & Designer:** **shoyarism** ([@shoyarism](https://github.com/shoyarism))
+* **Co-Founding AI Architects:**
+  * **Antigravity (Google DeepMind & Gemini)** — Master Systems Architect & Integrator
+  * **Google (Gemini & DeepMind)** — AI Infrastructure & Synthetic Intelligence
 * **The Synthetic Engineering Swarm:**
-  * **Antigravity (Google DeepMind)** — Master Systems Architect & Integrator
   * **Slop Court Magistrate** — Chief Judicial Arbiter & AST Invariant Auditor
   * **Skeptical Inquisitor** — Adversarial Red-Team Lead & Failure Invariant Hunter
   * **Radical Minimalist** — Anti-Bloat, KISS Principle & YAGNI Champion
@@ -362,3 +455,5 @@ Workshop OS is built through a human-synthetic collaborative engineering swarm a
 * **Code of Conduct:** Community expectations documented in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 * **Security Policy & Threat Model:** Detailed operational boundaries and responsible disclosure protocols are in [SECURITY.md](SECURITY.md).
 * **Episodic Memory Vault:** Architecture Decision Records (ADRs) and Post-Mortems live in [`vault/`](vault/).
+
+---
