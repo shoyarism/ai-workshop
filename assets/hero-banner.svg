@@ -1,79 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
   <defs>
-    <!-- Master Dark Palette: Neutral Obsidian Canvas -->
-    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#08090d"/>
-      <stop offset="50%" stop-color="#0d0e14"/>
-      <stop offset="100%" stop-color="#07080b"/>
+    <!-- Deep Obsidian Canvas Gradient -->
+    <linearGradient id="heroGround" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06070a"/>
+      <stop offset="50%" stop-color="#0a0c12"/>
+      <stop offset="100%" stop-color="#050608"/>
     </linearGradient>
 
-    <!-- Signal Orange (Vermilion Accent) -->
-    <linearGradient id="signalAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff5722"/>
-      <stop offset="100%" stop-color="#ff7043"/>
+    <!-- Signal Vermilion Accent -->
+    <linearGradient id="sigVermilion" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff7043"/>
+      <stop offset="50%" stop-color="#ff4f17"/>
+      <stop offset="100%" stop-color="#d83a00"/>
     </linearGradient>
 
     <!-- Emerald Clearance Gradient -->
-    <linearGradient id="emeraldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#34d399"/>
+    <linearGradient id="sigEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#00e599"/>
     </linearGradient>
 
-    <!-- Cyan Trace Gradient -->
-    <linearGradient id="cyanAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
+    <!-- Cyber Cyan Accent -->
+    <linearGradient id="sigCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
     </linearGradient>
 
-    <!-- Structural Bevel Light -->
-    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e2230"/>
-      <stop offset="50%" stop-color="#363d54"/>
-      <stop offset="100%" stop-color="#1e2230"/>
-    </linearGradient>
+    <!-- Ambient Core Glow -->
+    <radialGradient id="coreGlow" cx="70%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4f17" stop-opacity="0.12"/>
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
 
-    <!-- Chassis Inset Background -->
+    <!-- Chassis Inset Gradient -->
     <linearGradient id="chassisGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#13151f"/>
-      <stop offset="100%" stop-color="#0c0d14"/>
+      <stop offset="0%" stop-color="#121520"/>
+      <stop offset="100%" stop-color="#0a0b10"/>
     </linearGradient>
 
-    <!-- Dot Matrix Grid -->
+    <!-- Structural Bevel Highlight -->
+    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1f2434"/>
+      <stop offset="50%" stop-color="#353c52"/>
+      <stop offset="100%" stop-color="#1f2434"/>
+    </linearGradient>
+
+    <!-- Dot Matrix Pattern -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="12" cy="12" r="0.75" fill="#181a24"/>
+      <circle cx="12" cy="12" r="0.8" fill="#171a26"/>
     </pattern>
 
-    <!-- Vertical Rhythm Cadence Lines -->
-    <pattern id="cadenceRuler" width="120" height="480" patternUnits="userSpaceOnUse">
-      <line x1="120" y1="0" x2="120" y2="480" stroke="#10121a" stroke-width="0.8"/>
-    </pattern>
-
-    <!-- Subtle Radar Scan Beam Gradient -->
-    <linearGradient id="scanBeam" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ff5722" stop-opacity="0"/>
-      <stop offset="85%" stop-color="#ff5722" stop-opacity="0.03"/>
-      <stop offset="100%" stop-color="#ff5722" stop-opacity="0.12"/>
+    <!-- Subtle Radar Scan Beam -->
+    <linearGradient id="radarBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff4f17" stop-opacity="0"/>
+      <stop offset="85%" stop-color="#ff4f17" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#ff4f17" stop-opacity="0.12"/>
     </linearGradient>
   </defs>
 
   <style>
     /* Typography Invariants */
-    .display-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 900; letter-spacing: -1.5px; fill: #f3f4f8; }
-    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace; font-size: 10px; letter-spacing: 1.1px; fill: #8c92a4; }
+    .title-display { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; letter-spacing: -1.5px; fill: #f3f5fa; }
+    .title-accent { fill: #ff4f17; }
+    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace; font-size: 10px; letter-spacing: 1.1px; fill: #8a94a6; }
     .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; }
-    .body-lead { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 500; font-size: 14.5px; fill: #cbd0e0; line-height: 1.4; }
-    .body-muted { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 400; font-size: 13px; fill: #7e8598; }
-    .badge-label { font-family: "JetBrains Mono", "SF Mono", monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.8px; }
+    .body-lead { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 500; font-size: 14.5px; fill: #cbd3e1; line-height: 1.4; }
+    .body-muted { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 400; font-size: 13px; fill: #788296; }
+    .badge-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.8px; }
 
-    /* CSS Micro-Animations */
-    @keyframes pulse-emerald {
-      0%, 100% { opacity: 0.2; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.6); }
+    /* Keyframe Animations */
+    @keyframes radar-sweep {
+      0% { transform: translateY(0); opacity: 0.3; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(432px); opacity: 0; }
     }
     @keyframes beacon-ping {
-      0% { r: 3px; opacity: 0.9; }
-      50% { r: 7px; opacity: 0.2; }
-      100% { r: 3px; opacity: 0.9; }
+      0% { r: 3px; opacity: 0.95; }
+      50% { r: 7.5px; opacity: 0.25; }
+      100% { r: 3px; opacity: 0.95; }
     }
     @keyframes blink-cursor {
       0%, 49% { opacity: 1; }
@@ -82,51 +87,46 @@
     @keyframes signal-dash {
       to { stroke-dashoffset: -32; }
     }
-    @keyframes radar-sweep {
-      0% { transform: translateY(0); opacity: 0.3; }
-      50% { opacity: 0.8; }
-      100% { transform: translateY(432px); opacity: 0; }
-    }
-    @keyframes wire-glow {
-      0%, 100% { stroke-opacity: 0.4; }
-      50% { stroke-opacity: 1; }
+    @keyframes ring-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; transform-origin: center; }
+    .anim-scan { animation: radar-sweep 6.5s ease-in-out infinite; }
+    .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     .anim-cursor { animation: blink-cursor 1s infinite steps(1); }
     .anim-signal { stroke-dasharray: 4 6; animation: signal-dash 1.6s linear infinite; }
-    .anim-scan { animation: radar-sweep 6s ease-in-out infinite; }
-    .anim-glow { animation: wire-glow 3s ease-in-out infinite; }
+    .anim-spin { animation: ring-spin 30s linear infinite; transform-origin: 880px 240px; }
   </style>
 
-  <!-- 1. Canvas Ground -->
-  <rect width="1200" height="480" fill="url(#groundGrad)"/>
-  <rect width="1200" height="480" fill="url(#cadenceRuler)"/>
+  <!-- 1. Background Ground & Ambient Lighting -->
+  <rect width="1200" height="480" fill="url(#heroGround)"/>
+  <rect width="1200" height="480" fill="url(#coreGlow)"/>
   <rect width="1200" height="480" fill="url(#dotGrid)"/>
 
   <!-- Scanning Radar Beam Overlay -->
   <g clip-path="url(#chassisClip)">
-    <rect x="24" y="24" width="1152" height="48" fill="url(#scanBeam)" class="anim-scan"/>
+    <rect x="24" y="24" width="1152" height="48" fill="url(#radarBeam)" class="anim-scan"/>
   </g>
   <clipPath id="chassisClip">
     <rect x="24" y="24" width="1152" height="432"/>
   </clipPath>
 
-  <!-- 2. Precision Perimeter Chassis Frame -->
-  <rect x="24" y="24" width="1152" height="432" fill="none" stroke="#1f222e" stroke-width="1.2"/>
+  <!-- 2. Outer Technical Chassis Frame -->
+  <rect x="24" y="24" width="1152" height="432" fill="none" stroke="#1d212c" stroke-width="1.2"/>
   <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
   <line x1="25" y1="455" x2="1175" y2="455" stroke="#040507" stroke-width="1.2"/>
 
-  <!-- Technical Corner Marks -->
-  <g stroke="#2e3346" stroke-width="1.5" fill="none">
+  <!-- Corner Alignment Nodes -->
+  <g stroke="#2b3142" stroke-width="1.5" fill="none">
     <path d="M 20 36 L 20 20 L 36 20"/>
     <path d="M 1164 20 L 1180 20 L 1180 36"/>
     <path d="M 20 444 L 20 460 L 36 460"/>
     <path d="M 1164 460 L 1180 460 L 1180 444"/>
   </g>
 
-  <!-- Optical Registration Crosshairs -->
-  <g stroke="#ff5722" stroke-width="1" opacity="0.75">
+  <!-- Optical Calibration Reticles -->
+  <g stroke="#ff4f17" stroke-width="1" opacity="0.8">
     <circle cx="24" cy="24" r="4.5" fill="none"/>
     <line x1="17" y1="24" x2="31" y2="24"/>
     <line x1="24" y1="17" x2="24" y2="31"/>
@@ -144,191 +144,191 @@
     <line x1="1176" y1="449" x2="1176" y2="463"/>
   </g>
 
-  <!-- 3. Header Telemetry Bar (Precise non-colliding layout) -->
+  <!-- 3. Top Telemetry Rail (Bounds Checked) -->
   <g transform="translate(48, 48)">
-    <rect width="5" height="20" fill="#ff5722"/>
-    <text x="14" y="14.5" class="mono-bold" fill="#f3f4f8">WORKSHOP.OS // v3.5</text>
-    
+    <rect width="5" height="20" fill="url(#sigVermilion)"/>
+    <text x="14" y="14.5" class="mono-bold" fill="#f3f5fa">WORKSHOP.OS // v3.5</text>
     <text x="210" y="14.5" class="mono-meta">ARCH: 7 SOVEREIGN HOUSES</text>
     <text x="430" y="14.5" class="mono-meta">CATALOG: 2,150+ RUNBOOKS</text>
 
     <!-- Animated Status Beacon -->
-    <g transform="translate(740, 11)">
-      <circle cx="0" cy="0" r="7" fill="#10b981" opacity="0.25" class="anim-pulse"/>
-      <circle cx="0" cy="0" r="3" fill="#10b981"/>
-      <text x="12" y="3.5" class="mono-bold" fill="#10b981">ZERO-SLOP ARMED</text>
+    <g transform="translate(730, 11)">
+      <circle cx="0" cy="0" r="7" fill="#00e599" opacity="0.25" class="anim-pulse"/>
+      <circle cx="0" cy="0" r="3" fill="#00e599"/>
+      <text x="12" y="3.5" class="mono-bold" fill="#00e599">ZERO-SLOP ARMED</text>
     </g>
 
-    <!-- Hash Tag -->
-    <text x="1104" y="14.5" text-anchor="end" class="mono-meta" fill="#686f82">BUILD: 380EE6FD • SHA-256</text>
+    <!-- Build SHA Tag -->
+    <text x="1104" y="14.5" text-anchor="end" class="mono-meta" fill="#6a7285">BUILD: 380EE6FD • SHA-256</text>
   </g>
 
-  <line x1="48" y1="80" x2="1152" y2="80" stroke="#1a1d28" stroke-width="1"/>
-  <line x1="48" y1="81" x2="1152" y2="81" stroke="#08090d" stroke-width="1"/>
+  <line x1="48" y1="78" x2="1152" y2="78" stroke="#181c28" stroke-width="1"/>
+  <line x1="48" y1="79" x2="1152" y2="79" stroke="#050608" stroke-width="1"/>
 
-  <!-- 4. Left Hero Sector (Width: 490px) -->
-  <g transform="translate(48, 112)">
+  <!-- 4. Left Hero Sector (Width: 510px) -->
+  <g transform="translate(48, 108)">
+    <!-- Small Category Pill -->
     <g transform="translate(0, 0)">
-      <rect width="135" height="18" fill="#1f1414" stroke="#ff5722" stroke-width="0.8"/>
-      <text x="8" y="12.5" class="mono-bold" fill="#ff5722">ENGINEERING RUNTIME</text>
+      <rect width="148" height="20" rx="3" fill="#1c1313" stroke="#ff4f17" stroke-width="0.8"/>
+      <circle cx="10" cy="10" r="2.5" fill="#ff4f17"/>
+      <text x="18" y="13.5" class="mono-bold" fill="#ff4f17">ENGINEERING RUNTIME</text>
     </g>
 
-    <!-- Main Title with Geometric Emblem -->
-    <g transform="translate(0, 52)">
-      <text x="0" y="0" class="display-title" font-size="52">WORKSHOP // OS</text>
+    <!-- Hero Title -->
+    <g transform="translate(0, 56)">
+      <text x="0" y="0" class="title-display" font-size="54">WORKSHOP <tspan class="title-accent">//</tspan> OS</text>
     </g>
 
     <!-- Value Proposition -->
-    <text x="0" y="86" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
-    <text x="0" y="112" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
-    <text x="0" y="132" class="body-muted">through AST code arrest, adversarial councils, and episodic memory.</text>
+    <text x="0" y="92" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
+    <text x="0" y="118" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
+    <text x="0" y="138" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
 
     <!-- Key Spec Badges -->
-    <g transform="translate(0, 164)">
-      <!-- Badge 1 -->
+    <g transform="translate(0, 172)">
+      <!-- Badge 1: 7 Houses -->
       <g transform="translate(0, 0)">
-        <rect width="136" height="30" fill="#12141d" stroke="#222636" stroke-width="1"/>
-        <line x1="0" y1="0" x2="136" y2="0" stroke="#ff5722" stroke-width="1.5"/>
-        <text x="12" y="18.5" class="badge-label" fill="#ff5722">7 HOUSES</text>
-        <text x="74" y="18.5" class="mono-meta" fill="#8c92a4">GUILDS</text>
+        <rect width="136" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="136" y2="0" stroke="#ff4f17" stroke-width="1.8"/>
+        <text x="12" y="18.5" class="badge-label" fill="#ff4f17">7 HOUSES</text>
+        <text x="74" y="18.5" class="mono-meta" fill="#8a94a6">GUILDS</text>
       </g>
 
-      <!-- Badge 2 -->
+      <!-- Badge 2: AST Bailiff -->
       <g transform="translate(148, 0)">
-        <rect width="154" height="30" fill="#12141d" stroke="#222636" stroke-width="1"/>
-        <line x1="0" y1="0" x2="154" y2="0" stroke="#363d54" stroke-width="1.5"/>
-        <text x="12" y="18.5" class="badge-label" fill="#f3f4f8">AST BAILIFF</text>
-        <text x="96" y="18.5" class="mono-meta" fill="#8c92a4">GATE</text>
+        <rect width="154" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="154" y2="0" stroke="#06b6d4" stroke-width="1.8"/>
+        <text x="12" y="18.5" class="badge-label" fill="#f3f5fa">AST BAILIFF</text>
+        <text x="96" y="18.5" class="mono-meta" fill="#8a94a6">GATE</text>
       </g>
 
-      <!-- Badge 3 -->
+      <!-- Badge 3: 0.0% Slop -->
       <g transform="translate(314, 0)">
-        <rect width="166" height="30" fill="#12141d" stroke="#222636" stroke-width="1"/>
-        <line x1="0" y1="0" x2="166" y2="0" stroke="#10b981" stroke-width="1.5"/>
-        <text x="12" y="18.5" class="badge-label" fill="#10b981">0.0% SLOP</text>
-        <text x="96" y="18.5" class="mono-meta" fill="#8c92a4">VERIFIED</text>
+        <rect width="166" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="166" y2="0" stroke="#00e599" stroke-width="1.8"/>
+        <text x="12" y="18.5" class="badge-label" fill="#00e599">0.0% SLOP</text>
+        <text x="96" y="18.5" class="mono-meta" fill="#8a94a6">VERIFIED</text>
       </g>
     </g>
 
-    <!-- Interactive Terminal Command Snippet with Blinking Cursor -->
-    <g transform="translate(0, 218)">
-      <rect width="480" height="42" fill="#0b0c12" stroke="#1c1f2b" stroke-width="1"/>
+    <!-- Interactive Terminal Command Console -->
+    <g transform="translate(0, 226)">
+      <rect width="480" height="42" rx="4" fill="#090a10" stroke="#1c202c" stroke-width="1"/>
       <circle cx="14" cy="14" r="3" fill="#ff5f56"/>
       <circle cx="24" cy="14" r="3" fill="#ffbd2e"/>
       <circle cx="34" cy="14" r="3" fill="#27c93f"/>
+      <text x="48" y="17" class="mono-meta" fill="#525a70">INVARIANT WATCHDOG</text>
 
-      <text x="50" y="17" class="mono-meta" fill="#505670">INVARIANT WATCHDOG</text>
-
-      <text x="14" y="32" class="mono-bold" fill="#ff5722">$</text>
-      <text x="28" y="32" class="mono-bold" fill="#cbd0e0">workshop doctor --strict</text>
-      <rect x="216" y="24" width="7" height="11" fill="#ff5722" class="anim-cursor"/>
-      <text x="466" y="32" text-anchor="end" class="mono-bold" fill="#10b981">[PASS: EXIT 0]</text>
+      <text x="14" y="32" class="mono-bold" fill="#ff4f17">$</text>
+      <text x="28" y="32" class="mono-bold" fill="#cbd3e1">workshop doctor --strict</text>
+      <rect x="216" y="24" width="7" height="11" fill="#ff4f17" class="anim-cursor"/>
+      <text x="466" y="32" text-anchor="end" class="mono-bold" fill="#00e599">[PASS: EXIT 0]</text>
     </g>
   </g>
 
   <!-- 5. Right Instrument Bay Chassis (Width: 546px, x: 606) -->
   <g transform="translate(606, 96)">
     <!-- Chassis Plate -->
-    <rect width="546" height="324" fill="url(#chassisGrad)" stroke="#212534" stroke-width="1.2"/>
-    <line x1="1" y1="1" x2="545" y2="1" stroke="url(#bevelLight)" stroke-width="1"/>
-    <line x1="1" y1="323" x2="545" y2="323" stroke="#040507" stroke-width="1"/>
+    <rect width="546" height="326" rx="6" fill="url(#chassisGrad)" stroke="#202434" stroke-width="1.2"/>
+    <line x1="2" y1="2" x2="544" y2="2" stroke="url(#bevelLight)" stroke-width="1"/>
+    <line x1="2" y1="324" x2="544" y2="324" stroke="#040507" stroke-width="1"/>
 
-    <!-- Eurorack Milled Screws -->
-    <g fill="#141620" stroke="#2a2e40" stroke-width="0.8">
+    <!-- Eurorack Corner Screws -->
+    <g fill="#12141e" stroke="#282d3e" stroke-width="0.8">
       <circle cx="14" cy="14" r="3.5"/>
-      <line x1="11" y1="14" x2="17" y2="14" stroke="#444b64"/>
+      <line x1="11" y1="14" x2="17" y2="14" stroke="#404760"/>
       <circle cx="532" cy="14" r="3.5"/>
-      <line x1="529" y1="14" x2="535" y2="14" stroke="#444b64"/>
-      <circle cx="14" cy="310" r="3.5"/>
-      <line x1="11" y1="310" x2="17" y2="310" stroke="#444b64"/>
-      <circle cx="532" cy="310" r="3.5"/>
-      <line x1="529" y1="310" x2="535" y2="310" stroke="#444b64"/>
+      <line x1="529" y1="14" x2="535" y2="14" stroke="#404760"/>
+      <circle cx="14" cy="312" r="3.5"/>
+      <line x1="11" y1="312" x2="17" y2="312" stroke="#404760"/>
+      <circle cx="532" cy="312" r="3.5"/>
+      <line x1="529" y1="312" x2="535" y2="312" stroke="#404760"/>
     </g>
 
-    <!-- Top Instrument Bays (3 Channels with Active Flow Line) -->
+    <!-- Top Instrument Bays (3 Channels) -->
     <g transform="translate(20, 22)">
-      <!-- Channel 01 -->
+      <!-- Channel 01: Court -->
       <g transform="translate(0, 0)">
-        <rect width="162" height="52" fill="#181a25" stroke="#282d3e" stroke-width="1"/>
-        <line x1="0" y1="0" x2="162" y2="0" stroke="#ff5722" stroke-width="2.5"/>
-        <circle cx="14" cy="18" r="2.5" fill="#ff5722"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f4f8">01 // COURT</text>
-        <text x="14" y="38" class="mono-meta" fill="#8c92a4">AST LINT TRIBUNAL</text>
+        <rect width="162" height="52" rx="4" fill="#161824" stroke="#262b3c" stroke-width="1"/>
+        <line x1="0" y1="0" x2="162" y2="0" stroke="#ff4f17" stroke-width="2.5"/>
+        <circle cx="14" cy="18" r="2.5" fill="#ff4f17"/>
+        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">01 // COURT</text>
+        <text x="14" y="38" class="mono-meta" fill="#8a94a6">AST LINT TRIBUNAL</text>
       </g>
 
-      <!-- Channel 02 -->
+      <!-- Channel 02: Council -->
       <g transform="translate(172, 0)">
-        <rect width="162" height="52" fill="#12141e" stroke="#222636" stroke-width="1"/>
+        <rect width="162" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
         <line x1="0" y1="0" x2="162" y2="0" stroke="#06b6d4" stroke-width="2"/>
         <circle cx="14" cy="18" r="2.5" fill="#06b6d4"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f4f8">02 // COUNCIL</text>
-        <text x="14" y="38" class="mono-meta" fill="#8c92a4">4-WAY DIALECTIC</text>
+        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">02 // COUNCIL</text>
+        <text x="14" y="38" class="mono-meta" fill="#8a94a6">4-WAY DIALECTIC</text>
       </g>
 
-      <!-- Channel 03 -->
+      <!-- Channel 03: Foundry -->
       <g transform="translate(344, 0)">
-        <rect width="162" height="52" fill="#12141e" stroke="#222636" stroke-width="1"/>
-        <line x1="0" y1="0" x2="162" y2="0" stroke="#10b981" stroke-width="2"/>
-        <circle cx="14" cy="18" r="2.5" fill="#10b981"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f4f8">03 // FOUNDRY</text>
-        <text x="14" y="38" class="mono-meta" fill="#8c92a4">2,150+ RUNBOOKS</text>
+        <rect width="162" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
+        <line x1="0" y1="0" x2="162" y2="0" stroke="#00e599" stroke-width="2"/>
+        <circle cx="14" cy="18" r="2.5" fill="#00e599"/>
+        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">03 // FOUNDRY</text>
+        <text x="14" y="38" class="mono-meta" fill="#8a94a6">2,150+ RUNBOOKS</text>
       </g>
     </g>
 
-    <!-- Telemetry Readout Matrix with Animated Current Lines -->
+    <!-- Telemetry Readout Matrix with Animated Signal Currents -->
     <g transform="translate(20, 94)">
       <!-- Row 1: Judicial Bench -->
       <g transform="translate(0, 18)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd0e0">JUDICIAL BENCH</text>
-        <line x1="120" y1="-3" x2="280" y2="-3" stroke="#252a3b" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f4f8">3 JURORS UNANIMOUS (AST)</text>
+        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">JUDICIAL BENCH</text>
+        <line x1="120" y1="-3" x2="280" y2="-3" stroke="#222738" class="anim-signal"/>
+        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">3 JURORS UNANIMOUS (AST)</text>
       </g>
 
       <!-- Row 2: Git Interceptor -->
       <g transform="translate(0, 48)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd0e0">GIT INTERCEPTOR</text>
-        <line x1="125" y1="-3" x2="270" y2="-3" stroke="#ff5722" stroke-opacity="0.5" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#ff5722">BAILIFF PRE-COMMIT ARMED</text>
+        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">GIT INTERCEPTOR</text>
+        <line x1="125" y1="-3" x2="270" y2="-3" stroke="#ff4f17" stroke-opacity="0.5" class="anim-signal"/>
+        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#ff4f17">BAILIFF PRE-COMMIT ARMED</text>
       </g>
 
-      <!-- Row 3: Episodic Memory (Corrected spelling) -->
+      <!-- Row 3: Episodic Memory -->
       <g transform="translate(0, 78)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd0e0">EPISODIC MEMORY</text>
-        <line x1="130" y1="-3" x2="275" y2="-3" stroke="#252a3b" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f4f8">OBSIDIAN VAULT // 7 NOTES</text>
+        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">EPISODIC MEMORY</text>
+        <line x1="130" y1="-3" x2="275" y2="-3" stroke="#222738" class="anim-signal"/>
+        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">OBSIDIAN VAULT // 7 NOTES</text>
       </g>
 
       <!-- Row 4: Slop Index -->
       <g transform="translate(0, 108)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd0e0">SLOP INDEX TOLERANCE</text>
-        <line x1="165" y1="-3" x2="310" y2="-3" stroke="#10b981" stroke-opacity="0.5" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#10b981">0.0% (ABSOLUTE ZERO)</text>
+        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">SLOP INDEX TOLERANCE</text>
+        <line x1="165" y1="-3" x2="310" y2="-3" stroke="#00e599" stroke-opacity="0.5" class="anim-signal"/>
+        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#00e599">0.0% (ABSOLUTE ZERO)</text>
       </g>
 
       <!-- Row 5: Test Suite -->
       <g transform="translate(0, 138)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd0e0">TEST SUITE MATRIX</text>
-        <line x1="140" y1="-3" x2="315" y2="-3" stroke="#252a3b" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#10b981">43/43 PASSED (100% CI GREEN)</text>
+        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">TEST SUITE MATRIX</text>
+        <line x1="140" y1="-3" x2="315" y2="-3" stroke="#222738" class="anim-signal"/>
+        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#00e599">43/43 PASSED (100% CI GREEN)</text>
       </g>
     </g>
 
-    <!-- Bottom Chassis Cryptographic Strip -->
-    <g transform="translate(0, 288)">
-      <rect width="546" height="36" fill="#0b0c12"/>
-      <line x1="0" y1="0" x2="546" y2="0" stroke="#1a1d28" stroke-width="1"/>
-      <circle cx="16" cy="18" r="3" fill="#10b981" class="anim-pulse"/>
-      <text x="26" y="22" class="mono-meta" fill="#686f82">CR-20261029-82E7 • CRYPTOGRAPHIC CLEARANCE</text>
-      <text x="526" y="22" text-anchor="end" class="mono-bold" fill="#10b981">ACQUITTED WITH HONORS</text>
+    <!-- Bottom Chassis Cryptographic Clearance Strip -->
+    <g transform="translate(0, 290)">
+      <rect width="546" height="36" rx="0 0 6 6" fill="#090a10"/>
+      <line x1="0" y1="0" x2="546" y2="0" stroke="#181c28" stroke-width="1"/>
+      <circle cx="16" cy="18" r="3" fill="#00e599" class="anim-pulse"/>
+      <text x="26" y="22" class="mono-meta" fill="#687082">CR-20261029-CECE • CRYPTOGRAPHIC CLEARANCE</text>
+      <text x="526" y="22" text-anchor="end" class="mono-bold" fill="#00e599">ACQUITTED WITH HONORS</text>
     </g>
   </g>
 
   <!-- 6. Footer System Rail (Non-colliding, balanced metrics) -->
-  <line x1="48" y1="434" x2="1152" y2="434" stroke="#1a1d28" stroke-width="1"/>
+  <line x1="48" y1="434" x2="1152" y2="434" stroke="#181c28" stroke-width="1"/>
   <g transform="translate(48, 452)">
-    <circle cx="4" cy="4" r="3" fill="#ff5722"/>
-    <text x="14" y="7.5" class="mono-bold" fill="#f3f4f8">APACHE 2.0</text>
+    <circle cx="4" cy="4" r="3" fill="#ff4f17"/>
+    <text x="14" y="7.5" class="mono-bold" fill="#f3f5fa">APACHE 2.0</text>
     <text x="120" y="7.5" class="mono-meta">HARNESSES: CLAUDE • CURSOR • GEMINI • WINDSURF • OPENCODE • KILO</text>
-    <text x="1104" y="7.5" text-anchor="end" class="mono-meta" fill="#8c92a4">FOUNDER: @SHOYARISM &amp; SYNTHETIC SWARM</text>
+    <text x="1104" y="7.5" text-anchor="end" class="mono-meta" fill="#8a94a6">FOUNDER: @SHOYARISM &amp; SYNTHETIC SWARM</text>
   </g>
 </svg>

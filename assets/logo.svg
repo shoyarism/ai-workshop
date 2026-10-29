@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 84" width="100%" height="100%">
+  <defs>
+    <!-- Dark Substrate -->
+    <linearGradient id="logoCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121520"/>
+      <stop offset="100%" stop-color="#08090d"/>
+    </linearGradient>
+
+    <!-- Signal Vermilion Flame -->
+    <linearGradient id="logoFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7043"/>
+      <stop offset="50%" stop-color="#ff4f17"/>
+      <stop offset="100%" stop-color="#d83a00"/>
+    </linearGradient>
+
+    <!-- Cyber Cyan Invariant -->
+    <linearGradient id="logoCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .brand-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 900; font-size: 26px; letter-spacing: -0.8px; fill: #f3f5fa; }
+    .brand-accent { fill: #ff4f17; }
+    .brand-sub { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; fill: #8a94a6; }
+    .brand-tag { font-family: "JetBrains Mono", monospace; font-size: 8.5px; font-weight: 800; letter-spacing: 1px; fill: #00e599; }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.3; r: 2.5px; }
+      50% { opacity: 1; r: 4.5px; }
+    }
+    .anim-pulse { animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
+
+  <!-- Left Icon Lockup (64x64 at x=10, y=10) -->
+  <g transform="translate(10, 10)">
+    <rect width="64" height="64" rx="16" fill="url(#logoCardGrad)" stroke="#23293a" stroke-width="1.2"/>
+    
+    <!-- Anvil / Prism Geometry -->
+    <g transform="translate(32, 32) scale(0.65) translate(-64, -64)">
+      <path d="M 64 26 L 94 44 L 64 62 L 34 44 Z" fill="url(#logoFlameGrad)"/>
+      <path d="M 34 44 L 64 62 L 64 98 L 34 80 Z" fill="#b83200"/>
+      <path d="M 64 62 L 94 44 L 94 80 L 64 98 Z" fill="#ff5a22"/>
+      <polygon points="64,48 76,56 76,72 64,80 52,72 52,56" fill="url(#logoCyanGrad)"/>
+    </g>
+  </g>
+
+  <!-- Typography Lockup -->
+  <g transform="translate(90, 22)">
+    <text x="0" y="24" class="brand-title">WORKSHOP <tspan class="brand-accent">//</tspan> OS</text>
+    <text x="0" y="44" class="brand-sub">THE IRREDUCIBLE OPERATING FOUNDATION</text>
+
+    <!-- Status Pill -->
+    <g transform="translate(230, 8)">
+      <rect width="90" height="18" rx="4" fill="#0d1814" stroke="#00e599" stroke-width="0.8"/>
+      <circle cx="10" cy="9" r="3" fill="#00e599" class="anim-pulse"/>
+      <text x="18" y="12.5" class="brand-tag">v3.5 ARMED</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <!-- Core Dark Substrate -->
+    <linearGradient id="iconBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121520"/>
+      <stop offset="100%" stop-color="#08090d"/>
+    </linearGradient>
+
+    <!-- Signal Vermilion Flame -->
+    <linearGradient id="iconFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7043"/>
+      <stop offset="50%" stop-color="#ff4f17"/>
+      <stop offset="100%" stop-color="#d83a00"/>
+    </linearGradient>
+
+    <!-- Cyber Cyan Core Invariant -->
+    <linearGradient id="iconCyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+
+    <!-- Emerald Glow -->
+    <linearGradient id="iconEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#00e599"/>
+    </linearGradient>
+
+    <!-- Hex Edge Glow -->
+    <linearGradient id="borderGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4f17" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#2a3045" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    @keyframes pulse-core {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    @keyframes rotate-ring {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .anim-core { animation: pulse-core 3s ease-in-out infinite; transform-origin: 64px 64px; }
+    .anim-ring { animation: rotate-ring 24s linear infinite; transform-origin: 64px 64px; }
+  </style>
+
+  <!-- Ambient Glow -->
+  <circle cx="64" cy="64" r="52" fill="#ff4f17" opacity="0.12" filter="blur(16px)"/>
+  <circle cx="64" cy="64" r="32" fill="#06b6d4" opacity="0.15" filter="blur(12px)"/>
+
+  <!-- Outer Rounded Tech Shield -->
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#iconBaseGrad)" stroke="url(#borderGlow)" stroke-width="1.8"/>
+
+  <!-- Optical Calibration Reticles -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#222838" stroke-width="1" stroke-dasharray="3 6" class="anim-ring"/>
+  <circle cx="64" cy="64" r="54" fill="none" stroke="#181c28" stroke-width="0.8"/>
+
+  <!-- Corner Alignment Nodes -->
+  <circle cx="20" cy="20" r="2" fill="#ff4f17"/>
+  <circle cx="108" cy="20" r="2" fill="#06b6d4"/>
+  <circle cx="20" cy="108" r="2" fill="#06b6d4"/>
+  <circle cx="108" cy="108" r="2" fill="#00e599"/>
+
+  <!-- Center Anvil / AST Crystal Emblem -->
+  <g class="anim-core">
+    <!-- Top Geometric Facet -->
+    <path d="M 64 26 L 94 44 L 64 62 L 34 44 Z" fill="url(#iconFlameGrad)"/>
+    
+    <!-- Left Geometric Facet -->
+    <path d="M 34 44 L 64 62 L 64 98 L 34 80 Z" fill="#b83200"/>
+
+    <!-- Right Geometric Facet -->
+    <path d="M 64 62 L 94 44 L 94 80 L 64 98 Z" fill="#ff5a22"/>
+
+    <!-- Inner Floating Invariant Monolith (Cyan Kernel) -->
+    <polygon points="64,48 76,56 76,72 64,80 52,72 52,56" fill="url(#iconCyanGrad)" opacity="0.95"/>
+    <polygon points="64,54 70,58 70,68 64,72 58,68 58,58" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Precision Technical Crosshairs -->
+  <line x1="64" y1="12" x2="64" y2="20" stroke="#ff4f17" stroke-width="1.5"/>
+  <line x1="64" y1="108" x2="64" y2="116" stroke="#00e599" stroke-width="1.5"/>
+  <line x1="12" y1="64" x2="20" y2="64" stroke="#ff4f17" stroke-width="1.5"/>
+  <line x1="108" y1="64" x2="116" y2="64" stroke="#06b6d4" stroke-width="1.5"/>
+</svg>
