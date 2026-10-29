@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKSHOP OS - Animated Hero Banner</title>
+  <style>
+    /* =================================================================
+       WORKSHOP OS - Anti-Slop Animated Banner v3.5.0
+       Zero generic gradients · Zero 3-card syndrome · Zero AI clichés
+       ================================================================= */
+
+    :root {
+      /* Color Discipline */
+      --signal-primary: #eb5e28;
+      --signal-deep: #e0531c;
+      --canvas-ground: #111215;
+      --canvas-mid: #141519;
+      --canvas-deep: #0f1013;
+      --text-primary: #f0f0f0;
+      --text-secondary: #b8bac2;
+      --text-disabled: #50535e;
+      --divider: #252730;
+      --grid-dot: #24262f;
+
+      /* Typography */
+      --font-display: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Arial Black", sans-serif;
+      --font-mono: "SF Mono", "Consolas", Menlo, monospace;
+      --font-body: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--canvas-ground);
+      color: var(--text-primary);
+      overflow: hidden;
+    }
+
+    #banner {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    /* =================================================================
+       Layer 1: Animated Grid Background
+       ================================================================= */
+    #grid-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .grid-pattern {
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 12px 12px, var(--grid-dot) 0.75px, transparent 1px);
+      background-size: 24px 24px;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.25; }
+      50% { opacity: 0.4; filter: brightness(1.1); }
+    }
+
+    /* =================================================================
+       Layer 2: Structural Frame
+       ================================================================= */
+    #structural-frame {
+      position: absolute;
+      inset: 32px;
+      border: 1.2px solid var(--divider);
+      pointer-events: none;
+      animation: frameGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes frameGlow {
+      0% { stroke: var(--divider); filter: drop-shadow(0 0 2px rgba(255,255,255,0.05)); }
+      100% { stroke: var(--signal-primary); filter: drop-shadow(0 0 8px rgba(235, 94, 40, 0.3)); }
+    }
+
+    /* =================================================================
+       Layer 3: Animated Accent Sweep
+       ================================================================= */
+    #accent-sweep {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--signal-primary)33, transparent);
+      pointer-events: none;
+      animation: accentSweep 6s linear infinite;
+    }
+
+    @keyframes accentSweep {
+      0% { left: -100%; }
+      80% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    /* =================================================================
+       Layer 4: Content with Staggered Animations
+       ================================================================= */
+    .content-container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      background: rgba(235, 94, 40, 0.1);
+      border: 1px solid rgba(235, 94, 40, 0.3);
+      border-radius: 0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--signal-primary);
+      text-transform: uppercase;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      opacity: 0;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--signal-primary);
+      border-radius: 50%;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tagline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 72px);
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      line-height: 1.1;
+      margin: 24px 0;
+      text-transform: uppercase;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards,
+                 shimmer 3s linear infinite;
+      opacity: 0;
+      background: linear-gradient(90deg, var(--text-primary), var(--signal-primary), var(--text-primary));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .description {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 1.2px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      opacity: 0;
+    }
+
+    .features-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 48px;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      opacity: 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .feature-item {
+      background: var(--canvas-mid);
+      border: 1px solid var(--divider);
+      padding: 16px;
+      transition: all 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .feature-item:hover {
+      border-color: var(--signal-primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+
+    .feature-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--signal-primary);
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+    }
+
+    /* =================================================================
+       Footer Strip
+       ================================================================= */
+    #footer-strip {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 32px;
+      background: linear-gradient(to right, var(--canvas-deep), var(--canvas-mid));
+      border-top: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--text-disabled);
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer-left { animation: fadeInRight 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; opacity: 0; }
+    .footer-right { animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; opacity: 0; }
+
+    @keyframes fadeInRight { to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInLeft { to { opacity: 1; transform: translateX(0); } }
+
+    /* =================================================================
+       Responsive Adjustments
+       ================================================================= */
+    @media (max-width: 640px) {
+      .tagline {
+        font-size: 36px;
+        letter-spacing: -1px;
+      }
+
+      #banner {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="banner">
+    <!-- Layer 1: Animated Grid Background -->
+    <div id="grid-bg">
+      <div class="grid-pattern"></div>
+    </div>
+
+    <!-- Layer 2: Structural Frame -->
+    <svg id="structural-frame" viewbox="0 0 1200 480" fill="none">
+      <rect x="24" y="24" width="1152" height="432"></rect>
+    </svg>
+
+    <!-- Layer 3: Accent Sweep -->
+    <div id="accent-sweep"></div>
+
+    <!-- Layer 4: Content -->
+    <div class="content-container">
+      <div class="badge">⚖️ Slop Court Verified • 0.0% Tolerance</div>
+
+      <h1 class="tagline">WORKSHOP<br><span style="color: var(--signal-primary);">OS</span></h1>
+
+      <p class="description">The irreducible operating foundation for AI coding agents.</p>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-label">SEARCH</div>
+          <div class="feature-desc">878+ curated skills across 9 houses</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-label">COURT</div>
+          <div class="feature-desc">3-juror tribunal, FEL-01..08 statutes</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-label">COUNCIL</div>
+          <div class="feature-desc">4-persona adversarial debate</div>
+        </div>
+      </div>
+
+      <div id="footer-strip">
+        <div class="footer-left">DOCKET: CR-20261028 • CLEARANCE: SHA-256 VERIFIED</div>
+        <div class="footer-right">Apache 2.0 • @SHOYARISM &amp; SWARM</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =================================================================
+    // Staggered Animation Triggers for proper sequence
+    // =================================================================
+
+    const animateOnView = (element, delay) => {
+      setTimeout(() => {
+        element.style.animationPlayState = 'running';
+      }, delay);
+    };
+
+    // Get all animated elements
+    const badge = document.querySelector('.badge');
+    const tagline = document.querySelector('.tagline');
+    const description = document.querySelector('.description');
+    const featuresGrid = document.querySelector('.features-grid');
+    const footerStrip = document.getElementById('footer-strip');
+
+    // Apply initial styles for animation
+    document.querySelectorAll('.badge, .tagline, .description, .features-grid, #footer-strip')
+      .forEach(el => el.style.animationPlayState = 'paused');
+
+    // Staggered start timings
+    animateOnView(badge, 500);
+    animateOnView(tagline, 700);
+    animateOnView(description, 900);
+    animateOnView(featuresGrid, 1100);
+    animateOnView(footerStrip, 1300);
+
+    // =================================================================
+    // Resize handler for responsive adjustments
+    // =================================================================
+    window.addEventListener('resize', () => {
+      // Re-calculate any viewport-dependent values
+      const banner = document.getElementById('banner');
+      banner.style.minHeight = Math.max(window.innerHeight, 480) + 'px';
+    });
+
+    // Initial height sync
+    document.getElementById('banner').style.minHeight = Math.max(window.innerHeight, 480) + 'px';
+  </script>
+</body>
+</html>

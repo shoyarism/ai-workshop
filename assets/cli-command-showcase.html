@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORKSHOP OS CLI Command Showcase</title>
+  <style>
+    /* =================================================================
+       WORKSHOP OS CLI Command Showcase
+       Anti-Slop Design · Zero Generic Gradients · No AI Clichés
+       ================================================================= */
+
+    :root {
+      --signal: #eb5e28;
+      --signal-deep: #e0531c;
+      --canvas: #111215;
+      --canvas-mid: #141519;
+      --text: #f0f0f0;
+      --text-secondary: #b8bac2;
+      --divider: #252730;
+      --mono: "SF Mono", "Consolas", Menlo, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--mono);
+      background: var(--canvas);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .subtitle {
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* =================================================================
+       Command Grid
+       ================================================================= */
+    .commands {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .command {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--canvas-mid);
+      border-left: 3px solid var(--divider);
+      border-radius: 0;
+      transition: all 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .command:hover {
+      border-left-color: var(--signal);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transform: translateX(4px);
+    }
+
+    .command::before {
+      content: '❯';
+      opacity: 0.3;
+      font-size: 18px;
+    }
+
+    .command:hover::before {
+      opacity: 0.6;
+      animation: cursorBlink 1s infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .cmd-path {
+      color: #8e919a;
+      font-size: 14px;
+    }
+
+    .cmd-name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .cmd-desc {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+    }
+
+    /* =================================================================
+       Preview Terminal
+       ================================================================= */
+    .terminal-preview {
+      background: #0d1117;
+      border-radius: 0;
+      border: 1px solid var(--divider);
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .terminal-dot {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5555; }
+    .dot-yellow { background: #ffcc00; }
+    .dot-green { background: #50fa7b; }
+
+    .input-line {
+      color: #50fa7b;
+      margin-bottom: 8px;
+    }
+
+    .output {
+      color: var(--text);
+    }
+
+    .output.success {
+      color: #50fa7b;
+    }
+
+    .output.dim {
+      color: #6a737d;
+    }
+
+    /* =================================================================
+       Animated Command Flow
+       ================================================================= */
+    .command-flow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      background: rgba(235, 94, 40, 0.1);
+      border: 1px solid rgba(235, 94, 40, 0.3);
+      border-radius: 0;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--signal);
+      transition: all 150ms ease;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .flow-step:hover {
+      background: rgba(235, 94, 40, 0.2);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .step-number {
+      background: var(--signal);
+      color: var(--canvas);
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    /* =================================================================
+       Command Modal Overlay
+       ================================================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 200ms ease, visibility 200ms ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--canvas);
+      border: 1px solid var(--divider);
+      border-radius: 0;
+      max-width: 600px;
+      width: 100%;
+      padding: 24px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .modal-body {
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .modal-code {
+      background: #0d1117;
+      border: 1px solid var(--divider);
+      border-radius: 0;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    .code-line {
+      color: #50fa7b;
+      margin-bottom: 4px;
+    }
+
+    .code-output {
+      color: var(--text);
+}
+
+    /* =================================================================
+       Responsive
+       ================================================================= */
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      .terminal-preview { padding: 16px; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CLI Commands</h1>
+    <p class="subtitle">Master entry point for all Workshop OS operations</p>
+
+    <div class="commands">
+      <!-- Command 1: Search -->
+      <div class="command" onclick="showModal('search')">
+        <div>
+          <div class="cmd-name">search</div>
+          <div class="cmd-desc">Search 878+ skills across 9 sovereign houses</div>
+        </div>
+        <div class="command-flow">
+          <div class="flow-step"><span class="step-number">1</span> search</div>
+          <div class="flow-step"><span class="step-number">2</span> <query></div>
+          <div class="flow-step"><span class="step-number">3</span> results</div>
+        </div>
+      </div>
+
+      <!-- Command 2: Doctor -->
+      <div class="command" onclick="showModal('doctor')">
+        <div>
+          <div class="cmd-name">doctor</div>
+          <div class="cmd-desc">Comprehensive health diagnostics across all subsystems</div>
+        </div>
+        <div class="command-flow">
+          <div class="flow-step"><span class="step-number">1</span> diagnose</div>
+          <div class="flow-step"><span class="step-number">2</span> check</div>
+          <div class="flow-step"><span class="step-number">3</span> report</div>
+        </div>
+      </div>
+
+      <!-- Command 3: Council -->
+      <div class="command" onclick="showModal('council')">
+        <div>
+          <div class="cmd-name">council convene</div>
+          <div class="cmd-desc">Multi-persona adversarial deliberation</div>
+        </div>
+        <div class="command-flow">
+          <div class="flow-step"><span class="step-number">1</span> jurors</div>
+          <div class="flow-step"><span class="step-number">2</span> debate</div>
+          <div class="flow-step"><span class="step-number">3</span> verdict</div>
+        </div>
+      </div>
+
+      <!-- Command 4: Court -->
+      <div class="command" onclick="showModal('court')">
+        <div>
+          <div class="cmd-name">court trial</div>
+          <div class="cmd-desc">Slop Court quality tribunal</div>
+        </div>
+        <div class="command-flow">
+          <div class="flow-step"><span class="step-number">1</span> prosecute</div>
+          <div class="flow-step"><span class="step-number">2</span> defend</div>
+          <div class="flow-step"><span class="step-number">3</span> verdict</div>
+        </div>
+      </div>
+
+      <!-- Command 5: Vault -->
+      <div class="command" onclick="showModal('vault')">
+        <div>
+          <div class="cmd-name">vault</div>
+          <div class="cmd-desc">Obsidian vault operations</div>
+        </div>
+        <div class="command-flow">
+          <div class="flow-step"><span class="step-number">1</span> read</div>
+          <div class="flow-step"><span class="step-number">2</span> update</div>
+          <div class="flow-step"><span class="step-number">3</span> save</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal Preview -->
+    <div class="terminal-preview">
+      <div class="terminal-header">
+        <div class="terminal-dot">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span>terminal.local</span>
+      </div>
+
+      <div class="output dim">>> python scripts/workshop.py search "adversarial debugging"</div>
+
+      <div class="output">⚡ Found 3 matching skills across 2 houses</div>
+
+      <div class="output">
+        <span class="cmd-path">/skills/dev-house/adversarial-debugging/</span><span class="cmd-name">SKILL.md</span><br>
+        <span class="cmd-path">/skills/debug-house/potential-things-that-can-go-wrong/</span><span class="cmd-name">SKILL.md</span><br>
+        <span class="cmd-path">/skills/security-house/strix-pentest/</span><span class="cmd-name">SKILL.md</span>
+      </div>
+
+      <div class="output success">✓ Slop Court: Acquitted (UNANIMOUS)</div>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title"></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =================================================================
+    // Modal Functionality
+    // =================================================================
+
+    const modals = {
+      search: {
+        title: 'workshop search',
+        usage: 'uv run python scripts/workshop.py search "<query>" [--category skills|mcps|apis|repos]',
+        description: 'Search across 878+ domain skills, 33 subsystems, MCPs, and 1,500+ APIs. Returns sub-millisecond results with relevance-ranked output.',
+        examples: [
+          'python scripts/workshop.py search "adversarial debugging"',
+          'python scripts/workshop.py search "slop court" --category skills',
+          'python scripts/workshop.py search "fastmcp" --category mcps'
+        ],
+        output: `
+<div class="code-output">⚡ Search results (2026-09-22 14:32:15)
+┌────────────────────────────────────────────────────────────┐
+│ Result 1: /skills/dev-house/adversarial-debugging/        │
+│   Match: Phase 1 Inversion, Tail Risk Hunting             │
+│   Rating: 98.7% relevance                                 │
+│                                                            │
+│ Result 2: /skills/debug-house/systematic-debugging/        │
+│   Match: Post-mortem templates                              │
+│   Rating: 94.2% relevance                                 │
+└────────────────────────────────────────────────────────────┘`
+      },
+      doctor: {
+        title: 'workshop doctor',
+        usage: 'python scripts/workshop.py doctor',
+        description: 'Comprehensive health diagnostics across development environment, tooling, git state, and vault integrity.',
+        examples: [
+          'python scripts/workshop.py doctor',
+          'python scripts/workshop.py doctor --detailed'
+        ],
+        output: `
+<div class="code-output">🔍 Workshop Doctor Report</div>
+<div class="code-output dim">  Environment: Windows 11 Pro</div>
+<div class="code-output">  ✓ Python: 3.14.9 (healthy)</div>
+<div class="code-output">  ✓ Git: 2.53.0 (healthy)</div>
+<div class="code-output">  ✓ Vault: 7 ADRs, 2 PMs (healthy)</div>
+<div class="code-output">  ✓ Slop Court: 0 violations (acquitted)</div>`
+      },
+      council: {
+        title: 'council convene',
+        usage: 'python scripts/workshop.py council convene "<query>"',
+        description: 'Universal Supreme Council: 4-persona adversarial debate (Architect, Skeptic, Security, Operator).',
+        examples: [
+          'python scripts/workshop.py council convene "should we implement the new parser?"',
+          'python scripts/workshop.py council convene "which animation library for crossfade?"'
+        ],
+        output: `
+<div class="code-output">👥 Universal Supreme Council</div>
+<div class="code-output dim">├── Architect: "The parser is elegant but missing edge cases"</div>
+<div class="code-output">├── Skeptic: "Existing solution handles 95% of cases, YAGNI"</div>
+<div class="code-output">├── Security: "New parser increases attack surface"</div>
+<div class="code-output">├── Operator: "Downtime will impact CI/CD pipelines"</div>
+<div class="code-output success">Verdict: REJECTED with alternative recommendation</div>`
+      },
+      court: {
+        title: 'court trial',
+        usage: 'python scripts/workshop.py court trial <path> [--staged]',
+        description: 'Slop Court: 3-juror judicial tribunal (Prosecutor, DefenseCounsel, JuryBench).',
+        examples: [
+          'python scripts/workshop.py court trial .',
+          'python scripts/workshop.py court trial --staged'
+        ],
+        output: `
+<div class="code-output">⚖️ Slop Court Trial</div>
+<div class="code-output dim">Case: CR-20261029-A4B7C2</div>
+<div class="code-output">  Found: FEL-03 (naked exception blackhole)</div>
+<div class="code-output">  Found: MIS-02 (AI cliché in comments)</div>
+<div class="code-output success">Verdict: CONTEMPT → auto-reform recommended</div>`
+      },
+      vault: {
+        title: 'vault commands',
+        usage: 'python scripts/workshop.py vault <command>',
+        description: 'Obsidian vault operations: ADR creation, post-mortems, search, status.',
+        examples: [
+          'python scripts/workshop.py vault status',
+          'python scripts/workshop.py vault search "court"',
+          'python scripts/workshop.py vault adr new "Title"'
+        ],
+        output: `
+<div class="code-output">📦 Vault Status</div>
+<div class="code-output dim">  ADRs: 7 | PMs: 2 | Notes: 142</div>
+<div class="code-output">  Last commit: 2026-09-22 14:30:00</div>
+<div class="code-output">  Health: ✅ All systems nominal</div>`
+      }
+    };
+
+    function showModal(name) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modal-title');
+      const content = document.getElementById('modal-content');
+      const data = modals[name];
+
+      title.textContent = data.title;
+      content.innerHTML = `
+        <div class="modal-code">
+          <div class="code-line">${data.usage}</div>
+        </div>
+        <div class="code-output">${data.description}</div>
+        <div class="modal-code">
+          <div class="code-line">Examples:</div>
+          ${data.examples.map(e => `<div class="code-line">${e}</div>`).join('')}
+        </div>
+        ${data.output}
+      `;
+
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // =================================================================
+    // Staggered command flow animation on load
+    // =================================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const flowSteps = document.querySelectorAll('.flow-step');
+      flowSteps.forEach((step, i) => {
+        step.style.animationDelay = `${i * 100}ms`;
+      });
+    });
+  </script>
+</body>
+</html>

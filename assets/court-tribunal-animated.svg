@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 900; fill: #f0f0f0; font-size: 24px; }
+    .subtitle { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; fill: #b8bac2; letter-spacing: 1px; }
+    .badge { font-family: var(--mono, "SF Mono", Consolas, Menlo, monospace); font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: #eb5e28; }
+    .base { fill: #111215; }
+    .panel { fill: #141519; stroke: #252730; stroke-width: 1; }
+    .accent { fill: #eb5e28; }
+
+    /* Animation Keyframes */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-20px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes gavelSwing {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-15deg); }
+      75% { transform: rotate(15deg); }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="400" height="200" class="base"/>
+
+  <!-- Panel -->
+  <rect x="24" y="24" width="352" height="152" class="panel"/>
+
+  <!-- Header Bar -->
+  <rect x="24" y="24" width="352" height="32" fill="#0f1013"/>
+
+  <!-- Title -->
+  <text x="40" y="48" class="title">SLIP COURT</text>
+
+  <!-- Jury Badge -->
+  <text x="360" y="48" class="subtitle">3 JURORS • UNANIMOUS</text>
+
+  <!-- Panels -->
+  <rect x="32" y="72" width="120" height="40" class="panel"/>
+  <rect x="172" y="72" width="120" height="40" class="panel"/>
+  <rect x="312" y="72" width="108" height="40" class="panel"/>
+
+  <!-- Panel Labels -->
+  <text x="42" y="92" class="subtitle">Prosecutor</text>
+  <text x="182" y="92" class="subtitle">Defense</text>
+  <text x="322" y="92" class="subtitle">Jury</text>
+
+  <!-- Gavel Icon (simple) -->
+  <g id="gavel" style="transform-origin: 200px 180px; animation: gavelSwing 1.5s ease-in-out infinite;">
+    <!-- Handle -->
+    <rect x="198" y="140" width="4" height="40" fill="#555"/>
+    <!-- Head -->
+    <polygon points="200,140 180,155 180,205 220,205 220,155 200,140" class="accent"/>
+    <!-- Base -->
+    <rect x="195" y="185" width="10" height="15" fill="#333"/>
+  </g>
+
+  <!-- Verdict Text -->
+  <text x="200" y="165" text-anchor="middle" class="subtitle" style="animation: fadeIn 0.5s ease 0.3s forwards;">ACQUITTAL: 0.0% SLOP</text>
+
+  <!-- Data Points -->
+  <g style="animation: slideIn 0.5s ease 0.5s forwards;">
+    <circle cx="40" cy="150" r="6" class="accent"/>
+    <text x="50" y="155" class="subtitle">FEL-01</text>
+
+    <circle cx="160" cy="150" r="6" class="accent"/>
+    <text x="170" y="155" class="subtitle">FEL-03</text>
+
+    <circle cx="280" cy="150" r="6" class="accent"/>
+    <text x="290" y="155" class="subtitle">MIS-02</text>
+  </g>
+</svg>

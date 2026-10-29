@@ -1,0 +1,92 @@
+<!DOCTYPE svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- =================================================================
+       WORKSHOP OS Brand Colors Palette v3.5.0
+       Anti-Slop Design System - Signal Colors Only
+       ================================================================= -->
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 900; fill: #f0f0f0; }
+    .label { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 12px; fill: #b8bac2; }
+    .value { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 13px; fill: #f0f0f0; }
+    .swatch { stroke: #252730; stroke-width: 1; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#111215"/>
+
+  <!-- Header -->
+  <text x="40" y="40" class="title">WORKSHOP OS Brand Palette</text>
+  <text x="40" y="60" class="label">Signal Vermilion • Matte Graphite • Bone White</text>
+
+  <!-- Signal Colors Row 1 -->
+  <text x="40" y="100" class="label">PRIMARY SIGNAL COLORS</text>
+
+  <!-- Signal Vermilion -->
+  <rect x="40" y="120" width="120" height="80" fill="#eb5e28" class="swatch"/>
+  <text x="170" y="145" class="value">--signal-primary: #eb5e28</text>
+  <text x="170" y="165" class="label">Signal Vermilion / Ochre</text>
+
+  <!-- Signal Deep -->
+  <rect x="320" y="120" width="120" height="80" fill="#e0531c" class="swatch"/>
+  <text x="450" y="145" class="value">--signal-deep: #e0531c</text>
+  <text x="450" y="165" class="label">Ochre Deep (Hover)</text>
+
+  <!-- =================================================================
+       Color Theory Note: Vermilion is the SINGLE accent color.
+       Purposeful. Not decorative. Signals danger, action, and alerts.
+       ================================================================= -->
+
+  <!-- Canvas Colors Row 2 -->
+  <text x="40" y="220" class="label">CANVAS COLORS</text>
+
+  <!-- Matte Anodized Dark Graphite (Ground) -->
+  <rect x="40" y="240" width="120" height="80" fill="#111215" class="swatch"/>
+  <text x="170" y="265" class="value">--canvas-ground: #111215</text>
+  <text x="170" y="285" class="label">Matte Anodized Dark Graphite</text>
+
+  <!-- Mid-Tone Graphite -->
+  <rect x="320" y="240" width="120" height="80" fill="#141519" class="swatch"/>
+  <text x="450" y="265" class="value">--canvas-mid: #141519</text>
+  <text x="450" y="285" class="label">Mid-Tone Graphite (Cards)</text>
+
+  <!-- Deep Obsidian -->
+  <rect x="600" y="240" width="120" height="80" fill="#0f1013" class="swatch"/>
+  <text x="730" y="265" class="value">--canvas-deep: #0f1013</text>
+  <text x="730" y="285" class="label">Deep Obsidian (Footer)</text>
+
+  <!-- Text Colors Row 3 -->
+  <text x="40" y="360" class="label">TEXT COLORS</text>
+
+  <!-- Bone White -->
+  <rect x="40" y="380" width="120" height="80" fill="#f0f0f0" class="swatch"/>
+  <text x="170" y="405" class="value">--text-primary: #f0f0f0</text>
+  <text x="170" y="425" class="label">Bone White (Primary)</text>
+
+  <!-- Soft Gray -->
+  <rect x="320" y="380" width="120" height="80" fill="#b8bac2" class="swatch"/>
+  <text x="450" y="405" class="value">--text-secondary: #b8bac2</text>
+  <text x="450" y="425" class="label">Soft Gray (Secondary)</text>
+
+  <!-- Cool Gray -->
+  <rect x="600" y="380" width="120" height="80" fill="#50535e" class="swatch"/>
+  <text x="730" y="405" class="value">--text-disabled: #50535e</text>
+  <text x="730" y="425" class="label">Cool Gray (Disabled)</text>
+
+  <!-- Divider Colors -->
+  <text x="40" y="500" class="label">UI DIVIDERS & GRIDS</text>
+
+  <!-- Divider -->
+  <rect x="40" y="520" width="120" height="40" fill="#252730" class="swatch"/>
+  <text x="170" y="545" class="value">--divider: #252730</text>
+  <text x="170" y="563" class="label">Dividers & Rails</text>
+
+  <!-- Grid Dot -->
+  <rect x="320" y="520" width="120" height="40" fill="#24262f" class="swatch"/>
+  <text x="450" y="545" class="value">--grid-dot: #24262f</text>
+  <text x="450" y="563" class="label">Modular Dot Matrix Grid</text>
+
+  <!-- =================================================================
+       Typography Sample
+       ================================================================= -->
+  <text x="40" y="590" class="label">Typography: SF Mono, Helvetica Neue, System UI</text>
+</svg>
