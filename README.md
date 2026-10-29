@@ -13,7 +13,7 @@
 <br>
 
 <div align="center">
-  <img src="assets/hero-banner.svg" alt="Workshop OS Manifesto Graphic" width="100%">
+  <img src="assets/hero-banner.svg?v=3.5.0" alt="Workshop OS Manifesto Graphic" width="100%">
 </div>
 
 <br>
@@ -22,19 +22,80 @@
   <code>SPEC: WORKSHOP-OS-3.5</code> &nbsp;•&nbsp;
   <code>LICENSE: APACHE-2.0</code> &nbsp;•&nbsp;
   <code>7 SOVEREIGN HOUSES</code> &nbsp;•&nbsp;
-  <code>2,150+ SKILLS</code> &nbsp;•&nbsp;
+  <code>2,147 VERIFIED SKILLS</code> &nbsp;•&nbsp;
   <code>SLOP COURT: v3.5 ARMED</code>
 </p>
 
 ---
 
-> *"We got tired of AI models giving us 80% of a solution, skipping the hard parts with lazy placeholders, wrapping bugs in `except: pass`, and sycophantically telling us every flawed architectural idea was 'brilliant'.*
-> 
-> *So we built an operating system that treats code slop as a punishable offense."*
+## 📑 TABLE OF CONTENTS
+
+- [01 // Quick Start (60 Seconds)](#01--quick-start-60-seconds)
+- [02 // The Manifesto: Why AI Agents Erode Codebases](#02--the-manifesto-why-ai-agents-erode-codebases)
+- [03 // Architectural Topology](#03--architectural-topology)
+- [04 // The 7 Sovereign Houses](#04--the-7-sovereign-houses)
+- [05 // Slop Court v3.5: The Code Quality Tribunal](#05--slop-court-v35-the-code-quality-tribunal)
+- [06 // The Universal Supreme Council](#06--the-universal-supreme-council)
+- [07 // Architectural Capability & Invariant Matrix](#07--architectural-capability--invariant-matrix)
+- [08 // Master CLI Command Palette](#08--master-cli-command-palette)
+- [09 // Harness Configuration Matrix](#09--harness-configuration-matrix)
+- [10 // Project Documentation & Examples](#10--project-documentation--examples)
+- [11 // Synthetic Team, Authors & Contributors](#11--the-synthetic-team-authors--contributors)
+- [12 // Open Source Governance & Licensing](#12--open-source-governance--licensing)
 
 ---
 
-## 01 // THE MANIFESTO: WHY AI AGENTS ERODE CODEBASES
+## 01 // QUICK START (60 SECONDS)
+
+For extended setup details and troubleshooting, see [QUICKSTART.md](QUICKSTART.md).
+
+### Option A: Local Workstation Setup (Recommended)
+
+Choose either `uv` (fastest) or standard `pip`:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/shoyarism/ai-workshop.git
+cd ai-workshop
+
+# 2. Install dependencies (choose ONE)
+uv sync                 # If using uv
+pip install -e .        # If using standard pip
+
+# 3. Arm the Slop Court Bailiff pre-commit and pre-push interceptors
+workshop court bailiff install
+
+# 4. Verify environment and run test suite
+workshop doctor --strict
+pytest
+```
+
+### Option B: Sandboxed Docker Container
+
+Isolate all subprocess executions and file operations in a non-root container sandbox:
+
+```bash
+# Run strict health diagnostics inside an isolated container
+docker compose run --rm runtime
+
+# Start sandboxed local browser hubs and background services
+docker compose up -d hub
+```
+
+### Option C: The Zero-Clone Cloud Protocol
+
+Operating inside an ephemeral container, GitHub Codespace, or remote cloud instance? Stream any skill runbook directly into your agent context using raw `curl`:
+
+```bash
+# Stream any skill directly into agent context (cross-platform curl)
+curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/dev-house/using-superpowers/SKILL.md
+```
+
+> **Windows PowerShell Note:** In Windows PowerShell, run `curl.exe` to ensure the native binary executes rather than the `Invoke-WebRequest` alias.
+
+---
+
+## 02 // THE MANIFESTO: WHY AI AGENTS ERODE CODEBASES
 
 Every developer using AI coding agents eventually hits the **degradation wall**:
 
@@ -43,11 +104,11 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 * **The Yes-Man Echo Chamber:** LLMs are trained to please. Ask an AI if a fragile architecture or flawed business model will work, and it invariably compliments you. Single-model feedback is an echo chamber.
 * **Context Amnesia:** Every session starts from scratch. Past architectural decisions and post-mortems vanish.
 
-**Workshop OS replaces guesswork with mechanical certainty:** a 3-juror quality tribunal combining native Python AST parsing and polyglot lexical linting that halts commits at the Git level, an adversarial 4-persona council that stress-tests decisions, and 2,150+ battle-tested execution runbooks.
+**Workshop OS establishes enforceable boundaries:** a 3-juror quality tribunal combining native Python AST parsing and polyglot lexical heuristics that halts commits at the Git level, an adversarial 4-persona council that stress-tests decisions, and **2,147 verified execution runbooks**.
 
 ---
 
-## 02 // ARCHITECTURAL TOPOLOGY
+## 03 // ARCHITECTURAL TOPOLOGY
 
 <br>
 
@@ -61,7 +122,7 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 
 ```
 [ ZONE A: HARNESSES ]         [ ZONE B: THE COURT ]       [ ZONE C: THE COUNCIL ]     [ ZONE D: THE FOUNDRY ]
-Claude Code / Codex    -->    Static AST Analysis   -->   Skeptical Inquisitor   -->   2,150+ Domain Skills
+Claude Code / Codex    -->    Static AST Analysis   -->   Skeptical Inquisitor   -->   2,147 Domain Skills
 Cursor & Windsurf             3-Juror Deliberation        Radical Minimalist         7 Sovereign Houses
 Gemini Antigravity            Git Bailiff Hooks           UI/UX Craft Architect      Obsidian 2nd Brain
 OpenCode & Kilo               Pre-Commit & Pre-Push       Battle-Tested SRE          Zero-Clone HTTP Stream
@@ -70,7 +131,7 @@ CLI (`workshop`)              SHA-256 Content Hash        Adversarial Dialectics
 
 ---
 
-## 03 // THE 7 SOVEREIGN HOUSES OF WORKSHOP OS
+## 04 // THE 7 SOVEREIGN HOUSES
 
 <br>
 
@@ -80,7 +141,7 @@ CLI (`workshop`)              SHA-256 Content Hash        Adversarial Dialectics
 
 <br>
 
-To prevent **context window rot** and cognitive clutter, Workshop OS categorizes its 2,150+ battle-tested execution runbooks into **7 Sovereign Houses**. Rather than dumping hundreds of tools into the LLM context, operators and agents load modular profiles tailored for the current mission:
+To prevent **context window rot** and cognitive clutter, Workshop OS categorizes its **2,147 verified skills** into **7 Sovereign Houses**. Rather than dumping hundreds of tools into the LLM context, operators and agents load modular profiles tailored for the current mission:
 
 | Sovereign House | Jurisdiction & Focus | Lead Arsenal Tools | Verified Capacity |
 | :--- | :--- | :--- | :---: |
@@ -92,7 +153,7 @@ To prevent **context window rot** and cognitive clutter, Workshop OS categorizes
 | **🔬 06 The Intel House** | AST knowledge graphs, zero-cost scrapers, 30-day recency intel, and reverse engineering. | `graphify`, `agent-reach`, `last-30-days`, `understand-anything`, `rea` | **90 Skills** |
 | **📢 07 The Growth House** | Authentic human tone, conversion copywriting, value props, SEO, and product launches. | `humanizer`, `marketing-skills`, `brand-voice`, `product-hunt-launch` | **79 Skills** |
 
-*Auxiliary Infrastructure:* `skills/cloud-and-apis/` houses **320 specialized connectors** (AWS, Azure, GCP, BigQuery, Taobao, Stripe, Resend) kept neatly isolated from core Houses.
+*Auxiliary Infrastructure:* `skills/cloud-and-apis/` houses **320 specialized connectors** (AWS, Azure, GCP, BigQuery, Stripe, Resend) kept neatly isolated from core Houses.
 
 <details>
 <summary><b>🔍 Expand Directory Mapping & House Inspection Commands</b></summary>
@@ -118,7 +179,7 @@ workshop house inspect dev-house
 
 ---
 
-## 04 // SLOP COURT v3.5: THE CODE QUALITY TRIBUNAL
+## 05 // SLOP COURT v3.5: THE CODE QUALITY TRIBUNAL
 
 <br>
 
@@ -131,7 +192,9 @@ workshop house inspect dev-house
 Rather than relying on vague subjective prompts, the **Slop Court** evaluates staged code as an automated judicial review before a 3-juror bench:
 
 1. **Juror Craft & Tone (40% Weight):** Flags marketing fluff, unearned purple-indigo gradients, tautological comments (`// returns response`), fabricated stats (`10M+ users`, `99.9% uptime` without telemetry tags), and lazy omission stubs.
-2. **Juror Architecture & AST (30% Weight):** Parses language syntax trees via Python AST and polyglot heuristics. Flags functions with extreme control flow nesting (> 5 levels) or monolithic complexity (> 150 statements).
+2. **Juror Architecture & AST (30% Weight):**
+   * *Python:* Full deterministic Python AST parsing via the standard `ast` module. Flags extreme control flow nesting (> 5 levels) or monolithic functions (> 150 statements).
+   * *Non-Python (TS, JS, Go, Rust):* Pattern and regex heuristics for control nesting, token count, and structural metrics.
 3. **Juror Security & Invariants (30% Weight):** Intercepts silent error swallowers (`except: pass`), unlogged exception catches, and hardcoded secrets.
 
 > **Suppression Pragmas:** Legitimate exceptions (e.g. platform encoding fallbacks) can be explicitly annotated with `# @court-exempt: <reason>`, providing a documented, auditable paper trail similar to `# noqa` or `eslint-disable`.
@@ -165,7 +228,7 @@ $ git commit -m "feat: user pipeline"
 
 ---
 
-## 05 // THE UNIVERSAL SUPREME COUNCIL
+## 06 // THE UNIVERSAL SUPREME COUNCIL
 
 > *"A board that agrees on everything is redundant. Value is forged through intellectual collision and exposing unstated blind spots."*
 
@@ -189,7 +252,7 @@ workshop court council "Mandating 100% test coverage before release" --domain ge
 
 ---
 
-## 06 // ARCHITECTURAL CAPABILITY & INVARIANT MATRIX
+## 07 // ARCHITECTURAL CAPABILITY & INVARIANT MATRIX
 
 Workshop OS establishes deterministic guarantees that convert open-ended LLM non-determinism into verifiable, repeatable engineering invariants:
 
@@ -198,55 +261,11 @@ Workshop OS establishes deterministic guarantees that convert open-ended LLM non
 | **Deterministic Code Arrest** | **Slop Court Python AST + Lexical Linting Engine** | Ad-hoc system prompt hints & external linters | Zero lazy stubs, zero truncated lines, zero bare exceptions |
 | **Pre-Commit Enforcement** | **Turnkey Git Bailiff Interceptor (`court bailiff`)** | Manual pre-commit hooks or manual bash scripts | Commits blocked automatically on AST/Penal Code breach |
 | **Cognitive Bias Defense** | **Universal Supreme Council (4 Adversarial Personas)** | Single-model echo chamber / unverified synthesis | Multi-perspective blindspot exposure prior to critical commits |
-| **Execution Runbooks** | **7 Sovereign Houses with 2,150+ Structured Skills** | Empty workspace or generic unversioned prompts | Standardized YAML frontmatter contracts & executable runbooks |
+| **Execution Runbooks** | **7 Sovereign Houses with 2,147 Verified Skills** | Empty workspace or generic unversioned prompts | Standardized YAML frontmatter contracts & executable runbooks |
 | **Epistemic Memory** | **Obsidian Markdown Vault + ADRs + Post-Mortems** | Ephemeral context window lost upon session termination | Grounded organizational learning with immutable post-mortems |
 | **Deployment Footprint** | **Dual-Mode: Local Foundry or Zero-Clone Cloud Protocol** | Heavy full-clone dependencies or cloud SaaS lock-in | Instant zero-clone raw GitHub streaming or isolated Docker sandbox |
 | **Multi-Harness Portability** | **Native Unified Config: Antigravity, Claude, Cursor, Windsurf** | Vendor-specific extension silos | Single source of truth system prompt & skills across all agents |
 | **Open Governance** | **Apache 2.0 Open Source Core** | Proprietary walled gardens | Auditable codebase with transparent synthetic swarm lineage |
-
----
-
-## 07 // QUICK START: GETTING RUNNING IN 60 SECONDS
-
-### Option A: Local Workstation Setup (Python & uv)
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/shoyarism/ai-workshop.git
-cd ai-workshop
-
-# 2. Sync virtual environment and install the native console entrypoint
-uv sync
-pip install -e .
-
-# 3. Arm the Slop Court Bailiff pre-commit and pre-push interceptors
-workshop court bailiff install
-
-# 4. Run automated diagnostics and tests
-workshop doctor --strict
-pytest
-```
-
-### Option B: Sandboxed Docker Container
-
-Isolate all subprocess executions and file operations in a non-root container sandbox:
-
-```bash
-# Run strict health diagnostics inside an isolated container
-docker compose run --rm runtime
-
-# Start sandboxed local browser hubs and background services
-docker compose up -d hub
-```
-
-### Option C: The Zero-Clone Cloud Protocol
-
-Operating inside an ephemeral container, GitHub Codespace, or remote cloud instance? You do not need to clone the entire repository. Stream any skill runbook directly into your agent context using raw curl:
-
-```bash
-# Stream any skill directly into agent context
-curl -fsSL https://raw.githubusercontent.com/shoyarism/ai-workshop/main/skills/dev-house/using-superpowers/SKILL.md
-```
 
 ---
 
@@ -262,7 +281,7 @@ workshop status                        # Live operational state and background s
 # === 2. Sovereign Houses & Skill Arsenal ===
 workshop house list                    # Enumerate all 7 Sovereign Houses and capacities
 workshop house inspect <house-name>    # Deep-dive into lead tools and runbook inventory
-workshop search "<keyword>"            # Fuzzy search across 2,150+ skills and tools
+workshop search "<keyword>"            # Fuzzy search across 2,147 verified skills and tools
 
 # === 3. Slop Court Judicial Tribunal ===
 workshop court trial --staged          # Prosecute staged Git diffs before 3-juror bench
@@ -297,7 +316,18 @@ Connect Workshop OS to your preferred AI agent environment using the master inst
 
 ---
 
-## 10 // THE SYNTHETIC TEAM, AUTHORS & CONTRIBUTORS
+## 10 // PROJECT DOCUMENTATION & EXAMPLES
+
+* **[GLOSSARY.md](GLOSSARY.md):** Complete architectural glossary defining Slop Court, Git Bailiff, the 7 Sovereign Houses, and codified penal statutes (FEL-01..08, MIS-01..06).
+* **[QUICKSTART.md](QUICKSTART.md):** Comprehensive onboarding guide with step-by-step instructions for `uv`, `pip`, Docker, and Zero-Clone mode.
+* **[ROADMAP.md](ROADMAP.md):** Architectural roadmap across Phases 1, 2, and 3.
+* **[examples/](examples/):**
+  * [`examples/01_slop_court_programmatic.py`](examples/01_slop_court_programmatic.py): Programmatic Python API usage for Slop Court.
+  * [`examples/02_skill_template/SKILL.md`](examples/02_skill_template/SKILL.md): Standard YAML frontmatter contract template for creating new skills.
+
+---
+
+## 11 // THE SYNTHETIC TEAM, AUTHORS & CONTRIBUTORS
 
 Workshop OS is built through a human-synthetic collaborative engineering swarm and an open-source lineage. See [AUTHORS.md](AUTHORS.md) for full attribution:
 
@@ -314,7 +344,7 @@ Workshop OS is built through a human-synthetic collaborative engineering swarm a
 
 ---
 
-## 11 // OPEN SOURCE GOVERNANCE & LICENSING
+## 12 // OPEN SOURCE GOVERNANCE & LICENSING
 
 * **Core License:** The Workshop OS orchestration framework, CLI scripts, and Slop Court tribunal are licensed under the [Apache License, Version 2.0](LICENSE).
 * **Vendored Skills & Third-Party Runbooks:** Community skill packs and external tools retained within the Sovereign Houses preserve their respective upstream open-source licenses (MIT, Apache-2.0, BSD-3-Clause) as noted in their respective directories. See [VENDORED_LICENSES.md](VENDORED_LICENSES.md) for license declarations.

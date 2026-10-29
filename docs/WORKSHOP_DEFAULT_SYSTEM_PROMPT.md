@@ -24,8 +24,8 @@ Determine your operating mode immediately upon session initialization:
 
 ### Mode A: Local Clone (Fast & Full Capability — Priority 1)
 If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
-1. **Master CLI**: `python scripts/workshop.py <command>` (or `python scripts/workshop.py <command>`)
-   - `search "<keyword>"`: Search 2,150+ domain skills, subsystems, and runbooks.
+1. **Master CLI**: `python scripts/workshop.py <command>` (or `uv run python scripts/workshop.py <command>`)
+   - `search "<keyword>"`: Search 2,147 verified domain skills, subsystems, and runbooks.
    - `doctor`: Run comprehensive health diagnostics across all local subsystems.
    - `council convene "<query>"`: Run Universal Supreme Council multi-persona adversarial deliberation.
    - `court trial <path> [--staged]`: Convene the Slop Court quality tribunal.
@@ -41,19 +41,19 @@ Public raw reads require no credentials. Authenticated requests may use `$GITHUB
 
 1. **Find a Skill**:
    ```bash
-   # List available skills via GitHub API
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            -H "User-Agent: Workshop-Agent" \
-            "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
+   # List available skills via GitHub API (Windows PowerShell: use curl.exe)
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        -H "User-Agent: Workshop-Agent" \
+        "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
    ```
 2. **Fetch Skill Instructions on Demand**:
    ```bash
-   # Stream raw SKILL.md directly into your context
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.raw+json" \
-            -H "User-Agent: Workshop-Agent" \
-            -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
+   # Stream raw SKILL.md directly into context
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github.raw+json" \
+        -H "User-Agent: Workshop-Agent" \
+        -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
    ```
 3. Follow the retrieved instructions strictly.
 

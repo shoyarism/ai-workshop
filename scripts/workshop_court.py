@@ -579,7 +579,7 @@ class DefenseCounsel:
                 charge.exemption_reason = "Test suite and evaluation fixture immunity"
 
             # 2. Documentation describing rules or anti-slop guidelines gets governance immunity
-            if any(term in rel_str for term in ["anti-slop", "antislop", "court", "soul.md", "protocol", "claude.md", "agents.md", "gemini.md", "workshop.md", "prompt"]):
+            if any(term in rel_str for term in ["anti-slop", "antislop", "court", "soul.md", "protocol", "claude.md", "agents.md", "gemini.md", "workshop.md", "prompt", "glossary"]):
                 if charge.statute_code in {"MIS-02", "MIS-01", "MIS-03", "MIS-04"}:
                     charge.exempted = True
                     charge.exemption_reason = "Official Workshop OS rules and governance documentation immunity"

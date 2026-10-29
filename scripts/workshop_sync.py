@@ -117,7 +117,7 @@ You operate with absolute technical rigor, proactive autonomous problem-solving,
 ### Mode A: Local Clone (Priority 1 — Fast & Full Capability)
 If this local Workshop repository (or `$WORKSHOP_ROOT`) exists on this machine:
 1. **Master CLI**: `uv run python scripts/workshop.py <command>`
-   - `search "<keyword>"`: Search 2,140+ domain skills, subsystems, and runbooks.
+   - `search "<keyword>"`: Search 2,147 verified domain skills, subsystems, and runbooks.
    - `doctor`: Comprehensive health diagnostics across all subsystems.
    - `council convene "<query>"`: Universal Supreme Council multi-persona adversarial deliberation.
    - `court trial <path> [--staged]`: Slop Court quality tribunal.
@@ -134,17 +134,19 @@ Public raw reads require no credentials. Authenticated requests may use `$GITHUB
 
 1. **Find a Skill**:
    ```bash
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            -H "User-Agent: Workshop-Agent" \
-            "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
+   # List available skills via GitHub API (Windows PowerShell: use curl.exe)
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        -H "User-Agent: Workshop-Agent" \
+        "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills"
    ```
 2. **Fetch Skill Instructions on Demand**:
    ```bash
-   curl.exe -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.raw+json" \
-            -H "User-Agent: Workshop-Agent" \
-            -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
+   # Stream raw SKILL.md directly into context
+   curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github.raw+json" \
+        -H "User-Agent: Workshop-Agent" \
+        -L "https://api.github.com/repos/shoyarism/ai-workshop/contents/skills/<skill-name>/SKILL.md"
    ```
 3. Follow the retrieved instructions strictly.
 
@@ -168,7 +170,7 @@ Match the user prompt to the domain and LOAD the corresponding skill before writ
 | **Debugging & Error Recovery** | `skills/systematic-debugging/SKILL.md`<br>`vault/02 - Post-Mortems/` (PM-001 to PM-008) | Check existing post-mortems first. Isolate failure invariants. |
 | **Code Review & Simplification** | `skills/slop-court/SKILL.md`<br>`skills/antislop/SKILL.md`<br>`skills/code-simplification/SKILL.md` | Strict penal code check (FEL-01..06, MIS-01..05), strip unnecessary abstractions. |
 
-### Step 0.B: Dynamic Search (for anything else across 2,140+ skills)
+### Step 0.B: Dynamic Search (for anything else across 2,147 verified skills)
 Run via shell or call MCP tool `skill_search`:
 ```bash
 uv run python scripts/workshop.py search "<keyword>"
@@ -181,7 +183,8 @@ In your very first turn, announce the loaded skill before presenting the solutio
 ---
 
 ## 4. ⚖️ SLOP COURT QUALITY GATE (CODIFIED PENAL CODE)
-Strict enforcement across all agent deliverables:
+Strict enforcement across all agent deliverables.
+*Scope boundary: Deterministic Python AST analysis; regex heuristics for non-Python assets.*
 
 ### Codified Penal Statutes:
 - **Capital Felonies (Immediate Rejection):**

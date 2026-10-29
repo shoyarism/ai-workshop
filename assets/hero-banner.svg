@@ -231,17 +231,17 @@
     </g>
 
     <!-- Hero Title (Generous Clearance Below Pill + Animated Laser Slash) -->
-    <g transform="translate(0, 76)">
-      <text x="0" y="0" class="title-display" font-size="52">WORKSHOP <tspan class="title-accent anim-slash">//</tspan> OS</text>
+    <g transform="translate(0, 84)">
+      <text x="0" y="0" class="title-display" font-size="48">WORKSHOP <tspan class="title-accent anim-slash">//</tspan> OS</text>
     </g>
 
     <!-- Value Proposition -->
-    <text x="0" y="112" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
-    <text x="0" y="138" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
-    <text x="0" y="158" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
+    <text x="0" y="118" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
+    <text x="0" y="142" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
+    <text x="0" y="162" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
 
     <!-- Key Spec Badges / Tabs (Non-colliding text-anchor layout with Laser Highlights) -->
-    <g transform="translate(0, 192)">
+    <g transform="translate(0, 194)">
       <!-- Badge 1: 7 Houses -->
       <g transform="translate(0, 0)">
         <rect width="144" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
