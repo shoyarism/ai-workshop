@@ -1116,6 +1116,7 @@ e92fad51debfeee3bbc1bd355a227fae0ea4418cd47f4081c3118c956ff5511f  skills/media-h
 8bfbb99d104355527171caed6ac88a7ff0351c8d0f77441b225b2eeb797727da  skills/media-house/video-outpainting/SKILL.md
 09dc156e595d71b57f394e1274051eb3db526890360d8140caf40729517fe4c3  skills/media-house/video-vision-mcp/SKILL.md
 3b6d4864bae49dd3d60e7f6218e0de0803633989d68bdcf093a3771307387ac2  skills/media-house/video/SKILL.md
+ceec4cfe3700c95cac5760a7195f2d03fbb780a1a3b0580dbc2a6d0a1d0911fe  skills/media-house/vox-inspired-explainer/SKILL.md
 0c38b830e5a8273b62e61069161af937441dc0bedd5567da8032ebec88e6f6b9  skills/media-house/wan-2-7/SKILL.md
 d98d0dcbd22ca192a9bae486bf10ef340437c981d04f5aa00a28dce2d0939b7f  skills/media-house/watch-video/SKILL.md
 f0ec0f2246573720a2dd07c87f9022a8fa1a4cba61e7075fffdaa4eb81ac7c1a  skills/media-house/youtube-api-skill/SKILL.md
@@ -1509,7 +1510,7 @@ b1774ae5ebc67d781cc2316d85314e2031f792a96aa5259865ca3ad27d2cfe79  skills/securit
 603f19a709ceed3d6cadc3cb2ee3ff282ee1179cea60d9e8650fb42f945caba1  skills/security-house/anthropic-cybersecurity-skills/skills/deploying-palo-alto-prisma-access-zero-trust/SKILL.md
 f3e6dae09db71310bf7b6f7105da27ba7d3283c83c014fea9c3898a95b3dcd45  skills/security-house/anthropic-cybersecurity-skills/skills/deploying-ransomware-canary-files/SKILL.md
 a337d29ce9b4c6adf344a6f103d8409e70b67de8a9610b869744c9f63ce2eb31  skills/security-house/anthropic-cybersecurity-skills/skills/deploying-software-defined-perimeter/SKILL.md
-425f34d310b04d775551121d917edb99e521a0de4b48113ee7b2f2893660a6fb  skills/security-house/anthropic-cybersecurity-skills/skills/deploying-tailscale-for-zero-trust-vpn/SKILL.md
+83bfa144ac8cb8fd530d99cc6f19b4f61d844222ede860657aa48b7f3c8acc93  skills/security-house/anthropic-cybersecurity-skills/skills/deploying-tailscale-for-zero-trust-vpn/SKILL.md
 6f9230b7a8d4c29657d053af7453080e8dd47dca39458e0f22741e999ccdd41c  skills/security-house/anthropic-cybersecurity-skills/skills/designing-adversary-engagement-with-mitre-engage/SKILL.md
 c6be759524e385194b85e79b7d38545a9914c79d95c65ad946a2e0444527cdcd  skills/security-house/anthropic-cybersecurity-skills/skills/detecting-ai-model-prompt-injection-attacks/SKILL.md
 b21c7379f3daa0e552ca07c8f3c238a190756def58b1b0e141b2d477ba97a6f1  skills/security-house/anthropic-cybersecurity-skills/skills/detecting-anomalies-in-industrial-control-systems/SKILL.md
