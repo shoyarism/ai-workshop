@@ -721,9 +721,9 @@ def sync_opencode_kilo(dry_run: bool = False) -> None:
                 f"{r_str}/skills",
                 f"{r_str}/.workshop_state/skills-core",
                 f"{r_str}/ui-ux-arsenal",
-                f"{r_str}/ai agents handbook/packs/ponytail/skills",
-                f"{r_str}/ai agents handbook/packs/styleseed/skills",
-                f"{r_str}/ai agents handbook/packs/garden-skills/skills",
+                f"{r_str}/ai-agents-handbook/packs/ponytail/skills",
+                f"{r_str}/ai-agents-handbook/packs/styleseed/skills",
+                f"{r_str}/ai-agents-handbook/packs/garden-skills/skills",
                 f"{r_str}/hyperframes/skills",
                 f"{r_str}/browser-use/skills"
             ]

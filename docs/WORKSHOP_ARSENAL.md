@@ -48,12 +48,12 @@ python scripts/workshop.py status
 1. `skills/` *(816+ curated domain skills including `hospital-live-api-connector`, `heroui-v3-design-system`, `hospital-color-coding`, `multimodal-vision-and-media-inspector`, `live-browser-agent`, `modern-ui-ux-architect`, `mcp-ecosystem-master`, `fullstack-system-builder`, `cli-anything`, `deep-tutor`, `stop-slop`, `witr`, `heretic`, `ai-toolkit`, `ecosystem`, `notion-second-brain`, `pinchtab`, `hackingtool`, `cua`, `ecc`)*
 2. `hyperframes/skills/` *(20 motion & video generation skills)*
 3. `browser-use/skills/` *(6 browser automation skills)*
-4. `ai agents handbook/packs/ponytail/skills/` *(Architecture debt auditor skills)*
-5. `ai agents handbook/packs/styleseed/skills/` *(UI design system skills)*
-6. `ai agents handbook/packs/garden-skills/skills/` *(Garden web component skills)*
-7. `ai agents handbook/packs/baoyu-design/skills/` *(Visual illustration & design skills)*
-8. `ai agents handbook/packs/huashu-design/skills/` *(Aesthetics & layout skills)*
-9. `ai agents handbook/packs/karpathy/skills/` *(Deep learning & training skills)*
+4. `ai-agents-handbook/packs/ponytail/skills/` *(Architecture debt auditor skills)*
+5. `ai-agents-handbook/packs/styleseed/skills/` *(UI design system skills)*
+6. `ai-agents-handbook/packs/garden-skills/skills/` *(Garden web component skills)*
+7. `ai-agents-handbook/packs/baoyu-design/skills/` *(Visual illustration & design skills)*
+8. `ai-agents-handbook/packs/huashu-design/skills/` *(Aesthetics & layout skills)*
+9. `ai-agents-handbook/packs/karpathy/skills/` *(Deep learning & training skills)*
 10. `ui-ux-arsenal/` *(Master design system, Tailwind v4 design tokens, UI recipes)*
 11. Antigravity & science plugins (`~/.gemini/config/plugins/science/skills`)
 12. Claude and Hermes global skills (`~/.agents/skills`, `~/.claude/skills`)

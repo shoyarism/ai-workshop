@@ -32,7 +32,7 @@ from workshop_paths import ROOT  # noqa: E402
 SKILL_ROOTS: tuple[Path, ...] = (
     ROOT / "skills",
     ROOT / "open-design",
-    ROOT / "ai agents handbook",
+    ROOT / "ai-agents-handbook",
     ROOT / "agent-skills" / "skills",
     ROOT / "claude-plugins-official",
     ROOT / "claude-mem",

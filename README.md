@@ -125,7 +125,7 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 Claude Code / Codex    -->    Static AST Analysis   -->   Skeptical Inquisitor   -->   2,147 Domain Skills
 Cursor & Windsurf             3-Juror Deliberation        Radical Minimalist         7 Sovereign Houses
 Gemini Antigravity            Git Bailiff Hooks           UI/UX Craft Architect      Obsidian 2nd Brain
-OpenCode & Kilo               Pre-Commit & Pre-Push       Battle-Tested SRE          Zero-Clone HTTP Stream
+OpenCode & Kilo               Pre-Commit & Pre-Push       Zero-Trust SRE             Zero-Clone HTTP Stream
 CLI (`workshop`)              SHA-256 Content Hash        Adversarial Dialectics     Docker Sandbox
 ```
 
@@ -237,7 +237,7 @@ Single-agent reasoning is prone to confirmation bias. The **Supreme Council** fo
 * **The Skeptical Inquisitor:** Red-teams assumptions, hunts tail risks, and maps cascading failure modes.
 * **The Radical Minimalist:** Ruthlessly enforces YAGNI. Prunes bloated dependencies, unnecessary microservices, and premature abstraction.
 * **The UI/UX Craft Architect:** Defends typographic hierarchy, spacing rhythm, and WCAG AA accessibility standards.
-* **The Battle-Tested SRE:** Assumes services will crash at 3 AM. Demands backpressure, idempotency, and explicit telemetry.
+* **The Zero-Trust SRE:** Assumes services will crash at 3 AM. Demands backpressure, idempotency, and explicit telemetry.
 
 ```bash
 # Deliberate an architectural choice
@@ -258,7 +258,7 @@ Workshop OS establishes deterministic guarantees that convert open-ended LLM non
 
 | Engineering Dimension | Workshop OS Architecture | Conventional AI Tools & Assistants | Deterministic Invariant Guaranteed |
 | :--- | :--- | :--- | :--- |
-| **Deterministic Code Arrest** | **Slop Court Python AST + Lexical Linting Engine** | Ad-hoc system prompt hints & external linters | Zero lazy stubs, zero truncated lines, zero bare exceptions |
+| **Code Quality Gate** | **Slop Court (Deterministic Python AST + Polyglot Lexical Heuristics)** | Ad-hoc system prompt hints & external linters | Zero lazy stubs, zero truncated lines, zero unlogged exceptions (Deterministic AST parsing for Python; lexical regex heuristics across polyglot assets) |
 | **Pre-Commit Enforcement** | **Turnkey Git Bailiff Interceptor (`court bailiff`)** | Manual pre-commit hooks or manual bash scripts | Commits blocked automatically on AST/Penal Code breach |
 | **Cognitive Bias Defense** | **Universal Supreme Council (4 Adversarial Personas)** | Single-model echo chamber / unverified synthesis | Multi-perspective blindspot exposure prior to critical commits |
 | **Execution Runbooks** | **7 Sovereign Houses with 2,147 Verified Skills** | Empty workspace or generic unversioned prompts | Standardized YAML frontmatter contracts & executable runbooks |
@@ -320,10 +320,14 @@ Connect Workshop OS to your preferred AI agent environment using the master inst
 
 * **[GLOSSARY.md](GLOSSARY.md):** Complete architectural glossary defining Slop Court, Git Bailiff, the 7 Sovereign Houses, and codified penal statutes (FEL-01..08, MIS-01..06).
 * **[QUICKSTART.md](QUICKSTART.md):** Comprehensive onboarding guide with step-by-step instructions for `uv`, `pip`, Docker, and Zero-Clone mode.
+* **[BENCHMARKS.md](BENCHMARKS.md):** Empirical latency, memory footprint, and SLA metrics across CLI commands and Git pre-commit interceptors.
 * **[ROADMAP.md](ROADMAP.md):** Architectural roadmap across Phases 1, 2, and 3.
+* **[docs/COUNCIL_AND_SYNC_POLICY.md](docs/COUNCIL_AND_SYNC_POLICY.md):** Model routing, token costs, zero-cost offline fallbacks, and vendored skill maintenance policy.
 * **[examples/](examples/):**
   * [`examples/01_slop_court_programmatic.py`](examples/01_slop_court_programmatic.py): Programmatic Python API usage for Slop Court.
   * [`examples/02_skill_template/SKILL.md`](examples/02_skill_template/SKILL.md): Standard YAML frontmatter contract template for creating new skills.
+  * [`examples/03_supreme_council_debate.py`](examples/03_supreme_council_debate.py): Programmatic invocation of the 4-persona Supreme Council dialectic panel.
+  * [`examples/04_pre_commit_pipeline_integration.md`](examples/04_pre_commit_pipeline_integration.md): Recipe for integrating Slop Court with native Bailiff, `.pre-commit-config.yaml`, and GitHub Actions.
 
 ---
 
@@ -338,7 +342,7 @@ Workshop OS is built through a human-synthetic collaborative engineering swarm a
   * **Skeptical Inquisitor** — Adversarial Red-Team Lead & Failure Invariant Hunter
   * **Radical Minimalist** — Anti-Bloat, KISS Principle & YAGNI Champion
   * **UI/UX Craft Architect** — Typography, Spacing Rhythm & Visual Discipline
-  * **Battle-Tested SRE** — Zero-Trust Reliability & Fault-Tolerance Engineer
+  * **Zero-Trust SRE** — Zero-Trust Reliability & Fault-Tolerance Engineer
   * **Knowledge Synthesizer** — Task-to-Skill Compiler & Obsidian Vault Curator
 * **Community Contributors & Pioneers:** Andrej Karpathy (*llm-council, karpathy-skills*), Garry Tan (*gstack*), Jesse Vincent (*superpowers*), Matt Pocock (*matt-pocock-skills*), Brian Madison (*bmad-method*), Leon Lin (*design-taste-frontend*), Matt Van Horn (*last-30-days*), Hugo He (*ppt-master*), Mor Luto (*rea*), Addy Osmani (*agent-skills*), Dietrich Gebert (*ponytail*), Daniel Miessler (*fabric / PAI*), and Anthropic (*Claude Code & MCP*).
 

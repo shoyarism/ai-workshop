@@ -33,7 +33,7 @@ CACHE_FILE = WORKSHOP_DIR / "scripts" / ".skills_cache.json"
 SKILL_PATHS = [
     WORKSHOP_DIR / "skills",
     WORKSHOP_DIR / "open-design",
-    WORKSHOP_DIR / "ai agents handbook",
+    WORKSHOP_DIR / "ai-agents-handbook",
     WORKSHOP_DIR / "agent-skills" / "skills",
     WORKSHOP_DIR / "claude-plugins-official",
     WORKSHOP_DIR / "claude-mem",

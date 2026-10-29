@@ -38,12 +38,12 @@ SKILL_PATHS = [
     WORKSHOP_DIR / "skills",
     WORKSHOP_DIR / "hyperframes" / "skills",
     WORKSHOP_DIR / "browser-use" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "ponytail" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "styleseed" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "garden-skills" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "baoyu-design" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "karpathy" / "skills",
-    WORKSHOP_DIR / "ai agents handbook" / "packs" / "universal" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "ponytail" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "styleseed" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "garden-skills" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "baoyu-design" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "karpathy" / "skills",
+    WORKSHOP_DIR / "ai-agents-handbook" / "packs" / "universal" / "skills",
 ]
 
 # FastEmbed lazy loader

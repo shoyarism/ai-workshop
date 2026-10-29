@@ -17,8 +17,8 @@ Modular companion documents for the **AI Engineering Agent — Master Workflow &
 - **`AI-AGENT-MASTER-PROMPT.md`** — original Senior Full-Stack Engineer workflow prompt; developed and expanded into the master prompt.
 - **`prompts/`** — website reconnaissance suite (`SYSTEM_PROMPT.md`, `OPERATIONAL_SPEC.md`, `OUTPUT_SCHEMAS.md`, `VERIFICATION_MATRIX.md`); its methodology is embedded and generalized throughout this suite.
 - **`skills/`** — managed agent skill library (796 skills from 30+ official + community repositories and agent packs); indexed in `SKILLS_INDEX.md`, provenance in `SOURCES.md`, and routed via `04-SKILLS-CATALOG.md`.
-- **`ai agents handbook/packs/`** — agent persona & config packs (ponytail, karpathy, ECC, huashu-design, baoyu-design, garden-skills, styleseed); skills are extracted into `skills/`.
-- **`ai agents handbook/references/`** — awesome-lists and directories for skills, MCP servers, system prompts, and plugins.
+- **`ai-agents-handbook/packs/`** — agent persona & config packs (ponytail, karpathy, ECC, huashu-design, baoyu-design, garden-skills, styleseed); skills are extracted into `skills/`.
+- **`ai-agents-handbook/references/`** — awesome-lists and directories for skills, MCP servers, system prompts, and plugins.
 
 ## How to use
 

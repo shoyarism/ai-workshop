@@ -44,7 +44,7 @@ Downloaded from the [skills.sh](https://skills.sh) registry (Agent Skills Direct
 
 ## Agent packs (2026-08-06, second merge — persona/config packs)
 
-Skills extracted from ready-to-drop agent configuration packs (full packs kept in `ai agents handbook/packs/`):
+Skills extracted from ready-to-drop agent configuration packs (full packs kept in `ai-agents-handbook/packs/`):
 
 | Pack | Skills added |
 |---|---|
@@ -76,7 +76,7 @@ Skills created from Albo imports:
 
 ## Web sweep additions (2026-08-11)
 
-Skills found during a thorough audit of the `ai agents handbook/references/` awesome-lists, installed via sparse `git clone --depth 1`.
+Skills found during a thorough audit of the `ai-agents-handbook/references/` awesome-lists, installed via sparse `git clone --depth 1`.
 
 | Repository | Skills contributed |
 |---|---|

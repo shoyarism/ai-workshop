@@ -16,7 +16,7 @@ Curated system prompts, operational specs, and reusable prompt templates for AI 
 
 1. Load the applicable system prompt (top-level docs or `library/`) as the agent's system prompt.
 2. For web reconnaissance tasks, use `SYSTEM_PROMPT.md` + `OPERATIONAL_SPEC.md` + `OUTPUT_SCHEMAS.md` as a single suite, and score results with `VERIFICATION_MATRIX.md`.
-3. Combine with skills from [`skills/`](../skills/SKILLS_INDEX.md) and the master agent rules in [`ai agents handbook/`](../ai%20agents%20handbook/AI-AGENT-MASTER-PROMPT.md).
+3. Combine with skills from [`skills/`](../skills/SKILLS_INDEX.md) and the master agent rules in [`ai-agents-handbook/`](../ai%20agents%20handbook/AI-AGENT-MASTER-PROMPT.md).
 
 ## Archive
 

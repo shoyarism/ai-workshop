@@ -23,7 +23,7 @@ All vendored components use permissive open-source licenses (MIT, Apache-2.0, BS
 | **OpenMontage & Remotion** | `skills/media-house/` | **MIT** | Programmatic video generation and motion design runbooks. Authored by the Remotion & OpenMontage communities. |
 | **Office & Document Toolkits (PDF, XLSX, DOCX)** | `skills/cloud-and-apis/`, `skills/growth-house/` | **MIT** | Parsers and generators for spreadsheets, documents, and PDF reporting. Authored by respective open-source tool authors. |
 | **Modern UI & Theme Factory** | `skills/design-house/` | **MIT** | Frontend styling, brand guidelines, and canvas design utilities. Authored by open-source UI design contributors. |
-| **Ponytail & Styleseed Handbook Packs** | `ai agents handbook/packs/` | **MIT** | Curated workflow runbooks, dev templates, and generative prompt presets. |
+| **Ponytail & Styleseed Handbook Packs** | `ai-agents-handbook/packs/` | **MIT** | Curated workflow runbooks, dev templates, and generative prompt presets. |
 
 ---
 

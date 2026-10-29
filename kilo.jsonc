@@ -19,9 +19,9 @@
       "./skills",
       "./.workshop_state/skills-core",
       "./ui-ux-arsenal",
-      "./ai agents handbook/packs/ponytail/skills",
-      "./ai agents handbook/packs/styleseed/skills",
-      "./ai agents handbook/packs/garden-skills/skills",
+      "./ai-agents-handbook/packs/ponytail/skills",
+      "./ai-agents-handbook/packs/styleseed/skills",
+      "./ai-agents-handbook/packs/garden-skills/skills",
       "./hyperframes/skills",
       "./browser-use/skills"
     ]

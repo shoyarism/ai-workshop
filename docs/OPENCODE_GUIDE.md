@@ -82,9 +82,9 @@ OpenCode is wired to **20+ active MCP tools**:
 
 OpenCode automatically searches across registered skill directories:
 1. `./skills` (primary skills)
-2. `ai agents handbook/packs/ponytail/skills` (Debt & refactor skills)
-3. `ai agents handbook/packs/styleseed/skills` (Design system skills)
-4. `ai agents handbook/packs/garden-skills/skills` (Web engineering skills)
+2. `ai-agents-handbook/packs/ponytail/skills` (Debt & refactor skills)
+3. `ai-agents-handbook/packs/styleseed/skills` (Design system skills)
+4. `ai-agents-handbook/packs/garden-skills/skills` (Web engineering skills)
 
 ### Example Skill Workflows:
 - To build a modern SaaS UI: OpenCode invokes `tailwind-design-system`, `shadcn`, `react-bits`, and `motion-ai`.

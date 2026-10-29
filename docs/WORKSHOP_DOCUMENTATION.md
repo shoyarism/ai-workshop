@@ -128,7 +128,7 @@ D:\Workshop\
 â”‚   â””â”€â”€ _archive/               # Archived prompts
 â”‚       â””â”€â”€ agents-run-artifacts/
 â”‚
-â”œâ”€â”€ ai agents handbook/          # AI agent playbook & packs
+â”œâ”€â”€ ai-agents-handbook/          # AI agent playbook & packs
 â”‚   â”œâ”€â”€ README.md
 â”‚   â”œâ”€â”€ AI-AGENT-MASTER-PROMPT.md
 â”‚   â”œâ”€â”€ ai-agent-suite/
@@ -253,7 +253,7 @@ The Workshop contains **963 agent skills** distributed across multiple sources:
 | `skills/` | 854 | Primary curated skills library |
 | `hyperframes/skills/` | 20 | Motion & video generation |
 | `browser-use/skills/` | 6 | Browser automation |
-| `ai agents handbook/packs/*/skills/` | ~70 | Specialized pack skills |
+| `ai-agents-handbook/packs/*/skills/` | ~70 | Specialized pack skills |
 | **Total** | **~963** | |
 
 ### Skill Categories (Top by Count)
@@ -343,7 +343,7 @@ Located in `scripts/mcp_configs/` â€” configuration files for all MCP serve
 ### Structure
 
 ```
-ai agents handbook/
+ai-agents-handbook/
 â”œâ”€â”€ README.md
 â”œâ”€â”€ AI-AGENT-MASTER-PROMPT.md
 â”œâ”€â”€ ai-agent-suite/
