@@ -64,7 +64,7 @@
     .title-display { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; letter-spacing: -1.5px; fill: #f3f5fa; }
     .title-accent { fill: #ff4f17; }
     .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace; font-size: 10px; letter-spacing: 1.1px; fill: #8a94a6; }
-    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; }
+    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.1px; }
     .body-lead { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 500; font-size: 14.5px; fill: #cbd3e1; line-height: 1.4; }
     .body-muted { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 400; font-size: 13px; fill: #788296; }
     .badge-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.8px; }
@@ -85,18 +85,18 @@
       50%, 100% { opacity: 0; }
     }
     @keyframes signal-dash {
-      to { stroke-dashoffset: -32; }
+      to { stroke-dashoffset: -24; }
     }
-    @keyframes ring-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    @keyframes pulse-tab-pip {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
 
     .anim-scan { animation: radar-sweep 6.5s ease-in-out infinite; }
     .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     .anim-cursor { animation: blink-cursor 1s infinite steps(1); }
-    .anim-signal { stroke-dasharray: 4 6; animation: signal-dash 1.6s linear infinite; }
-    .anim-spin { animation: ring-spin 30s linear infinite; transform-origin: 880px 240px; }
+    .anim-signal { stroke-dasharray: 4 4; animation: signal-dash 1.4s linear infinite; }
+    .anim-tab-pip { animation: pulse-tab-pip 2.5s ease-in-out infinite; }
   </style>
 
   <!-- 1. Background Ground & Ambient Lighting -->
@@ -144,7 +144,7 @@
     <line x1="1176" y1="449" x2="1176" y2="463"/>
   </g>
 
-  <!-- 3. Top Telemetry Rail (Bounds Checked) -->
+  <!-- 3. Top Telemetry Rail (Safely Spaced) -->
   <g transform="translate(48, 48)">
     <rect width="5" height="20" fill="url(#sigVermilion)"/>
     <text x="14" y="14.5" class="mono-bold" fill="#f3f5fa">WORKSHOP.OS // v3.5</text>
@@ -165,13 +165,13 @@
   <line x1="48" y1="78" x2="1152" y2="78" stroke="#181c28" stroke-width="1"/>
   <line x1="48" y1="79" x2="1152" y2="79" stroke="#050608" stroke-width="1"/>
 
-  <!-- 4. Left Hero Sector (Width: 510px) -->
+  <!-- 4. Left Hero Sector (Width: 500px, x: 48) -->
   <g transform="translate(48, 108)">
     <!-- Small Category Pill -->
     <g transform="translate(0, 0)">
-      <rect width="148" height="20" rx="3" fill="#1c1313" stroke="#ff4f17" stroke-width="0.8"/>
+      <rect width="152" height="20" rx="3" fill="#1c1313" stroke="#ff4f17" stroke-width="0.8"/>
       <circle cx="10" cy="10" r="2.5" fill="#ff4f17"/>
-      <text x="18" y="13.5" class="mono-bold" fill="#ff4f17">ENGINEERING RUNTIME</text>
+      <text x="20" y="13.5" class="mono-bold" fill="#ff4f17">ENGINEERING RUNTIME</text>
     </g>
 
     <!-- Hero Title -->
@@ -184,36 +184,36 @@
     <text x="0" y="118" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
     <text x="0" y="138" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
 
-    <!-- Key Spec Badges -->
+    <!-- Key Spec Badges / Tabs (Non-colliding text-anchor layout) -->
     <g transform="translate(0, 172)">
       <!-- Badge 1: 7 Houses -->
       <g transform="translate(0, 0)">
-        <rect width="136" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="136" y2="0" stroke="#ff4f17" stroke-width="1.8"/>
-        <text x="12" y="18.5" class="badge-label" fill="#ff4f17">7 HOUSES</text>
-        <text x="74" y="18.5" class="mono-meta" fill="#8a94a6">GUILDS</text>
+        <rect width="144" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="144" y2="0" stroke="#ff4f17" stroke-width="2"/>
+        <text x="12" y="19" class="badge-label" fill="#ff4f17">7 HOUSES</text>
+        <text x="132" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">GUILDS</text>
       </g>
 
       <!-- Badge 2: AST Bailiff -->
-      <g transform="translate(148, 0)">
-        <rect width="154" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="154" y2="0" stroke="#06b6d4" stroke-width="1.8"/>
-        <text x="12" y="18.5" class="badge-label" fill="#f3f5fa">AST BAILIFF</text>
-        <text x="96" y="18.5" class="mono-meta" fill="#8a94a6">GATE</text>
+      <g transform="translate(156, 0)">
+        <rect width="160" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160" y2="0" stroke="#06b6d4" stroke-width="2"/>
+        <text x="12" y="19" class="badge-label" fill="#f3f5fa">AST BAILIFF</text>
+        <text x="148" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">GATE</text>
       </g>
 
       <!-- Badge 3: 0.0% Slop -->
-      <g transform="translate(314, 0)">
-        <rect width="166" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="166" y2="0" stroke="#00e599" stroke-width="1.8"/>
-        <text x="12" y="18.5" class="badge-label" fill="#00e599">0.0% SLOP</text>
-        <text x="96" y="18.5" class="mono-meta" fill="#8a94a6">VERIFIED</text>
+      <g transform="translate(328, 0)">
+        <rect width="164" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
+        <line x1="0" y1="0" x2="164" y2="0" stroke="#00e599" stroke-width="2"/>
+        <text x="12" y="19" class="badge-label" fill="#00e599">0.0% SLOP</text>
+        <text x="152" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">VERIFIED</text>
       </g>
     </g>
 
     <!-- Interactive Terminal Command Console -->
     <g transform="translate(0, 226)">
-      <rect width="480" height="42" rx="4" fill="#090a10" stroke="#1c202c" stroke-width="1"/>
+      <rect width="492" height="42" rx="4" fill="#090a10" stroke="#1c202c" stroke-width="1"/>
       <circle cx="14" cy="14" r="3" fill="#ff5f56"/>
       <circle cx="24" cy="14" r="3" fill="#ffbd2e"/>
       <circle cx="34" cy="14" r="3" fill="#27c93f"/>
@@ -222,104 +222,113 @@
       <text x="14" y="32" class="mono-bold" fill="#ff4f17">$</text>
       <text x="28" y="32" class="mono-bold" fill="#cbd3e1">workshop doctor --strict</text>
       <rect x="216" y="24" width="7" height="11" fill="#ff4f17" class="anim-cursor"/>
-      <text x="466" y="32" text-anchor="end" class="mono-bold" fill="#00e599">[PASS: EXIT 0]</text>
+      <text x="478" y="32" text-anchor="end" class="mono-bold" fill="#00e599">[PASS: EXIT 0]</text>
     </g>
   </g>
 
-  <!-- 5. Right Instrument Bay Chassis (Width: 546px, x: 606) -->
-  <g transform="translate(606, 96)">
+  <!-- 5. Right Instrument Bay Chassis (Width: 556px, x: 596) -->
+  <g transform="translate(596, 96)">
     <!-- Chassis Plate -->
-    <rect width="546" height="326" rx="6" fill="url(#chassisGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="2" y1="2" x2="544" y2="2" stroke="url(#bevelLight)" stroke-width="1"/>
-    <line x1="2" y1="324" x2="544" y2="324" stroke="#040507" stroke-width="1"/>
+    <rect width="556" height="326" rx="6" fill="url(#chassisGrad)" stroke="#202434" stroke-width="1.2"/>
+    <line x1="2" y1="2" x2="554" y2="2" stroke="url(#bevelLight)" stroke-width="1"/>
+    <line x1="2" y1="324" x2="554" y2="324" stroke="#040507" stroke-width="1"/>
 
     <!-- Eurorack Corner Screws -->
     <g fill="#12141e" stroke="#282d3e" stroke-width="0.8">
       <circle cx="14" cy="14" r="3.5"/>
       <line x1="11" y1="14" x2="17" y2="14" stroke="#404760"/>
-      <circle cx="532" cy="14" r="3.5"/>
-      <line x1="529" y1="14" x2="535" y2="14" stroke="#404760"/>
+      <circle cx="542" cy="14" r="3.5"/>
+      <line x1="539" y1="14" x2="545" y2="14" stroke="#404760"/>
       <circle cx="14" cy="312" r="3.5"/>
       <line x1="11" y1="312" x2="17" y2="312" stroke="#404760"/>
-      <circle cx="532" cy="312" r="3.5"/>
-      <line x1="529" y1="312" x2="535" y2="312" stroke="#404760"/>
+      <circle cx="542" cy="312" r="3.5"/>
+      <line x1="539" y1="312" x2="545" y2="312" stroke="#404760"/>
     </g>
 
-    <!-- Top Instrument Bays (3 Channels) -->
+    <!-- Top Instrument Tabs (3 Channels with Roomy Typography) -->
     <g transform="translate(20, 22)">
       <!-- Channel 01: Court -->
       <g transform="translate(0, 0)">
-        <rect width="162" height="52" rx="4" fill="#161824" stroke="#262b3c" stroke-width="1"/>
-        <line x1="0" y1="0" x2="162" y2="0" stroke="#ff4f17" stroke-width="2.5"/>
-        <circle cx="14" cy="18" r="2.5" fill="#ff4f17"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">01 // COURT</text>
-        <text x="14" y="38" class="mono-meta" fill="#8a94a6">AST LINT TRIBUNAL</text>
+        <rect width="164" height="52" rx="4" fill="#161824" stroke="#262b3c" stroke-width="1"/>
+        <line x1="0" y1="0" x2="164" y2="0" stroke="#ff4f17" stroke-width="2.5"/>
+        <circle cx="16" cy="19" r="3" fill="#ff4f17" class="anim-tab-pip"/>
+        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">01 // COURT</text>
+        <text x="16" y="39" class="mono-meta" fill="#8a94a6">AST LINT TRIBUNAL</text>
       </g>
 
       <!-- Channel 02: Council -->
-      <g transform="translate(172, 0)">
-        <rect width="162" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
-        <line x1="0" y1="0" x2="162" y2="0" stroke="#06b6d4" stroke-width="2"/>
-        <circle cx="14" cy="18" r="2.5" fill="#06b6d4"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">02 // COUNCIL</text>
-        <text x="14" y="38" class="mono-meta" fill="#8a94a6">4-WAY DIALECTIC</text>
+      <g transform="translate(176, 0)">
+        <rect width="164" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
+        <line x1="0" y1="0" x2="164" y2="0" stroke="#06b6d4" stroke-width="2"/>
+        <circle cx="16" cy="19" r="3" fill="#06b6d4" class="anim-tab-pip"/>
+        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">02 // COUNCIL</text>
+        <text x="16" y="39" class="mono-meta" fill="#8a94a6">4-WAY DIALECTIC</text>
       </g>
 
       <!-- Channel 03: Foundry -->
-      <g transform="translate(344, 0)">
-        <rect width="162" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
-        <line x1="0" y1="0" x2="162" y2="0" stroke="#00e599" stroke-width="2"/>
-        <circle cx="14" cy="18" r="2.5" fill="#00e599"/>
-        <text x="24" y="21" class="mono-bold" fill="#f3f5fa">03 // FOUNDRY</text>
-        <text x="14" y="38" class="mono-meta" fill="#8a94a6">2,150+ RUNBOOKS</text>
+      <g transform="translate(352, 0)">
+        <rect width="164" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
+        <line x1="0" y1="0" x2="164" y2="0" stroke="#00e599" stroke-width="2"/>
+        <circle cx="16" cy="19" r="3" fill="#00e599" class="anim-tab-pip"/>
+        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">03 // FOUNDRY</text>
+        <text x="16" y="39" class="mono-meta" fill="#8a94a6">2,150+ RUNBOOKS</text>
       </g>
     </g>
 
-    <!-- Telemetry Readout Matrix with Animated Signal Currents -->
+    <!-- Telemetry Readout Matrix (Zero Collision Design with Pips and Safe Leader Line Boundaries) -->
     <g transform="translate(20, 94)">
       <!-- Row 1: Judicial Bench -->
       <g transform="translate(0, 18)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">JUDICIAL BENCH</text>
-        <line x1="120" y1="-3" x2="280" y2="-3" stroke="#222738" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">3 JURORS UNANIMOUS (AST)</text>
+        <circle cx="4" cy="-3" r="2" fill="#8a94a6"/>
+        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">JUDICIAL BENCH</text>
+        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#222738" class="anim-signal"/>
+        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">3 JURORS UNANIMOUS (AST)</text>
+        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
       </g>
 
       <!-- Row 2: Git Interceptor -->
       <g transform="translate(0, 48)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">GIT INTERCEPTOR</text>
-        <line x1="125" y1="-3" x2="270" y2="-3" stroke="#ff4f17" stroke-opacity="0.5" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#ff4f17">BAILIFF PRE-COMMIT ARMED</text>
+        <circle cx="4" cy="-3" r="2" fill="#ff4f17"/>
+        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">GIT INTERCEPTOR</text>
+        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#ff4f17" stroke-opacity="0.4" class="anim-signal"/>
+        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#ff4f17">BAILIFF PRE-COMMIT ARMED</text>
+        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
       </g>
 
       <!-- Row 3: Episodic Memory -->
       <g transform="translate(0, 78)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">EPISODIC MEMORY</text>
-        <line x1="130" y1="-3" x2="275" y2="-3" stroke="#222738" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">OBSIDIAN VAULT // 7 NOTES</text>
+        <circle cx="4" cy="-3" r="2" fill="#06b6d4"/>
+        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">EPISODIC MEMORY</text>
+        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#06b6d4" stroke-opacity="0.4" class="anim-signal"/>
+        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">OBSIDIAN VAULT // 7 NOTES</text>
+        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
       </g>
 
-      <!-- Row 4: Slop Index -->
+      <!-- Row 4: Slop Tolerance -->
       <g transform="translate(0, 108)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">SLOP INDEX TOLERANCE</text>
-        <line x1="165" y1="-3" x2="310" y2="-3" stroke="#00e599" stroke-opacity="0.5" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#00e599">0.0% (ABSOLUTE ZERO)</text>
+        <circle cx="4" cy="-3" r="2" fill="#00e599"/>
+        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">SLOP TOLERANCE</text>
+        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#00e599" stroke-opacity="0.4" class="anim-signal"/>
+        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#00e599">0.0% [ABSOLUTE ZERO]</text>
+        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
       </g>
 
-      <!-- Row 5: Test Suite -->
+      <!-- Row 5: Test Suite Matrix -->
       <g transform="translate(0, 138)">
-        <text x="0" y="0" class="mono-meta" fill="#cbd3e1">TEST SUITE MATRIX</text>
-        <line x1="140" y1="-3" x2="315" y2="-3" stroke="#222738" class="anim-signal"/>
-        <text x="506" y="0" text-anchor="end" class="mono-bold" fill="#00e599">43/43 PASSED (100% CI GREEN)</text>
+        <circle cx="4" cy="-3" r="2" fill="#00e599"/>
+        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">CI TEST MATRIX</text>
+        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#00e599" stroke-opacity="0.4" class="anim-signal"/>
+        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#00e599">43/43 PASSED [100% GREEN]</text>
       </g>
     </g>
 
-    <!-- Bottom Chassis Cryptographic Clearance Strip -->
+    <!-- Bottom Chassis Cryptographic Clearance Strip (Generous Safe Margin) -->
     <g transform="translate(0, 290)">
-      <rect width="546" height="36" rx="0 0 6 6" fill="#090a10"/>
-      <line x1="0" y1="0" x2="546" y2="0" stroke="#181c28" stroke-width="1"/>
+      <rect width="556" height="36" rx="0 0 6 6" fill="#090a10"/>
+      <line x1="0" y1="0" x2="556" y2="0" stroke="#181c28" stroke-width="1"/>
       <circle cx="16" cy="18" r="3" fill="#00e599" class="anim-pulse"/>
-      <text x="26" y="22" class="mono-meta" fill="#687082">CR-20261029-CECE • CRYPTOGRAPHIC CLEARANCE</text>
-      <text x="526" y="22" text-anchor="end" class="mono-bold" fill="#00e599">ACQUITTED WITH HONORS</text>
+      <text x="26" y="22" class="mono-meta" fill="#687082">DOCKET: CR-2026 • CLEARANCE</text>
+      <text x="536" y="22" text-anchor="end" class="mono-bold" fill="#00e599">ACQUITTED WITH HONORS</text>
     </g>
   </g>
 

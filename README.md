@@ -18,9 +18,13 @@
 
 <br>
 
-```
-SPEC: WORKSHOP-OS-3.5  •  LICENSE: APACHE-2.0  •  7 SOVEREIGN HOUSES  •  2,150+ SKILLS  •  SLOP COURT: v3.5 ARMED
-```
+<p align="center">
+  <code>SPEC: WORKSHOP-OS-3.5</code> &nbsp;•&nbsp;
+  <code>LICENSE: APACHE-2.0</code> &nbsp;•&nbsp;
+  <code>7 SOVEREIGN HOUSES</code> &nbsp;•&nbsp;
+  <code>2,150+ SKILLS</code> &nbsp;•&nbsp;
+  <code>SLOP COURT: v3.5 ARMED</code>
+</p>
 
 ---
 
