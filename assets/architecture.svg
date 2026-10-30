@@ -26,7 +26,7 @@
   <g transform="translate(120, 48)">
     <text x="0" y="0" class="section-title">SYSTEM ARCHITECTURE // INVARIANT PIPELINE</text>
     <text x="0" y="26" class="section-tag">SPEC 3.5</text>
-  </div>
+  </g>
 
   <!-- Header divider -->
   <line x1="120" y1="86" x2="1140" y2="86" stroke="#e5e5e5" stroke-width="0.5"/>
@@ -156,7 +156,7 @@
       <line x1="0" y1="40" x2="216" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
 
       <g transform="translate(0, 52)">
-        <text x="0" y="0" class="item-title">2,150+ Skill Runbooks</text>
+        <text x="0" y="0" class="item-title">2,267+ Verified Skills</text>
         <text x="0" y="18" class="item-desc">7 Sovereign Houses</text>
 
         <text x="0" y="40" class="item-title">Obsidian 2nd Brain</text>

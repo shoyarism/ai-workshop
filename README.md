@@ -42,7 +42,7 @@
   </div>
   <div style="display: flex; align-items: baseline; gap: 8px; font-size: 14px">
     <span style="color: #888888;">SKILLS:</span>
-    <span style="color: #111111; font-weight: 600;">2,150+ RUNBOOKS</span>
+    <span style="color: #111111; font-weight: 600;">2,267+ VERIFIED SKILLS</span>
   </div>
   <div style="display: flex; align-items: baseline; gap: 8px; font-size: 14px">
     <span style="color: #888888;">SLOP INDEX:</span>
@@ -131,7 +131,7 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 - **The Yes-Man Echo Chamber:** LLMs are trained to please. Single-model feedback is an echo chamber.
 - **Context Amnesia:** Every session starts from scratch. Past decisions vanish.
 
-**Workshop OS establishes enforceable boundaries:** a 3-juror quality tribunal combining AST analysis and lexical heuristics that halts commits at the Git level, an adversarial 4-persona council that stress-tests decisions, and **2,147 verified execution runbooks**.
+**Workshop OS establishes enforceable boundaries:** a 3-juror quality tribunal combining AST analysis and lexical heuristics that halts commits at the Git level, an adversarial 4-persona council that stress-tests decisions, and **2,267+ verified skills**.
 
 ---
 
@@ -146,7 +146,7 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 | **INTEGRATION** | Agent Harnesses | Task Directive |
 | **GATEKEEPER** | Slop Court v3.5 | SHA-256 Commit Clearance |
 | **DELIBERATION** | Supreme Council | Adversarial Validation |
-| **PERSISTENCE** | The Foundry | 2,147 Verified Runbooks |
+| **PERSISTENCE** | The Foundry | 2,267+ Verified Skills |
 
 ---
 
@@ -190,7 +190,7 @@ The 4-persona adversarial council forces multi-angle validation:
 ## 08 // MASTER CLI COMMAND PALETTE
 
 ```bash
-workshop search "<keyword>"     # Search 2,150+ skills
+workshop search "<keyword>"     # Search 2,267+ skills
 workshop doctor                 # Health diagnostics
 workshop court trial <path>     # Slop Court review
 workshop council convene "<q>"  # Multi-persona council
