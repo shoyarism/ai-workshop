@@ -262,9 +262,9 @@ def check_obsidian_vault(critical_failures: List[str]):
         # Ignore code fences and inline code where templates/examples reside
         cleaned_content = re.sub(r"```.*?```", "", content, flags=re.DOTALL)
         cleaned_content = re.sub(r"`.*?`", "", cleaned_content)
-        for link in re.findall(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]", cleaned_content):
+        for m in re.finditer(r"\[\[([^\]#|]+?)(?:\\?#[^\]|]+)?(?:\\?\|[^\]]+)?\]\]", cleaned_content):
             total_links += 1
-            t_clean = link.strip()
+            t_clean = m.group(1).rstrip("\\/ ").strip()
             t_path = vault_dir / t_clean
             t_stem = Path(t_clean).stem.lower()
             resolved = (
