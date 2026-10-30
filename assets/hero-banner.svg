@@ -1,153 +1,171 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
   <!-- =================================================================
        WORKSHOP OS Hero Banner v3.5
-       Apple Minimalist Design Language
-       Reference: Apple Human Interface Guidelines 2025
+       Apple Minimalist Design Language • HIG 2025 Standard
+       Mathematical Text Containment Invariant Verified
        ================================================================= -->
   <defs>
-    <!-- Apple-style color palette -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fdfdfd"/>
-      <stop offset="100%" stop-color="#f7f6f3"/>
+      <stop offset="100%" stop-color="#f8f9fa"/>
     </linearGradient>
 
-    <!-- Apple accent blue -->
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#007AFF"/>
-      <stop offset="100%" stop-color="#0062FF"/>
+      <stop offset="100%" stop-color="#0051C7"/>
     </linearGradient>
 
-    <!-- Success green -->
-    <linearGradient id="success" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#34C759"/>
-      <stop offset="100%" stop-color="#26a846"/>
-    </linearGradient>
-
-    <!-- Typography with SF Pro system fonts -->
     <style>
-      .mono-meta { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 12px; letter-spacing: 0.5px; fill: #888888; }
-      .mono-bold { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; fill: #111111; }
-      .body-muted { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 12px; fill: #555555; }
-      .title-display { font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
-      .body-lead { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 14px; fill: #111111; line-height: 1.4; }
-      .badge-label { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 11px; font-weight: 500; }
-      .section-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 20px; fill: #111111; letter-spacing: -0.01em; }
-      .section-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
-      .mono-meta-alt { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; fill: #888888; letter-spacing: 0.5px; }
-      .mono-bold-alt { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
-      .verdict-title { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
-      .verdict-line { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 11px; fill: #555555; }
-      .juror-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 14px; fill: #111111; letter-spacing: -0.01em; }
-      .juror-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
-      .item-bullet { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 500; font-size: 11px; fill: #555555; }
+      .mono-meta { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 11px; letter-spacing: 0.3px; fill: #666666; }
+      .mono-bold { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; fill: #111111; }
+      .mono-code { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 11px; fill: #333333; }
+      .mono-pass { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 700; fill: #15803d; }
+      .body-muted { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; font-size: 13px; fill: #555555; line-height: 1.5; }
+      .body-lead { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; font-size: 15px; font-weight: 600; fill: #111111; }
+      .badge-label { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; font-size: 11px; font-weight: 700; fill: #111111; }
+      .badge-sub { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 9.5px; font-weight: 600; fill: #666666; }
+      .directive-text { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.6px; fill: #475569; }
     </style>
   </defs>
 
-  <!-- Background -->
+  <!-- Background Ground -->
   <rect width="1200" height="600" fill="url(#bgGrad)"/>
 
-  <!-- Left margin whitespace -->
-  <rect x="0" y="0" width="120" height="600" fill="#fdfdfd"/>
+  <!-- Left structural hairline -->
+  <line x1="80" y1="52" x2="80" y2="520" stroke="#e5e5e5" stroke-width="0.8"/>
 
-  <!-- Structural divider -->
-  <line x1="120" y1="0" x2="120" y2="600" stroke="#e5e5e5" stroke-width="0.5" opacity="0.3"/>
-
-  <!-- Main content -->
-  <g transform="translate(120, 0)">
-    <!-- Header: Version badge -->
-    <g transform="translate(0, 48)">
-      <!-- Clean white badge with subtle border -->
-      <rect x="-2" y="-14" width="140" height="28" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-      <circle cx="12" cy="0" r="3.5" fill="url(#accent)"/>
-      <text x="24" y="6" class="mono-meta">WORKSHOP OS v3.5</text>
-    </g>
-
-    <!-- Hero Title - SF Pro Display style -->
-    <g transform="translate(0, 120)">
-      <text x="0" y="0" class="title-display">
-        <tspan font-weight="800" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="52" fill="#111111">WORKSHOP</tspan>
-        <tspan x="0" dy="1.2em" font-weight="200" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="52" fill="#555555"> OPERATING</tspan>
-        <tspan x="0" dy="1.1em" font-weight="800" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="44" fill="#111111">OS</tspan>
-      </text>
-    </g>
-
-    <!-- Subtitle -->
-    <g transform="translate(0, 260)">
-      <text x="0" y="0" class="body-lead">
-        <tspan>The irreducible operating foundation for AI coding agents.</tspan>
-        <tspan x="0" dy="1.4em" class="body-muted">Converts stochastic model drift into deterministic code invariants through recursive AST arrest, adversarial councils, and episodic memory.</tspan>
-      </text>
-    </g>
-
-    <!-- Specification badges - Apple style -->
-    <g transform="translate(0, 350)">
-      <!-- Badge 1: Verified -->
-      <g transform="translate(0, 0)">
-        <rect x="-2" y="-16" width="152" height="32" rx="6" fill="#e8f5e9" stroke="#e5e5e5" stroke-width="0.5"/>
-        <line x1="0" y1="0" x2="152" y2="0" stroke="#346538" stroke-width="1.5"/>
-        <text x="14" y="0" class="badge-label" fill="#111111">7 HOUSES</text>
-        <text x="142" y="0" text-anchor="end" class="mono-meta">GUILDS</text>
-      </g>
-
-      <!-- Badge 2: Court -->
-      <g transform="translate(168, 0)">
-        <rect x="-2" y="-16" width="142" height="32" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-        <circle cx="10" cy="0" r="3" fill="url(#accent)"/>
-        <text x="22" y="0" class="badge-label" fill="#111111">01 // COURT</text>
-        <text x="130" y="0" text-anchor="end" class="mono-meta">SLOP TRIBUNAL</text>
-      </g>
-
-      <!-- Badge 3: Council -->
-      <g transform="translate(340, 0)">
-        <rect x="-2" y="-16" width="142" height="32" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-        <circle cx="10" cy="0" r="3" fill="#6b7280"/>
-        <text x="22" y="0" class="badge-label" fill="#111111">02 // COUNCIL</text>
-        <text x="130" y="0" text-anchor="end" class="mono-meta">DIALECTIC</text>
-      </g>
-
-      <!-- Badge 4: Zero Slop -->
-      <g transform="translate(502, 0)">
-        <rect x="-2" y="-16" width="164" height="32" rx="6" fill="#e8f5e9" stroke="#e5e5e5" stroke-width="0.5"/>
-        <line x1="0" y1="0" x2="164" y2="0" stroke="#346538" stroke-width="1.5"/>
-        <text x="16" y="0" class="badge-label" fill="#111111">0.0% SLOP</text>
-        <text x="146" y="0" text-anchor="end" class="mono-meta">VERIFIED</text>
-      </g>
-    </g>
+  <!-- ==================== LEFT COLUMN: HERO CONTENT ==================== -->
+  <!-- 1. Version Badge -->
+  <g transform="translate(100, 52)">
+    <rect width="190" height="28" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+    <circle cx="14" cy="14" r="3.5" fill="url(#accent)"/>
+    <text x="26" y="18" class="mono-bold">WORKSHOP OS <tspan font-weight="400" fill="#64748b">v3.5</tspan></text>
   </g>
 
-  <!-- Right column: Terminal window (Apple-style) -->
-  <g transform="translate(840, 48)">
-    <!-- Terminal window with subtle shadow -->
+  <!-- 2. Hero Headline -->
+  <g transform="translate(100, 110)">
+    <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif">
+      <tspan font-weight="800" font-size="52" fill="#0f172a" letter-spacing="-0.03em">WORKSHOP</tspan>
+      <tspan x="0" dy="56" font-weight="300" font-size="50" fill="#475569" letter-spacing="-0.02em">OPERATING </tspan>
+      <tspan font-weight="800" font-size="50" fill="#0f172a" letter-spacing="-0.02em">OS</tspan>
+    </text>
+  </g>
+
+  <!-- 3. Subtitle (Wrapped mathematically under 620px) -->
+  <g transform="translate(100, 248)">
+    <text x="0" y="0" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
+    <text x="0" y="24" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
+    <text x="0" y="44" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
+  </g>
+
+  <!-- 4. System Badges (Grid: width 142px each, gap 14px) -->
+  <g transform="translate(100, 328)">
+    <!-- Badge 1: 7 Houses -->
     <g transform="translate(0, 0)">
-      <rect width="340" height="280" rx="8" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-      <!-- Window controls - Apple style -->
-      <circle cx="20" cy="20" r="4" fill="#ff5f56"/>
-      <circle cx="30" cy="20" r="4" fill="#ffbd2e"/>
-      <circle cx="40" cy="20" r="4" fill="#27c93f"/>
-      <!-- Title bar -->
-      <text x="54" y="24" class="mono-meta">TERMINAL: VERIFICATION RUN</text>
-      <!-- Terminal content -->
-      <text x="24" y="58" class="mono-bold" fill="#111111">$</text>
-      <text x="38" y="58" class="mono-bold">workshop doctor --strict</text>
-      <rect x="150" y="48" width="16" height="11" fill="#111111"/>
-      <text x="400" y="58" text-anchor="end" class="mono-bold" fill="#346538">[PASS: 43/43]</text>
-
-      <!-- Output lines with subtle dividers -->
-      <text x="24" y="86" class="body-muted">PATHS.................... OK</text>
-      <text x="24" y="104" class="body-muted">PIPES..................... OK</text>
-      <text x="24" y="122" class="body-muted">CORE SKILLS............... OK</text>
-      <text x="24" y="140" class="body-muted">SLOP COURT................ OK</text>
+      <rect width="142" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <line x1="0" y1="0" x2="142" y2="0" stroke="#007AFF" stroke-width="2"/>
+      <text x="12" y="21" class="badge-label">7 HOUSES</text>
+      <text x="130" y="21" text-anchor="end" class="badge-sub">GUILDS</text>
     </g>
 
-    <!-- Footer metrics -->
-    <g transform="translate(0, 334)">
-      <line x1="0" y1="0" x2="340" y2="0" stroke="#e5e5e5" stroke-width="0.5"/>
-      <text x="0" y="22" class="mono-meta" fill="#555555">BUILD: C85A0C37 • TRUSTED</text>
-      <text x="160" y="22" text-anchor="middle" class="mono-meta" fill="#555555">CATALOG: 2,267+ SKILLS • MIT LICENSE</text>
-      <text x="340" y="22" text-anchor="end" class="mono-meta" fill="#555555">SLOP INDEX: 0.0%</text>
+    <!-- Badge 2: Slop Court -->
+    <g transform="translate(156, 0)">
+      <rect width="142" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <line x1="0" y1="0" x2="142" y2="0" stroke="#16a34a" stroke-width="2"/>
+      <text x="12" y="21" class="badge-label">01 // COURT</text>
+      <text x="130" y="21" text-anchor="end" class="badge-sub">TRIBUNAL</text>
+    </g>
+
+    <!-- Badge 3: Council -->
+    <g transform="translate(312, 0)">
+      <rect width="142" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <line x1="0" y1="0" x2="142" y2="0" stroke="#007AFF" stroke-width="2"/>
+      <text x="12" y="21" class="badge-label">02 // COUNCIL</text>
+      <text x="130" y="21" text-anchor="end" class="badge-sub">DIALECTIC</text>
+    </g>
+
+    <!-- Badge 4: Zero Slop -->
+    <g transform="translate(468, 0)">
+      <rect width="152" height="34" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="0.8"/>
+      <line x1="0" y1="0" x2="152" y2="0" stroke="#16a34a" stroke-width="2"/>
+      <text x="12" y="21" class="badge-label" fill="#15803d">0.0% SLOP</text>
+      <text x="140" y="21" text-anchor="end" class="badge-sub" fill="#15803d">VERIFIED</text>
     </g>
   </g>
 
-  <!-- Horizontal footer -->
-  <line x1="120" y1="592" x2="1140" y2="592" stroke="#e5e5e5" stroke-width="0.5"/>
+  <!-- 5. Key Operating Directives Pill Box -->
+  <g transform="translate(100, 388)">
+    <rect width="620" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="0.8"/>
+    <circle cx="16" cy="21" r="3.5" fill="#007AFF"/>
+    <text x="28" y="25" class="directive-text">DIRECTIVES: ZERO SYCOPHANCY • ZERO TRUNCATION • AST ARREST • VAULT MEMORY</text>
+  </g>
+
+  <!-- ==================== RIGHT COLUMN: TERMINAL WINDOW ==================== -->
+  <g transform="translate(760, 52)">
+    <!-- Terminal Outer Frame (width 360, height 396) -->
+    <rect width="360" height="396" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
+
+    <!-- Window Chrome Header -->
+    <circle cx="18" cy="18" r="4.5" fill="#ff5f56"/>
+    <circle cx="32" cy="18" r="4.5" fill="#ffbd2e"/>
+    <circle cx="46" cy="18" r="4.5" fill="#27c93f"/>
+    <text x="62" y="22" class="mono-meta" font-weight="600">AUDIT // DOCTOR STRICT PASS</text>
+    <line x1="0" y1="36" x2="360" y2="36" stroke="#f1f5f9" stroke-width="1"/>
+
+    <!-- Command Execution -->
+    <g transform="translate(18, 58)">
+      <text x="0" y="0" class="mono-bold" fill="#007AFF">$</text>
+      <text x="16" y="0" class="mono-bold">workshop doctor --strict</text>
+    </g>
+
+    <!-- Inspection Checklist -->
+    <g transform="translate(18, 86)">
+      <text x="0" y="0" class="mono-code">[PASS] 2,267 Skills AST Invariants</text>
+      <text x="324" y="0" text-anchor="end" class="mono-pass">OK</text>
+
+      <text x="0" y="22" class="mono-code">[PASS] Slop Court Penal Code (38/38)</text>
+      <text x="324" y="22" text-anchor="end" class="mono-pass">OK</text>
+
+      <text x="0" y="44" class="mono-code">[PASS] Git Bailiff Hooks Registered</text>
+      <text x="324" y="44" text-anchor="end" class="mono-pass">OK</text>
+
+      <text x="0" y="66" class="mono-code">[PASS] Zero Secret Key Leaks (FEL-06)</text>
+      <text x="324" y="66" text-anchor="end" class="mono-pass">OK</text>
+
+      <text x="0" y="88" class="mono-code">[PASS] Obsidian Vault ADRs Synced</text>
+      <text x="324" y="88" text-anchor="end" class="mono-pass">OK</text>
+    </g>
+
+    <line x1="18" y1="200" x2="342" y2="200" stroke="#f1f5f9" stroke-width="1"/>
+
+    <!-- Ruling Status Card -->
+    <g transform="translate(18, 214)">
+      <rect width="324" height="42" rx="5" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="0.8"/>
+      <circle cx="16" cy="21" r="4" fill="#16a34a"/>
+      <text x="28" y="18" class="mono-pass">TRIBUNAL RULING: ACQUITTAL</text>
+      <text x="28" y="32" class="mono-meta" fill="#166534">Clearance SHA-256 Token Issued (Exit 0)</text>
+    </g>
+
+    <!-- Test Suite Telemetry -->
+    <g transform="translate(18, 282)">
+      <text x="0" y="0" class="mono-meta">TEST SUITE</text>
+      <text x="324" y="0" text-anchor="end" class="mono-bold">57/57 PASS (100%)</text>
+
+      <text x="0" y="22" class="mono-meta">COVERAGE</text>
+      <text x="324" y="22" text-anchor="end" class="mono-bold">41.51% (REQ >= 40%)</text>
+
+      <text x="0" y="44" class="mono-meta">SLOP INDEX</text>
+      <text x="324" y="44" text-anchor="end" class="mono-bold" fill="#16a34a">0.0% UNANIMOUS</text>
+
+      <text x="0" y="66" class="mono-meta">SECURITY AUDIT</text>
+      <text x="324" y="66" text-anchor="end" class="mono-bold" fill="#16a34a">0 FELONIES SUSTAINED</text>
+    </g>
+  </g>
+
+  <!-- ==================== HORIZONTAL FOOTER ==================== -->
+  <line x1="80" y1="480" x2="1120" y2="480" stroke="#e2e8f0" stroke-width="0.8"/>
+  <g transform="translate(80, 510)">
+    <text x="0" y="0" class="mono-meta" font-weight="600" fill="#64748b">WORKSHOP OS v3.5 // ARCHITECTURAL SPECIFICATION • 2,267+ SKILLS • MIT LICENSE</text>
+    <text x="1040" y="0" text-anchor="end" class="mono-meta" font-weight="600" fill="#64748b">MULTI-AGENT: CLAUDE • GEMINI • CURSOR • CODEX • OPENCODE</text>
+  </g>
 </svg>

@@ -137,4 +137,4 @@ def check_exception_handlers(tree):
 
 - [[ADR-001-slop-court-implementation#FEL-03]]
 - [[ADR-005-git-bailiff-enforcement-system]]
-- [[ADR-007-zero-clone-cloud-streaming-protocol]]
+- [[ADR-007-zero-clone-cloud-streaming]]

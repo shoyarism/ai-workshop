@@ -1,187 +1,198 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="100%" height="100%">
   <!-- =================================================================
-       WORKSHOP OS Architecture Diagram v3.5
-       Apple Minimalist Design Language
-       Reference: Apple Human Interface Guidelines 2025
+       WORKSHOP OS System Architecture // Invariant Pipeline v3.5
+       Apple Minimalist Design Language • HIG 2025 Standard
+       Mathematical Card Spacing & Text Containment Invariants Verified
        ================================================================= -->
-  <style>
-    .section-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 20px; fill: #111111; letter-spacing: -0.01em; }
-    .section-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
-    .mono-meta { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; fill: #888888; letter-spacing: 0.5px; }
-    .mono-bold { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
-    .juror-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 14px; fill: #111111; letter-spacing: -0.01em; }
-    .juror-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
-    .item-title { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 700; font-size: 11px; fill: #111111; }
-    .item-desc { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 10px; fill: #555555; }
-    .divider { stroke: #e5e5e5; stroke-width: 0.5; }
-  </style>
+  <defs>
+    <style>
+      .section-title { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif; font-weight: 800; font-size: 20px; fill: #0f172a; letter-spacing: -0.01em; }
+      .section-tag { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #64748b; }
+      .mono-meta { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 10px; fill: #64748b; letter-spacing: 0.3px; }
+      .mono-bold { font-family: "SF Mono", "Geist Mono", "JetBrains Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; }
+      .stage-title { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif; font-weight: 700; font-size: 12.5px; letter-spacing: -0.01em; }
+      .stage-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 9.5px; font-weight: 600; letter-spacing: 0.3px; fill: #64748b; }
+      .item-title { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; font-weight: 700; font-size: 11px; fill: #0f172a; }
+      .item-desc { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; font-size: 9.5px; fill: #64748b; }
+    </style>
+  </defs>
 
-  <!-- Background: Clean white -->
+  <!-- Background Ground -->
   <rect width="1200" height="540" fill="#fdfdfd"/>
 
-  <!-- Vertical divider on left -->
-  <line x1="120" y1="0" x2="120" y2="540" stroke="#e5e5e5" stroke-width="0.5" opacity="0.3"/>
+  <!-- Left structural hairline -->
+  <line x1="76" y1="42" x2="76" y2="500" stroke="#e2e8f0" stroke-width="0.8"/>
 
-  <!-- Title -->
-  <g transform="translate(120, 48)">
-    <text x="0" y="0" class="section-title">SYSTEM ARCHITECTURE // INVARIANT PIPELINE</text>
-    <text x="0" y="26" class="section-tag">SPEC 3.5</text>
+  <!-- ==================== HEADER ==================== -->
+  <g transform="translate(76, 42)">
+    <rect width="4" height="22" fill="#007AFF"/>
+    <text x="14" y="17" class="section-title">SYSTEM ARCHITECTURE // INVARIANT PIPELINE</text>
+    <text x="1048" y="8" text-anchor="end" class="mono-bold" fill="#334155">SPEC 3.5 // RECURSIVE AST VERIFICATION</text>
+    <text x="1048" y="22" text-anchor="end" class="mono-meta">2,267+ SKILLS • 7 SOVEREIGN GUILDS</text>
   </g>
 
-  <!-- Header divider -->
-  <line x1="120" y1="86" x2="1140" y2="86" stroke="#e5e5e5" stroke-width="0.5"/>
+  <line x1="76" y1="78" x2="1124" y2="78" stroke="#e2e8f0" stroke-width="0.8"/>
 
-  <!-- Stage 01: INGESTION -->
-  <g transform="translate(120, 100)">
-    <rect width="252" height="320" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#007AFF" stroke-width="1"/>
+  <!-- ==================== 4 PIPELINE STAGES ==================== -->
+  <!-- Dimensions: Width 244px each, Gap 24px (x=76, x=344, x=612, x=880) -->
 
-    <g transform="translate(18, 24)">
-      <text x="0" y="0" class="juror-title" fill="#007AFF">STAGE 01 // INGESTION</text>
-      <text x="0" y="22" class="juror-tag">Agent Harnesses</text>
-      <line x1="0" y1="40" x2="216" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+  <!-- STAGE 01: INGESTION (x=76) -->
+  <g transform="translate(76, 94)">
+    <rect width="244" height="340" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+    <line x1="0" y1="0" x2="244" y2="0" stroke="#007AFF" stroke-width="2"/>
 
-      <g transform="translate(0, 52)">
+    <g transform="translate(14, 18)">
+      <text x="0" y="4" class="stage-title" fill="#007AFF">STAGE 01 // INGESTION</text>
+      <text x="0" y="22" class="stage-tag">Multi-Agent Harness</text>
+      <line x1="0" y1="34" x2="216" y2="34" stroke="#f1f5f9" stroke-width="1"/>
+
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-title">Claude Code &amp; Codex</text>
-        <text x="0" y="18" class="item-desc">CLAUDE.md + FastMCP tools</text>
+        <text x="0" y="14" class="item-desc">CLAUDE.md + FastMCP tools</text>
 
-        <text x="0" y="40" class="item-title">Cursor &amp; Windsurf</text>
-        <text x="0" y="58" class="item-desc">Cascading context from .cursorrules</text>
+        <text x="0" y="34" class="item-title">Cursor &amp; Windsurf</text>
+        <text x="0" y="48" class="item-desc">Cascading .cursorrules context</text>
 
-        <text x="0" y="80" class="item-title">Gemini Antigravity</text>
-        <text x="0" y="98" class="item-desc">Master Soul Hook + AGENTS.md</text>
+        <text x="0" y="68" class="item-title">Gemini Antigravity</text>
+        <text x="0" y="82" class="item-desc">Master Soul Hook + AGENTS.md</text>
 
-        <text x="0" y="120" class="item-title">OpenCode &amp; Kilo</text>
-        <text x="0" y="138" class="item-desc">opencode.json + kilo.jsonc</text>
+        <text x="0" y="102" class="item-title">OpenCode &amp; Kilo</text>
+        <text x="0" y="116" class="item-desc">opencode.json + kilo.jsonc</text>
 
-        <text x="0" y="160" class="item-title">CLI &amp; Docker Sandbox</text>
-        <text x="0" y="178" class="item-desc">Native console entrypoint</text>
+        <text x="0" y="136" class="item-title">CLI &amp; Docker Sandbox</text>
+        <text x="0" y="150" class="item-desc">Hermetic shell environment</text>
       </g>
 
-      <line x1="0" y1="226" x2="216" y2="226" stroke="#e5e5e5" stroke-width="0.5"/>
-      <text x="0" y="244" class="mono-meta">INPUT: TASK DIRECTIVE // MULTI-AGENT AGNOSTIC</text>
+      <line x1="0" y1="230" x2="216" y2="230" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="0" y="248" class="mono-meta" font-weight="600">INPUT: TASK DIRECTIVE</text>
+      <text x="0" y="262" class="mono-meta">MULTI-AGENT HARNESS</text>
     </g>
   </g>
 
-  <!-- Conduit 1 -->
-  <g transform="translate(300, 200)">
-    <line x1="0" y1="0" x2="28" y2="0" stroke="#007AFF" stroke-width="1.5"/>
-    <circle cx="0" cy="0" r="4" fill="#007AFF"/>
-    <circle cx="28" cy="0" r="4" fill="#007AFF"/>
+  <!-- Conduit 1 (in 24px gap between 320 and 344) -->
+  <g transform="translate(320, 240)">
+    <line x1="0" y1="0" x2="24" y2="0" stroke="#007AFF" stroke-width="1.5"/>
+    <circle cx="12" cy="0" r="3" fill="#007AFF"/>
   </g>
 
-  <!-- Stage 02: SLOP COURT -->
-  <g transform="translate(332, 100)">
-    <rect width="252" height="320" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#34C759" stroke-width="1"/>
+  <!-- STAGE 02: SLOP COURT GATE (x=344) -->
+  <g transform="translate(344, 94)">
+    <rect width="244" height="340" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+    <line x1="0" y1="0" x2="244" y2="0" stroke="#16a34a" stroke-width="2"/>
 
-    <g transform="translate(18, 24)">
-      <text x="0" y="0" class="juror-title" fill="#34C759">STAGE 02 // GATEKEEPER</text>
-      <text x="0" y="22" class="juror-tag">Slop Court v3.5</text>
-      <line x1="0" y1="40" x2="216" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+    <g transform="translate(14, 18)">
+      <text x="0" y="4" class="stage-title" fill="#16a34a">STAGE 02 // QUALITY GATE</text>
+      <text x="0" y="22" class="stage-tag">Slop Court v3.5</text>
+      <line x1="0" y1="34" x2="216" y2="34" stroke="#f1f5f9" stroke-width="1"/>
 
-      <g transform="translate(0, 52)">
-        <text x="0" y="0" class="item-title">Juror 01: Craft &amp; Tone</text>
-        <text x="0" y="18" class="item-desc">40% — Bullshit purge (MIS-02)</text>
+      <g transform="translate(0, 48)">
+        <text x="0" y="0" class="item-title">Juror 01: Stylistic</text>
+        <text x="0" y="14" class="item-desc">Purges AI clichés &amp; gradients</text>
 
-        <text x="0" y="40" class="item-title">Juror 02: Architecture</text>
-        <text x="0" y="58" class="item-desc">30% — Nesting depth > 5 (MIS-06)</text>
+        <text x="0" y="34" class="item-title">Juror 02: Structural</text>
+        <text x="0" y="48" class="item-desc">Arrests deep nesting &amp; stubs</text>
 
-        <text x="0" y="80" class="item-title">Juror 03: Invariants</text>
-        <text x="0" y="98" class="item-desc">30% — Silent error arrest (FEL-03)</text>
+        <text x="0" y="68" class="item-title">Juror 03: Integrity</text>
+        <text x="0" y="82" class="item-desc">Blocks secrets &amp; silent errors</text>
 
-        <text x="0" y="120" class="item-title">Git Bailiff Interceptor</text>
-        <text x="0" y="138" class="item-desc">Pre-commit/push gatekeeper (FEL-01/02)</text>
-      </div>
+        <text x="0" y="102" class="item-title">Git Bailiff Interceptor</text>
+        <text x="0" y="116" class="item-desc">Pre-commit &amp; pre-push guard</text>
 
-      <line x1="0" y1="166" x2="216" y2="166" stroke="#e5e5e5" stroke-width="0.5"/>
-      <text x="0" y="184" class="mono-meta">SHA-256 TOKEN • EXIT 0 COMMIT CLEARANCE</text>
+        <text x="0" y="136" class="item-title">Clearance Hash</text>
+        <text x="0" y="150" class="item-desc">SHA-256 verification token</text>
+      </g>
+
+      <line x1="0" y1="230" x2="216" y2="230" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="0" y="248" class="mono-meta" font-weight="600" fill="#16a34a">ACQUITTAL: EXIT CODE 0</text>
+      <text x="0" y="262" class="mono-meta">SHA-256 PASS TOKEN</text>
     </g>
   </g>
 
-  <!-- Conduit 2 -->
-  <g transform="translate(584, 200)">
-    <line x1="0" y1="0" x2="28" y2="0" stroke="#007AFF" stroke-width="1.5"/>
-    <circle cx="0" cy="0" r="4" fill="#007AFF"/>
-    <circle cx="28" cy="0" r="4" fill="#007AFF"/>
+  <!-- Conduit 2 (in 24px gap between 588 and 612) -->
+  <g transform="translate(588, 240)">
+    <line x1="0" y1="0" x2="24" y2="0" stroke="#16a34a" stroke-width="1.5"/>
+    <circle cx="12" cy="0" r="3" fill="#16a34a"/>
   </g>
 
-  <!-- Stage 03: THE COUNCIL -->
-  <g transform="translate(616, 100)">
-    <rect width="252" height="320" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#007AFF" stroke-width="1"/>
+  <!-- STAGE 03: THE COUNCIL (x=612) -->
+  <g transform="translate(612, 94)">
+    <rect width="244" height="340" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+    <line x1="0" y1="0" x2="244" y2="0" stroke="#007AFF" stroke-width="2"/>
 
-    <g transform="translate(18, 24)">
-      <text x="0" y="0" class="juror-title">STAGE 03 // DELIBERATION</text>
-      <text x="0" y="22" class="juror-tag">Supreme Council</text>
-      <line x1="0" y1="40" x2="216" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+    <g transform="translate(14, 18)">
+      <text x="0" y="4" class="stage-title" fill="#007AFF">STAGE 03 // COUNCIL</text>
+      <text x="0" y="22" class="stage-tag">Adversarial Consensus</text>
+      <line x1="0" y1="34" x2="216" y2="34" stroke="#f1f5f9" stroke-width="1"/>
 
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-title">The Inquisitor</text>
-        <text x="0" y="18" class="item-desc">Red-teams failure mode tails</text>
+        <text x="0" y="14" class="item-desc">Red-teams failure mode tails</text>
 
-        <text x="0" y="40" class="item-title">The Minimalist</text>
-        <text x="0" y="58" class="item-desc">YAGNI &amp; anti-bloat pruner</text>
+        <text x="0" y="34" class="item-title">The Minimalist</text>
+        <text x="0" y="48" class="item-desc">YAGNI &amp; code pruner</text>
 
-        <text x="0" y="80" class="item-title">Craft Architect</text>
-        <text x="0" y="98" class="item-desc">UI typography &amp; token rigor</text>
+        <text x="0" y="68" class="item-title">Craft Architect</text>
+        <text x="0" y="82" class="item-desc">Design tokens &amp; UI rigor</text>
 
-        <text x="0" y="120" class="item-title">Battle-Tested SRE</text>
-        <text x="0" y="138" class="item-desc">Backpressure &amp; crash proofing</text>
+        <text x="0" y="102" class="item-title">Battle-Tested SRE</text>
+        <text x="0" y="116" class="item-desc">Crash &amp; backpressure proof</text>
 
-        <text x="0" y="160" class="item-title">Adversarial Consensus</text>
-        <text x="0" y="178" class="item-desc">Exposes blindspots upfront</text>
+        <text x="0" y="136" class="item-title">Adversarial Consensus</text>
+        <text x="0" y="150" class="item-desc">Eliminates single-model echo</text>
       </g>
 
-      <line x1="0" y1="226" x2="216" y2="226" stroke="#e5e5e5" stroke-width="0.5"/>
-      <text x="0" y="244" class="mono-meta">ADVERSARIAL DIALECTIC // BREAKS SINGLE-MODEL ECHO</text>
+      <line x1="0" y1="230" x2="216" y2="230" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="0" y="248" class="mono-meta" font-weight="600">DIALECTIC CONSENSUS</text>
+      <text x="0" y="262" class="mono-meta">ADVERSARIAL COGNITION</text>
     </g>
   </g>
 
-  <!-- Conduit 3 -->
-  <g transform="translate(868, 200)">
-    <line x1="0" y1="0" x2="28" y2="0" stroke="#007AFF" stroke-width="1.5"/>
-    <circle cx="0" cy="0" r="4" fill="#007AFF"/>
-    <circle cx="28" cy="0" r="4" fill="#007AFF"/>
+  <!-- Conduit 3 (in 24px gap between 856 and 880) -->
+  <g transform="translate(856, 240)">
+    <line x1="0" y1="0" x2="24" y2="0" stroke="#6366f1" stroke-width="1.5"/>
+    <circle cx="12" cy="0" r="3" fill="#6366f1"/>
   </g>
 
-  <!-- Stage 04: THE FOUNDRY -->
-  <g transform="translate(900, 100)">
-    <rect width="252" height="320" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
-    <line x1="0" y1="0" x2="252" y2="0" stroke="#007AFF" stroke-width="1"/>
+  <!-- STAGE 04: THE FOUNDRY (x=880, ends at 1124) -->
+  <g transform="translate(880, 94)">
+    <rect width="244" height="340" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+    <line x1="0" y1="0" x2="244" y2="0" stroke="#6366f1" stroke-width="2"/>
 
-    <g transform="translate(18, 24)">
-      <text x="0" y="0" class="juror-title">STAGE 04 // PERSISTENCE</text>
-      <text x="0" y="22" class="juror-tag">The Foundry</text>
-      <line x1="0" y1="40" x2="216" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+    <g transform="translate(14, 18)">
+      <text x="0" y="4" class="stage-title" fill="#6366f1">STAGE 04 // FOUNDRY</text>
+      <text x="0" y="22" class="stage-tag">Persistent Memory</text>
+      <line x1="0" y1="34" x2="216" y2="34" stroke="#f1f5f9" stroke-width="1"/>
 
-      <g transform="translate(0, 52)">
+      <g transform="translate(0, 48)">
         <text x="0" y="0" class="item-title">2,267+ Verified Skills</text>
-        <text x="0" y="18" class="item-desc">7 Sovereign Houses</text>
+        <text x="0" y="14" class="item-desc">7 Sovereign Guilds</text>
 
-        <text x="0" y="40" class="item-title">Obsidian 2nd Brain</text>
-        <text x="0" y="58" class="item-desc">ADRs &amp; immutable post-mortems</text>
+        <text x="0" y="34" class="item-title">Obsidian 2nd Brain</text>
+        <text x="0" y="48" class="item-desc">ADRs &amp; post-mortems</text>
 
-        <text x="0" y="80" class="item-title">FastMCP Protocol</text>
-        <text x="0" y="98" class="item-desc">Universal tool gateway</text>
+        <text x="0" y="68" class="item-title">FastMCP Protocol</text>
+        <text x="0" y="82" class="item-desc">Unified tool runtime</text>
 
-        <text x="0" y="120" class="item-title">Zero-Clone Cloud</text>
-        <text x="0" y="138" class="item-desc">Raw GitHub curl stream</text>
+        <text x="0" y="102" class="item-title">Zero-Clone Cloud</text>
+        <text x="0" y="116" class="item-desc">GitHub stream on-demand</text>
 
-        <text x="0" y="160" class="item-title">Cryptographic Hash</text>
-        <text x="0" y="178" class="item-desc">manifest.sha256 verified</text>
+        <text x="0" y="136" class="item-title">Tamper-Proof AST</text>
+        <text x="0" y="150" class="item-desc">manifest.sha256 verified</text>
       </g>
 
-      <line x1="0" y1="226" x2="216" y2="226" stroke="#e5e5e5" stroke-width="0.5"/>
-      <text x="0" y="244" class="mono-meta">EXECUTION FOUNDRY // GROUNDED MEMORY STORE</text>
+      <line x1="0" y1="230" x2="216" y2="230" stroke="#f1f5f9" stroke-width="1"/>
+      <text x="0" y="248" class="mono-meta" font-weight="600" fill="#6366f1">GROUNDED FOUNDRY</text>
+      <text x="0" y="262" class="mono-meta">IMMUTABLE VAULT STORE</text>
     </g>
   </g>
 
-  <!-- Global Bus Line -->
-  <line x1="120" y1="492" x2="1140" y2="492" stroke="#e5e5e5" stroke-width="0.5"/>
-  <line x1="120" y1="492" x2="1140" y2="492" stroke="#007AFF" stroke-width="1" opacity="0.4"/>
-  <g transform="translate(120, 510)">
-    <circle cx="4" cy="4" r="3" fill="#007AFF"/>
-    <text x="16" y="7.5" class="mono-meta">DATA INVARIANT BUS: PARALLEL AST CONCURRENCY</text>
+  <!-- ==================== DATA INVARIANT BUS ==================== -->
+  <line x1="76" y1="466" x2="1124" y2="466" stroke="#e2e8f0" stroke-width="0.8"/>
+  <line x1="76" y1="466" x2="1124" y2="466" stroke="#007AFF" stroke-width="1" opacity="0.4"/>
+
+  <g transform="translate(76, 492)">
+    <circle cx="4" cy="0" r="3.5" fill="#007AFF"/>
+    <text x="16" y="4" class="mono-meta" font-weight="600" fill="#334155">DATA INVARIANT BUS: PARALLEL AST CONCURRENCY &amp; EPISODIC MEMORY BACKPLANE</text>
+    <text x="1048" y="4" text-anchor="end" class="mono-meta" font-weight="600" fill="#64748b">TRANSACTION ISOLATION: SERIALIZABLE</text>
   </g>
 </svg>

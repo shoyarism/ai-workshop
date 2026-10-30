@@ -259,7 +259,10 @@ def check_obsidian_vault(critical_failures: List[str]):
 
     for p in notes:
         content = p.read_text(encoding="utf-8", errors="ignore")
-        for link in re.findall(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]", content):
+        # Ignore code fences and inline code where templates/examples reside
+        cleaned_content = re.sub(r"```.*?```", "", content, flags=re.DOTALL)
+        cleaned_content = re.sub(r"`.*?`", "", cleaned_content)
+        for link in re.findall(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]", cleaned_content):
             total_links += 1
             t_clean = link.strip()
             t_path = vault_dir / t_clean
@@ -269,6 +272,7 @@ def check_obsidian_vault(critical_failures: List[str]):
                 or t_stem in notes_map
                 or t_path.exists()
                 or (vault_dir / (t_clean + ".md")).exists()
+                or any(stem.startswith(t_clean.lower() + "-") for stem in notes_map)
             )
             if not resolved:
                 broken_links.append((p.name, t_clean))

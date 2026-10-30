@@ -112,7 +112,7 @@ def skip_this():
 
     def test_wildcard_import_detection(self):
         """Verify MIS-05 catches wildcard imports."""
-        code = "from os.path import *\\nfrom collections import *"
+        code = "from os.path import *\nfrom collections import *"
         charges = self.prosecutor.scan_file(Path("wildcards.py"), code)
         mis05_charges = [c for c in charges if c.statute_code == "MIS-05"]
         self.assertTrue(len(mis05_charges) >= 2, "Expected MIS-05 for wildcard imports")

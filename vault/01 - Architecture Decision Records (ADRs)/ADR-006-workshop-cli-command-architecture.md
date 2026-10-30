@@ -136,9 +136,9 @@ Success metrics:
 
 ## Related Decisions
 
-- [[ADR-001]] - Slop Court command structure (`court trial`, `court bailiff`)
-- [[ADR-005]] - Git Bailiff enforcement commands
-- [[ADR-007]] - Zero-Clone streaming commands
+- [[ADR-001-slop-court-implementation|ADR-001]] - Slop Court command structure (`court trial`, `court bailiff`)
+- [[ADR-005-git-bailiff-enforcement-system|ADR-005]] - Git Bailiff enforcement commands
+- [[ADR-007-zero-clone-cloud-streaming|ADR-007]] - Zero-Clone streaming commands
 
 ## Approval
 

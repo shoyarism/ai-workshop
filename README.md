@@ -28,7 +28,7 @@
 </div>
 
 <div align="center" style="padding: 48px 0;">
-  <img src="assets/hero-banner.svg?v=3.5.1" alt="WORKSHOP OS Manifesto Graphic" style="max-width: 1000px; width: 100%; border: 1px solid #e5e5e5; border-radius: 8px;">
+  <img src="assets/hero-banner.svg" alt="WORKSHOP OS Manifesto Graphic" style="max-width: 1000px; width: 100%; border: 1px solid #e5e5e5; border-radius: 8px;">
 </div>
 
 <div align="center" style="padding: 32px 0; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: #888888; display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; align-items: center">
@@ -160,7 +160,7 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 
 <img src="assets/court-tribunal.svg" alt="Slop Court Tribunal" style="display: block; margin: 32px auto; max-width: 1000px; border: 1px solid #e5e5e5; border-radius: 8px;">
 
-### The 3 Juries
+### The 3 Jurors
 
 | Juror | Weight | Focus |
 |-------|--------|-------|

@@ -167,7 +167,7 @@ RE_SECRETS = [
     (re.compile(r"github_pat_[0-9a-zA-Z_]{30,}"), "FEL-06", "Exposed GitHub Fine-Grained Personal Access Token"),
     (re.compile(r"ghp_[0-9a-zA-Z]{36}"), "FEL-06", "Exposed GitHub Classic Token"),
     (re.compile(r"AKIA[0-9A-Z]{16}"), "FEL-06", "Exposed AWS Access Key ID"),
-    (re.compile(r"sk-(?:live|test|proj)?[0-9a-zA-Z_\-]{20,}"), "FEL-06", "Exposed API Secret Key (e.g. OpenAI/Stripe)"),
+    (re.compile(r"\bsk[_-](?:live|test|proj)?[0-9a-zA-Z_\-]{20,}"), "FEL-06", "Exposed API Secret Key (e.g. OpenAI/Stripe)"),
     (re.compile(r"""\b(?:password|passwd|api_secret)\s*=\s*['"][^'"\r\n\s]{6,}['"]""", re.IGNORECASE), "FEL-06", "Hardcoded plaintext password or secret"),
 ]
 

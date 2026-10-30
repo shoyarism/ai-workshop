@@ -110,5 +110,5 @@ def check_function_completeness(tree):
 ## Related Artifacts
 
 - [[ADR-001-slop-court-implementation]]
-- [[ADR-006-git-bailiff-enforcement-system]]
+- [[ADR-005-git-bailiff-enforcement-system]]
 - `/court_docket/CR-20260915-OmissionFraud.json`
