@@ -238,7 +238,7 @@ python scripts/workshop_eval.py --json
 
 ## 10b // ARCHITECTURE DECISION RECORDS
 
-Located in `vault/01 - Architecture Decision Records/`
+Located in `vault/01 - Architecture Decision Records (ADRs)/`
 
 ---
 
@@ -254,11 +254,13 @@ python scripts/workshop.py court trial --staged
 
 | Asset | Purpose |
 |-------|---------|
-| `assets/logo.svg` | Primary logo |
-| `assets/brand-colors.svg` | Color system |
-| `assets/hero-banner.svg` | Hero illustration |
-| `assets/architecture.svg` | System diagram |
-| `assets/court-tribunal.svg` | Tribunal visualization |
+| `assets/logo.svg` | Primary horizontal lockup |
+| `assets/icon.svg` | macOS squircle application icon |
+| `assets/brand-colors.svg` | Apple HIG color token system |
+| `assets/hero-banner.svg` | Hero manifesto & doctor terminal |
+| `assets/architecture.svg` | 4-stage invariant pipeline diagram |
+| `assets/houses-topology.svg` | 7 Sovereign Houses jurisdiction matrix |
+| `assets/court-tribunal.svg` | 3-juror judicial tribunal schematic |
 
 ---
 
