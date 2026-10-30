@@ -1,399 +1,126 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
+  <!-- =================================================================
+       WORKSHOP OS Hero Banner v3.5
+       Redesigned: Clean/Apple Minimalist Aesthetic
+       ================================================================= -->
   <defs>
-    <!-- Deep Obsidian Canvas Gradient -->
-    <linearGradient id="heroGround" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06070a"/>
-      <stop offset="50%" stop-color="#0a0c12"/>
-      <stop offset="100%" stop-color="#050608"/>
+    <!-- Subtle background gradient for depth only -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdfdfd"/>
+      <stop offset="100%" stop-color="#f7f6f3"/>
     </linearGradient>
-
-    <!-- Signal Vermilion Accent -->
-    <linearGradient id="sigVermilion" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff7043"/>
-      <stop offset="50%" stop-color="#ff4f17"/>
-      <stop offset="100%" stop-color="#d83a00"/>
+    <!-- Subtle pastel accent for small elements only -->
+    <linearGradient id="accentVermilion" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f0e9e5"/>
+      <stop offset="100%" stop-color="#f5e9e5"/>
     </linearGradient>
-
-    <!-- Emerald Clearance Gradient -->
-    <linearGradient id="sigEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#34d399"/>
-      <stop offset="100%" stop-color="#00e599"/>
-    </linearGradient>
-
-    <!-- Cyber Cyan Accent -->
-    <linearGradient id="sigCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
-    </linearGradient>
-
-    <!-- Ambient Core Glow -->
-    <radialGradient id="coreGlow" cx="70%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff4f17" stop-opacity="0.12"/>
-      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.04"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-
-    <!-- Chassis Inset Gradient -->
-    <linearGradient id="chassisGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#121520"/>
-      <stop offset="100%" stop-color="#0a0b10"/>
-    </linearGradient>
-
-    <!-- Structural Bevel Highlight -->
-    <linearGradient id="bevelLight" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1f2434"/>
-      <stop offset="50%" stop-color="#353c52"/>
-      <stop offset="100%" stop-color="#1f2434"/>
-    </linearGradient>
-
-    <!-- Dot Matrix Pattern -->
-    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="12" cy="12" r="0.8" fill="#171a26"/>
-    </pattern>
-
-    <!-- Subtle Radar Scan Beam -->
-    <linearGradient id="radarBeam" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ff4f17" stop-opacity="0"/>
-      <stop offset="85%" stop-color="#ff4f17" stop-opacity="0.03"/>
-      <stop offset="100%" stop-color="#ff4f17" stop-opacity="0.12"/>
+    <!-- Structural divider -->
+    <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f0f0f0"/>
+      <stop offset="100%" stop-color="#e5e5e5"/>
     </linearGradient>
   </defs>
 
-  <style>
-    /* Typography Invariants */
-    .title-display { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-weight: 900; letter-spacing: -1.5px; fill: #f3f5fa; }
-    .title-accent { fill: #ff4f17; }
-    .mono-meta { font-family: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace; font-size: 10px; letter-spacing: 1.1px; fill: #8a94a6; }
-    .mono-bold { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 1.1px; }
-    .body-lead { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 500; font-size: 14.5px; fill: #cbd3e1; line-height: 1.4; }
-    .body-muted { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 400; font-size: 13px; fill: #788296; }
-    .badge-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.8px; }
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bgGrad)"/>
 
-    /* Keyframe Animations */
-    @keyframes radar-sweep {
-      0% { transform: translateY(0); opacity: 0.3; }
-      50% { opacity: 0.8; }
-      100% { transform: translateY(432px); opacity: 0; }
-    }
-    @keyframes beacon-ping {
-      0% { r: 3px; opacity: 0.95; }
-      100% { r: 10px; opacity: 0; }
-    }
-    @keyframes blink-cursor {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-    @keyframes signal-dash {
-      to { stroke-dashoffset: -24; }
-    }
-    @keyframes pulse-tab-pip {
-      0%, 100% { opacity: 0.6; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
-    @keyframes slash-laser {
-      0%, 100% { fill: #ff4f17; filter: drop-shadow(0 0 1px #ff4f17); }
-      50% { fill: #ff784e; filter: drop-shadow(0 0 6px #ff4f17); }
-    }
-    @keyframes reticle-spin-cw {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes reticle-spin-ccw {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
-    }
-    @keyframes badge-laser-glow {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; filter: drop-shadow(0 0 3px currentColor); }
-    }
-    @keyframes prompt-pulse {
-      0%, 100% { fill: #ff4f17; }
-      50% { fill: #ff7043; filter: drop-shadow(0 0 3px #ff4f17); }
-    }
-    @keyframes pass-bloom {
-      0%, 100% { opacity: 0.85; }
-      50% { opacity: 1; filter: drop-shadow(0 0 4px #00e599); }
-    }
-    @keyframes clearance-glow {
-      0%, 100% { opacity: 0.85; }
-      50% { opacity: 1; filter: drop-shadow(0 0 5px rgba(0,229,153,0.8)); }
-    }
-    @keyframes pip-sequential-1 { 0%, 100% { opacity: 0.4; } 20% { opacity: 1; } }
-    @keyframes pip-sequential-2 { 0%, 100% { opacity: 0.4; } 40% { opacity: 1; } }
-    @keyframes pip-sequential-3 { 0%, 100% { opacity: 0.4; } 60% { opacity: 1; } }
-    @keyframes pip-sequential-4 { 0%, 100% { opacity: 0.4; } 80% { opacity: 1; } }
-    @keyframes pip-sequential-5 { 0%, 100% { opacity: 0.4; } 95% { opacity: 1; } }
+  <!-- Left margin whitespace -->
+  <rect x="0" y="0" width="120" height="600" fill="#fdfdfd"/>
 
-    .anim-scan { animation: radar-sweep 6.5s ease-in-out infinite; }
-    .anim-pulse { animation: beacon-ping 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite; }
-    .anim-cursor { animation: blink-cursor 1s infinite steps(1); }
-    .anim-signal { stroke-dasharray: 4 4; animation: signal-dash 1.4s linear infinite; }
-    .anim-tab-pip { animation: pulse-tab-pip 2.5s ease-in-out infinite; }
-    .anim-slash { animation: slash-laser 2.2s ease-in-out infinite; }
-    .anim-spin-cw { animation: reticle-spin-cw 20s linear infinite; }
-    .anim-spin-ccw { animation: reticle-spin-ccw 26s linear infinite; }
-    .anim-badge-line { animation: badge-laser-glow 2.4s ease-in-out infinite; }
-    .anim-prompt { animation: prompt-pulse 1.8s ease-in-out infinite; }
-    .anim-pass { animation: pass-bloom 2.2s ease-in-out infinite; }
-    .anim-clearance { animation: clearance-glow 2.5s ease-in-out infinite; }
-    .anim-pip-1 { animation: pip-sequential-1 3s infinite; }
-    .anim-pip-2 { animation: pip-sequential-2 3s infinite; }
-    .anim-pip-3 { animation: pip-sequential-3 3s infinite; }
-    .anim-pip-4 { animation: pip-sequential-4 3s infinite; }
-    .anim-pip-5 { animation: pip-sequential-5 3s infinite; }
-  </style>
+  <!-- Main content container (max-width styling) -->
+  <g transform="translate(120, 0)">
+    <!-- Very light vertical divider on left edge of content -->
+    <line x1="0" y1="0" x2="0" y2="600" stroke="#e5e5e5" stroke-width="0.5"/>
 
-  <!-- 1. Background Ground & Ambient Lighting -->
-  <rect width="1200" height="480" fill="url(#heroGround)"/>
-  <rect width="1200" height="480" fill="url(#coreGlow)"/>
-  <rect width="1200" height="480" fill="url(#dotGrid)"/>
-
-  <!-- Scanning Radar Beam Overlay -->
-  <g clip-path="url(#chassisClip)">
-    <rect x="24" y="24" width="1152" height="48" fill="url(#radarBeam)" class="anim-scan"/>
-  </g>
-  <clipPath id="chassisClip">
-    <rect x="24" y="24" width="1152" height="432"/>
-  </clipPath>
-
-  <!-- 2. Outer Technical Chassis Frame -->
-  <rect x="24" y="24" width="1152" height="432" fill="none" stroke="#1d212c" stroke-width="1.2"/>
-  <line x1="25" y1="25" x2="1175" y2="25" stroke="url(#bevelLight)" stroke-width="1"/>
-  <line x1="25" y1="455" x2="1175" y2="455" stroke="#040507" stroke-width="1.2"/>
-
-  <!-- Corner Alignment Nodes -->
-  <g stroke="#2b3142" stroke-width="1.5" fill="none">
-    <path d="M 20 36 L 20 20 L 36 20"/>
-    <path d="M 1164 20 L 1180 20 L 1180 36"/>
-    <path d="M 20 444 L 20 460 L 36 460"/>
-    <path d="M 1164 460 L 1180 460 L 1180 444"/>
-  </g>
-
-  <!-- Animated Optical Calibration Reticles -->
-  <g stroke="#ff4f17" stroke-width="1" opacity="0.85">
-    <g transform="translate(24, 24)">
-      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
-      <circle cx="0" cy="0" r="4.5" fill="none"/>
-      <line x1="-7" y1="0" x2="7" y2="0"/>
-      <line x1="0" y1="-7" x2="0" y2="7"/>
+    <!-- Header: Version badge -->
+    <g transform="translate(0, 48)">
+      <rect width="140" height="28" x="-4" y="-14" rx="6" fill="white" stroke="#e5e5e5" stroke-width="0.5"/>
+      <circle cx="12" cy="0" r="3.5" fill="#d4a565"/>
+      <text x="24" y="6" class="mono-meta">WORKSHOP OS v3.5</text>
     </g>
 
-    <g transform="translate(1176, 24)">
-      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
-      <circle cx="0" cy="0" r="4.5" fill="none"/>
-      <line x1="-7" y1="0" x2="7" y2="0"/>
-      <line x1="0" y1="-7" x2="0" y2="7"/>
+    <!-- Hero Title - Serif display font -->
+    <g transform="translate(0, 120)">
+      <text x="0" y="0" class="title-display serif">
+        <tspan font-weight="800" font-family="Georgia, serif" font-size="52" fill="#111111">WORKSHOP</tspan>
+        <tspan x="0" dy="1.1em" font-weight="300" font-family="Georgia, serif" font-size="52" fill="#555555"> OPERATING</tspan>
+        <tspan x="0" dy="1.1em" font-weight="800" font-family="Geist Sans, SF Pro Display, system-ui" font-size="48" fill="#111111">OS</tspan>
+      </text>
     </g>
 
-    <g transform="translate(24, 456)">
-      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-ccw"/>
-      <circle cx="0" cy="0" r="4.5" fill="none"/>
-      <line x1="-7" y1="0" x2="7" y2="0"/>
-      <line x1="0" y1="-7" x2="0" y2="7"/>
+    <!-- Subtitle: Pure white canvas with high contrast -->
+    <g transform="translate(0, 252)">
+      <text x="0" y="0" class="body-lead serif-sub">
+        <tspan>The irreducible operating foundation for AI coding agents.</tspan>
+        <tspan x="0" dy="1.4em" class="body-muted">Converts stochastic model drift into deterministic code invariants through recursive AST arrest, adversarial councils, and episodic memory.</tspan>
+      </text>
     </g>
 
-    <g transform="translate(1176, 456)">
-      <circle cx="0" cy="0" r="7" fill="none" stroke="#252b3c" stroke-dasharray="2 3" class="anim-spin-cw"/>
-      <circle cx="0" cy="0" r="4.5" fill="none"/>
-      <line x1="-7" y1="0" x2="7" y2="0"/>
-      <line x1="0" y1="-7" x2="0" y2="7"/>
-    </g>
-  </g>
-
-  <!-- 3. Top Telemetry Rail (Safely Spaced) -->
-  <g transform="translate(48, 48)">
-    <rect width="5" height="20" fill="url(#sigVermilion)"/>
-    <text x="14" y="14.5" class="mono-bold" fill="#f3f5fa">WORKSHOP.OS // v3.5</text>
-    <text x="210" y="14.5" class="mono-meta">ARCH: 7 SOVEREIGN HOUSES</text>
-    <text x="430" y="14.5" class="mono-meta">CATALOG: 2,150+ RUNBOOKS</text>
-
-    <!-- Animated Status Beacon with Concentric Sonar Waves -->
-    <g transform="translate(730, 11)">
-      <circle cx="0" cy="0" r="3" fill="#00e599" opacity="0.3" class="anim-pulse"/>
-      <circle cx="0" cy="0" r="3" fill="#00e599"/>
-      <text x="12" y="3.5" class="mono-bold" fill="#00e599">ZERO-SLOP ARMED</text>
-    </g>
-
-    <!-- Build SHA Tag -->
-    <text x="1104" y="14.5" text-anchor="end" class="mono-meta" fill="#6a7285">BUILD: C85A0C37 • SHA-256</text>
-  </g>
-
-  <line x1="48" y1="78" x2="1152" y2="78" stroke="#181c28" stroke-width="1"/>
-  <line x1="48" y1="79" x2="1152" y2="79" stroke="#050608" stroke-width="1"/>
-
-  <!-- 4. Left Hero Sector (Width: 500px, x: 48, y: 96) -->
-  <g transform="translate(48, 96)">
-    <!-- Small Category Pill -->
-    <g transform="translate(0, 0)">
-      <rect width="152" height="20" rx="3" fill="#1c1313" stroke="#ff4f17" stroke-width="0.8"/>
-      <circle cx="10" cy="10" r="2.5" fill="#ff4f17" class="anim-tab-pip"/>
-      <text x="20" y="13.5" class="mono-bold" fill="#ff4f17">ENGINEERING RUNTIME</text>
-    </g>
-
-    <!-- Hero Title (Generous Clearance Below Pill + Animated Laser Slash) -->
-    <g transform="translate(0, 84)">
-      <text x="0" y="0" class="title-display" font-size="48">WORKSHOP <tspan class="title-accent anim-slash">//</tspan> OS</text>
-    </g>
-
-    <!-- Value Proposition -->
-    <text x="0" y="118" class="body-lead">The irreducible operating foundation for AI coding agents.</text>
-    <text x="0" y="142" class="body-muted">Converts stochastic model drift into deterministic code invariants</text>
-    <text x="0" y="162" class="body-muted">through recursive AST arrest, adversarial councils, and episodic memory.</text>
-
-    <!-- Key Spec Badges / Tabs (Non-colliding text-anchor layout with Laser Highlights) -->
-    <g transform="translate(0, 194)">
+    <!-- Key spec badges - muted pastels, no gradients, clean typography -->
+    <g transform="translate(0, 330)">
       <!-- Badge 1: 7 Houses -->
       <g transform="translate(0, 0)">
-        <rect width="144" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="144" y2="0" stroke="#ff4f17" stroke-width="2" class="anim-badge-line"/>
-        <text x="12" y="19" class="badge-label" fill="#ff4f17">7 HOUSES</text>
-        <text x="132" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">GUILDS</text>
+        <rect width="152" height="32" x="-2" y="-16" rx="6" fill="#f9f9f8" stroke="#e5e5e5" stroke-width="0.5"/>
+        <text x="14" y="0" class="badge-label serif-reg">7 HOUSES</text>
+        <text x="142" y="0" text-anchor="end" class="mono-meta">GUILDS</text>
       </g>
 
-      <!-- Badge 2: AST Bailiff -->
-      <g transform="translate(156, 0)">
-        <rect width="160" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="160" y2="0" stroke="#06b6d4" stroke-width="2" class="anim-badge-line"/>
-        <text x="12" y="19" class="badge-label" fill="#f3f5fa">AST BAILIFF</text>
-        <text x="148" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">GATE</text>
+      <!-- Badge 2: Court -->
+      <g transform="translate(168, 0)">
+        <rect width="142" height="32" x="-2" y="-16" rx="6" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="0.5"/>
+        <circle cx="10" cy="0" r="3" fill="#d4a565"/>
+        <text x="22" y="0" class="badge-label serif-reg">01 // COURT</text>
+        <text x="130" y="0" text-anchor="end" class="mono-meta">SLOP TRIBUNAL</text>
       </g>
 
-      <!-- Badge 3: 0.0% Slop -->
-      <g transform="translate(328, 0)">
-        <rect width="164" height="30" rx="4" fill="#11131c" stroke="#222738" stroke-width="1"/>
-        <line x1="0" y1="0" x2="164" y2="0" stroke="#00e599" stroke-width="2" class="anim-badge-line"/>
-        <text x="12" y="19" class="badge-label" fill="#00e599">0.0% SLOP</text>
-        <text x="152" y="19" text-anchor="end" class="mono-meta" fill="#8a94a6">VERIFIED</text>
+      <!-- Badge 3: Council -->
+      <g transform="translate(340, 0)">
+        <rect width="142" height="32" x="-2" y="-16" rx="6" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="0.5"/>
+        <circle cx="10" cy="0" r="3" fill="#a5a5a5"/>
+        <text x="22" y="0" class="badge-label serif-reg">02 // COUNCIL</text>
+        <text x="130" y="0" text-anchor="end" class="mono-meta">DIALECTIC</text>
       </g>
-    </g>
 
-    <!-- Interactive Terminal Command Console -->
-    <g transform="translate(0, 246)">
-      <rect width="492" height="42" rx="4" fill="#090a10" stroke="#1c202c" stroke-width="1"/>
-      <circle cx="14" cy="14" r="3" fill="#ff5f56"/>
-      <circle cx="24" cy="14" r="3" fill="#ffbd2e"/>
-      <circle cx="34" cy="14" r="3" fill="#27c93f"/>
-      <text x="48" y="17" class="mono-meta" fill="#525a70">INVARIANT WATCHDOG</text>
-
-      <text x="14" y="32" class="mono-bold anim-prompt" fill="#ff4f17">$</text>
-      <text x="28" y="32" class="mono-bold" fill="#cbd3e1">workshop doctor --strict</text>
-      <rect x="216" y="24" width="7" height="11" fill="#ff4f17" class="anim-cursor"/>
-      <text x="478" y="32" text-anchor="end" class="mono-bold anim-pass" fill="#00e599">[PASS: EXIT 0]</text>
+      <!-- Badge 4: 0.0% SLOP -->
+      <g transform="translate(502, 0)">
+        <rect width="164" height="32" x="-2" y="-16" rx="6" fill="#edf3ec" stroke="#e5e5e5" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="164" y2="0" stroke="#346538" stroke-width="1.5"/>
+        <text x="16" y="0" class="badge-label serif-reg" fill="#346538">0.0% SLOP</text>
+        <text x="146" y="0" text-anchor="end" class="mono-meta">VERIFIED</text>
+      </g>
     </g>
   </g>
 
-  <!-- 5. Right Instrument Bay Chassis (Width: 556px, x: 596) -->
-  <g transform="translate(596, 96)">
-    <!-- Chassis Plate -->
-    <rect width="556" height="326" rx="6" fill="url(#chassisGrad)" stroke="#202434" stroke-width="1.2"/>
-    <line x1="2" y1="2" x2="554" y2="2" stroke="url(#bevelLight)" stroke-width="1"/>
-    <line x1="2" y1="324" x2="554" y2="324" stroke="#040507" stroke-width="1"/>
+  <!-- Right column with terminal and metrics -->
+  <g transform="translate(840, 48)">
+    <!-- Terminal window frame -->
+    <g transform="translate(0, 0)">
+      <rect width="340" height="280" rx="8" fill="white" stroke="#e5e5e5" stroke-width="0.5"/>
+      <!-- Window controls -->
+      <circle cx="20" cy="20" r="4" fill="#ff5f56"/>
+      <circle cx="30" cy="20" r="4" fill="#ffbd2e"/>
+      <circle cx="40" cy="20" r="4" fill="#27c93f"/>
+      <!-- Chrome title bar -->
+      <text x="54" y="24" class="mono-meta">TERMINAL: VERIFICATION RUN</text>
+      <!-- Terminal content -->
+      <text x="24" y="58" class="mono-bold" fill="#111111">$</text>
+      <text x="38" y="58" class="mono-bold">workshop doctor --strict</text>
+      <rect x="150" y="48" width="16" height="11" fill="#111111"/>
+      <text x="400" y="58" text-anchor="end" class="mono-bold" fill="#346538">[PASS: 43/43]</text>
 
-    <!-- Eurorack Corner Screws -->
-    <g fill="#12141e" stroke="#282d3e" stroke-width="0.8">
-      <circle cx="14" cy="14" r="3.5"/>
-      <line x1="11" y1="14" x2="17" y2="14" stroke="#404760"/>
-      <circle cx="542" cy="14" r="3.5"/>
-      <line x1="539" y1="14" x2="545" y2="14" stroke="#404760"/>
-      <circle cx="14" cy="312" r="3.5"/>
-      <line x1="11" y1="312" x2="17" y2="312" stroke="#404760"/>
-      <circle cx="542" cy="312" r="3.5"/>
-      <line x1="539" y1="312" x2="545" y2="312" stroke="#404760"/>
+      <!-- Output lines -->
+      <text x="24" y="86" class="body-muted">PATHS.................... OK</text>
+      <text x="24" y="104" class="body-muted">PIPES..................... OK</text>
+      <text x="24" y="122" class="body-muted">CORE SKILLS............... OK</text>
+      <text x="24" y="140" class="body-muted">SLOP COURT................ OK</text>
     </g>
 
-    <!-- Top Instrument Tabs (3 Channels with Roomy Typography & Breathing Pips) -->
-    <g transform="translate(20, 22)">
-      <!-- Channel 01: Court -->
-      <g transform="translate(0, 0)">
-        <rect width="164" height="52" rx="4" fill="#161824" stroke="#262b3c" stroke-width="1"/>
-        <line x1="0" y1="0" x2="164" y2="0" stroke="#ff4f17" stroke-width="2.5" class="anim-badge-line"/>
-        <circle cx="16" cy="19" r="3" fill="#ff4f17" class="anim-tab-pip"/>
-        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">01 // COURT</text>
-        <text x="16" y="39" class="mono-meta" fill="#8a94a6">AST LINT TRIBUNAL</text>
-      </g>
-
-      <!-- Channel 02: Council -->
-      <g transform="translate(176, 0)">
-        <rect width="164" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
-        <line x1="0" y1="0" x2="164" y2="0" stroke="#06b6d4" stroke-width="2" class="anim-badge-line"/>
-        <circle cx="16" cy="19" r="3" fill="#06b6d4" class="anim-tab-pip"/>
-        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">02 // COUNCIL</text>
-        <text x="16" y="39" class="mono-meta" fill="#8a94a6">4-WAY DIALECTIC</text>
-      </g>
-
-      <!-- Channel 03: Foundry -->
-      <g transform="translate(352, 0)">
-        <rect width="164" height="52" rx="4" fill="#11131e" stroke="#202434" stroke-width="1"/>
-        <line x1="0" y1="0" x2="164" y2="0" stroke="#00e599" stroke-width="2" class="anim-badge-line"/>
-        <circle cx="16" cy="19" r="3" fill="#00e599" class="anim-tab-pip"/>
-        <text x="28" y="22" class="mono-bold" fill="#f3f5fa">03 // FOUNDRY</text>
-        <text x="16" y="39" class="mono-meta" fill="#8a94a6">2,150+ RUNBOOKS</text>
-      </g>
+    <!-- Footer metrics -->
+    <g transform="translate(0, 334)">
+      <line x1="0" y1="0" x2="340" y2="0" stroke="#e5e5e5" stroke-width="0.5"/>
+      <text x="0" y="22" class="mono-meta" fill="#555555">BUILD: C85A0C37 • TRUSTED</text>
+      <text x="160" y="22" text-anchor="middle" class="mono-meta" fill="#555555">CATALOG: 2,150+ RUNBOOKS • MIT LICENSE</text>
+      <text x="340" y="22" text-anchor="end" class="mono-meta" fill="#555555">SLOP INDEX: 0.0%</text>
     </g>
-
-    <!-- Telemetry Readout Matrix (Zero Collision Design with Active Pulse Pips & Flowing Energy Conduits) -->
-    <g transform="translate(20, 94)">
-      <!-- Row 1: Judicial Bench -->
-      <g transform="translate(0, 18)">
-        <circle cx="4" cy="-3" r="2" fill="#8a94a6" class="anim-pip-1"/>
-        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">JUDICIAL BENCH</text>
-        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#222738" class="anim-signal"/>
-        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">3 JURORS UNANIMOUS (AST)</text>
-        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
-      </g>
-
-      <!-- Row 2: Git Interceptor -->
-      <g transform="translate(0, 48)">
-        <circle cx="4" cy="-3" r="2" fill="#ff4f17" class="anim-pip-2"/>
-        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">GIT INTERCEPTOR</text>
-        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#ff4f17" stroke-opacity="0.4" class="anim-signal"/>
-        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#ff4f17">BAILIFF PRE-COMMIT ARMED</text>
-        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
-      </g>
-
-      <!-- Row 3: Episodic Memory -->
-      <g transform="translate(0, 78)">
-        <circle cx="4" cy="-3" r="2" fill="#06b6d4" class="anim-pip-3"/>
-        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">EPISODIC MEMORY</text>
-        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#06b6d4" stroke-opacity="0.4" class="anim-signal"/>
-        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#f3f5fa">OBSIDIAN VAULT // 7 NOTES</text>
-        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
-      </g>
-
-      <!-- Row 4: Slop Tolerance -->
-      <g transform="translate(0, 108)">
-        <circle cx="4" cy="-3" r="2" fill="#00e599" class="anim-pip-4"/>
-        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">SLOP TOLERANCE</text>
-        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#00e599" stroke-opacity="0.4" class="anim-signal"/>
-        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#00e599">0.0% [ABSOLUTE ZERO]</text>
-        <line x1="0" y1="12" x2="516" y2="12" stroke="#141722" stroke-width="0.8"/>
-      </g>
-
-      <!-- Row 5: Test Suite Matrix -->
-      <g transform="translate(0, 138)">
-        <circle cx="4" cy="-3" r="2" fill="#00e599" class="anim-pip-5"/>
-        <text x="14" y="0" class="mono-meta" fill="#cbd3e1">CI TEST MATRIX</text>
-        <line x1="150" y1="-3" x2="240" y2="-3" stroke="#00e599" stroke-opacity="0.4" class="anim-signal"/>
-        <text x="516" y="0" text-anchor="end" class="mono-bold" fill="#00e599">43/43 PASSED [100% GREEN]</text>
-      </g>
-    </g>
-
-    <!-- Bottom Chassis Cryptographic Clearance Strip with Glowing Emerald Seal -->
-    <g transform="translate(0, 290)">
-      <rect width="556" height="36" rx="0 0 6 6" fill="#090a10"/>
-      <line x1="0" y1="0" x2="556" y2="0" stroke="#181c28" stroke-width="1"/>
-      <circle cx="16" cy="18" r="3" fill="#00e599" class="anim-tab-pip"/>
-      <text x="26" y="22" class="mono-meta" fill="#687082">DOCKET: CR-2026 • CLEARANCE</text>
-      <text x="536" y="22" text-anchor="end" class="mono-bold anim-clearance" fill="#00e599">ACQUITTED WITH HONORS</text>
-    </g>
-  </g>
-
-  <!-- 6. Footer System Rail (Non-colliding, balanced metrics) -->
-  <line x1="48" y1="434" x2="1152" y2="434" stroke="#181c28" stroke-width="1"/>
-  <g transform="translate(48, 452)">
-    <circle cx="4" cy="4" r="3" fill="#ff4f17" class="anim-tab-pip"/>
-    <text x="14" y="7.5" class="mono-bold" fill="#f3f5fa">APACHE 2.0</text>
-    <text x="120" y="7.5" class="mono-meta">HARNESSES: CLAUDE • CURSOR • GEMINI • WINDSURF • OPENCODE • KILO</text>
-    <text x="1104" y="7.5" text-anchor="end" class="mono-meta" fill="#8a94a6">FOUNDER: @SHOYARISM &amp; SYNTHETIC SWARM</text>
   </g>
 </svg>
