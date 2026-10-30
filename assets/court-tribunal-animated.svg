@@ -1,82 +1,136 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%" height="100%">
+  <!-- =================================================================
+       WORKSHOP OS Slop Court v3.5 (Animated)
+       Apple Minimalist Design Language
+       ================================================================= -->
   <style>
-    .title { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 900; fill: #f0f0f0; font-size: 24px; }
-    .subtitle { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 11px; fill: #b8bac2; letter-spacing: 1px; }
-    .badge { font-family: var(--mono, "SF Mono", Consolas, Menlo, monospace); font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: #eb5e28; }
-    .base { fill: #111215; }
-    .panel { fill: #141519; stroke: #252730; stroke-width: 1; }
-    .accent { fill: #eb5e28; }
+    .section-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 20px; fill: #111111; letter-spacing: -0.01em; }
+    .section-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
+    .mono-meta { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; fill: #888888; letter-spacing: 0.5px; }
+    .mono-bold { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
+    .verdict-title { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+    .verdict-line { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 11px; fill: #555555; }
+    .juror-title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 14px; fill: #111111; letter-spacing: -0.01em; }
+    .juror-tag { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; fill: #555555; }
+    .item-bullet { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-weight: 500; font-size: 11px; fill: #555555; }
 
     /* Animation Keyframes */
-    @keyframes pulse {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(-20px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes gavelSwing {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-15deg); }
-      75% { transform: rotate(15deg); }
-    }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.6; } }
   </style>
 
-  <!-- Background -->
-  <rect width="400" height="200" class="base"/>
+  <!-- Background: Clean white canvas -->
+  <rect width="1200" height="520" fill="#fdfdfd"/>
 
-  <!-- Panel -->
-  <rect x="24" y="24" width="352" height="152" class="panel"/>
+  <!-- Vertical divider -->
+  <line x1="120" y1="0" x2="120" y2="520" stroke="#e5e5e5" stroke-width="0.5" opacity="0.3"/>
 
-  <!-- Header Bar -->
-  <rect x="24" y="24" width="352" height="32" fill="#0f1013"/>
-
-  <!-- Title -->
-  <text x="40" y="48" class="title">SLIP COURT</text>
-
-  <!-- Jury Badge -->
-  <text x="360" y="48" class="subtitle">3 JURORS • UNANIMOUS</text>
-
-  <!-- Panels -->
-  <rect x="32" y="72" width="120" height="40" class="panel"/>
-  <rect x="172" y="72" width="120" height="40" class="panel"/>
-  <rect x="312" y="72" width="108" height="40" class="panel"/>
-
-  <!-- Panel Labels -->
-  <text x="42" y="92" class="subtitle">Prosecutor</text>
-  <text x="182" y="92" class="subtitle">Defense</text>
-  <text x="322" y="92" class="subtitle">Jury</text>
-
-  <!-- Gavel Icon (simple) -->
-  <g id="gavel" style="transform-origin: 200px 180px; animation: gavelSwing 1.5s ease-in-out infinite;">
-    <!-- Handle -->
-    <rect x="198" y="140" width="4" height="40" fill="#555"/>
-    <!-- Head -->
-    <polygon points="200,140 180,155 180,205 220,205 220,155 200,140" class="accent"/>
-    <!-- Base -->
-    <rect x="195" y="185" width="10" height="15" fill="#333"/>
+  <!-- Header -->
+  <g transform="translate(120, 48)">
+    <rect width="5" height="22" fill="#007AFF"/>
+    <text x="0" y="0" class="section-title">JUDICIAL TRIBUNAL // SLOP COURT v3.5</text>
+    <text x="860" y="10" text-anchor="end" class="mono-bold" fill="#555555">38 STATUTE PENAL CODE</text>
+    <text x="860" y="26" text-anchor="end" class="mono-meta" fill="#888888">FEL-01..08 • MIS-01..06</text>
   </g>
 
-  <!-- Verdict Text -->
-  <text x="200" y="165" text-anchor="middle" class="subtitle" style="animation: fadeIn 0.5s ease 0.3s forwards;">ACQUITTAL: 0.0% SLOP</text>
+  <!-- Header divider -->
+  <line x1="120" y1="92" x2="1140" y2="92" stroke="#e5e5e5" stroke-width="0.5"/>
 
-  <!-- Data Points -->
-  <g style="animation: slideIn 0.5s ease 0.5s forwards;">
-    <circle cx="40" cy="150" r="6" class="accent"/>
-    <text x="50" y="155" class="subtitle">FEL-01</text>
+  <!-- JUROR CARDS -->
+  <g transform="translate(120, 104)">
+    <rect width="328" height="268" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="328" y2="0" stroke="#007AFF" stroke-width="1"/>
 
-    <circle cx="160" cy="150" r="6" class="accent"/>
-    <text x="170" y="155" class="subtitle">FEL-03</text>
+    <g transform="translate(18, 22)" style="animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; opacity: 0">
+      <circle cx="0" cy="0" r="3" fill="#007AFF"/>
+      <text x="10" y="2" class="juror-title" fill="#007AFF">JUROR 01 // STYLISTIC</text>
+      <text x="0" y="22" class="juror-tag">CRAFT &amp; TONE AUDITOR</text>
+      <line x1="0" y1="40" x2="280" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
 
-    <circle cx="280" cy="150" r="6" class="accent"/>
-    <text x="290" y="155" class="subtitle">MIS-02</text>
+      <g transform="translate(0, 52)">
+        <text x="0" y="0" class="item-bullet">• AI buzzword &amp; marketing cliché purge (MIS-02)</text>
+        <text x="0" y="22" class="item-bullet">• Unearned purple gradient violations (MIS-03)</text>
+        <text x="0" y="44" class="item-bullet">• Tautological syntax comment purge (MIS-01)</text>
+        <text x="0" y="66" class="item-bullet">• Truncated code stub arrest (FEL-01)</text>
+        <text x="0" y="88" class="item-bullet">• Fabricated statistics &amp; metrics (FEL-04)</text>
+      </g>
+
+      <line x1="0" y1="156" x2="280" y2="156" stroke="#e5e5e5" stroke-width="0.5"/>
+      <text x="0" y="174" class="mono-meta">BENCH: 40% • THRESHOLD: ZERO FELONIES</text>
+    </g>
   </g>
+
+  <!-- JUROR 02 -->
+  <g transform="translate(352, 104)">
+    <rect width="328" height="268" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="328" y2="0" stroke="#34C759" stroke-width="1"/>
+
+    <g transform="translate(18, 22)" style="animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s forwards; opacity: 0">
+      <circle cx="0" cy="0" r="3" fill="#34C759"/>
+      <text x="10" y="2" class="juror-title" fill="#34C759">JUROR 02 // STRUCTURAL</text>
+      <text x="0" y="22" class="juror-tag">AST &amp; COMPLEXITY ARBITER</text>
+      <line x1="0" y1="40" x2="280" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+
+      <g transform="translate(0, 52)">
+        <text x="0" y="0" class="item-bullet">• Recursive AST validation</text>
+        <text x="0" y="22" class="item-bullet">• Nesting depth > 5 rejection (MIS-06)</text>
+        <text x="0" y="44" class="item-bullet">• Monolithic functions > 150 stmts (MIS-07)</text>
+        <text x="0" y="66" class="item-bullet">• Lazy stubbed NotImplementedError (FEL-02)</text>
+        <text x="0" y="88" class="item-bullet">• Strict type safety contracts</text>
+      </g>
+
+      <line x1="0" y1="156" x2="280" y2="156" stroke="#e5e5e5" stroke-width="0.5"/>
+      <text x="0" y="174" class="mono-meta">BENCH: 30% • THRESHOLD: ZERO FELONIES</text>
+    </g>
+  </g>
+
+  <!-- JUROR 03 -->
+  <g transform="translate(682, 104)">
+    <rect width="328" height="268" rx="4" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="328" y2="0" stroke="#FF9500" stroke-width="1"/>
+
+    <g transform="translate(18, 22)" style="animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards; opacity: 0">
+      <circle cx="0" cy="0" r="3" fill="#FF9500"/>
+      <text x="10" y="2" class="juror-title">JUROR 03 // INTEGRITY</text>
+      <text x="0" y="22" class="juror-tag">SECURITY &amp; INVARIANTS</text>
+      <line x1="0" y1="40" x2="280" y2="40" stroke="#e5e5e5" stroke-width="0.5"/>
+
+      <g transform="translate(0, 52)">
+        <text x="0" y="0" class="item-bullet">• Silent error blackhole arrest (FEL-03)</text>
+        <text x="0" y="22" class="item-bullet">• Plaintext key exposure (FEL-06)</text>
+        <text x="0" y="44" class="item-bullet">• Dangerous shell execution guard (FEL-07)</text>
+        <text x="0" y="66" class="item-bullet">• SQL injection pattern detection (FEL-08)</text>
+        <text x="0" y="88" class="item-bullet">• Subprocess exit code verification</text>
+      </g>
+
+      <line x1="0" y1="156" x2="280" y2="156" stroke="#e5e5e5" stroke-width="0.5"/>
+      <text x="0" y="174" class="mono-meta">BENCH: 30% • THRESHOLD: ZERO FELONIES</text>
+    </g>
+  </g>
+
+  <!-- Verdict Chambers -->
+  <g transform="translate(120, 400)">
+    <rect width="538" height="72" rx="4" fill="#f7f6f3" stroke="#e5e5e5" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#34C759" stroke-width="1"/>
+
+    <g transform="translate(18, 12)" style="animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards; opacity: 0">
+      <text x="10" y="2" class="verdict-title" fill="#34C759">RULING A: UNANIMOUS 3/3 ACQUITTAL (EXIT 0)</text>
+      <text x="0" y="20" class="verdict-line">• Zero Capital Felonies sustained</text>
+      <text x="0" y="34" class="verdict-line">• Cryptographic SHA-256 clearance generated</text>
+    </g>
+  </g>
+
+  <g transform="translate(662, 400)">
+    <rect width="538" height="72" rx="4" fill="#f7f6f3" stroke="#e5e5e5" stroke-width="0.5"/>
+    <line x1="0" y1="0" x2="538" y2="0" stroke="#FF9500" stroke-width="1"/>
+
+    <g transform="translate(18, 12)" style="animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards; opacity: 0">
+      <text x="10" y="2" class="verdict-title">RULING B: CONTEMPT (EXIT 1)</text>
+      <text x="0" y="20" class="verdict-line">• Capital Felony breach detected</text>
+      <text x="0" y="34" class="verdict-line">• Git Bailiff intercepts commit</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <line x1="120" y1="504" x2="1140" y2="504" stroke="#e5e5e5" stroke-width="0.5"/>
 </svg>
