@@ -122,25 +122,36 @@ def run_eval_safety_hooks() -> Dict[str, Any]:
 
 def run_eval_harness_configs() -> Dict[str, Any]:
     """Test 5: Live configuration integrity across harnesses."""
+    import re
     t0 = time.perf_counter()
-    
+
     # Antigravity config
     g_cfg = Path.home() / ".gemini" / "config" / "mcp_config.json"
     g_ok = False
     if g_cfg.is_file():
         g_text = g_cfg.read_text(encoding="utf-8")
         g_ok = '"workshop":' in g_text
-        
+
     # OpenCode / Kilo clean paths
     op_clean = True
     for f in ("opencode.json", "kilo.jsonc"):
         p = ROOT / f
         if p.is_file():
             txt = p.read_text(encoding="utf-8")
-            stale_paths = ["E:/Personal", "E:\\Personal", "~", "C:\\Users\\USER", "C:/Users/Ideapad", "C:\\Users\\Ideapad"]
-            if any(stale in txt for stale in stale_paths):
-                op_clean = False
-                
+            # Check for stale user paths and home directory references
+            stale_patterns = [
+                r"E:/Personal",
+                r"E:\\Personal",
+                r"~(?!\{env:\w+\})(?!\d)",  # ~ not followed by {env:} or digit (git HEAD~1 exception)
+                r"C:\\Users\\USER",
+                r"C:/Users/Ideapad",
+                r"C:\\Users\\Ideapad",
+            ]
+            for pattern in stale_patterns:
+                if re.search(pattern, txt):
+                    op_clean = False
+                    break
+
     passed = g_ok and op_clean
     dur = round((time.perf_counter() - t0) * 1000, 2)
     return {
