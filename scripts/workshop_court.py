@@ -28,7 +28,7 @@ import sys
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple
 
 # Ensure UTF-8 output across all consoles
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):

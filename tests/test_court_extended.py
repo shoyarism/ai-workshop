@@ -12,7 +12,7 @@ from pathlib import Path
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
-from workshop_court import Prosecutor, STATUTES
+from workshop_court import Prosecutor
 
 
 class TestExtendedSlopCourt(unittest.TestCase):
@@ -82,13 +82,14 @@ def process_data(data):
 """
         charges = self.prosecutor.scan_file(Path("no_docs.py"), code)
         inf02_charges = [c for c in charges if c.statute_code == "INF-02"]
+        self.assertIsInstance(inf02_charges, list)
         # Note: This test depends on function being "public" - may need adjustment
         # based on implementation details
 
     def test_fel01_crlf_truncated(self):
         """Verify FEL-01 catches truncated comments with Windows line endings."""
-        code = "def func():\\n    # ... existing code\\r\\n    return True\\n"
-        charges = self.prosecutor.scan_file(Path("truncated_crlf.py"), "def func():\n    # ... existing code\r\n    return True\n")
+        code = "def func():\n    # ... existing code\r\n    return True\n"
+        charges = self.prosecutor.scan_file(Path("truncated_crlf.py"), code)
         fel01_charges = [c for c in charges if c.statute_code == "FEL-01"]
         self.assertTrue(len(fel01_charges) > 0, "Expected FEL-01 for truncated comment with CRLF")
 
@@ -139,6 +140,7 @@ def skip_this():
 </div>
 """
         charges = self.prosecutor.scan_file(Path("bento.html"), html_code)
+        self.assertIsInstance(charges, list)
         # MIS-04 applies to CSS/HTML with identical card patterns
         # This test may need adjustment based on implementation
 
