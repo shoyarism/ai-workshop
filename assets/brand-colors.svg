@@ -1,92 +1,88 @@
-<!DOCTYPE svg>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
   <!-- =================================================================
-       WORKSHOP OS Brand Colors Palette v3.5.0
-       Anti-Slop Design System - Signal Colors Only
+       WORKSHOP OS Brand Colors Palette v3.5
+       Redesigned: Apple Minimalist Aesthetic
+       Reference: Apple HIG Color System 2025
        ================================================================= -->
   <style>
-    .title { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; font-weight: 900; fill: #f0f0f0; }
-    .label { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 12px; fill: #b8bac2; }
-    .value { font-family: "SF Mono", Consolas, Menlo, monospace; font-size: 13px; fill: #f0f0f0; }
-    .swatch { stroke: #252730; stroke-width: 1; }
+    .title { font-family: "SF Pro Display", Georgia, serif; font-weight: 800; font-size: 32px; fill: #111111; letter-spacing: -0.01em; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 14px; fill: #555555; font-weight: 400; }
+    .label { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 12px; fill: #888888; letter-spacing: 0.5px; font-weight: 500; }
+    .value { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 13px; fill: #111111; font-weight: 600; }
+    .section-label { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 12px; fill: #888888; letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; }
+    .swatch { stroke: #e5e5e5; stroke-width: 0.5; }
   </style>
 
-  <!-- Background -->
-  <rect width="800" height="600" fill="#111215"/>
+  <!-- Background: Clean white canvas -->
+  <rect width="800" height="600" fill="#fdfdfd"/>
 
-  <!-- Header -->
-  <text x="40" y="40" class="title">WORKSHOP OS Brand Palette</text>
-  <text x="40" y="60" class="label">Signal Vermilion • Matte Graphite • Bone White</text>
+  <!-- Left margin whitespace -->
+  <rect x="0" y="0" width="120" height="600" fill="#fdfdfd"/>
 
-  <!-- Signal Colors Row 1 -->
-  <text x="40" y="100" class="label">PRIMARY SIGNAL COLORS</text>
+  <!-- Vertical divider on left edge of content -->
+  <line x1="120" y1="0" x2="120" y2="600" stroke="#e5e5e5" stroke-width="0.5" opacity="0.3"/>
 
-  <!-- Signal Vermilion -->
-  <rect x="40" y="120" width="120" height="80" fill="#eb5e28" class="swatch"/>
-  <text x="170" y="145" class="value">--signal-primary: #eb5e28</text>
-  <text x="170" y="165" class="label">Signal Vermilion / Ochre</text>
+  <!-- Title -->
+  <g transform="translate(120, 48)">
+    <text x="0" y="0" class="title">WORKSHOP</text>
+    <text x="0" y="34" class="subtitle">Color System • Zero-Slop Verified</text>
+  </g>
 
-  <!-- Signal Deep -->
-  <rect x="320" y="120" width="120" height="80" fill="#e0531c" class="swatch"/>
-  <text x="450" y="145" class="value">--signal-deep: #e0531c</text>
-  <text x="450" y="165" class="label">Ochre Deep (Hover)</text>
+  <!-- Main content grid (2 columns) -->
+  <g transform="translate(120, 100)">
+    <!-- Column 1: Primary Colors -->
+    <text x="0" y="0" class="section-label">PRIMARY SIGNAL</text>
 
-  <!-- =================================================================
-       Color Theory Note: Vermilion is the SINGLE accent color.
-       Purposeful. Not decorative. Signals danger, action, and alerts.
-       ================================================================= -->
+    <!-- Black -->
+    <g transform="translate(0, 24)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#111111" class="swatch"/>
+      <text x="130" y="20" class="value">--black: #111111</text>
+      <text x="130" y="42" class="label">Deep Black</text>
+    </g>
 
-  <!-- Canvas Colors Row 2 -->
-  <text x="40" y="220" class="label">CANVAS COLORS</text>
+    <!-- Off-White (Canvas) -->
+    <g transform="translate(0, 112)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#fdfdfd" class="swatch"/>
+      <text x="130" y="20" class="value">--white: #fdfdfd</text>
+      <text x="130" y="42" class="label">Pure White</text>
+    </g>
 
-  <!-- Matte Anodized Dark Graphite (Ground) -->
-  <rect x="40" y="240" width="120" height="80" fill="#111215" class="swatch"/>
-  <text x="170" y="265" class="value">--canvas-ground: #111215</text>
-  <text x="170" y="285" class="label">Matte Anodized Dark Graphite</text>
+    <!-- Accent Blue (Signal) -->
+    <g transform="translate(0, 200)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#007AFF" class="swatch"/>
+      <text x="130" y="20" class="value">--accent: #007AFF</text>
+      <text x="130" y="42" class="label">Signal Blue</text>
+    </g>
 
-  <!-- Mid-Tone Graphite -->
-  <rect x="320" y="240" width="120" height="80" fill="#141519" class="swatch"/>
-  <text x="450" y="265" class="value">--canvas-mid: #141519</text>
-  <text x="450" y="285" class="label">Mid-Tone Graphite (Cards)</text>
+    <!-- Column 2: Neutral Palette -->
+    <text x="180" y="0" class="section-label">NEUTRALS</text>
 
-  <!-- Deep Obsidian -->
-  <rect x="600" y="240" width="120" height="80" fill="#0f1013" class="swatch"/>
-  <text x="730" y="265" class="value">--canvas-deep: #0f1013</text>
-  <text x="730" y="285" class="label">Deep Obsidian (Footer)</text>
+    <!-- Gray 900 -->
+    <g transform="translate(180, 24)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#111111" class="swatch"/>
+      <text x="130" y="20" class="value">--gray-900: #111111</text>
+      <text x="130" y="42" class="label">Primary Text</text>
+    </g>
 
-  <!-- Text Colors Row 3 -->
-  <text x="40" y="360" class="label">TEXT COLORS</text>
+    <!-- Gray 500 -->
+    <g transform="translate(180, 112)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#555555" class="swatch"/>
+      <text x="130" y="20" class="value">--gray-500: #555555</text>
+      <text x="130" y="42" class="label">Secondary Text</text>
+    </g>
 
-  <!-- Bone White -->
-  <rect x="40" y="380" width="120" height="80" fill="#f0f0f0" class="swatch"/>
-  <text x="170" y="405" class="value">--text-primary: #f0f0f0</text>
-  <text x="170" y="425" class="label">Bone White (Primary)</text>
+    <!-- Gray 300 -->
+    <g transform="translate(180, 200)">
+      <rect x="0" y="0" width="120" height="80" rx="4" fill="#888888" class="swatch"/>
+      <text x="130" y="20" class="value">--gray-300: #888888</text>
+      <text x="130" y="42" class="label">Disabled Text</text>
+    </g>
 
-  <!-- Soft Gray -->
-  <rect x="320" y="380" width="120" height="80" fill="#b8bac2" class="swatch"/>
-  <text x="450" y="405" class="value">--text-secondary: #b8bac2</text>
-  <text x="450" y="425" class="label">Soft Gray (Secondary)</text>
-
-  <!-- Cool Gray -->
-  <rect x="600" y="380" width="120" height="80" fill="#50535e" class="swatch"/>
-  <text x="730" y="405" class="value">--text-disabled: #50535e</text>
-  <text x="730" y="425" class="label">Cool Gray (Disabled)</text>
-
-  <!-- Divider Colors -->
-  <text x="40" y="500" class="label">UI DIVIDERS & GRIDS</text>
-
-  <!-- Divider -->
-  <rect x="40" y="520" width="120" height="40" fill="#252730" class="swatch"/>
-  <text x="170" y="545" class="value">--divider: #252730</text>
-  <text x="170" y="563" class="label">Dividers & Rails</text>
-
-  <!-- Grid Dot -->
-  <rect x="320" y="520" width="120" height="40" fill="#24262f" class="swatch"/>
-  <text x="450" y="545" class="value">--grid-dot: #24262f</text>
-  <text x="450" y="563" class="label">Modular Dot Matrix Grid</text>
-
-  <!-- =================================================================
-       Typography Sample
-       ================================================================= -->
-  <text x="40" y="590" class="label">Typography: SF Mono, Helvetica Neue, System UI</text>
+    <!-- Gray 200 (Divider) -->
+    <g transform="translate(180, 288)">
+      <line x1="0" y1="0" x2="120" y2="0" stroke="#e5e5e5" stroke-width="0.5"/>
+      <text x="130" y="0" class="value">--gray-200: #e5e5e5</text>
+      <text x="130" y="18" class="label">Dividers / Borders</text>
+    </g>
+  </g>
 </svg>

@@ -1,23 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
   <!-- =================================================================
        WORKSHOP OS Hero Banner v3.5
-       Redesigned: Clean/Apple Minimalist Aesthetic
+       Apple Minimalist Design Language
+       Reference: Apple Human Interface Guidelines 2025
        ================================================================= -->
   <defs>
-    <!-- Subtle background gradient for depth only -->
+    <!-- Apple-style color palette -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fdfdfd"/>
       <stop offset="100%" stop-color="#f7f6f3"/>
     </linearGradient>
-    <!-- Subtle pastel accent for small elements only -->
-    <linearGradient id="accentVermilion" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f0e9e5"/>
-      <stop offset="100%" stop-color="#f5e9e5"/>
+
+    <!-- Apple accent blue -->
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#0062FF"/>
     </linearGradient>
-    <!-- Structural divider -->
-    <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f0f0f0"/>
-      <stop offset="100%" stop-color="#e5e5e5"/>
+
+    <!-- Success green -->
+    <linearGradient id="success" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34C759"/>
+      <stop offset="100%" stop-color="#26a846"/>
     </linearGradient>
   </defs>
 
@@ -27,80 +30,82 @@
   <!-- Left margin whitespace -->
   <rect x="0" y="0" width="120" height="600" fill="#fdfdfd"/>
 
-  <!-- Main content container (max-width styling) -->
-  <g transform="translate(120, 0)">
-    <!-- Very light vertical divider on left edge of content -->
-    <line x1="0" y1="0" x2="0" y2="600" stroke="#e5e5e5" stroke-width="0.5"/>
+  <!-- Structural divider -->
+  <line x1="120" y1="0" x2="120" y2="600" stroke="#e5e5e5" stroke-width="0.5" opacity="0.3"/>
 
+  <!-- Main content -->
+  <g transform="translate(120, 0)">
     <!-- Header: Version badge -->
     <g transform="translate(0, 48)">
-      <rect width="140" height="28" x="-4" y="-14" rx="6" fill="white" stroke="#e5e5e5" stroke-width="0.5"/>
-      <circle cx="12" cy="0" r="3.5" fill="#d4a565"/>
+      <!-- Clean white badge with subtle border -->
+      <rect x="-2" y="-14" width="140" height="28" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+      <circle cx="12" cy="0" r="3.5" fill="url(#accent)"/>
       <text x="24" y="6" class="mono-meta">WORKSHOP OS v3.5</text>
     </g>
 
-    <!-- Hero Title - Serif display font -->
+    <!-- Hero Title - SF Pro Display style -->
     <g transform="translate(0, 120)">
-      <text x="0" y="0" class="title-display serif">
-        <tspan font-weight="800" font-family="Georgia, serif" font-size="52" fill="#111111">WORKSHOP</tspan>
-        <tspan x="0" dy="1.1em" font-weight="300" font-family="Georgia, serif" font-size="52" fill="#555555"> OPERATING</tspan>
-        <tspan x="0" dy="1.1em" font-weight="800" font-family="Geist Sans, SF Pro Display, system-ui" font-size="48" fill="#111111">OS</tspan>
+      <text x="0" y="0" class="title-display">
+        <tspan font-weight="800" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="52" fill="#111111">WORKSHOP</tspan>
+        <tspan x="0" dy="1.2em" font-weight="200" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="52" fill="#555555"> OPERATING</tspan>
+        <tspan x="0" dy="1.1em" font-weight="800" font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="44" fill="#111111">OS</tspan>
       </text>
     </g>
 
-    <!-- Subtitle: Pure white canvas with high contrast -->
-    <g transform="translate(0, 252)">
-      <text x="0" y="0" class="body-lead serif-sub">
+    <!-- Subtitle -->
+    <g transform="translate(0, 260)">
+      <text x="0" y="0" class="body-lead">
         <tspan>The irreducible operating foundation for AI coding agents.</tspan>
         <tspan x="0" dy="1.4em" class="body-muted">Converts stochastic model drift into deterministic code invariants through recursive AST arrest, adversarial councils, and episodic memory.</tspan>
       </text>
     </g>
 
-    <!-- Key spec badges - muted pastels, no gradients, clean typography -->
-    <g transform="translate(0, 330)">
-      <!-- Badge 1: 7 Houses -->
+    <!-- Specification badges - Apple style -->
+    <g transform="translate(0, 350)">
+      <!-- Badge 1: Verified -->
       <g transform="translate(0, 0)">
-        <rect width="152" height="32" x="-2" y="-16" rx="6" fill="#f9f9f8" stroke="#e5e5e5" stroke-width="0.5"/>
-        <text x="14" y="0" class="badge-label serif-reg">7 HOUSES</text>
+        <rect x="-2" y="-16" width="152" height="32" rx="6" fill="#e8f5e9" stroke="#e5e5e5" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="152" y2="0" stroke="#346538" stroke-width="1.5"/>
+        <text x="14" y="0" class="badge-label" fill="#111111">7 HOUSES</text>
         <text x="142" y="0" text-anchor="end" class="mono-meta">GUILDS</text>
       </g>
 
       <!-- Badge 2: Court -->
       <g transform="translate(168, 0)">
-        <rect width="142" height="32" x="-2" y="-16" rx="6" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="0.5"/>
-        <circle cx="10" cy="0" r="3" fill="#d4a565"/>
-        <text x="22" y="0" class="badge-label serif-reg">01 // COURT</text>
+        <rect x="-2" y="-16" width="142" height="32" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+        <circle cx="10" cy="0" r="3" fill="url(#accent)"/>
+        <text x="22" y="0" class="badge-label" fill="#111111">01 // COURT</text>
         <text x="130" y="0" text-anchor="end" class="mono-meta">SLOP TRIBUNAL</text>
       </g>
 
       <!-- Badge 3: Council -->
       <g transform="translate(340, 0)">
-        <rect width="142" height="32" x="-2" y="-16" rx="6" fill="#f5f5f5" stroke="#e5e5e5" stroke-width="0.5"/>
-        <circle cx="10" cy="0" r="3" fill="#a5a5a5"/>
-        <text x="22" y="0" class="badge-label serif-reg">02 // COUNCIL</text>
+        <rect x="-2" y="-16" width="142" height="32" rx="6" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+        <circle cx="10" cy="0" r="3" fill="#6b7280"/>
+        <text x="22" y="0" class="badge-label" fill="#111111">02 // COUNCIL</text>
         <text x="130" y="0" text-anchor="end" class="mono-meta">DIALECTIC</text>
       </g>
 
-      <!-- Badge 4: 0.0% SLOP -->
+      <!-- Badge 4: Zero Slop -->
       <g transform="translate(502, 0)">
-        <rect width="164" height="32" x="-2" y="-16" rx="6" fill="#edf3ec" stroke="#e5e5e5" stroke-width="0.5"/>
+        <rect x="-2" y="-16" width="164" height="32" rx="6" fill="#e8f5e9" stroke="#e5e5e5" stroke-width="0.5"/>
         <line x1="0" y1="0" x2="164" y2="0" stroke="#346538" stroke-width="1.5"/>
-        <text x="16" y="0" class="badge-label serif-reg" fill="#346538">0.0% SLOP</text>
+        <text x="16" y="0" class="badge-label" fill="#111111">0.0% SLOP</text>
         <text x="146" y="0" text-anchor="end" class="mono-meta">VERIFIED</text>
       </g>
     </g>
   </g>
 
-  <!-- Right column with terminal and metrics -->
+  <!-- Right column: Terminal window (Apple-style) -->
   <g transform="translate(840, 48)">
-    <!-- Terminal window frame -->
+    <!-- Terminal window with subtle shadow -->
     <g transform="translate(0, 0)">
-      <rect width="340" height="280" rx="8" fill="white" stroke="#e5e5e5" stroke-width="0.5"/>
-      <!-- Window controls -->
+      <rect width="340" height="280" rx="8" fill="#ffffff" stroke="#e5e5e5" stroke-width="0.5"/>
+      <!-- Window controls - Apple style -->
       <circle cx="20" cy="20" r="4" fill="#ff5f56"/>
       <circle cx="30" cy="20" r="4" fill="#ffbd2e"/>
       <circle cx="40" cy="20" r="4" fill="#27c93f"/>
-      <!-- Chrome title bar -->
+      <!-- Title bar -->
       <text x="54" y="24" class="mono-meta">TERMINAL: VERIFICATION RUN</text>
       <!-- Terminal content -->
       <text x="24" y="58" class="mono-bold" fill="#111111">$</text>
@@ -108,7 +113,7 @@
       <rect x="150" y="48" width="16" height="11" fill="#111111"/>
       <text x="400" y="58" text-anchor="end" class="mono-bold" fill="#346538">[PASS: 43/43]</text>
 
-      <!-- Output lines -->
+      <!-- Output lines with subtle dividers -->
       <text x="24" y="86" class="body-muted">PATHS.................... OK</text>
       <text x="24" y="104" class="body-muted">PIPES..................... OK</text>
       <text x="24" y="122" class="body-muted">CORE SKILLS............... OK</text>
@@ -123,4 +128,17 @@
       <text x="340" y="22" text-anchor="end" class="mono-meta" fill="#555555">SLOP INDEX: 0.0%</text>
     </g>
   </g>
+
+  <!-- Horizontal footer -->
+  <line x1="120" y1="592" x2="1140" y2="592" stroke="#e5e5e5" stroke-width="0.5"/>
 </svg>
+
+<style>
+  /* Typography with SF Pro system fonts */
+  .mono-meta { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 12px; letter-spacing: 0.5px; fill: #888888; }
+  .mono-bold { font-family: "SF Mono", "Geist Mono", Consolas, monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; fill: #111111; }
+  .body-muted { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 12px; fill: #555555; }
+  .title-display { font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+  .body-lead { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 14px; fill: #111111; line-height: 1.4; }
+  .badge-label { font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 11px; font-weight: 500; }
+</style>
