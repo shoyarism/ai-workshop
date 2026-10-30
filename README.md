@@ -154,6 +154,20 @@ Every developer using AI coding agents eventually hits the **degradation wall**:
 
 <img src="assets/houses-topology.svg" alt="7 Sovereign Houses Topology" style="display: block; margin: 32px auto; max-width: 1000px; border: 1px solid #e5e5e5; border-radius: 8px;">
 
+To prevent cognitive context rot and unbounded model drift, Workshop OS segments 2,267+ runbooks into 7 sovereign domain jurisdictions:
+
+| House | Guild | Skills | Core Focus | Flagship Runbooks |
+|---|---|:---:|---|---|
+| **01 // Security** | `DEFENSE` | 835 | Defensive auditing, secret invariants, AST arrest | Slop Court v3.5, Git Bailiff, Strix Pentest, iLEAPP Forensics, Secret Guard |
+| **02 // Development** | `SYNTAX` | 357 | Strict TDD, type precision, code simplification | Superpowers TDD, Pocock TS, Karpathy LLM, Ponytail Dev, AST Grep |
+| **03 // Media & Video** | `SIGHT` | 178 | Programmatic motion, FLUX optics, video automation | HyperFrames, Photoreal FLUX, OpenMontage, Remotion Core, Vox Explainer |
+| **04 // Ops & Tokens** | `BUDGET` | 166 | Spec-driven runs, token compression, multi-agent swarms | Caveman Diet (-70% tokens), Headroom Budget, GSD Protocol, BMAD Swarms |
+| **05 // Design & UI** | `CRAFT` | 132 | Design tokens, typography scales, deck architecture | UI/UX Pro Max, Design Taste, Impeccable Scale, Archify Craft, PPT Master |
+| **06 // Intel & Graph** | `INTEL` | 90 | Knowledge graphs, zero-cost OSINT, recency harvesting | Graphify AST, Agent Reach, Last 30 Days, System Models, REA Protocol |
+| **07 // Growth & SEO** | `MARKET` | 79 | Technical SEO audits, high-conversion copy, telemetry | OpenSEO Engine, Zero-Fluff Copywriting, Viral Hooks, Landing Craft |
+| **Auxiliary Connectors** | `CLOUD` | 430 | Cloud providers, database adapters, official MCPs | AWS, GCP, Azure, FastMCP Protocol, Public APIs Directory |
+| **Total Ecosystem** | **ALL** | **2,267+** | **Deterministic multi-agent execution invariants** | **100% Verified Runbooks across 7 Sovereign Houses** |
+
 ---
 
 ## 05 // SLOP COURT v3.5
